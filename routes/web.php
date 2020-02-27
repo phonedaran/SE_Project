@@ -28,6 +28,8 @@ Route::get('/home', function () {
 });
 
 Route::get('/admin','adminController@admin');
+Route::get('/course', 'CourseController@fillter');
+
 
 
 
