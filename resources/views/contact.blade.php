@@ -62,26 +62,47 @@ http://www.tooplate.com/view/2082-pure-mix
             <div class="row">
 
               <div class="brand">
-                <a href="index.html">Shared Tutoring</a>
+                <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
 
               <div class="navicon">
                 <div class="menu-container">
-
-                  <div class="circle dark inline">
-                    <i class="icon ion-navicon"></i>
-                  </div>
+                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
+                     @if (Auth::check())
+                        {{ Auth::user()->name }}
+                     @endif
+                     <div class="circle dark inline">
+                     <i class="icon ion-navicon"></i>
+                     </div></h3>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
+                    
                     <div class="intro-inner">
-                     	<ul id="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="login.html">Log-in</a></li>
-							<li><a href="register.html">Register</a></li>
-							<li><a href="contact.html">Contact</a></li>
-                      </ul>
+                    	<ul id="nav-menu">
+						@if (Auth::check())
+							<li><a href="{{url('/')}}">Home</a></li>
+							<li><a href="{{url('/contact')}}">Contact</a></li>
+							<li><a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+									document.getElementById('logout-form').submit();">
+										Logout</a>
+
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											@csrf
+										</form>
+								</li>
+						@else
+							<li><a href="{{url('/')}}">Home</a></li>
+							<li><a href="{{url('/login')}}">Log-in</a></li>
+							@if (Route::has('register'))
+								<li><a href="{{url('/register')}}">Register</a></li>
+							@endif
+								<li><a href="{{url('/contact')}}">Contact</a></li>
+						</ul>
+						@endif
                     </div>
+                    
                   </div>
 
                 </div>
@@ -97,15 +118,15 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- Header section
 ================================================== -->
-<section id="header" class="header-four">
+<section id="header" class="header-one">
 	<div class="container">
 		<div class="row">
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-            	<div class="header-thumb">
-              		 <h1 class="wow fadeIn" data-wow-delay="0.6s">Contact Us</h1>
-              		 <h3 class="wow fadeInUp" data-wow-delay="0.9s">Vestibulum at aliquam lorem</h3>
-           		</div>
+          <div class="header-thumb">
+              <h1 class="wow fadeIn" data-wow-delay="1.6s">Coures</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="1.9s">LEARN WITH THE BEST TUTORS</h3>
+          </div>
 			</div>
 
 		</div>
