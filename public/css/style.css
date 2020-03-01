@@ -22,9 +22,10 @@ body {
     position: relative;
 }
 
+/* Add */
 .ui-slider-horizontal {
     height: 8px;
-    width: 300px;
+    width: 200px;
 }
 
 .ui-slider-range.ui-widget-header {
