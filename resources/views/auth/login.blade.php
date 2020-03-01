@@ -37,8 +37,19 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Google web font 
    ================================================== -->	
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>	
+   
+   <!-- sweet alert
+   ================================================== -->	
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <!-- sweet 2 -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> 
+
+	<style>
+		body {
+  			font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+}
+	</style>
 </head>
 <body>
 
@@ -62,7 +73,7 @@ http://www.tooplate.com/view/2082-pure-mix
             <div class="row">
 
               <div class="brand">
-                <a href="index.html">Shared Tutoring</a>
+                <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
 
               <div class="navicon">
@@ -76,10 +87,10 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="login.html">Log-in</a></li>
-							<li><a href="register.html">Register</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="{{url('/')}}">Home</a></li>
+							<li><a href="{{url('/login')}}">Log-in</a></li>
+							<li><a href="{{url('/register')}}">Register</a></li>
+							<li><a href="{{url('/contact')}}">Contact</a></li>
                       </ul>
                     </div>
                   </div>
@@ -97,6 +108,10 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- login section
 ================================================== -->
+<!-- add database table 
+ $table->string('status'); -->
+<!-- ลบ migrate failed_jobs ออก -->
+<!-- php artisan migrate -->
 <section id="header" class="header-three">
 	<section id="contact">
 		<div class="container">
@@ -106,12 +121,39 @@ http://www.tooplate.com/view/2082-pure-mix
 						<h1 class="wow fadeIn" data-wow-delay="0.6s">Log-in</h1>
 						<h3 class="wow fadeInUp" data-wow-delay="0.9s">To enjoy with us</h3>
 						<div class="contact-form" align="center">
-							<form id="contact-form" method="post" action="#">
-								<input name="name" type="text" class="form-control" placeholder="Username" required>
-								<input name="email" type="text" class="form-control" placeholder="Password" required>
+							<form id="contact-form" method="post" action="{{ route('login') }}">
+							@csrf
+
+								<input id="email" type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+								@error('email')
+									<script type="text/javascript">
+										Swal.fire({
+											icon: 'error',
+											title: 'Oops...',
+											text: 'Pleass try agian'
+											})
+									</script>
+                                @enderror
+
+								<input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+								@error('password')
+									<script type="text/javascript">
+										swal("Oops!", "Pleass try agin", "error");
+									</script>
+                                @enderror
+
 								<div class="contact-submit">
 									<input type="submit" class="form-control submit" value="Login">
 								</div>
+								<p class="wow fadeIn" data-wow-delay="0.9s">
+									<a href="{{url('/register')}}" class="btn btn-outline-dark btn-block">Create Acount</a></p>
+
+								<!-- forgot password -->
+								@if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        Forgot Your Password?
+                                    </a>
+                                @endif
 							</form>
 						</div>
 					</div>
