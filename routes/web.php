@@ -42,6 +42,9 @@ Route::group(['prefix' => 'admin'],function(){
 //     });
 // });
 
+Route::get('/course', 'CourseController@fillter');
+
+
 Auth::routes(['verify' => true]);
 
 // ต้อง login ก่อน ถึงจะเข้าได้
