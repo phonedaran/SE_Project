@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/login', function () {
@@ -23,12 +23,32 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/home', function () {
-    return view('home');
+Route::get('/contact', function () {
+    return view('contact');
 });
+
+// หน้าแรกของ student
+Route::group(['middleware' => ['auth']],function(){ Route::get('/home','HomeController@index');});
+// หน้าแรกของ admin
+Route::group(['prefix' => 'admin'],function(){
+    Route::group(['middleware' => ['admin']], function(){
+        Route::get('/infor', 'admin\AdminController@index');
+    });
+});
+// หน้าแรกของ tutor
+// Route::group(['prefix' => 'tutor'],function(){
+//     Route::group(['middleware' => ['tutor']], function(){
+//         Route::get('/course', 'tutor\TutorController@index');
+//     });
+// });
 
 Route::get('/course', 'CourseController@fillter');
 
 
+Auth::routes(['verify' => true]);
 
+// ต้อง login ก่อน ถึงจะเข้าได้
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route

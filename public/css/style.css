@@ -771,6 +771,10 @@ a.icon {
 	width: 50%;
 }
 
+.login-submit {
+	width: 70%;
+}
+
 #contact .col-md-4 {
   background: #fff;
   padding: 62px 0px 32px 42px;

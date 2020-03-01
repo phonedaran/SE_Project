@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    
+
     use Notifiable;
 
     /**
@@ -36,4 +38,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    const ADMIN_STATUS = 'admin';
+    const TUTOR_STATUS = 'tutor';
+    const STUDENT_STATUS = 'student';
+
+    public function isAdmin(){
+        return $this->status === self::ADMIN_STATUS;
+    }
+
+    public function isTutor(){
+        return $this->status === self::TUTOR_STATUS;
+    }
+
+    public function isStudent(){
+        return $this->status === self::STUDENT_STATUS;
+    }
 }
