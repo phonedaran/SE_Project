@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/','CourseController@courseShow');
 
 Route::get('/login', function () {
     return view('login');
@@ -52,3 +50,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
+
+Route::get('/addCourse', function () {
+    return view('addCourse');
+});
+
+Route::get('/course/add/check', 'CourseController@addCheck');
+
+
+Route::get('/test', function () {
+    return view('test');
+});

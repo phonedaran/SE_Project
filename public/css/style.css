@@ -26,6 +26,7 @@ body {
 .ui-slider-horizontal {
     height: 8px;
     width: 200px;
+    z-index:1
 }
 
 .ui-slider-range.ui-widget-header {

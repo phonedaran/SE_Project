@@ -135,83 +135,56 @@ http://www.tooplate.com/view/2082-pure-mix
                <!-- iso section -->
                <div class="iso-section wow fadeInUp" data-wow-delay="1s">
 
-                  <ul class="filter-wrapper clearfix">
-                           <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".graphic">Graphic</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".template">Web template</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".photoshop">Photoshop</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".branding">Branding</a></li>
-                        </ul>
 
 
                         <?php
-                            $min = $_GET['min'];
-                            $max = $_GET['max'];
-                            $subject = $_GET['subject'];
-                            $province = $_GET['province'];
+                            // $min = $_GET['min'];
+                            // $max = $_GET['max'];
+                            // $subject = $_GET['subject'];
+                            // $province = $_GET['province'];
 
-                            echo "Min :".$min;
-                            echo "<br>";
-                            echo "Max :".$max;
-                            echo "<br>";
+                            // echo "Min :".$min;
+                            // echo "<br>";
+                            // echo "Max :".$max;
+                            // echo "<br>";
 
-                            if($subject != ''){
-                                echo "Subject : ".$subject;
-                            }else{
-                                echo "Subject : None";
-                            }
-                            echo "<br>";
+                            // if($subject != ''){
+                            //     echo "Subject : ".$subject;
+                            // }else{
+                            //     echo "Subject : None";
+                            // }
+                            // echo "<br>";
 
-                            if($province != ''){
-                                echo "Province : ".$province;
-                            }else{
-                                echo "Province : None";
-                            }
+                            // if($province != ''){
+                            //     echo "location : ".$province;
+                            // }else{
+                            //     echo "location : None";
+                            // }
 
                         ?>
 
                         <!-- iso box section -->
                         <div class="container">
                            <div class="row">
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>Course Name</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : subject </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/15</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : date</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="2.0s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>Course Name</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : subject </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/15</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : date</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.7s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>Course Name</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : subject </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/15</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : date</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
+
+                            @foreach ( $courses as $c )
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                                    <div class="blog-thumb">
+                                        <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
+                                        <a href="single-post.html"><h1>{{$c->Ncourse}}</h1></a>
+                                        <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
+                                        <a href="#" class="btn btn-default">MORE INFO</a>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
+
                               </div>
 
 
