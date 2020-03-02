@@ -7,6 +7,7 @@ use App\image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class TutorRegController extends Controller
 {
@@ -39,6 +40,8 @@ class TutorRegController extends Controller
         if($tId === null){$tId = 0 ;}
         $TutorId=($tId +2);
 // $evidence === null
+    $data = DB::select('select email from tutors where email=? ',[$email]);
+
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null 
     or $sex === null or $addr === null or $evidence === null) {
         return redirect()->back()->with('null','Please fill all required field.');
@@ -47,12 +50,12 @@ class TutorRegController extends Controller
         
         return redirect()->back()->with('pass','Please fill all required field.');
     }
-     elseif(DB::table('tutors')->where('email', '=', $email) != null){
+     elseif($data != null ){
 
          return redirect()->back()->with('mail','Please fill all required field.');
      }
     else{
-        $tutor = DB::table('tutor')->insert(
+        $tutor = DB::table('tutors')->insert(
            ['idTutor' =>$TutorId,
            'Fname' => $Fname,
            'Lname' => $Lname,
@@ -78,7 +81,7 @@ class TutorRegController extends Controller
             ]
          );
         
-    return  redirect('/home')->with('success','The customer has been stored in database');
+    return  redirect('/')->with('success','The customer has been stored in database');
         }
     }
 

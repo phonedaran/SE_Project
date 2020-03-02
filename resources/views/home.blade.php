@@ -14,9 +14,6 @@ http://www.tooplate.com/view/2082-pure-mix
 	<meta name="keywords" content="">
     <meta name="description" content="">
 
-<<<<<<< HEAD
-
-=======
     <style>
         body {
           font-family: "Lato", sans-serif;
@@ -61,7 +58,6 @@ http://www.tooplate.com/view/2082-pure-mix
           .sidenav a {font-size: 18px;}
         }
         </style>
->>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 	<!-- Site title
    ================================================== -->
@@ -88,19 +84,8 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 
-<<<<<<< HEAD
-    <!-- UI Slider CSS
-   ================================================== -->
-
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-
-
-=======
   <!-- sweet 2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
->>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 </head>
 <body>
@@ -602,16 +587,6 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<<<<<<< HEAD
-<script>
-    function sendPirce(min,max){
-        document.getElementById('min').value) = min;
-        document.getElementById('max').value) = max;
-    }
-</script>
-
-=======
->>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 <!-- UI Slider -->
 <script>
@@ -653,8 +628,6 @@ http://www.tooplate.com/view/2082-pure-mix
     });
 
 </script>
-<<<<<<< HEAD
-=======
 
 <script>
     function openNav() {
@@ -665,7 +638,6 @@ http://www.tooplate.com/view/2082-pure-mix
       document.getElementById("mySidenav").style.width = "0";
     }
 </script>
->>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 </body>
 </html>

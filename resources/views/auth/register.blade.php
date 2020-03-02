@@ -35,10 +35,36 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
+	<!-- <link rel="stylesheet" href="{{ URL::asset('css/style1.css') }}"> -->
+
 	<!-- Google web font 
    ================================================== -->	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 	
+
+  <style>
+  .form-row {
+    margin-bottom: 24px; }
+    .form-row label {
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: block; }
+    .form-row.form-group {
+      display: flex; }
+      .form-row.form-group .form-holder {
+        width: 50%;
+        margin-right: 21px; }
+        .form-row.form-group .form-holder:last-child {
+          margin-right: 0; }
+  
+  .form-holder {
+    position: relative; }
+    .form-holder i {
+      position: absolute;
+      top: 11px;
+      right: 19px;
+      font-size: 17px;
+      color: #999; }</style>
 </head>
 <body>
 
@@ -96,15 +122,35 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- Header section
 ================================================== -->
-<section id="header" class="header-five">
+<section id="header" class="header-three">
+	<br>
 	<div class="container">
 		<div class="row">
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-          <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Register</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="0.9s">TO BE OUR MEMBER</h3>
-          </div>
+          <div class="header-thumb " style="margin-top:100px;">
+			  <h1 class="wow fadeIn" data-wow-delay="0.6s">Register</h1>
+			  <br>
+			  <h3 class="wow fadeInUp" data-wow-delay="0.9s">TO BE OUR MEMBER</h3>
+			  <br><br>
+
+			  <div class="form-row form-group">
+			  	<div class="form-holder">
+	                    		<label for="">I AM A STUDENT</label>
+	                    		<a href="{{url('/studentReg')}}" class="btn button button1">Student Register</a>
+	                    	
+	                    	</div>
+	                    	<div class="form-holder">
+								<label for="">I AM A TUTOR</label>
+								<a href="{{url('/tutorReg')}}" class="btn button button1">Tutor Register</a>
+							
+							</div>
+			  </div>
+		  </div>
+		  
+		  <button>
+
+		  </button>
 			</div>
 
 		</div>
@@ -114,25 +160,26 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- register section
 ================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row">
-		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.6s">
-			  <h1>Let's work together!</h1>
-			  <div class="contact-form">
-				  <form id="contact-form" method="post" action="#">
-					  <input name="name" type="text" class="form-control" placeholder="Your Name" required>
-					  <input name="email" type="email" class="form-control" placeholder="Your Email" required>
-					  <textarea name="message" class="form-control" placeholder="Message" rows="4" required></textarea>
-					  <div class="contact-submit">
-						  <input type="submit" class="form-control submit" value="Send a message">
-					  </div>
-				  </form>
-			  </div>
-		  </div>
+<!-- <section id="header" class="header-three">
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-5 col-sm-offset-2 col-sm-8">
+					<div class="header-thumb">
+						<h1 class="wow fadeIn" data-wow-delay="0.6s">Log-in</h1>
+						<h3 class="wow fadeInUp" data-wow-delay="0.9s">To enjoy with us</h3>
+						<div class="contact-form" align="center">
+							
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	 </div>
-</section>
+	</section>		
+</section> -->
+
+
+
 
 <!-- Footer section
 ================================================== -->
