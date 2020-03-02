@@ -14,6 +14,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<meta name="keywords" content="">
     <meta name="description" content="">
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -39,6 +40,11 @@ http://www.tooplate.com/view/2082-pure-mix
         } );
     </script>
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6589dd01349c4c57d16081b43f89aeaed4855e02
     <style>
 
         .sidenav {
@@ -82,6 +88,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
         </style>
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 	<!-- Site title
    ================================================== -->
@@ -108,8 +115,19 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 
+<<<<<<< HEAD
+    <!-- UI Slider CSS
+   ================================================== -->
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+
+=======
   <!-- sweet 2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 </head>
 <body>
@@ -196,7 +214,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
-
                     <div class="intro-inner">
                         <ul id="nav-menu">
 
@@ -208,17 +225,15 @@ http://www.tooplate.com/view/2082-pure-mix
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
                                  <li><a href="#">edit profile</a></li>
-                                 <li><a href="#">enrollment</a></li>
+                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">tutor area</a></li>
+                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
                               <!-- admin -->
                               @else
-                                 <li><a href="#">admin area</a></li>
+                                 <!-- <li><a href="#">admin area</a></li> -->
                               @endif
-
-                           <li><a href="{{url('/contact')}}">Contact</a></li>
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -235,12 +250,14 @@ http://www.tooplate.com/view/2082-pure-mix
                            @if (Route::has('register'))
                               <li><a href="{{url('/register')}}">Register</a></li>
                            @endif
+<<<<<<< HEAD
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                               <li><a href="{{url('/addCourse')}}">Add course(Test only)</a></li>
+=======
+>>>>>>> 6589dd01349c4c57d16081b43f89aeaed4855e02
                         </ul>
                         @endif
                     </div>
-
                   </div>
 
                 </div>
@@ -404,6 +421,126 @@ http://www.tooplate.com/view/2082-pure-mix
                 </div>
               <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>
 
+                        <form action="{{ URL::to('/course') }} " method="get">
+                            <div class="">
+                                <p>
+                                    <label for="amount">Price range:</label>
+                                    <input id="min" type="hidden" value='0' name="min">
+                                    <input id="max" type="hidden" value='3500' name="max">
+                                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                </p>
+                                <div id="slider-range"></div>
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <p>
+                                    <label>Subject (BUG)</label>
+                                </p>
+
+                                <label>
+                                    <input type="checkbox" class="radio" value="Thai" name="subject"/>Thai</label>
+                                <label>
+                                    <input type="checkbox" class="radio" value="Math" name="subject" />Math</label>
+                                <label>
+                                    <input type="checkbox" class="radio" value="English" name="subject" />English</label>
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <p>
+                                    <label>Location</label>
+
+                                </p>
+                                <select name="province" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option value="" selected>--------- จังหวัด ---------</option>
+                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                    <option value="กระบี่">กระบี่ </option>
+                                    <option value="กาญจนบุรี">กาญจนบุรี </option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์ </option>
+                                    <option value="กำแพงเพชร">กำแพงเพชร </option>
+                                    <option value="ขอนแก่น">ขอนแก่น</option>
+                                    <option value="จันทบุรี">จันทบุรี</option>
+                                    <option value="ฉะเชิงเทรา">ฉะเชิงเทรา </option>
+                                    <option value="ชัยนาท">ชัยนาท </option>
+                                    <option value="ชัยภูมิ">ชัยภูมิ </option>
+                                    <option value="ชุมพร">ชุมพร </option>
+                                    <option value="ชลบุรี">ชลบุรี </option>
+                                    <option value="เชียงใหม่">เชียงใหม่ </option>
+                                    <option value="เชียงราย">เชียงราย </option>
+                                    <option value="ตรัง">ตรัง </option>
+                                    <option value="ตราด">ตราด </option>
+                                    <option value="ตาก">ตาก </option>
+                                    <option value="นครนายก">นครนายก </option>
+                                    <option value="นครปฐม">นครปฐม </option>
+                                    <option value="นครพนม">นครพนม </option>
+                                    <option value="นครราชสีมา">นครราชสีมา </option>
+                                    <option value="นครศรีธรรมราช">นครศรีธรรมราช </option>
+                                    <option value="นครสวรรค์">นครสวรรค์ </option>
+                                    <option value="นราธิวาส">นราธิวาส </option>
+                                    <option value="น่าน">น่าน </option>
+                                    <option value="นนทบุรี">นนทบุรี </option>
+                                    <option value="บึงกาฬ">บึงกาฬ</option>
+                                    <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                    <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์ </option>
+                                    <option value="ปทุมธานี">ปทุมธานี </option>
+                                    <option value="ปราจีนบุรี">ปราจีนบุรี </option>
+                                    <option value="ปัตตานี">ปัตตานี </option>
+                                    <option value="พะเยา">พะเยา </option>
+                                    <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา </option>
+                                    <option value="พังงา">พังงา </option>
+                                    <option value="พิจิตร">พิจิตร </option>
+                                    <option value="พิษณุโลก">พิษณุโลก </option>
+                                    <option value="เพชรบุรี">เพชรบุรี </option>
+                                    <option value="เพชรบูรณ์">เพชรบูรณ์ </option>
+                                    <option value="แพร่">แพร่ </option>
+                                    <option value="พัทลุง">พัทลุง </option>
+                                    <option value="ภูเก็ต">ภูเก็ต </option>
+                                    <option value="มหาสารคาม">มหาสารคาม </option>
+                                    <option value="มุกดาหาร">มุกดาหาร </option>
+                                    <option value="แม่ฮ่องสอน">แม่ฮ่องสอน </option>
+                                    <option value="ยโสธร">ยโสธร </option>
+                                    <option value="ยะลา">ยะลา </option>
+                                    <option value="ร้อยเอ็ด">ร้อยเอ็ด </option>
+                                    <option value="ระนอง">ระนอง </option>
+                                    <option value="ระยอง">ระยอง </option>
+                                    <option value="ราชบุรี">ราชบุรี</option>
+                                    <option value="ลพบุรี">ลพบุรี </option>
+                                    <option value="ลำปาง">ลำปาง </option>
+                                    <option value="ลำพูน">ลำพูน </option>
+                                    <option value="เลย">เลย </option>
+                                    <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                    <option value="สกลนคร">สกลนคร</option>
+                                    <option value="สงขลา">สงขลา </option>
+                                    <option value="สมุทรสาคร">สมุทรสาคร </option>
+                                    <option value="สมุทรปราการ">สมุทรปราการ </option>
+                                    <option value="สมุทรสงคราม">สมุทรสงคราม </option>
+                                    <option value="สระแก้ว">สระแก้ว </option>
+                                    <option value="สระบุรี">สระบุรี </option>
+                                    <option value="สิงห์บุรี">สิงห์บุรี </option>
+                                    <option value="สุโขทัย">สุโขทัย </option>
+                                    <option value="สุพรรณบุรี">สุพรรณบุรี </option>
+                                    <option value="สุราษฎร์ธานี">สุราษฎร์ธานี </option>
+                                    <option value="สุรินทร์">สุรินทร์ </option>
+                                    <option value="สตูล">สตูล </option>
+                                    <option value="หนองคาย">หนองคาย </option>
+                                    <option value="หนองบัวลำภู">หนองบัวลำภู </option>
+                                    <option value="อำนาจเจริญ">อำนาจเจริญ </option>
+                                    <option value="อุดรธานี">อุดรธานี </option>
+                                    <option value="อุตรดิตถ์">อุตรดิตถ์ </option>
+                                    <option value="อุทัยธานี">อุทัยธานี </option>
+                                    <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                    <option value="อ่างทอง">อ่างทอง </option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="list-group py-3 d-none d-md-inline-block">
+                                <input type="submit" class="btn btn-secondary" name="view" value="Filter"
+                                onclick="sendPrice( document.getElementById('min').value),document.getElementById('min').value)" >
+                            </div>
+
+                        </form>
+
                         <!-- iso box section -->
                         <div class="container">
                            <div class="row">
@@ -470,6 +607,16 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<<<<<<< HEAD
+<script>
+    function sendPirce(min,max){
+        document.getElementById('min').value) = min;
+        document.getElementById('max').value) = max;
+    }
+</script>
+
+=======
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 
 <script>
@@ -490,6 +637,8 @@ http://www.tooplate.com/view/2082-pure-mix
     });
 
 </script>
+<<<<<<< HEAD
+=======
 
 <script>
     function openNav() {
@@ -500,6 +649,7 @@ http://www.tooplate.com/view/2082-pure-mix
       document.getElementById("mySidenav").style.width = "0";
     }
 </script>
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 </body>
 </html>

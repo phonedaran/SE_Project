@@ -1,3 +1,52 @@
+<<<<<<< HEAD
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Reset Password') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Send Password Reset Link') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,20 +127,54 @@ http://www.tooplate.com/view/2082-pure-mix
 
               <div class="navicon">
                 <div class="menu-container">
-
-                  <div class="circle dark inline">
-                    <i class="icon ion-navicon"></i>
-                  </div>
+                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
+                     @if (Auth:: check())
+                           {{ Auth::user()->name }}
+                     @endif
+                     <div class="circle dark inline">
+                     <i class="icon ion-navicon"></i>
+                     </div></h3>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
-                     	<ul id="nav-menu">
-							<li><a href="{{url('/')}}">Home</a></li>
-							<li><a href="{{url('/login')}}">Log-in</a></li>
-							<li><a href="{{url('/register')}}">Register</a></li>
-							<li><a href="{{url('/contact')}}">Contact</a></li>
-                      </ul>
+                        <ul id="nav-menu">
+
+                        <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
+                        @if (Auth::check())
+                           <li><a href="{{url('/')}}">Home</a></li>
+
+                           <!-- check status -->
+                              <!-- student -->
+                              @if ( Auth:: user()->status == 'student')
+                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
+                                 <li><a href="#">review</a></li>
+                              <!-- tutor -->
+                              @elseif ( Auth:: user()->status == 'tutor')
+                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
+                              <!-- admin -->
+                              @else
+                                 <li><a href="#">admin area</a></li>
+                              @endif
+                           <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                 onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                          Logout</a>
+
+                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                       </form>
+                              </li>
+                        <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
+                        @else
+                           <li><a href="{{url('/')}}">Home</a></li>
+                           <li><a href="{{url('/login')}}">Log-in</a></li>
+                           @if (Route::has('register'))
+                              <li><a href="{{url('/register')}}">Register</a></li>
+                           @endif
+                        </ul>
+                        @endif
                     </div>
                   </div>
 
@@ -193,3 +276,4 @@ http://www.tooplate.com/view/2082-pure-mix
 
 </body>
 </html>
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
