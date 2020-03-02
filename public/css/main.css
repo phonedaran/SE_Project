@@ -63,11 +63,12 @@ table td.r, table th.r {
 
 
 .table100-head th{
-  font-family: OpenSans-Regular;
+  font-family: inherit;
   font-size: 18px;
+  letter-spacing: 0.08rem;
   color: #fff;
   line-height: 1.2;
-  font-weight: unset;
+  font-weight: 300;
 }
 
 tbody tr:nth-child(even) {
@@ -75,7 +76,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr {
-  font-family: OpenSans-Regular;
+  font-family: inherit;
   font-size: 15px;
   color: #808080;
   line-height: 1.2;
@@ -90,30 +91,28 @@ tbody tr:hover {
 
 .column1 {
   width: 100px;
+  align-content: center;
   padding-left: 40px;
 }
 
 .column2 {
-  width: 160px;
+  width: 200px;
 }
 
 .column3 {
-  width: 245px;
+  width: 100px;
 }
 
 .column4 {
-  width: 110px;
-  text-align: right;
+  width: 250px;
 }
 
 .column5 {
-  width: 170px;
-  text-align: right;
+  width: 150px;
 }
 
 .column6 {
-  width: 222px;
-  text-align: right;
+  width: 150px;
   padding-right: 62px;
 }
 
@@ -151,22 +150,22 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "Date";
+    content: "TutorID";
   }
   table tbody tr td:nth-child(2):before {
-    content: "Order ID";
-  }
-  table tbody tr td:nth-child(3):before {
     content: "Name";
   }
+  table tbody tr td:nth-child(3):before {
+    content: "Sex";
+  }
   table tbody tr td:nth-child(4):before {
-    content: "Price";
+    content: "Address";
   }
   table tbody tr td:nth-child(5):before {
-    content: "Quantity";
+    content: "Email";
   }
   table tbody tr td:nth-child(6):before {
-    content: "Total";
+    content: "Phone";
   }
 
   .column4,

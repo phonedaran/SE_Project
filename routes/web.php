@@ -32,15 +32,9 @@ Route::group(['middleware' => ['auth']],function(){ Route::get('/home','HomeCont
 // หน้าแรกของ admin
 Route::group(['prefix' => 'admin'],function(){
     Route::group(['middleware' => ['admin']], function(){
-        Route::get('/infor', 'admin\AdminController@index');
+        Route::get('/admin', 'adminController@admin');
     });
 });
-// หน้าแรกของ tutor
-// Route::group(['prefix' => 'tutor'],function(){
-//     Route::group(['middleware' => ['tutor']], function(){
-//         Route::get('/course', 'tutor\TutorController@index');
-//     });
-// });
 
 Route::get('/admin','adminController@admin');
 Route::get('/admin/image','adminController@image');
