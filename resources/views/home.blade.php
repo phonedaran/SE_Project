@@ -171,7 +171,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
-
                     <div class="intro-inner">
                         <ul id="nav-menu">
 
@@ -183,7 +182,7 @@ http://www.tooplate.com/view/2082-pure-mix
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
                                  <li><a href="#">edit profile</a></li>
-                                 <li><a href="#">enrollment</a></li>
+                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
@@ -192,7 +191,6 @@ http://www.tooplate.com/view/2082-pure-mix
                               @else
                                  <li><a href="#">admin area</a></li>
                               @endif
-
                            <li><a href="{{url('/contact')}}">Contact</a></li>
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
@@ -214,7 +212,6 @@ http://www.tooplate.com/view/2082-pure-mix
                         </ul>
                         @endif
                     </div>
-
                   </div>
 
                 </div>

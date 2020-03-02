@@ -57,4 +57,5 @@ Auth::routes(['verify' => true]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
