@@ -22,10 +22,16 @@ body {
     position: relative;
 }
 
+<<<<<<< HEAD
+.ui-slider-horizontal {
+    height: 8px;
+    width: 300px;
+=======
 /* Add */
 .ui-slider-horizontal {
     height: 8px;
     width: 200px;
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 }
 
 .ui-slider-range.ui-widget-header {
@@ -77,7 +83,7 @@ h5 {
 p {
   color: #777;
   font-size: 16px;
-  line-height: 28px;
+  /* line-height: 28px; */
   word-spacing: 1px;
   letter-spacing: 1px;
 }
@@ -972,3 +978,7 @@ footer {
 @media (max-width: 450px) {
   .intro-inner {top: 50%;}
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30

@@ -50,11 +50,21 @@ Route::get('/admin/tutorList','adminController@tutorList');
 
 Route::get('/course', 'CourseController@fillter');
 
+Route::get('/course', 'CourseController@fillter');
 
 Auth::routes(['verify' => true]);
 
+<<<<<<< HEAD
+Route::get('/studentReg', 'StudentRegisterController@reg');
+Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
+
+
+Route::get('/tutorReg', 'TutorRegController@reg');
+Route::get('/tutorReg/check', 'TutorRegController@regcheck');
+=======
 // ต้อง login ก่อน ถึงจะเข้าได้
 Auth::routes();
+>>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/enroll', 'student\StudentController@index');
