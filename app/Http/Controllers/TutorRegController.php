@@ -40,7 +40,7 @@ class TutorRegController extends Controller
         if($tId === null){$tId = 0 ;}
         $TutorId=($tId +2);
 // $evidence === null
-    $data = DB::select('select email from tutors where email=? ',[$email]);
+    $data = DB::select('select email from tutor where email=? ',[$email]);
 
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null 
     or $sex === null or $addr === null or $evidence === null) {
@@ -55,7 +55,7 @@ class TutorRegController extends Controller
          return redirect()->back()->with('mail','Please fill all required field.');
      }
     else{
-        $tutor = DB::table('tutors')->insert(
+        $tutor = DB::table('tutor')->insert(
            ['idTutor' =>$TutorId,
            'Fname' => $Fname,
            'Lname' => $Lname,

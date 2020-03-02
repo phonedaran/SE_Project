@@ -53,7 +53,7 @@ class StudentRegisterController extends Controller
     if($Id === null){$Id = 0 ;}
         $uId=$Id +1;
 
-    $data = DB::select('select email from students where email=? ',[$email]);
+    $data = DB::select('select email from student where email=? ',[$email]);
 
 
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null ) {
@@ -69,7 +69,7 @@ class StudentRegisterController extends Controller
         return redirect()->back()->with('mail','Please fill all required field.');
     }
     else{
-        $student = DB::table('students')->insert(
+        $student = DB::table('student')->insert(
            ['idstudent' =>$studentId,
            'Fname' => $Fname,
            'Lname' => $Lname,
