@@ -27,6 +27,13 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/course', 'CourseController@fillter');
 
 
+Route::get('/studentReg', 'StudentRegisterController@reg');
+Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
+
+
+Route::get('/tutorReg', 'TutorRegController@reg');
+Route::get('/tutorReg/check', 'TutorRegController@regcheck');
 
