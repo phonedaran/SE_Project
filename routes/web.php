@@ -28,6 +28,11 @@ Route::get('/home', function () {
 });
 
 Route::get('/admin','adminController@admin');
+Route::get('/admin/image','adminController@image');
+Route::get('/admin/accepted','adminController@accepted');
+Route::get('/admin/rejected','adminController@rejected');
+Route::get('/admin/tutorList','adminController@tutorList');
+
 Route::get('/course', 'CourseController@fillter');
 
 
