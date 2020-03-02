@@ -27,7 +27,7 @@ class HomeController extends Controller
         return view('home');
 =======
         if(auth()->user()->isAdmin()){
-            return view('admin/infor');
+            return view('admin/admin');
         }
         // elseif(auth()->user()->isTutor()){
         //     return view('/tutor/course');
