@@ -46,6 +46,10 @@ Route::get('/course', 'CourseController@fillter');
 
 Auth::routes(['verify' => true]);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1459cd7f7e77d52709dbc7689b5c866b6670474
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
 

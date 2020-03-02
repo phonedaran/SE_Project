@@ -129,6 +129,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Navigation section
 ================================================== -->
 <div class="nav-container">
+<div class="nav-container">
    <nav class="nav-inner transparent">
 
       <div class="navbar">
@@ -136,7 +137,7 @@ http://www.tooplate.com/view/2082-pure-mix
             <div class="row">
 
               <div class="brand">
-                <a href="index.html">Shared Tutoring</a>
+                <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
 
               <div class="navicon">
@@ -150,10 +151,10 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-                           <li><a href="index.html">Home</a></li>
-                           <li><a href="login.html">Log-in</a></li>
-                           <li><a href="register.html">Register</a></li>
-                           <li><a href="contact.html">Contact</a></li>
+							<li><a href="{{url('/')}}">Home</a></li>
+							<li><a href="{{url('/login')}}">Log-in</a></li>
+							<li><a href="{{url('/register')}}">Register</a></li>
+							<li><a href="{{url('/contact')}}">Contact</a></li>
                       </ul>
                     </div>
                   </div>
@@ -167,6 +168,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
    </nav>
 </div>
+
 
 
 

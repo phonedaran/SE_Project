@@ -83,7 +83,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
         </style>
 
-
 	<!-- Site title
    ================================================== -->
 	<title>Shared Tutoring</title>

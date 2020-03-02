@@ -49,6 +49,8 @@ http://www.tooplate.com/view/2082-pure-mix
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <style>
 	.custom-file-upload {
     border: 1px solid #ccc;
@@ -84,7 +86,7 @@ http://www.tooplate.com/view/2082-pure-mix
             <div class="row">
 
               <div class="brand">
-                <a href="index.html">Shared Tutoring</a>
+                <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
 
               <div class="navicon">
@@ -98,10 +100,10 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-                           <li><a href="index.html">Home</a></li>
-                           <li><a href="login.html">Log-in</a></li>
-						   <li><a href="register.tutorRegister" > Register></a></li>
-                           <li><a href="contact.html">Contact</a></li>
+							<li><a href="{{url('/')}}">Home</a></li>
+							<li><a href="{{url('/login')}}">Log-in</a></li>
+							<li><a href="{{url('/register')}}">Register</a></li>
+							<li><a href="{{url('/contact')}}">Contact</a></li>
                       </ul>
                     </div>
                   </div>
@@ -116,7 +118,13 @@ http://www.tooplate.com/view/2082-pure-mix
    </nav>
 </div>
 
-		@if (Session('null'))
+
+	
+
+<!-- register section
+================================================== -->
+<div class="wrapper">
+@if (Session('null'))
 				<script type="text/javascript">
 				Swal.fire({
   icon: 'error',
@@ -155,12 +163,10 @@ http://www.tooplate.com/view/2082-pure-mix
 })
 				</script>
       @endif
-
-<!-- register section
-================================================== -->
-<div class="wrapper">
 			<div class="image-holder">
-				<!-- <img src="images/form-wizard2.png" alt=""> -->
+				<img src="images/form-wizard2.png" alt="">
+				
+			
 			</div>
 			<form action="">
 
@@ -400,10 +406,10 @@ http://www.tooplate.com/view/2082-pure-mix
                     
                     
 					
-						<div class="col-md-6 col-sm-4">
+						<!-- <div class="col-md-6 col-sm-20" style="margin-right:50px;"> -->
 							<!-- form-control submit -->
 							<input type="submit" id="" class="actions li a" value="Create account" onClick="this.form.action='{{ URL::to('/tutorReg/check') }}'; submit()">
-						</div>
+						<!-- </div> -->
 						<br>
 	                </section>
             	</div>
