@@ -6,7 +6,13 @@ http://www.tooplate.com/view/2082-pure-mix
 
 */
 
-/* Body 
+
+/*  Slider
+-------------------------------------*/
+
+
+
+/* Body
 ------------------------------------- */
 body {
 		background: #ffffff;
@@ -15,6 +21,17 @@ body {
     font-weight: 300;
     position: relative;
 }
+
+/* Add */
+.ui-slider-horizontal {
+    height: 8px;
+    width: 200px;
+}
+
+.ui-slider-range.ui-widget-header {
+    background:#f6931f;
+}
+
 
 html,body {
   width: 100%;
@@ -86,7 +103,6 @@ img {
   width: 100%;
   max-width: 100%;
 }
-
 
 /* preloader styles
 /* ========================================== */
@@ -182,7 +198,7 @@ nav a {
   text-decoration: none;
 }
 
-.navicon {  
+.navicon {
   position: relative;
   right: 0;
   display: -webkit-flex;
@@ -258,7 +274,7 @@ a.icon {
   padding-right: 20px;
 }
 
-.intro-inner {  
+.intro-inner {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -466,7 +482,7 @@ a.icon {
   position: relative;
   overflow: hidden;
   margin: 0;
-} 
+}
 
 #portfolio .portfolio-thumb .portfolio-overlay {
   background: #141414;
@@ -503,6 +519,21 @@ a.icon {
     text-align: center;
     text-decoration: none;
     margin-bottom: 4px;
+}
+
+/*card*/
+.card {
+  border: 1px solid #d3d3d3;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: .25rem;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.contentCard {
+  padding: 15px;
 }
 
 /*filter css*/
@@ -564,7 +595,7 @@ a.icon {
     width: 100%;
     height: 100%;
     overflow: hidden;
-} 
+}
 
 .fluid-img {
     width: 100%;
@@ -609,7 +640,7 @@ a.icon {
 
 /* blog & single post section styles
 /* ========================================== */
-#blog, 
+#blog,
 #single-post {
   padding-top: 4rem;
   padding-bottom: 6rem;
@@ -729,6 +760,18 @@ a.icon {
   transition: all 0.4s ease-in-out;
 }
 
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+    width: 30%;
+    
+}
+
 #contact .form-control:hover {
   border-color: #f0f0f0;
 }
@@ -749,6 +792,53 @@ a.icon {
 
 #contact input[type='submit']:hover {
   background: #444;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 4px 2px;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.button0 {
+  background-color: white; 
+  color: rgb(126, 126, 126);  
+}
+
+.button0:hover {
+  background-color:  rgb(126, 126, 126); 
+  color: white;
+}
+
+.button1 {
+  background-color: white; 
+  color: #4CAF50; 
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button2:hover {
+  background-color: #555555;
+  color: white;
 }
 
 .contact-submit {
