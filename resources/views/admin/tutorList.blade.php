@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Register</title>
+	<title>Tutor List</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -37,8 +37,15 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Google web font 
    ================================================== -->	
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/animate.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/select2.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
+
+
+
 </head>
 <body>
 
@@ -46,9 +53,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Preloader section
 ================================================== -->
 <div class="preloader">
-
 	<div class="sk-spinner sk-spinner-pulse"></div>
-
 </div>
 
 
@@ -56,37 +61,28 @@ http://www.tooplate.com/view/2082-pure-mix
 ================================================== -->
 <div class="nav-container">
    <nav class="nav-inner transparent">
-
       <div class="navbar">
          <div class="container">
             <div class="row">
-
               <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
+                <a href="index.html">Shared Tutoring</a>
               </div>
-
               <div class="navicon">
                 <div class="menu-container">
-
                   <div class="circle dark inline">
                     <i class="icon ion-navicon"></i>
                   </div>
-
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-							<li><a href="{{url('/')}}">Home</a></li>
-							<li><a href="{{url('/login')}}">Log-in</a></li>
-							<li><a href="{{url('/register')}}">Register</a></li>
-							<li><a href="{{url('/contact')}}">Contact</a></li>
+						   <li><a href="{{URL::to('/admin')}}">Admin</a></li>
+						   <li><a href="{{URL::to('/admin/tutorList')}}">Tutor List</a></li>
                       </ul>
                     </div>
                   </div>
-
                 </div>
               </div>
-
             </div>
          </div>
       </div>
@@ -94,45 +90,59 @@ http://www.tooplate.com/view/2082-pure-mix
    </nav>
 </div>
 
+
 <!-- Header section
 ================================================== -->
 <section id="header" class="header-five">
 	<div class="container">
 		<div class="row">
-
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Register</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="0.9s">TO BE OUR MEMBER</h3>
+              <h1 class="wow fadeIn" data-wow-delay="0.6s">Tutor List</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="0.9s">all our tutors</h3>
           </div>
 			</div>
-
 		</div>
 	</div>		
 </section>
 
 
-<!-- register section
+<!-- List section
 ================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row">
-		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.6s">
-			  <h1>Let's work together!</h1>
-			  <div class="contact-form">
-				  <form id="contact-form" method="post" action="#">
-					  <input name="name" type="text" class="form-control" placeholder="Your Name" required>
-					  <input name="email" type="email" class="form-control" placeholder="Your Email" required>
-					  <textarea name="message" class="form-control" placeholder="Message" rows="4" required></textarea>
-					  <div class="contact-submit">
-						  <input type="submit" class="form-control submit" value="Send a message">
-					  </div>
-				  </form>
-			  </div>
-		  </div>
+
+<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Tutor ID</th>
+								<th class="column2">Name</th>
+								<th class="column3">Sex</th>
+								<th class="column4">Address</th>
+								<th class="column5">Email</th>
+								<th class="column6">Phone</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							@foreach($tutors as $tutor)
+								<tr>
+									<td class="column1">{{$tutor->idTutor}}</td>
+									<td class="column2">{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</td>
+									<td class="column3">{{$tutor->sex}}</td>
+									<td class="column4">{{$tutor->address}}</td>
+									<td class="column5">{{$tutor->email}}</td>
+									<td class="column6">{{$tutor->phone}}</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-	 </div>
-</section>
+	</div>
 
 <!-- Footer section
 ================================================== -->
@@ -157,10 +167,13 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- Javascript 
 ================================================== -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="{{ URL::asset('js/jquery.js') }}"></script>
+<script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>
+<script src="{{ URL::asset('js/wow.min.js') }}"></script>
+<script src="{{ URL::asset('js/custom.js') }}"></script>
+<script src="{{ URL::asset('js/popper.js') }}"></script>
+<script src="{{ URL::asset('js/select2.min.js') }}"></script>
+<script src="{{ URL::asset('js/main.js') }}"></script>
 
 </body>
 </html>

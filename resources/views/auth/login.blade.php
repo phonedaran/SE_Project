@@ -37,8 +37,19 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Google web font 
    ================================================== -->	
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>	
+   
+   <!-- sweet alert
+   ================================================== -->	
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <!-- sweet 2 -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> 
+
+	<style>
+		body {
+  			font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+}
+	</style>
 </head>
 <body>
 
@@ -97,6 +108,10 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- login section
 ================================================== -->
+<!-- add database table 
+ $table->string('status'); -->
+<!-- ลบ migrate failed_jobs ออก -->
+<!-- php artisan migrate -->
 <section id="header" class="header-three">
 	<section id="contact">
 		<div class="container">
@@ -111,21 +126,34 @@ http://www.tooplate.com/view/2082-pure-mix
 
 								<input id="email" type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 								@error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Pless try again</strong>
-                                    </span>
+									<script type="text/javascript">
+										Swal.fire({
+											icon: 'error',
+											title: 'Oops...',
+											text: 'Pleass try agian'
+											})
+									</script>
                                 @enderror
 
 								<input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 								@error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Pless try again</strong>
-                                    </span>
+									<script type="text/javascript">
+										swal("Oops!", "Pleass try agin", "error");
+									</script>
                                 @enderror
-								
+
 								<div class="contact-submit">
 									<input type="submit" class="form-control submit" value="Login">
 								</div>
+								<p class="wow fadeIn" data-wow-delay="0.9s">
+									<a href="{{url('/register')}}" class="btn btn-outline-dark btn-block">Create Acount</a></p>
+
+								<!-- forgot password -->
+								@if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        Forgot Your Password?
+                                    </a>
+                                @endif
 							</form>
 						</div>
 					</div>

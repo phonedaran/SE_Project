@@ -62,7 +62,7 @@ http://www.tooplate.com/view/2082-pure-mix
             <div class="row">
 
               <div class="brand">
-                <a href="index.html">Shared Tutoring</a>
+                <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
 
               <div class="navicon">
@@ -76,10 +76,10 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="login.html">Log-in</a></li>
-							<li><a href="register.html">Register</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="{{url('/')}}">Home</a></li>
+							<li><a href="{{url('/login')}}">Log-in</a></li>
+							<li><a href="{{url('/register')}}">Register</a></li>
+							<li><a href="{{url('/contact')}}">Contact</a></li>
                       </ul>
                     </div>
                   </div>
@@ -106,9 +106,23 @@ http://www.tooplate.com/view/2082-pure-mix
 						<h1 class="wow fadeIn" data-wow-delay="0.6s">Log-in</h1>
 						<h3 class="wow fadeInUp" data-wow-delay="0.9s">To enjoy with us</h3>
 						<div class="contact-form" align="center">
-							<form id="contact-form" method="post" action="#">
-								<input name="name" type="text" class="form-control" placeholder="Username" required>
-								<input name="email" type="text" class="form-control" placeholder="Password" required>
+							<form id="contact-form" method="post" action="{{ route('login') }}">
+							@csrf
+
+								<input id="email" type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+								@error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Pless try again</strong>
+                                    </span>
+                                @enderror
+
+								<input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+								@error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Pless try again</strong>
+                                    </span>
+                                @enderror
+								
 								<div class="contact-submit">
 									<input type="submit" class="form-control submit" value="Login">
 								</div>
