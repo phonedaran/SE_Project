@@ -59,7 +59,7 @@ http://www.tooplate.com/view/2082-pure-mix
          <div class="container">
             <div class="row">
               <div class="brand">
-                <a href="index.html">Shared Tutoring</a>
+                <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
               <div class="navicon">
                 <div class="menu-container">
@@ -75,13 +75,12 @@ http://www.tooplate.com/view/2082-pure-mix
                      	<ul id="nav-menu">
 						   
 						   @if (Auth::check())
-                           <li><a href="{{url('/')}}">Home</a></li>
 
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
                                  <li><a href="#">edit profile</a></li>
-                                 <li><a href="#">enrollment</a></li>
+                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
@@ -92,7 +91,6 @@ http://www.tooplate.com/view/2082-pure-mix
 						   		<li><a href="{{URL::to('/admin/tutorList')}}">Tutor List</a></li>
                               @endif
 
-                           <li><a href="{{url('/contact')}}">Contact</a></li>
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -109,7 +107,6 @@ http://www.tooplate.com/view/2082-pure-mix
                            @if (Route::has('register'))
                               <li><a href="{{url('/register')}}">Register</a></li>
                            @endif
-                              <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
                       </ul>

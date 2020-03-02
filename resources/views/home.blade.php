@@ -186,12 +186,11 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">tutor area</a></li>
+                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
                               <!-- admin -->
                               @else
-                                 <li><a href="#">admin area</a></li>
+                                 <!-- <li><a href="#">admin area</a></li> -->
                               @endif
-                           <li><a href="{{url('/contact')}}">Contact</a></li>
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -208,7 +207,6 @@ http://www.tooplate.com/view/2082-pure-mix
                            @if (Route::has('register'))
                               <li><a href="{{url('/register')}}">Register</a></li>
                            @endif
-                              <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
                     </div>

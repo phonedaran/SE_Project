@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     protected function redirectTo(){
         if(auth()->user()->isAdmin()){
-            return '/admin/infor';
+            return '/admin';
         }
         // elseif(auth()->user()->isTutor()){
         //     return '/tutor/course';
