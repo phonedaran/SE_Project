@@ -46,10 +46,6 @@ Route::get('/course', 'CourseController@fillter');
 
 Auth::routes(['verify' => true]);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a1459cd7f7e77d52709dbc7689b5c866b6670474
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
 
@@ -64,9 +60,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
 
-Route::get('/addCourse', function () {
-    return view('addCourse');
-});
+Route::get('/addCourse', 'CourseController@add');
+
 
 Route::get('/course/add/check', 'CourseController@addCheck');
 

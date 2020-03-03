@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+use App\Course;
 
 class CourseController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth', ['only' => ['add','addCheck']]);
+        $this->middleware('auth', ['only' => ['add','addCheck']]);
     }
 
     function fillter(){
@@ -21,18 +23,18 @@ class CourseController extends Controller
 
         if($_GET['subject'] != null){
             if($_GET['province'] != null){
-                $courses = DB::table('course')->whereBetween('price',[$min,$max])
+                $courses = DB::table('courses')->whereBetween('price',[$min,$max])
                 ->where(['subject' => $subject])->where(['location'=>$location])->get();
             }else{
-                $courses = DB::table('course')->whereBetween('price',[$min,$max])
+                $courses = DB::table('courses')->whereBetween('price',[$min,$max])
                 ->where(['subject' => $subject])->get();
             }
         }else{
             if($_GET['province'] != null){
-                $courses = DB::table('course')->whereBetween('price',[$min,$max])
+                $courses = DB::table('courses')->whereBetween('price',[$min,$max])
                 ->where(['location'=>$location])->get();
             }else{
-                $courses = DB::table('course')->whereBetween('price',[$min,$max])->get();
+                $courses = DB::table('courses')->whereBetween('price',[$min,$max])->get();
             }
         }
 
@@ -41,7 +43,7 @@ class CourseController extends Controller
     }
 
     public function courseShow(){
-        $courses = DB::table('course')->get();
+        $courses = DB::table('courses')->get();
         return view('home',['courses' => $courses]);
     }
 
@@ -51,12 +53,13 @@ class CourseController extends Controller
 
     public function addCheck(request $request)
     {
+            $idTutor=Auth::id();
             //define
-            $idTutor = $request->input('idTutor');
-            $idcourse = $request->input('idcourse');
+            // $idTutor = $request->input('idTutor');
+            // $idcourse = $request->input('idcourse');
             $Ncourse = $request->input('Ncourse');
             //ถ้าชื่อซ้ำ
-            $haveName = DB::table('course')->where(['Ncourse' => $Ncourse])->exists();
+            $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
             if ($haveName) {
                 return redirect()->back()->with('haveName', 'The course name has already in use.');
             }
@@ -70,7 +73,12 @@ class CourseController extends Controller
             $location = $request->input('location');
             $price = $request->input('price');
             $message = $request->input('description');
-            DB::table('course')->insert(
+
+            $cId=Course::max('idcourse');
+            if($cId === null){$cId = 0 ;}
+            $idcourse=($cId +1);
+
+            DB::table('courses')->insert(
                 ['idTutor' => $idTutor,
                 'idcourse' => $idcourse,
                 'Ncourse' =>$Ncourse,

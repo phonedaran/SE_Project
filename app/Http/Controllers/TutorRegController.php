@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class TutorRegController extends Controller
 {
-    
+
     function reg()
     {
         return view('auth.tutorRegister');
@@ -26,28 +26,29 @@ class TutorRegController extends Controller
         $pass=$request->input('password');
         $sex=$request->input('gender');
         $addr=$request->input('addr');
-        $status='wait';
+        $status='waiting';
         $education=$request->input('education');
         $work=$request->input('work');
         $about=$request->input('about');
         $partner=$request->input('partner');
         $evidence=$request->input('evidence');
-        $image_card=$request->input('image');
-        $image_path = substr($image_card, strpos($image_card, ".") + 1);
-        $evidence_path=substr($evidence, strpos($evidence, ".") + 1);
+        $image_card=$request->input('image'); //profile
+        // $image_path = substr($image_card, strpos($image_card, ".") + 1);
+        // $evidence_path=substr($evidence, strpos($evidence, ".") + 1);
+        $DOB=$request->input('DOB');
 
         $tId=Tutor::max('idTutor');
         if($tId === null){$tId = 0 ;}
         $TutorId=($tId +2);
 // $evidence === null
-    $data = DB::select('select email from tutor where email=? ',[$email]);
+    $data = DB::select('select email from tutors where email=? ',[$email]);
 
-    if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null 
-    or $sex === null or $addr === null or $evidence === null) {
+    if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null
+    or $sex === null or $addr === null or $evidence === null or $education === null or $DOB === null) {
         return redirect()->back()->with('null','Please fill all required field.');
     }
     elseif(strlen($pass) <8){
-        
+
         return redirect()->back()->with('pass','Please fill all required field.');
     }
      elseif($data != null ){
@@ -55,10 +56,11 @@ class TutorRegController extends Controller
          return redirect()->back()->with('mail','Please fill all required field.');
      }
     else{
-        $tutor = DB::table('tutor')->insert(
+        $tutor = DB::table('tutors')->insert(
            ['idTutor' =>$TutorId,
            'Fname' => $Fname,
            'Lname' => $Lname,
+           'DOB' => $DOB,
            'email' => $email,
            'phone' => $phone,
            'sex' => $sex,
@@ -73,17 +75,14 @@ class TutorRegController extends Controller
 
         $images = DB::table('image')->insert(
             ['idTutor' =>$TutorId,
-            'img_path' => $image_path,
-            'img_IDcard' => $image_card,
-            'evi_path' => $evidence_path,
-            'evi' => $evidence,
-            
+            'img_path' => $image_card,
+            'img_IDcard' => $evidence
             ]
          );
-        
+
     return  redirect('/')->with('success','The customer has been stored in database');
         }
     }
 
-    
+
 }

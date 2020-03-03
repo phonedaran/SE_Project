@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,8 @@ class HomeController extends Controller
         //     return view('/tutor/course');
         // }
         else{
-            return view('home');
+            $courses = DB::table('courses')->get();
+            return view('home',['courses'=>$courses]);
         }
     }
 }

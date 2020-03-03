@@ -87,10 +87,10 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                       <ul id="nav-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="login.html">Log-in</a></li>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{url('/')}}">Home</a></li>
+                        <li><a href="{{url('/login')}}">Log-in</a></li>
+                        <li><a href="{{url('/register')}}">Register</a></li>
+                        <li><a href="{{url('/contact')}}">Contact</a></li>
                       </ul>
                     </div>
                   </div>
@@ -170,14 +170,15 @@ http://www.tooplate.com/view/2082-pure-mix
                             @foreach ( $courses as $c )
                                 <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                                     <div class="blog-thumb">
-                                        <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                        <a href="single-post.html"><h1>{{$c->Ncourse}}</h1></a>
-                                        <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                                        <a href="#"><img src="images/{{$c->img}}" onerror="this.src='../public/images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><h1>{{$c->Ncourse}}</h1></a>
+                                        <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
                                         <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
+                                        <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
                                         <a href="#" class="btn btn-default">MORE INFO</a>
                                     </div>
                                 </div>

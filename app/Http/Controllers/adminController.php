@@ -13,23 +13,23 @@ class adminController extends Controller
     }
 
     public function admin(){
-        $tutors = DB::table('tutor')->where(['status' => 'waiting'])->get();
+        $tutors = DB::table('tutors')->where(['status' => 'waiting'])->get();
         $idCards = DB::table('image')->get();
         return view('admin/admin',['tutors' => $tutors ,'idCards' => $idCards]);
     }
 
     public function accepted(request $request){
         $idTutor = $request->input('idTutor');
-        DB::table('tutor')->where(['idTutor'=>$idTutor])->update(['status'=>'accepted']);
-        $Fname = DB::table('tutor')->where(['idTutor'=>$idTutor])->value('Fname');
-        $email = DB::table('tutor')->where(['idTutor'=>$idTutor])->value('email');
-        $password = DB::table('tutor')->where(['idTutor'=>$idTutor])->value('password');
+        DB::table('tutors')->where(['idTutor'=>$idTutor])->update(['status'=>'accepted']);
+        $Fname = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('Fname');
+        $email = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('email');
+        $password = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('password');
         print_r($Fname);
         DB::table('users')->insert([
             'id' => $idTutor,
             'name' => $Fname,
             'email' => $email,
-            'status' => 'status',
+            'status' => 'tutor',
             'password' => $password
         ]);
         return redirect()->back();
@@ -38,9 +38,9 @@ class adminController extends Controller
     public function rejected(request $request){
         $idTutor = $request->input('idTutor');
         DB::table('image')->where(['idTutor'=>$idTutor])->delete();
-        DB::table('course')->where(['idTutor'=>$idTutor])->delete();
-        DB::table('tutor')->where(['idTutor'=>$idTutor])->delete();
-        return redirect()->back(); 
+        DB::table('courses')->where(['idTutor'=>$idTutor])->delete();
+        DB::table('tutors')->where(['idTutor'=>$idTutor])->delete();
+        return redirect()->back();
     }
 
     public function image(request $request){
@@ -49,7 +49,7 @@ class adminController extends Controller
     }
 
     public function tutorList(){
-        $tutors = DB::table('tutor')->where(['status'=>'accepted'])->get();
+        $tutors = DB::table('tutors')->where(['status'=>'accepted'])->get();
         $idCards = DB::table('image')->get();
         return view('admin/tutorList',['tutors' => $tutors,'idCards' => $idCards]);
     }
