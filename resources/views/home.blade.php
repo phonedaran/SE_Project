@@ -14,10 +14,32 @@ http://www.tooplate.com/view/2082-pure-mix
 	<meta name="keywords" content="">
     <meta name="description" content="">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+        $( "#slider-range" ).slider({
+            orientation: "horizontal",
+            range: true,
+            min: 0,
+            max: 3500,
+            step:100,
+            values: [ 500, 2500 ],
+
+            slide: function( event, ui ) {
+                $("#min").val(ui.values[ 0 ]);
+                $("#max").val(ui.values[ 1 ]);
+                $( "#amount" ).val(ui.values[ 0 ] + " THB - " + ui.values[ 1 ] + " THB" );
+            }
+        });
+        $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+            " THB - " + $( "#slider-range" ).slider( "values", 1 ) + " THB" );
+        } );
+    </script>
+
     <style>
-        body {
-          font-family: "Lato", sans-serif;
-        }
 
         .sidenav {
           height: 100%;
@@ -26,7 +48,7 @@ http://www.tooplate.com/view/2082-pure-mix
           z-index: 1;
           top: 0;
           left: 0;
-          background-color: #111;
+          background-color: #ffffff;
           overflow-x: hidden;
           transition: 0.5s;
           padding-top: 60px;
@@ -36,13 +58,13 @@ http://www.tooplate.com/view/2082-pure-mix
           padding: 8px 8px 8px 32px;
           text-decoration: none;
           font-size: 25px;
-          color: #818181;
+          color: #636363;
           display: block;
           transition: 0.3s;
         }
 
         .sidenav a:hover {
-          color: #f1f1f1;
+          color: #f22;
         }
 
         .sidenav .closebtn {
@@ -57,6 +79,8 @@ http://www.tooplate.com/view/2082-pure-mix
           .sidenav {padding-top: 15px;}
           .sidenav a {font-size: 18px;}
         }
+
+
         </style>
 
 	<!-- Site title
@@ -84,13 +108,31 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 
+    <!-- UI Slider CSS
+   ================================================== -->
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+
   <!-- sweet 2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 </head>
 <body>
 
+    @if (Session('success'))
+    <script type="text/javascript">
+              Swal.fire({
+icon: 'success',
+title: 'OK',
+text: 'Succecc!!'
+})
 
+</script>
+      @endif
 <!-- Preloader section
 ================================================== -->
 <div class="preloader">
@@ -103,7 +145,8 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Navigation section
 ================================================== -->
 <!-- alert success login -->
-<!-- <div class="nav-container">
+
+{{-- <div class="nav-container">
    @if (Route::has('login'))
       @auth
       <script type="text/javascript">
@@ -145,7 +188,8 @@ http://www.tooplate.com/view/2082-pure-mix
       </script>
       @endauth
    @endif
-</div> -->
+</div> --}}
+
 <!-- ต้องสร้างหน้า home 2 ไฟล์ => homepublic ,  home -->
 <!-- ================================================= -->
 <div class="nav-container">
@@ -209,6 +253,7 @@ http://www.tooplate.com/view/2082-pure-mix
                            @if (Route::has('register'))
                               <li><a href="{{url('/register')}}">Register</a></li>
                            @endif
+                              <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
                     </div>
@@ -253,17 +298,19 @@ http://www.tooplate.com/view/2082-pure-mix
 
                <!-- iso section -->
                <div class="iso-section wow fadeInUp" data-wow-delay="1s">
+
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <form action="{{ URL::to('/course') }} " method="get">
-                            <p>
-                                <label for="amount">Price range:</label>
-                                <input id="min" type="hidden" value='500' name="min">
-                                <input id="max" type="hidden" value='2500' name="max">
-                                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                            </p>
-                            <div id="slider-range"></div>
+                        <p>
+                            <label for="amount">Price range:</label>
+                            <input id="min" type="hidden" value='500' name="min">
+                            <input id="max" type="hidden" value='2500' name="max">
+                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+                        <div id="slider-range"></div>
 
+                            <br>
                             <p>
                                 <label>Subject</label>
                             </p>
@@ -277,7 +324,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                 <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
                             </select>
 
-
+                            <br>
+                            <br>
                             <p>
                                 <label>Location</label>
 
@@ -363,65 +411,35 @@ http://www.tooplate.com/view/2082-pure-mix
                                 <option value="อ่างทอง">อ่างทอง </option>
                             </select>
                         <br>
+                        <br>
+                            <br>
 
                             <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
 
                     </form>
                 </div>
-              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-
-
-                  <ul class="filter-wrapper clearfix">
-                           <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".graphic">Graphic</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".template">Web template</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".photoshop">Photoshop</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".branding">Branding</a></li>
-                        </ul>
+              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>
 
                         <!-- iso box section -->
                         <div class="container">
                            <div class="row">
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>Course Name</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : subject </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/15</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : date</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="2.0s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>Course Name</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : subject </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/15</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : date</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.7s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>Course Name</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : subject </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/15</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : date</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
-                              </div>
+
+                            @foreach ( $courses as $c )
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                                    <div class="blog-thumb">
+                                        <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><h1>{{$c->Ncourse}}</h1></a>
+                                        <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
+                                        <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
+                                        <a href="#" class="btn btn-default">MORE INFO</a>
+                                    </div>
+                                </div>
+                            @endforeach
 
                            </div>
                         </div>
@@ -464,31 +482,12 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/imagesloaded.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
+
+<!-- UI Slider -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-<!-- UI Slider -->
-<script>
-    $( function() {
-      $( "#slider-range" ).slider({
-        orientation: "horizontal",
-        range: true,
-        min: 0,
-        max: 3500,
-        step:100,
-        values: [ 500, 2500 ],
-
-        slide: function( event, ui ) {
-            $("#min").val(ui.values[ 0 ]);
-            $("#max").val(ui.values[ 1 ]);
-            $( "#amount" ).val(ui.values[ 0 ] + " THB - " + ui.values[ 1 ] + " THB" );
-        }
-      });
-      $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
-        " THB - " + $( "#slider-range" ).slider( "values", 1 ) + " THB" );
-    } );
-</script>
 
 <script>
     $("input:checkbox").on('click', function() {

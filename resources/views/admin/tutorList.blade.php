@@ -165,7 +165,7 @@ http://www.tooplate.com/view/2082-pure-mix
 							@foreach($tutors as $tutor)
 								<tr>
 									<td class="column1">{{$tutor->idTutor}}</td>
-									<td class="column2">{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</td>
+									<td class="column2">{{$tutor->Fname}}&nbsp;&nbsp;&nbsp;{{$tutor->Lname}}</td>
 									<td class="column3">{{$tutor->sex}}</td>
 									<td class="column4">{{$tutor->address}}</td>
 									<td class="column5">{{$tutor->email}}</td>

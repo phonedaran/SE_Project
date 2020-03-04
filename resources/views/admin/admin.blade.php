@@ -35,10 +35,10 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
@@ -73,7 +73,7 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-						   
+
 						   @if (Auth::check())
 
                            <!-- check status -->
@@ -136,7 +136,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			</div>
 
 		</div>
-	</div>		
+	</div>
 </section>
 
 
@@ -152,12 +152,12 @@ http://www.tooplate.com/view/2082-pure-mix
 						<div class="card">
 							<div class="contentCard">
 							<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
-								
+
 								@foreach($idCards as $idCard)
 									@if($tutor->idTutor == $idCard->idTutor)
 										<div class="col-md-3" align="center">
 											<br>
-											<img src="../public/images/{{$idCard->img_path}}" style="width:100%;max-width:100px"></p>
+											<img src="images/{{$idCard->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p>
 											<br>
 											<form method="get" action="{{URL::to('/admin/image')}}">
 												<input type="hidden" name="image" id="image" value="{{$idCard->img_IDcard}}">
@@ -192,7 +192,7 @@ http://www.tooplate.com/view/2082-pure-mix
 						</div>
 						<br>
 						@endforeach
-					@else 
+					@else
 						<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
 					@endif
 				</div>
@@ -264,12 +264,12 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript 
+<!-- Javascript
 ================================================== -->
 <script src="{{ URL::asset('js/jquery.js') }}"></script>
 <script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>

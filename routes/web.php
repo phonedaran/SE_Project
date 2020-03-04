@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/','CourseController@courseShow');
 
 Route::get('/login', function () {
     return view('login');
@@ -44,13 +42,34 @@ Route::get('/admin/tutorList','adminController@tutorList');
 
 Route::get('/course', 'CourseController@fillter');
 
+Route::get('/course', 'CourseController@fillter');
 
 Auth::routes(['verify' => true]);
+
+Route::get('/studentReg', 'StudentRegisterController@reg');
+Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
+
+
+Route::get('/tutorReg', 'TutorRegController@reg');
+Route::get('/tutorReg/check', 'TutorRegController@regcheck');
 
 // ต้อง login ก่อน ถึงจะเข้าได้
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
+
+Route::get('/addCourse', 'CourseController@add');
+
+
+Route::get('/course/add/check', 'CourseController@addCheck');
+
+
+Route::get('/test', function () {
+    return view('test');
+});
 Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
 // Route::get('/home', 'HomeController@index')->name('home');
+

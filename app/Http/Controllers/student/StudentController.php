@@ -13,7 +13,7 @@ class StudentController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         // add table => day , time แล้วลบ schedule
@@ -36,10 +36,10 @@ class StudentController extends Controller
             ->get();
 
         if($enrolls != null){
-           return view('student/enrollment',['enrolls' => $enrolls]); 
+           return view('student/enrollment',['enrolls' => $enrolls]);
         }else{
             return redirect('/enroll')->with('error','no course that enrollment');
         }
-        
+
     }
 }
