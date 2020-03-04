@@ -102,52 +102,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- Navigation section
 ================================================== -->
-<!-- alert success login -->
-<!-- <div class="nav-container">
-   @if (Route::has('login'))
-      @auth
-      <script type="text/javascript">
-         const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-               toast.addEventListener('mouseenter', Swal.stopTimer)
-               toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            })
 
-            Toast.fire({
-            icon: 'success',
-            title: 'Log in in successfully'
-            })
-      </script>
-      @else
-      <script type="text/javascript">
-         const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-               toast.addEventListener('mouseenter', Swal.stopTimer)
-               toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            })
-
-            Toast.fire({
-            icon: 'success',
-            title: 'Log out successfully'
-            })
-      </script>
-      @endauth
-   @endif
-</div> -->
-<!-- ต้องสร้างหน้า home 2 ไฟล์ => homepublic ,  home -->
-<!-- ================================================= -->
 <div class="nav-container">
    <nav class="nav-inner transparent">
 
