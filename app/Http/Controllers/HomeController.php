@@ -35,4 +35,9 @@ class HomeController extends Controller
             return view('home',['courses'=>$courses]);
         }
     }
+
+    // public function home()
+    // {
+    //     return view('homepublic');
+    // }
 }
