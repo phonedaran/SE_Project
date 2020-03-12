@@ -23,10 +23,10 @@ class StudentController extends Controller
 
         foreach ($courses as $course){
 
-            $enrolls=DB::table('enroll')->join('course','enroll.idcourse', '=', 'course.idcourse')
-            ->join('tutor', 'tutor.idtutor', '=', 'enroll.idtutor')
+            $enrolls=DB::table('enroll')->join('courses','enroll.idcourse', '=', 'courses.idcourse')
+            ->join('tutor', 'tutor.idtutor', '=', 'enroll.idTutor')
             ->where(['enroll.idcourse' => [$course->idcourse]])
-            ->where(['tutor.idtutor' => [$course->idTutor]])
+            ->where(['tutors.idtutor' => [$course->idTutor]])
             ->get();
         }
         if($enrolls != null){
@@ -35,5 +35,22 @@ class StudentController extends Controller
             return redirect('/enroll')->with('error','no course that enrollment');
         }
 
+    }
+
+    public function reviewFrom(){
+        $id = Auth::id();
+        $tutors = DB::table('enroll')->join('tutors','enroll.idtutor','=','tutors.idTutor')
+        ->where(['idStudent' => $id])->distinct('enroll.idTutor')->get();
+
+        return view('student.review', ['tutors' => $tutors]);
+    }
+
+    public function addReview(request $request){
+        $id - Auth::id();
+        $idTutor = $request->input('tutor');
+        $rate = $request->input('rating');
+        $comment = $request->input('review-comment');
+
+        DB::table('review')
     }
 }

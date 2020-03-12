@@ -71,3 +71,6 @@ Route::get('/test', function () {
 });
 Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
+
+//test ver.
+Route::get('/review', 'student\StudentController@reviewFrom');

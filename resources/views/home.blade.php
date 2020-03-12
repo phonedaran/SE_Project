@@ -40,7 +40,7 @@ http://www.tooplate.com/view/2082-pure-mix
     </script>
 
     <style>
-
+        /* side nav */
         .sidenav {
           height: 100%;
           width: 0;
@@ -78,6 +78,33 @@ http://www.tooplate.com/view/2082-pure-mix
         @media screen and (max-height: 450px) {
           .sidenav {padding-top: 15px;}
           .sidenav a {font-size: 18px;}
+        }
+
+        select#soflow, select#soflow-color {
+            -webkit-appearance: button;
+            -webkit-border-radius: 2px;
+            -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            -webkit-padding-end: 20px;
+            -webkit-padding-start: 2px;
+            -webkit-user-select: none;
+            text-align-last: center;
+            border: 1px solid #AAA;
+            color: #555;
+            font-size: inherit;
+            overflow: hidden;
+            padding: 5px 10px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 200px;
+        }
+
+        select#soflow-color {
+            color: #131313;
+            background-color: #ffffff;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            padding-left: 15px;
         }
 
 
@@ -225,7 +252,7 @@ text: 'Succecc!!'
                               @if ( Auth:: user()->status == 'student')
                                  <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+                                 <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
@@ -309,25 +336,24 @@ text: 'Succecc!!'
                             <br>
                             <p>
                                 <label>Subject</label>
+
                             </p>
-
-                            <select name="subject">
-                                <option value="">--------- วิชา ---------</option>
-                                <option value="ภาษาไทย">ภาษาไทย</option>
-                                <option value="สังคมศึกษา">สังคมศึกษา</option>
-                                <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
-                                <option value="คณิตศาสตร์">คณิตศาสตร์</option>
-                                <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
-                            </select>
-
+                                <select name="subject"  id="soflow-color">
+                                    <option value="">วิชา</option>
+                                    <option value="ภาษาไทย">ภาษาไทย</option>
+                                    <option value="สังคมศึกษา">สังคมศึกษา</option>
+                                    <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
+                                    <option value="คณิตศาสตร์">คณิตศาสตร์</option>
+                                    <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
+                                </select>
                             <br>
                             <br>
                             <p>
                                 <label>Location</label>
 
                             </p>
-                            <select name="province" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option value="" selected>--------- จังหวัด ---------</option>
+                            <select name="province"  id="soflow-color">
+                                <option value="" selected>จังหวัด</option>
                                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                 <option value="กระบี่">กระบี่ </option>
                                 <option value="กาญจนบุรี">กาญจนบุรี </option>
