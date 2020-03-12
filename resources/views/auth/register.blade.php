@@ -35,7 +35,7 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-	<!-- <link rel="stylesheet" href="{{ URL::asset('css/style1.css') }}"> -->
+	<!-- <link rel="stylesheet" href="{{ URL::asset('css/style1.css') }}">[] -->
 
 	<!-- Google web font 
    ================================================== -->	
