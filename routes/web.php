@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/','CourseController@courseShow');
 
 Route::get('/login', function () {
     return view('login');
@@ -48,7 +46,6 @@ Route::get('/course', 'CourseController@fillter');
 
 Auth::routes(['verify' => true]);
 
-
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
 
@@ -62,5 +59,18 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
+
+Route::get('/addCourse', 'CourseController@add');
+
+
+Route::get('/course/add/check', 'CourseController@addCheck');
+
+
+Route::get('/test', function () {
+    return view('test');
+});
 Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
+// Route::get('/home', 'HomeController@index')->name('home');
+

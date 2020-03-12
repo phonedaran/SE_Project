@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentRegisterController extends Controller
 {
-    
+
     function reg()
     {
-        
+
         // if(session('success_message')){
-        //     
+        //
         // }
-        
+
         return view('auth.studentRegister');
     }
 
@@ -53,15 +53,15 @@ class StudentRegisterController extends Controller
     if($Id === null){$Id = 0 ;}
         $uId=$Id +1;
 
-    $data = DB::select('select email from student where email=? ',[$email]);
+    $data = DB::select('select email from students where email=? ',[$email]);
 
 
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null ) {
-        
+
         return redirect()->back()->with('null','Please fill all required field.');
     }
     elseif(strlen($pass) <8){
-        
+
         return redirect()->back()->with('pass','Please fill all required field.');
     }
     elseif($data != null ){
@@ -69,7 +69,7 @@ class StudentRegisterController extends Controller
         return redirect()->back()->with('mail','Please fill all required field.');
     }
     else{
-        $student = DB::table('student')->insert(
+        $student = DB::table('students')->insert(
            ['idstudent' =>$studentId,
            'Fname' => $Fname,
            'Lname' => $Lname,
@@ -79,13 +79,14 @@ class StudentRegisterController extends Controller
 
         $student = DB::table('users')->insert(
             ['id' =>$uId,
+            'name' =>$Fname,
             'email' => $email,
             'status' => "student",
             'password' => Hash::make($pass),]
          );
- 
 
-    return  redirect('/')->with('mail','Please fill all required field.');
+
+    return  redirect('/')->with('success','Please fill all required field.');
         }
     }
 }

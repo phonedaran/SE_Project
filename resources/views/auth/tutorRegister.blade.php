@@ -13,7 +13,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	
+
 	<meta name="author" content="colorlib.com">
 
 	<!-- MATERIAL DESIGN ICONIC FONT -->
@@ -41,10 +41,10 @@ http://www.tooplate.com/view/2082-pure-mix
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/style1.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+
   <!-- <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> -->
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
@@ -119,7 +119,7 @@ http://www.tooplate.com/view/2082-pure-mix
 </div>
 
 
-	
+
 
 <!-- register section
 ================================================== -->
@@ -132,7 +132,7 @@ http://www.tooplate.com/view/2082-pure-mix
   text: 'Input all requied field!'
 })
 				</script>
-    
+
 			@endif
 			@if (Session('pass'))
       <script type="text/javascript">
@@ -165,8 +165,8 @@ http://www.tooplate.com/view/2082-pure-mix
       @endif
 			<div class="image-holder">
 				<img src="images/form-wizard2.png" alt="">
-				
-			
+
+
 			</div>
 			<!-- -->
 			<form  action="{{ URL::to('/tutorReg/check') }}" method ="post" enctype="multipart/form-data">
@@ -181,9 +181,9 @@ http://www.tooplate.com/view/2082-pure-mix
 									<a href="#">
 								<!-- <div id="circle"></div> -->
 									<img id="blah"src="images/avartar.png" alt="" class="center">
-									
-								</a>	
-		                    		
+
+								</a>
+
 								<div class="avartar-picker">
 									<input type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
 									<label for="file-1">
@@ -202,9 +202,9 @@ http://www.tooplate.com/view/2082-pure-mix
 	                    		<label for="">Last Name *</label>
 	                    		<input type="text" name="Lname" required class="form-control3">
 	                    	</div>
-						</div>	
+						</div>
 						<div class="form-row ">
-							
+
 							<label for="">
 	                    		Gender *
 	                    	</label>
@@ -219,28 +219,28 @@ http://www.tooplate.com/view/2082-pure-mix
 							</div>
 
 							<div class="form-row ">
-							
+
 							<label for="">
 	                    		Birthday *
 	                    	</label>
 	                    	<input type="date" name="DOB" class="form-control3" required placeholder="" style="margin-bottom: 20px">
 	                    	</div>
-							
+
 							<div class="form-row">
 	                    	<label for="">
 	                    		Address *
 	                    	</label>
 	                    	<input type="text" name="addr" class="form-control3" required placeholder="Street address" style="margin-bottom: 20px">
-	                    	 </div>	
-							
+	                    	 </div>
+
 					</section>
-					
-	                
+
+
 					<!-- SECTION 2 -->
 	                <h4></h4>
 	                <section>
 	                	<div class="form-row">
-							
+
 						<label for="">
 	                    		Evidence*
 		                    </label>
@@ -258,14 +258,14 @@ http://www.tooplate.com/view/2082-pure-mix
 							<p>ตัวอย่าง ชั้นปีที่ 3 คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
 	                    	<input type="text" name="education" required class="form-control3" placeholder="..">
 						</div>
-						
+
 						<div class="form-row">
 	                    	<label for="">
 	                    		Partner
 	                    	</label>
-	                    	<input type="text" name="partner" class="form-control3" placeholder="ผ">
+	                    	<input type="text" name="partner" class="form-control3" placeholder="">
 	                    </div>
-							
+
 	                    <div class="form-row" style="margin-bottom: 18px">
 	                    	<label for="">
 	                    		Work experient
@@ -284,7 +284,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	                <!-- SECTION 4 -->
 	                <h4></h4>
 	                <section>
-	                    
+
 						 <div class="form-row ">
 	                    	<div class="form-holder ">
 	                    		<label for="">
@@ -292,8 +292,8 @@ http://www.tooplate.com/view/2082-pure-mix
 		                    	</label>
 	                    		<input type="tel" name="phone" class="form-control3" required>
 	                    	</div>
-	                    </div>	
-	                    	
+	                    </div>
+
 	                    <div class="form-row">
 	                    	<label for="">
 	                    		Email*
@@ -340,19 +340,19 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript 
+<!-- Javascript
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
-		
+
 		<!-- JQUERY STEP -->
 <script src="js1/jquery.steps.js"></script>
 
@@ -365,7 +365,7 @@ http://www.tooplate.com/view/2082-pure-mix
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result)
-                        
+
 						;
                 };
 
@@ -375,7 +375,7 @@ http://www.tooplate.com/view/2082-pure-mix
 </script>
 
 <!-- <script>
-/* When the user clicks on the button, 
+/* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");

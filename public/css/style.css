@@ -769,7 +769,7 @@ a.icon {
 {
     display: inline-block;
     width: 30%;
-    
+
 }
 
 #contact .form-control:hover {
@@ -810,18 +810,18 @@ a.icon {
 }
 
 .button0 {
-  background-color: white; 
-  color: rgb(126, 126, 126);  
+  background-color: white;
+  color: rgb(126, 126, 126);
 }
 
 .button0:hover {
-  background-color:  rgb(126, 126, 126); 
+  background-color:  rgb(126, 126, 126);
   color: white;
 }
 
 .button1 {
-  background-color: white; 
-  color: #4CAF50; 
+  background-color: white;
+  color: #4CAF50;
   border: 2px solid #4CAF50;
 }
 
@@ -972,7 +972,3 @@ footer {
 @media (max-width: 450px) {
   .intro-inner {top: 50%;}
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f667a242bb7bea18a1fb88209ff60801a7fd3d30
