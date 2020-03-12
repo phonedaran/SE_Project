@@ -168,11 +168,12 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 			</div>
-			<form action="">
-
+			<!-- -->
+			<form  action="{{ URL::to('/tutorReg/check') }}" method ="post" enctype="multipart/form-data">
+				{{csrf_field()}}
             	<div id="wizard">
             		<!-- SECTION 1 -->
-					<form class="needs-validation" method ="get" novalidate action="{{ URL::to('/tutorReg/check1') }} ">
+					<form class="needs-validation" >
 					<h4></h4>
 	                <section>
 					<div class="form-header">
@@ -243,20 +244,10 @@ http://www.tooplate.com/view/2082-pure-mix
 						<label for="">
 	                    		Evidence*
 		                    </label>
-                                    <input type="file"style=" margin-bottom: 20px;" class="form-control3 custom-file-upload  " name="evidence"  accept="image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple required/>
-
-									<!-- <label class="custom-file-label text-secondary" data-default-text="เลือกไฟล์">เลือกไฟล์</label> -->
-
-
-		                    		<!-- <div class="avartar-picker">
-									<input type="file"  name="evidence" id="file-1" class="inputfile"  accept="image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple required/>
-
-									<label for="file-1">
-										<i class="zmdi zmdi-file"></i>
-										<span>Choose file</span>
-									</label>
-								</div> -->
-
+									<input type="file"style=" margin-bottom: 20px;" class="form-control3 custom-file-upload  " 
+									name="evidence"  accept="image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple required/>
+									
+								
 						</div>
 
 						<div class="form-row">
@@ -290,55 +281,6 @@ http://www.tooplate.com/view/2082-pure-mix
 						</div> -->
 	                </section>
 
-	                <!-- SECTION 3 -->
-	                <!-- <h4></h4>
-	                <section>
-	                    <div class="product">
-	                    	<div class="item">
-	                    		<div class="left">
-	                    			<a href="#" class="thumb">
-		                    			<img src="images/item-1.png" alt="">
-		                    		</a>
-		                    		<div class="purchase">
-		                    			<h6>
-		                    				<a href="#">Low Table/Stool</a>
-		                    			</h6>
-		                    			<span>x4</span>
-		                    		</div>
-	                    		</div>
-	                    		<span class="price">$29</span>
-	                    	</div>
-	                    	<div class="item">
-	                    		<div class="left">
-	                    			<a href="#" class="thumb">
-		                    			<img src="images/item-2.png" alt="">
-		                    		</a>
-		                    		<div class="purchase">
-		                    			<h6>
-		                    				<a href="#">Set of 3 Porcelain</a>
-		                    			</h6>
-		                    			<span>x2</span>
-		                    		</div>
-	                    		</div>
-	                    		<span class="price">$124</span>
-	                    	</div>
-	                    </div>
-	                    <div class="checkout">
-                    		<div class="subtotal">
-                    			<span class="heading">Subtotal</span>
-                    			<span>$364</span>
-                    		</div>
-	                    	<p class="shipping">
-	                    		<span class="heading">Shipping</span>
-	                    	there are no shipping methods available. please double check your address, or contact us if you need any help.
-	                    	</p>
-	                    	<div class="total">
-                    			<span class="heading">Subtotal</span>
-                    			<span class="total-price">$364</span>
-                    		</div>
-	                    </div>
-	                </section> -->
-
 	                <!-- SECTION 4 -->
 	                <h4></h4>
 	                <section>
@@ -367,51 +309,15 @@ http://www.tooplate.com/view/2082-pure-mix
 							<input id="password-field" type="password" class="form-control" name="password" required>
 							<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
 </div>
-
-
-						<!-- <div class="mt-4">
-                        <div class="alert alert-info text-center" role="alert">
-    สามารถอัปโหลดไฟล์ประเภท jpeg, png หรือ pdf เท่านั้น
-</div>                    </div>
-                                                                    <div class="mt-4 form-group row"  id="file_input_owner_citizen">
-                            <label class="col-sm-4 col-form-label">สำเนาบัตรประชาชน<br/>ของเจ้าของรถ</label>
-                            <div class="col-sm-8">
-                                                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="files[owner_citizen]"  accept="image/jpeg,image/png,application/pdf"/>
-                                    <label class="custom-file-label text-secondary" data-default-text="เลือกไฟล์">เลือกไฟล์</label>
-                                </div>
-                                                                    <div class="mt-2 ml-2 text-info">ในกรณีที่นักศึกษาไม่ใช่เจ้าของรถ</div>
-                                                                                            </div>
-                        </div>
-                            <div class="mt-4 form-group row"  id="file_input_vehicle">
-                            <label class="col-sm-4 col-form-label"><span class="text-danger">*</span> สำเนาทะเบียนรถ</label>
-                            <div class="col-sm-8">
-                                                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="files[vehicle]" required accept="image/jpeg,image/png,application/pdf"/>
-                                    <label class="custom-file-label text-secondary" data-default-text="เลือกไฟล์">เลือกไฟล์</label>
-                                </div>
-                                                                                            </div>
-                        </div>
-                                                                    <div class="mt-4 form-group row"  style="display:none"  id="file_input_retire">
-                            <label class="col-sm-4 col-form-label">สำเนาบัตรข้าราชการบำนาญ</label>
-                            <div class="col-sm-8">
-                                                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="files[retire]"  accept="image/jpeg,image/png,application/pdf"/>
-                                    <label class="custom-file-label text-secondary" data-default-text="เลือกไฟล์">เลือกไฟล์</label>
-                                </div>
-                                                                                            </div>
-                        </div>
-                                        -->
-
-
-
-
-						<!-- <div class="col-md-6 col-sm-20" style="margin-right:50px;"> -->
+						
+						<!-- <div class="col-md-6 col-sm-20" style="margin-right:50px;"> onClick="this.form.action='{{ URL::to('/tutorReg/check') }}'; submit()"-->
 							<!-- form-control submit -->
-							<input type="submit" id="" class="actions li a" value="Create account" onClick="this.form.action='{{ URL::to('/tutorReg/check') }}'; submit()">
+							<input type="submit" id="" class="actions li a" value="Create account" >
 						<!-- </div> -->
 						<br>
-	                </section>
+					</section>
+					
+					
             	</div>
             </form>
 		</div>

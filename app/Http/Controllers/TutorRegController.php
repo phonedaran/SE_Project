@@ -17,7 +17,7 @@ class TutorRegController extends Controller
         return view('auth.tutorRegister');
     }
 
-    function regcheck(request $request)
+    public function regcheck(request $request)
     {
         $Fname=$request->input('Fname');
         $Lname=$request->input('Lname');
@@ -29,7 +29,7 @@ class TutorRegController extends Controller
         $status='waiting';
         $education=$request->input('education');
         $work=$request->input('work');
-        $about=$request->input('about');
+        // $about=$request->input('about');
         $partner=$request->input('partner');
         $evidence=$request->input('evidence');
         $image_card=$request->input('image'); //profile
@@ -37,14 +37,29 @@ class TutorRegController extends Controller
         // $evidence_path=substr($evidence, strpos($evidence, ".") + 1);
         $DOB=$request->input('DOB');
 
+        if($file = $request->file('image') ){
+            $image_card = $file -> getClientOriginalName();
+            // $request -> file('image') -> storeAs('public/imageProfile',$image_card);
+            $file -> move('images/imageProfile',$image_card);
+        }
+
+        if($Efile = $request->file('evidence') ){
+
+            $evidence = $Efile -> getClientOriginalName();
+            // $request -> file('evidence') -> storeAs('public/idCard',$evidence);
+            $Efile -> move('images/idCard',$evidence);
+        }
+        
+        
+
         $tId=Tutor::max('idTutor');
         if($tId === null){$tId = 0 ;}
         $TutorId=($tId +2);
-// $evidence === null
+        
     $data = DB::select('select email from tutors where email=? ',[$email]);
-
+    
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null
-    or $sex === null or $addr === null or $evidence === null or $education === null or $DOB === null) {
+ or $sex === null or $addr === null or $evidence === null or $education === null or $DOB === null ) {
         return redirect()->back()->with('null','Please fill all required field.');
     }
     elseif(strlen($pass) <8){
@@ -68,7 +83,7 @@ class TutorRegController extends Controller
            'status' => $status,
            'work_experient' => $work,
            'education' => $education,
-           'about_me' => $about,
+        //    'about_me' => $about,
            'partner' => $partner,
            'password' => Hash::make($pass),]
         );
