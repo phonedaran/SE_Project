@@ -51,7 +51,8 @@ Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
 
 
 Route::get('/tutorReg', 'TutorRegController@reg');
-Route::get('/tutorReg/check', 'TutorRegController@regcheck');
+Route::post('/tutorReg/check', 'TutorRegController@regcheck')->name('upload.flie');
+// Route::get('/tutorReg/check', 'TutorRegController@regcheck');
 
 // ต้อง login ก่อน ถึงจะเข้าได้
 Auth::routes();
@@ -71,6 +72,5 @@ Route::get('/test', function () {
 });
 Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
+// Route::get('/home', 'HomeController@index')->name('home');
 
-//test ver.
-Route::get('/review', 'student\StudentController@reviewFrom');
