@@ -30,8 +30,8 @@ class StudentController extends Controller
         //     ->get();
         // }
 
-        $enrolls=DB::table('enroll')->join('course','enroll.idcourse', '=', 'course.idcourse')
-            ->join('tutor', 'tutor.idtutor', '=', 'enroll.idtutor')
+        $enrolls=DB::table('enroll')->join('courses','enroll.idcourse', '=', 'courses.idcourse')
+            ->join('tutors', 'tutors.idtutor', '=', 'enroll.idtutor')
             ->where(['enroll.idstudent' => $id])
             ->get();
 
