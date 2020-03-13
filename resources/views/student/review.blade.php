@@ -29,7 +29,8 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Font Icons CSS
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}">
-	<link rel="stylesheet" href="{{ URL::asset('css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/ionicons.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Sarabun&display=swap" rel="stylesheet">
 
 	<!-- Main CSS
    ================================================== -->
@@ -39,6 +40,12 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
     <style>
+        textarea{
+            margin:  20px;
+            font-size: 20px;
+            font-family: 'Sarabun', sans-serif;
+        }
+
         @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
         fieldset, label { margin: 0; padding: 0; }
@@ -98,7 +105,7 @@ http://www.tooplate.com/view/2082-pure-mix
             padding: 5px 10px;
             text-overflow: ellipsis;
             white-space: nowrap;
-            width: 200px;
+            width: 350px;
         }
 
         select#soflow-color {
@@ -228,13 +235,16 @@ http://www.tooplate.com/view/2082-pure-mix
 			  <div class="contact-form">
                     <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
                         <div class="tutorName"></div>
-                            <p>Tutor Name</p>
-                            <select name="tutor" id="soflow-color">
-                                    @foreach ($tutors as $tutor)
-                                        <option value="{{$tutor->idTutor}}">{{$tutor->Fname}} {{$tutor->Lname}}</option>
+                            <p style="padding-left: 10px;">Course</p>
+                            <select name="tutor" id="soflow-color" onchange="showName()" >
+                                <option value="">เลือกคอร์ส</option>
+                                    @foreach ($list as $l)
+                                        <option value="{{$l->Fname}} {{$l->Lname}}">{{$l->idcourse}} - {{$l->Ncourse}}</option>
                                     @endforeach
                             </select>
                         </div>
+                        <br>
+                        <p id="showName" style="padding-left: 10px;"></p>
                         <br>
                         <div class="rate">
                             <p>Rate</p>
@@ -248,8 +258,8 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
                         <br><br><br><br>
                         <div class="comment">
-                            <p>Comment</p>
-                            <textarea name="review-comment" id="" cols="30" rows="10"></textarea>
+                            <p style="padding-left: 10px;">Comment</p>
+                            <textarea name="review-comment" id="" cols="50" rows="10"></textarea>
                         </div>
 
                         <input type="submit" class="btn btn-secondary" name="view" value="Send" >
@@ -288,6 +298,17 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
+
+<script>
+    function showName() {
+        var x = document.getElementById("soflow-color").value;
+        if(x != ""){
+            document.getElementById("showName").innerHTML = "Tutor : " + x;
+        }else{
+            document.getElementById("showName").innerHTML = "";
+        }
+    }
+</script>
 
 </body>
 </html>

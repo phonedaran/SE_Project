@@ -35,10 +35,10 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
@@ -55,7 +55,7 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
-					
+
 .above{
 	margin-top: 5px;
 	font-size:14px;
@@ -76,7 +76,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	margin-top: 11px;
 	border-radius: 0px;
 	width:100%;
-	
+
 }
 
 
@@ -187,7 +187,7 @@ http://www.tooplate.com/view/2082-pure-mix
   text: 'Input all requied field!'
 })
 				</script>
-    
+
 			@endif
 			@if (Session('pass'))
       <script type="text/javascript">
@@ -214,7 +214,7 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
 })
 				</script>
       @endif
@@ -241,21 +241,21 @@ http://www.tooplate.com/view/2082-pure-mix
   						<h3>Password must contain the following:</h3>
   						<p id="length" class="invalid">Minimum <b>8 characters</b></p>
 					</div> -->
-					
+
 						<label for="">
 						<font size="3">Password*</font>
 							</label>
 							<p class="above">Password must contain at least 8 or more characters</p>
 							<!-- <input id="password-field" type="password" name="password" required class="form-control"> -->
 							<!-- minlength="8" title="Must contain at least one number,and at least 8 or more characters" -->
-							
+
 							<input id="password-field" type="password" class="form-control" name="password"  required minlength=8>
 							<span style="font-size: 22px;" toggle=" #password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
-							
-	            
-  						
 
-					
+
+
+
+
 					<!-- <div class="contact-submit"> -->
 						<div class="col-md-6 col-sm-4">
 							<input type="submit" class="form-control submit" value="Create account" onClick="this.form.action='{{ URL::to('/studentReg/check') }}'; submit()">
@@ -265,12 +265,12 @@ http://www.tooplate.com/view/2082-pure-mix
 						<a href="/SE_Project/public/home" class="btn">Cancle</a>
 						<!-- <input type="submit" stlye="background-color:pink;" class="form-control submit" value="Cancle" onClick="this.form.action='{{ URL::to('/main/employee') }}'; submit()">  -->
 						</div>
-					
-				
+
+
 				</form>
 			</div>
 		  </div>
-		
+
 			<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.6s">
 			<section id="header" class="header-five">
 	<div class="container">
@@ -284,7 +284,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			</div>
 
 		<!-- </div> -->
-	</div>		
+	</div>
 </section>
 			</div>
 
@@ -308,12 +308,12 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript 
+<!-- Javascript
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -337,7 +337,7 @@ if (input.attr("type") == "password") {
 
 
 
-       
+
 
 @include('sweet::alert')
 </body>

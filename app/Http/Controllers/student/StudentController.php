@@ -45,10 +45,11 @@ class StudentController extends Controller
 
     public function reviewFrom(){
         $id = Auth::id();
-        $tutors = DB::table('enroll')->join('tutors','enroll.idtutor','=','tutors.idTutor')
+        $list = DB::table('enroll')->join('tutors','enroll.idTutor','=','tutors.idTutor')
+        ->join('courses','enroll.idcourse','=','courses.idcourse')
         ->where(['idStudent' => $id])->distinct('enroll.idTutor')->get();
 
-        return view('student.review', ['tutors' => $tutors]);
+        return view('student.review', ['list' => $list]);
     }
 
     public function addReview(request $request){
@@ -57,6 +58,6 @@ class StudentController extends Controller
         $rate = $request->input('rating');
         $comment = $request->input('review-comment');
 
-        DB::table('review')
+        DB::table('review');
     }
 }

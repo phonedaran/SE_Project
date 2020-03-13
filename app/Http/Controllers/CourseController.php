@@ -24,26 +24,28 @@ class CourseController extends Controller
         if($_GET['subject'] != null){
             if($_GET['province'] != null){
                 $courses = DB::table('courses')->whereBetween('price',[$min,$max])
-                ->where(['subject' => $subject])->where(['location'=>$location])->get();
+                ->where(['subject' => $subject])->where(['location'=>$location])
+                ->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
             }else{
                 $courses = DB::table('courses')->whereBetween('price',[$min,$max])
-                ->where(['subject' => $subject])->get();
+                ->where(['subject' => $subject])->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
             }
         }else{
             if($_GET['province'] != null){
                 $courses = DB::table('courses')->whereBetween('price',[$min,$max])
-                ->where(['location'=>$location])->get();
+                ->where(['location'=>$location])->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
             }else{
-                $courses = DB::table('courses')->whereBetween('price',[$min,$max])->get();
+                $courses = DB::table('courses')->whereBetween('price',[$min,$max])
+                ->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
             }
         }
 
 
-        return view('course',['courses' => $courses]);
+        return view('home',['courses' => $courses]);
     }
 
     public function courseShow(){
-        $courses = DB::table('courses')->get();
+        $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
         return view('home',['courses' => $courses]);
     }
 

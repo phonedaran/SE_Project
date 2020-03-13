@@ -157,7 +157,7 @@ http://www.tooplate.com/view/2082-pure-mix
 									@if($tutor->idTutor == $idCard->idTutor)
 										<div class="col-md-3" align="center">
 											<br>
-											<img src="images/{{$idCard->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p>
+											<img src="images/imageProfile/{{$idCard->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p>
 											<br>
 											<form method="get" action="{{URL::to('/admin/image')}}">
 												<input type="hidden" name="image" id="image" value="{{$idCard->img_IDcard}}">
