@@ -9,20 +9,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+
+// class User extends Authenticatable
 // use RealRashid\SweetAlert\Facades\Alert;
 
 
 
 class StudentRegisterController extends Controller
 {
-
+    
     function reg()
     {
-
+        
         // if(session('success_message')){
-        //
+        //     
         // }
-
+        
         return view('auth.studentRegister');
     }
 
@@ -57,11 +60,11 @@ class StudentRegisterController extends Controller
 
 
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null ) {
-
+        
         return redirect()->back()->with('null','Please fill all required field.');
     }
     elseif(strlen($pass) <8){
-
+        
         return redirect()->back()->with('pass','Please fill all required field.');
     }
     elseif($data != null ){
@@ -84,9 +87,9 @@ class StudentRegisterController extends Controller
             'status' => "student",
             'password' => Hash::make($pass),]
          );
+ 
 
-
-    return  redirect('/')->with('success','Please fill all required field.');
+    return  redirect('/')->with('mail','Please fill all required field.');
         }
     }
 }
