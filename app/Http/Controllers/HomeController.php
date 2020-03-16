@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -22,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         if(auth()->user()->isAdmin()){
             return view('admin/admin');
         }
@@ -30,7 +30,13 @@ class HomeController extends Controller
         //     return view('/tutor/course');
         // }
         else{
-            return view('home');
+            $courses = DB::table('courses')->get();
+            return view('home',['courses'=>$courses]);
         }
     }
+
+    // public function home()
+    // {
+    //     return view('homepublic');
+    // }
 }

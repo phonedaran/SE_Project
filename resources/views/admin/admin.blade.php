@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>IDcard</title>
+	<title>Admin</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -35,10 +35,10 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
@@ -73,7 +73,7 @@ http://www.tooplate.com/view/2082-pure-mix
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                      	<ul id="nav-menu">
-						   
+
 						   @if (Auth::check())
 
                            <!-- check status -->
@@ -136,74 +136,70 @@ http://www.tooplate.com/view/2082-pure-mix
 			</div>
 
 		</div>
-	</div>		
+	</div>
 </section>
 
 
 <!-- request section
 ================================================== -->
-	<section id="contact">
-		<div class="container">
-			<div class="row" >
-				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
-					<h1>All Request ({{sizeof($tutors)}})</h1><br />
-					@if(sizeof($tutors)>0)
-						@foreach ($tutors as $tutor)
-						<div class="card">
-							<div class="contentCard">
+<section id="contact">
+	<div class="container">
+		<div class="row" >
+			<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
+				<h1>All Request ({{sizeof($tutors)}})</h1><br />
+				@if(sizeof($tutors)>0)
+					@foreach ($tutors as $tutor)
+					<div class="card col-md-12">
+						<div class="contentCard">
 							<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
-								
-								@foreach($idCards as $idCard)
-									@if($tutor->idTutor == $idCard->idTutor)
-										<div class="col-md-3" align="center">
-											<br>
-											<img src="../public/images/{{$idCard->img_path}}" style="width:100%;max-width:100px"></p>
-											<br>
-											<form method="get" action="{{URL::to('/admin/image')}}">
-												<input type="hidden" name="image" id="image" value="{{$idCard->img_IDcard}}">
-												<p align="center"><b>IDcard :</b>
-												<input type="button" class="button button0" value="IDcard" onClick="this.form.action='{{ URL::to('/admin/image') }}'; submit()">
-											</form>
-										</div>
-									@endif
-								@endforeach
-
-								<div class="col-md-9">
-									<p class="col-md-6" align="left"><b>Sex :</b> {{$tutor->sex}}</p>
-									<p class="col-md-6" align="left"><b>DOB :</b> {{$tutor->DOB}}</p>
-									<p class="col-md-6" align="left"><b>Email :</b> {{$tutor->email}}</p>
-									<p class="col-md-6" align="left"><b>Phone :</b> {{$tutor->phone}}</p>
-									<p class="col-md-6" align="left"><b>Address :</b> {{$tutor->address}}</p>
-									<p class="col-md-6" align="left"><b>Partner :</b> {{$tutor->partner}}</p>
-									<p class="col-md-6" align="left"><b>Education :</b> {{$tutor->education}}</p>
-									<p class="col-md-6" align="left"><b>Experient :</b> {{$tutor->work_experient}}</p>
-								</div>
-
-								<div class="contact-form">
-									<form id="contact-form" method="get">
-										<div id="outer">
-											<input type="button" class="inner button button1" value="Accept" onClick="fncAction1({{$tutor->idTutor}})">
-											<input type="button" class="inner button button2" value="Reject" onClick="fncAction2({{$tutor->idTutor}})">
-										</div>
-									</form>
-								</div>
-
+							@foreach($idCards as $idCard)
+								@if($tutor->idTutor == $idCard->idTutor)
+									<div class="col-md-3" align="center">
+										<br><br><img src="images/imageProfile/{{$idCard->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p><br>
+										<button class="button button2" onClick="fncAction0({{$tutor->idTutor}})">IDcard</button>
+									</div>
+								@endif
+							@endforeach
+							<div class="col-md-9">
+								<p class="col-md-6" align="left"><b>Sex :</b> {{$tutor->sex}}</p>
+								<p class="col-md-6" align="left"><b>DOB :</b> {{$tutor->DOB}}</p> 
+								<p class="col-md-6" align="left"><b>Email :</b> {{$tutor->email}}</p>
+								<p class="col-md-6" align="left"><b>Phone :</b> {{$tutor->phone}}</p>
+								<p class="col-md-12" align="left"><b>Address :</b> {{$tutor->address}}</p>
+								<p class="col-md-12" align="left"><b>Partner :</b> {{$tutor->partner}}</p>
+								<p class="col-md-12" align="left"><b>Education :</b> {{$tutor->education}}</p>
+								<p class="col-md-12" align="left"><b>Experient :</b> {{$tutor->work_experient}}</p>
 							</div>
+
+							<div class="contact-form col-md-12">
+								<form id="contact-form" method="get">
+									<div id="outer">
+										<input type="button" class="inner button button1" value="Accept" onClick="fncAction1({{$tutor->idTutor}})">
+										<input type="button" class="inner button button2" value="Reject" onClick="fncAction2({{$tutor->idTutor}})">
+									</div>
+								</form>
+							</div>
+
 						</div>
-						<br>
-						@endforeach
-					@else 
-						<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
-					@endif
-				</div>
+					</div>
+					<br>
+					@endforeach
+				@else
+					<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
+				@endif
 			</div>
-		</div><br /><br /><br />
-	</section>
+		</div>
+	</div><br /><br /><br />
+</section>
 
 <!-- Javascript section
 ================================================== -->
 
 <script type="text/javascript">
+
+	function fncAction0(idTutor){
+		window.location.replace("/SE_Project/public/admin/image?idTutor="+idTutor);
+	}
 
 	function fncAction1(idTutor){
 		swal({
@@ -264,12 +260,12 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript 
+<!-- Javascript
 ================================================== -->
 <script src="{{ URL::asset('js/jquery.js') }}"></script>
 <script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>

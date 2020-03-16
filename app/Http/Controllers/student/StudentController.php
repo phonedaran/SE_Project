@@ -13,27 +13,33 @@ class StudentController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         // add table => day , time แล้วลบ schedule
         $id = Auth::id();
-        $courses = DB::table('enroll')
-            ->where(['idstudent' => $id])->get();
+        // $courses = DB::table('enroll')
+        //     ->where(['idstudent' => $id])->get();
 
-        foreach ($courses as $course){
+        // foreach ($courses as $course){
 
-            $enrolls=DB::table('enroll')->join('course','enroll.idcourse', '=', 'course.idcourse')
+        //     $enrolls=DB::table('enroll')->join('course','enroll.idcourse', '=', 'course.idcourse')
+        //     ->join('tutor', 'tutor.idtutor', '=', 'enroll.idtutor')
+        //     ->where(['enroll.idcourse' => [$course->idcourse]])
+        //     ->where(['tutor.idtutor' => [$course->idTutor]])
+        //     ->get();
+        // }
+
+        $enrolls=DB::table('enroll')->join('course','enroll.idcourse', '=', 'course.idcourse')
             ->join('tutor', 'tutor.idtutor', '=', 'enroll.idtutor')
-            ->where(['enroll.idcourse' => [$course->idcourse]])
-            ->where(['tutor.idtutor' => [$course->idTutor]])
+            ->where(['enroll.idstudent' => $id])
             ->get();
-        }
+
         if($enrolls != null){
-           return view('student/enrollment',['enrolls' => $enrolls]); 
+           return view('student/enrollment',['enrolls' => $enrolls]);
         }else{
             return redirect('/enroll')->with('error','no course that enrollment');
         }
-        
+
     }
 }

@@ -66,7 +66,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <script type="text/javascript">
 	function back(){
-		window.location.replace("/SE_Project/public/admin");
+		window.location.replace("/SE_Project/public/admin/tutorList");
 	}
 </script>
 <!-- Javascript 
