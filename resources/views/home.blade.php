@@ -41,6 +41,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
     <style>
         /* side nav */
+
         .sidenav {
           height: 100%;
           width: 0;
@@ -80,6 +81,7 @@ http://www.tooplate.com/view/2082-pure-mix
           .sidenav a {font-size: 18px;}
         }
 
+
         select#soflow, select#soflow-color {
             -webkit-appearance: button;
             -webkit-border-radius: 2px;
@@ -106,6 +108,7 @@ http://www.tooplate.com/view/2082-pure-mix
             border-radius: 20px;
             padding-left: 15px;
         }
+
 
 
         </style>
@@ -257,9 +260,11 @@ text: 'Succecc!!'
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
+
                                  <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
                                  <li><a href="#">edit course</a></li>
+
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -341,6 +346,7 @@ text: 'Succecc!!'
                             <p>
                                 <label>Subject</label>
 
+
                             </p>
                                 <select name="subject"  id="soflow-color">
                                     <option value="">วิชา</option>
@@ -350,6 +356,7 @@ text: 'Succecc!!'
                                     <option value="คณิตศาสตร์">คณิตศาสตร์</option>
                                     <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
                                 </select>
+
                             <br>
                             <br>
                             <p>
@@ -450,7 +457,7 @@ text: 'Succecc!!'
                         <div class="container">
                            <div class="row">
 
-                            <?php //echo $courses; ?>
+
                             @foreach ( $courses as $c )
                                 <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                                     <div class="blog-thumb">
@@ -460,7 +467,9 @@ text: 'Succecc!!'
                                         <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+
                                         <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
+
                                         <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
                                         <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
                                         <a href="#" class="btn btn-default">MORE INFO</a>

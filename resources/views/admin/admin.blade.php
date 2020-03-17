@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>IDcard</title>
+	<title>Admin</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -142,16 +142,17 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- request section
 ================================================== -->
-	<section id="contact">
-		<div class="container">
-			<div class="row" >
-				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
-					<h1>All Request ({{sizeof($tutors)}})</h1><br />
-					@if(sizeof($tutors)>0)
-						@foreach ($tutors as $tutor)
-						<div class="card">
-							<div class="contentCard">
+<section id="contact">
+	<div class="container">
+		<div class="row" >
+			<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
+				<h1>All Request ({{sizeof($tutors)}})</h1><br />
+				@if(sizeof($tutors)>0)
+					@foreach ($tutors as $tutor)
+					<div class="card col-md-12">
+						<div class="contentCard">
 							<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
+
 
 								@foreach($idCards as $idCard)
 									@if($tutor->idTutor == $idCard->idTutor)
@@ -188,22 +189,38 @@ http://www.tooplate.com/view/2082-pure-mix
 									</form>
 								</div>
 
+
+							<div class="contact-form col-md-12">
+								<form id="contact-form" method="get">
+									<div id="outer">
+										<input type="button" class="inner button button1" value="Accept" onClick="fncAction1({{$tutor->idTutor}})">
+										<input type="button" class="inner button button2" value="Reject" onClick="fncAction2({{$tutor->idTutor}})">
+									</div>
+								</form>
 							</div>
+
 						</div>
+
 						<br>
 						@endforeach
 					@else
 						<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
 					@endif
 				</div>
+
 			</div>
-		</div><br /><br /><br />
-	</section>
+		</div>
+	</div><br /><br /><br />
+</section>
 
 <!-- Javascript section
 ================================================== -->
 
 <script type="text/javascript">
+
+	function fncAction0(idTutor){
+		window.location.replace("/SE_Project/public/admin/image?idTutor="+idTutor);
+	}
 
 	function fncAction1(idTutor){
 		swal({

@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Tutor Course</title>
+	<title>Add Course</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -38,7 +38,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Google web font
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 <body>
 
@@ -46,12 +46,11 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Preloader section
 ================================================== -->
 <div class="preloader">
+
 	<div class="sk-spinner sk-spinner-pulse"></div>
+
 </div>
 
-<!-- Add button section
-================================================== -->
-<button onclick="fncAction2()" id="myBtn" ><i class="fa fa-plus"></i></button>
 
 <!-- Navigation section
 ================================================== -->
@@ -93,7 +92,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                   <li><a href="#">review</a></li>
                                <!-- tutor -->
                                @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
                                  <li><a href="#">edit profile</a></li>
                                <!-- admin -->
                                @else
@@ -139,8 +138,8 @@ http://www.tooplate.com/view/2082-pure-mix
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Tutor Course</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="0.9s">all courses which you place</h3>
+              <h1 class="wow fadeIn" data-wow-delay="0.6s">add course</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="0.9s">Let's create a course for learning.</h3>
           </div>
 			</div>
 
@@ -148,87 +147,39 @@ http://www.tooplate.com/view/2082-pure-mix
 	</div>
 </section>
 
-<!-- course section
+
+<!-- Add course section
 ================================================== -->
 <section id="contact">
-   <div class="container">
-      <div class="row" >
-         <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
-            <h1>All Courses ({{sizeof($courses)}})</h1><br /> 
-            @if(sizeof($courses)>0)
-               @foreach ($courses as $index => $course)
-                  <div class="card col-md-12">
-							<div class="contentCard">
-                        <div class="col-md-3" align="center">
-                           <img src="images/{{$course->img}}" onerror="this.src='images/blog-img3.jpg'" ></a>
-                        </div> 
-                        <div class="col-md-9">
-                           <!-- เพิ่ม link ไปหน้า course information ด้วย -->
-                           <h4 class="col-md-9" align="left"><b>{{$course->Ncourse}}</b></h4> 
-                           <h4 class="col-md-3">
-                              <div id="outer">
-                                 <div class="inner" onClick="fncAction0({{$course->idcourse}})">
-                                    <i class="fa fa-edit click"></i>
-                                 </div>
-                                 <div class="inner" onClick="fncAction1({{$course->idcourse}})">
-                                    <i class="fa fa-trash click"></i>
-                                 </div>
-                              </div>
-                           </h4> 
-                           <p class="col-md-6" align="left"><b>Subject : </b>{{$course->subject}}</p>
-                           <p class="col-md-6" align="left"><a class="click" onClick="fncAction3({{$course->idcourse}})"><b>Student : </b>{{$n[$index]}}/{{$course->max_student}}</a></p>
-                           <p class="col-md-6" align="left"><b>Schedule : </b>{{$course->day}} {{$course->start_time}}-{{$course->end_time}}</p>
-                           <p class="col-md-6" align="left"><b>Period : </b>{{$course->start_date}} ~ {{$course->end_date}}</p>
-                           <p class="col-md-6" align="left"><b>Location : </b>{{$course->location}}</p>
-                           <p class="col-md-6" align="left"><b>Price : </b>{{$course->price}}</p>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-               @endforeach
-            @else
-               <br /><h3 style="color: silver;">No Course</h3><br /><br /><br />
-            @endif
-         </div>
-      </div>
-   </div><br /><br /><br />
+	<div class="container">
+		<div class="row">
+		  <div class="wow fadeInUp col-md-6" data-wow-delay="1.6s">
+			  <h1>add your course</h1>
+			  <div class="contact-form">
+				  <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
+              {{-- <input name="idTutor" type="number" class="form-control" placeholder="Your ID" required> --}}
+                    {{-- <input name="idcourse" type="number" class="form-control" placeholder="Course ID" required> --}}
+                    <input name="Ncourse" type="name" class="form-control" maxlength="45" placeholder="Course Name" required >
+					<input name="subject" type="name" class="form-control" placeholder="Subject" required>
+					<input name="maxStudent" type="number" class="form-control" placeholder="Number of students accepted" required>
+					<input name="day" type="text" class="form-control" placeholder="Day" required>
+					<h3>Start Time</h3><input name="stime" type="time" class="form-control col-md-6" placeholder="Start Time" required>
+					<h3>End Time</h3><input name="etime" type="time" class="form-control col-md-6" placeholder="End Time" required>
+                    <h3>Start Date</h3><input name="startDate" type="Date" class="form-control col-md-6" placeholder="Start Date" required>
+					<h3>End Date</h3><input name="endDate" type="Date" class="form-control col-md-6"  placeholder="End Date" required>
+                    <input name="location" type="text" class="form-control" maxlength="45" placeholder="Location" required>
+                    <input name="price" type="number" class="form-control" placeholder="Price per course (Bath)" required>
+					<textarea name="message" class="form-control" placeholder="Course Description" rows="4" required></textarea>
+				    <div class="contact-submit">
+						<input type="submit" class="form-control submit" value="SAVE">
+					</div>
+				  </form>
+			  </div>
+		  </div>
+		</div>
+	 </div>
 </section>
 
-<script type="text/javascript">
-
-	function fncAction0(idcourse){
-		window.location.replace("/SE_Project/public/.........?idcourse="+idcourse); //เติม path ไปหา edit course
-	}
-   
-   function fncAction1(idcourse){
-      swal({
-			title: "Are you sure?",
-			text: "Once accepted, you will delete this course!",
-			icon: "warning",
-			buttons: true,
-			successMode: true,
-			})
-			.then((willDelete) => {
-			if (willDelete) {
-				swal("Poof! The course has been deleted!", {icon: "success"});
-				setTimeout(function(){
-					window.location.replace("/SE_Project/public/course/deleted?idcourse="+idcourse);
-				},2000);
-			} else {
-				swal("The course is safe!");
-			}
-		});
-	}
-
-   function fncAction2(){
-      window.location.replace("/SE_Project/public/addCourse");
-   }
-
-   function fncAction3(idcourse){
-		window.location.replace("/SE_Project/public/course/studentList?idcourse="+idcourse); //เติม path ไปหา edit course
-	}
-   
-</script>
 <!-- Footer section
 ================================================== -->
 <footer>
@@ -245,6 +196,7 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 </footer>

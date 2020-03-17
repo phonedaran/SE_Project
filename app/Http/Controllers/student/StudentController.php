@@ -30,6 +30,7 @@ class StudentController extends Controller
         //     ->get();
         // }
 
+
         $enrolls=DB::table('enroll')->join('courses','enroll.idcourse', '=', 'courses.idcourse')
             ->join('tutors', 'tutors.idtutor', '=', 'enroll.idtutor')
             ->where(['enroll.idstudent' => $id])
@@ -40,6 +41,7 @@ class StudentController extends Controller
         }else{
             return redirect('/enroll')->with('error','no course that enrollment');
         }
+
 
     }
 
@@ -59,5 +61,6 @@ class StudentController extends Controller
         $comment = $request->input('review-comment');
 
         DB::table('review');
+
     }
 }

@@ -34,11 +34,20 @@ Route::group(['prefix' => 'admin'],function(){
     });
 });
 
+Auth::routes();
+Auth::routes(['verify' => true]);
+// ต้อง login ก่อน ถึงจะเข้าได้
+
+
+//admin system
 Route::get('/admin','adminController@admin');
-Route::get('/admin/image','adminController@image');
+Route::get('/admin/image','adminController@imageAdmin');
 Route::get('/admin/accepted','adminController@accepted');
 Route::get('/admin/rejected','adminController@rejected');
 Route::get('/admin/tutorList','adminController@tutorList');
+Route::get('/admin/tutorList/image','adminController@imageTutorList');
+Route::get('/admin/tutorList/fired','adminController@fired');
+
 
 Route::get('/course', 'CourseController@fillter');
 
@@ -48,8 +57,6 @@ Auth::routes(['verify' => true]);
 
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
-
-
 Route::get('/tutorReg', 'TutorRegController@reg');
 Route::post('/tutorReg/check', 'TutorRegController@regcheck')->name('upload.flie');
 // Route::get('/tutorReg/check', 'TutorRegController@regcheck');
@@ -58,13 +65,20 @@ Route::post('/tutorReg/check', 'TutorRegController@regcheck')->name('upload.flie
 Auth::routes();
 
 
+//home
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/course', 'CourseController@fillter');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
 
-Route::get('/addCourse', 'CourseController@add');
+//tutor
+Route::get('/course', 'tutor\TutorController@index');
+Route::get('/course/studentList', 'tutor\TutorController@studentList');
+Route::get('/course/studentList/deleted', 'tutor\TutorController@deletedStudent');
+Route::get('/course/deleted', 'tutor\TutorController@deleted');
+Route::get('/addCourse', 'tutor\TutorController@add');
+Route::get('/course/add/check', 'tutor\TutorController@addCheck');
 
-
-Route::get('/course/add/check', 'CourseController@addCheck');
 
 
 Route::get('/test', function () {
@@ -74,5 +88,7 @@ Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
 // Route::get('/home', 'HomeController@index')->name('home');
 
+
 route::get('/review','student\StudentController@reviewFrom');
+
 

@@ -244,6 +244,7 @@ http://www.tooplate.com/view/2082-pure-mix
 						<label for="">
 	                    		Evidence*
 		                    </label>
+
 									<input type="file"style=" margin-bottom: 20px;" class="form-control3 custom-file-upload  "
 									name="evidence"  accept="image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple required/>
 
@@ -316,7 +317,6 @@ http://www.tooplate.com/view/2082-pure-mix
 						<!-- </div> -->
 						<br>
 					</section>
-
 
             	</div>
             </form>
