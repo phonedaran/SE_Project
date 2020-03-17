@@ -104,7 +104,6 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">admin area</a></li>
                               @endif
                               
-                           <li><a href="{{url('/contact')}}">Contact</a></li>
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -158,33 +157,34 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- list section
 ================================================== -->
-<section id="blog">
+<!-- <section id="blog">
    <div class="container">
       <div class="row">
 
          <div class="col-md-12 col-sm-12">
-            
+             -->
                <!-- iso section -->
-               <div class="iso-section wow fadeInUp" data-wow-delay="1s">
+               <!-- <div class="iso-section wow fadeInUp" data-wow-delay="1s"> -->
 
                         <!-- iso box section -->
-                        <div class="container">
+                        <!-- <div class="container">
                            <div class="row">
-                           @foreach ($enrolls as $enroll )
-                              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
-                                 <div class="blog-thumb">
-                                    <a href="single-post.html"><img src="../public/images/blog-img3.jpg" class="img-responsive" alt="Blog"></a>
-                                    <a href="single-post.html"><h1>{{$enroll->Ncourse}}</h1></a>
-                                    <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : {{$enroll->subject}} </p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$enroll->max_student}}</p>
-                                    <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$enroll->start_date}} => {{$enroll->end_date}}</p>
-                                    <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$enroll->start_time}} - {{$enroll->end_time}}</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-user"></i> : {{$enroll->Fname}} {{$enroll->Lname}}</p>
-                                    <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$enroll->location}}</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
-                                 </div>
-                              </div>
-                              @endforeach
+                              @foreach ( $enrolls as $enroll )
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                                    <div class="blog-thumb">
+                                        <a href="#"><img src="images/{{$enroll->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><h1>{{$enroll->Ncourse}}</h1></a>
+                                        <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$enroll->subject}} </p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$enroll->max_student}}</p>
+                                        <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$enroll->start_date}} => {{$enroll->end_date}}</p>
+                                        <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$enroll->start_time}} - {{$enroll->end_time}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-user"></i> : {{$enroll->Fname}} {{$enroll->Lname}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$enroll->location}}</p>
+                                        <p class="col-md-6" align="left">ราคา {{$enroll->price}} บาท</p>
+                                        <a href="#" class="btn btn-default">MORE INFO</a>
+                                    </div>
+                                </div>
+                            @endforeach
                            </div>
                         </div>
 
@@ -194,6 +194,44 @@ http://www.tooplate.com/view/2082-pure-mix
 
       </div>
    </div>
+</section> -->
+
+<!-- same admin =======================================-->
+<section id="contact">
+		<div class="container">
+			<div class="row" >
+				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
+					<h1>All Course ({{sizeof($enrolls)}})</h1><br />
+					@if(sizeof($enrolls)>0)
+						@foreach ($enrolls as $enroll)
+						<div class="card col-md-12 col-sm-12">
+							<div class="contentCard">
+                        <h4 class="col-md-12" align="left"><b>{{$enroll->Ncourse}}</b></h4>
+                        <div class="col-md-3" align="center">
+                           <br>
+                           <img src="images/{{$enroll->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:190px"></p>
+                           <br>
+                        </div>
+								<div class="col-md-9">
+                           <br>
+									<p class="col-md-6" align="left"><b>Subject :</b> {{$enroll->subject}}</p>
+									<p class="col-md-6" align="left"><b>Date :</b> {{$enroll->start_date}}&nbsp;To&nbsp;{{$enroll->end_date}}</p>
+									<p class="col-md-6" align="left"><b>Time :</b> {{$enroll->start_time}} - {{$enroll->end_time}}</p>
+									<p class="col-md-6" align="left"><b>Tutor :</b> {{$enroll->Fname}}&nbsp;&nbsp;{{$enroll->Lname}}</p>
+									<p class="col-md-6" align="left"><b>Location :</b> {{$enroll->location}}</p>
+									<p class="col-md-6" align="left"><b>Price :</b> {{$enroll->price}} บาท</p>
+                           <p class="col-md-6" align="right"><a href="#" class="btn btn-default">MORE INFO</a></p>
+								</div>
+							</div>
+						</div>
+						<br>
+						@endforeach
+					@else
+						<br /><h3 style="color: silver;">No Course</h3><br /><br /><br />
+					@endif
+				</div>
+			</div>
+		</div><br /><br /><br />
 </section>
 
 <!-- Footer section

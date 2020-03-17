@@ -141,9 +141,11 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
+
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
                                  <li><a href="#">edit course</a></li>
                                  <li><a href="#">edit profile</a></li>
+
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->

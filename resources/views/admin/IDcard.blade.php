@@ -35,10 +35,10 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
@@ -61,6 +61,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<div align="center" class="wow fadeInUp data-wow-delay="1.3s">
 		<img src="../../public/images/idCard/{{$idCard}}" align="center" style="width:100%;max-width:700px">
 	</div>
+
 	
 </div>	
 
@@ -70,6 +71,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	}
 </script>
 <!-- Javascript 
+
 ================================================== -->
 <script src="{{ URL::asset('js/jquery.js') }}"></script>
 <script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>

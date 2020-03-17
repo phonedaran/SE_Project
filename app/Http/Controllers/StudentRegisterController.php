@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+
+// class User extends Authenticatable
 // use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -87,6 +90,7 @@ class StudentRegisterController extends Controller
 
 
     return  redirect('/')->with('success','Please fill all required field.');
+
         }
     }
 }

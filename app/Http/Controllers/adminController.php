@@ -24,6 +24,9 @@ class adminController extends Controller
         $Fname = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('Fname');
         $email = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('email');
         $password = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('password');
+
+        print_r($Fname);
+
         DB::table('users')->insert([
             'id' => $idTutor,
             'name' => $Fname,
@@ -47,6 +50,7 @@ class adminController extends Controller
         DB::table('enroll')->where(['idTutor'=>$idTutor])->delete();
         DB::table('courses')->where(['idTutor'=>$idTutor])->delete();
         DB::table('users')->where(['id'=>$idTutor])->delete();
+
         DB::table('tutors')->where(['idTutor'=>$idTutor])->delete();
         return redirect()->back();
     }
@@ -65,6 +69,7 @@ class adminController extends Controller
 
     public function tutorList(){
         $tutors = DB::table('tutors')->where(['status'=>'accepted'])->get();
-        return view('admin/tutorList',['tutors' => $tutors]);
+        $idCards = DB::table('image')->get();
+        return view('admin/tutorList',['tutors' => $tutors,'idCards' => $idCards]);
     }
 }

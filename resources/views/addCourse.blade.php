@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Review tutor</title>
+	<title>Add Course</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -29,8 +29,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Font Icons CSS
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/ionicons.min.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Sarabun&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ URL::asset('css/ionicons.min.css') }}">
 
 	<!-- Main CSS
    ================================================== -->
@@ -38,85 +37,8 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Google web font
    ================================================== -->
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-    <style>
-        textarea{
-            margin:  20px;
-            font-size: 20px;
-            font-family: 'Sarabun', sans-serif;
-        }
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 
-        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-        fieldset, label { margin: 0; padding: 0; }
-        body{ margin: 20px; }
-        h1 { font-size: 1.5em; margin: 10px; }
-
-        /****** Style Star Rating Widget *****/
-
-        .rating {
-            border: none;
-            float: left;
-        }
-
-        .rating > input { display: none; }
-        .rating > label:before {
-            margin: 5px;
-            font-size: 1.25em;
-            font-family: FontAwesome;
-            display: inline-block;
-            content: "\f005";
-        }
-
-        .rating > .half:before {
-        content: "\f089";
-        position: absolute;
-        }
-
-        .rating > label {
-            color: #ddd;
-            float: right;
-        }
-
-        /***** CSS Magic to Highlight Stars on Hover *****/
-
-        .rating > input:checked ~ label, /* show gold star when clicked */
-        .rating:not(:checked) > label:hover, /* hover current star */
-        .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-        .rating > input:checked + label:hover, /* hover current star when changing rating */
-        .rating > input:checked ~ label:hover,
-        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-        .rating > input:checked ~ label:hover ~ label { color: #fbe469;  }
-
-        /*  option style    */
-        select#soflow, select#soflow-color {
-            -webkit-appearance: button;
-            -webkit-border-radius: 2px;
-            -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-            -webkit-padding-end: 20px;
-            -webkit-padding-start: 2px;
-            -webkit-user-select: none;
-            text-align-last: center;
-            border: 1px solid #AAA;
-            color: #555;
-            font-size: inherit;
-            overflow: hidden;
-            padding: 5px 10px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            width: 350px;
-        }
-
-        select#soflow-color {
-            color: #131313;
-            background-color: #ffffff;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            border-radius: 20px;
-            padding-left: 15px;
-        }
-    </style>
 </head>
 <body>
 
@@ -215,8 +137,8 @@ http://www.tooplate.com/view/2082-pure-mix
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s"> add review</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="0.9s">Let's review tutor.</h3>
+              <h1 class="wow fadeIn" data-wow-delay="0.6s">add course</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="0.9s">Let's create a course for learning.</h3>
           </div>
 			</div>
 
@@ -231,39 +153,25 @@ http://www.tooplate.com/view/2082-pure-mix
 	<div class="container">
 		<div class="row">
 		  <div class="wow fadeInUp col-md-6" data-wow-delay="1.6s">
-			  <h1>Review</h1>
+			  <h1>add your course</h1>
 			  <div class="contact-form">
-                    <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
-                        <div class="tutorName"></div>
-                            <p style="padding-left: 10px;">Course</p>
-                            <select name="tutor" id="soflow-color" onchange="showName()" >
-                                <option value="">เลือกคอร์ส</option>
-                                    @foreach ($list as $l)
-                                        <option value="{{$l->Fname}} {{$l->Lname}}">{{$l->idcourse}} - {{$l->Ncourse}}</option>
-                                    @endforeach
-                            </select>
-                        </div>
-                        <br>
-                        <p id="showName" style="padding-left: 10px;"></p>
-                        <br>
-                        <div class="rate">
-                            <p>Rate</p>
-                            <fieldset class="rating">
-                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stars"></label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4 stars"></label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="3 stars"></label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="2 stars"></label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1 star"></label>
-                            </fieldset>
-                        </div>
-                        <br><br><br><br>
-                        <div class="comment">
-                            <p style="padding-left: 10px;">Comment</p>
-                            <textarea name="review-comment" id="" cols="50" rows="10"></textarea>
-                        </div>
-
-                        <input type="submit" class="btn btn-secondary" name="view" value="Send" >
-                        <br><br>
+				  <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
+              {{-- <input name="idTutor" type="number" class="form-control" placeholder="Your ID" required> --}}
+                    {{-- <input name="idcourse" type="number" class="form-control" placeholder="Course ID" required> --}}
+                    <input name="Ncourse" type="name" class="form-control" maxlength="45" placeholder="Course Name" required >
+					<input name="subject" type="name" class="form-control" placeholder="Subject" required>
+					<input name="maxStudent" type="number" class="form-control" placeholder="Number of students accepted" required>
+					<input name="day" type="text" class="form-control" placeholder="Day" required>
+					<h3>Start Time</h3><input name="stime" type="time" class="form-control col-md-6" placeholder="Start Time" required>
+					<h3>End Time</h3><input name="etime" type="time" class="form-control col-md-6" placeholder="End Time" required>
+                    <h3>Start Date</h3><input name="startDate" type="Date" class="form-control col-md-6" placeholder="Start Date" required>
+					<h3>End Date</h3><input name="endDate" type="Date" class="form-control col-md-6"  placeholder="End Date" required>
+                    <input name="location" type="text" class="form-control" maxlength="45" placeholder="Location" required>
+                    <input name="price" type="number" class="form-control" placeholder="Price per course (Bath)" required>
+					<textarea name="message" class="form-control" placeholder="Course Description" rows="4" required></textarea>
+				    <div class="contact-submit">
+						<input type="submit" class="form-control submit" value="SAVE">
+					</div>
 				  </form>
 			  </div>
 		  </div>
@@ -298,17 +206,6 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
-
-<script>
-    function showName() {
-        var x = document.getElementById("soflow-color").value;
-        if(x != ""){
-            document.getElementById("showName").innerHTML = "Tutor : " + x;
-        }else{
-            document.getElementById("showName").innerHTML = "";
-        }
-    }
-</script>
 
 </body>
 </html>
