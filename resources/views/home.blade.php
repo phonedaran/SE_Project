@@ -173,9 +173,8 @@ text: 'Succecc!!'
 ================================================== -->
 <!-- alert success login -->
 
-{{-- <div class="nav-container">
-   @if (Route::has('login'))
-      @auth
+<div class="nav-container">
+   @if (Session('login'))
       <script type="text/javascript">
          const Toast = Swal.mixin({
             toast: true,
@@ -194,7 +193,8 @@ text: 'Succecc!!'
             title: 'Log in in successfully'
             })
       </script>
-      @else
+      @endif
+      @if (Session('logout'))
       <script type="text/javascript">
          const Toast = Swal.mixin({
             toast: true,
@@ -213,9 +213,8 @@ text: 'Succecc!!'
             title: 'Log out successfully'
             })
       </script>
-      @endauth
    @endif
-</div> --}}
+</div>
 
 <!-- ต้องสร้างหน้า home 2 ไฟล์ => homepublic ,  home -->
 <!-- ================================================= -->
@@ -252,7 +251,7 @@ text: 'Succecc!!'
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->

@@ -99,5 +99,16 @@ class CourseController extends Controller
             return redirect('/home')->with('course','Course created');
     }
 
+    public function deleteCourse(request $request){
+        $id = Auth::id();
+        $idcourse = $request->input('idcourse');
+
+        DB:: table('enroll')
+        ->where(['idcourse' => $idcourse])
+        ->where(['idstudent' => $id])
+        ->delete();
+        return redirect()->back()->with('success','success');
+    }
+
 }
 

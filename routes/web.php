@@ -48,7 +48,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
-
+Route::get('/studentEdit', 'student\StudentController@editProfile');
+Route::post('/studentEdit/check', 'student\StudentController@editCheck');
 
 Route::get('/tutorReg', 'TutorRegController@reg');
 Route::post('/tutorReg/check', 'TutorRegController@regcheck')->name('upload.flie');
@@ -71,6 +72,8 @@ Route::get('/test', function () {
     return view('test');
 });
 Route::get('/enroll', 'student\StudentController@index');
+Route::get('/student/deleteCourse', 'CourseController@deleteCourse');
+
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
 // Route::get('/home', 'HomeController@index')->name('home');
 

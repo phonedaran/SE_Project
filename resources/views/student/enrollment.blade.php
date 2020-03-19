@@ -91,7 +91,7 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
@@ -197,6 +197,17 @@ http://www.tooplate.com/view/2082-pure-mix
 </section> -->
 
 <!-- same admin =======================================-->
+
+@if (Session('success'))
+	<script type="text/javascript">
+		Swal.fire(
+			'Deleted!',
+			'Your file has been deleted.',
+			'success'
+			)
+	</script>
+@endif
+
 <section id="contact">
 		<div class="container">
 			<div class="row" >
@@ -221,6 +232,7 @@ http://www.tooplate.com/view/2082-pure-mix
 									<p class="col-md-6" align="left"><b>Location :</b> {{$enroll->location}}</p>
 									<p class="col-md-6" align="left"><b>Price :</b> {{$enroll->price}} บาท</p>
                            <p class="col-md-6" align="right"><a href="#" class="btn btn-default">MORE INFO</a></p>
+                           <p class="col-md-6" align="right" onClick="fncAction({{$enroll->idcourse}})"><a href="#" class="btn" ><i class="fa fa-trash"></i></a></p>
 								</div>
 							</div>
 						</div>
@@ -265,5 +277,24 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
 
+<script type="text/javascript">
+	function fncAction (idcourse){
+		Swal.fire({
+		title: 'Are you sure?',
+		text: "You will delete this course!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+		if (result.value) {
+         setTimeout(function(){
+					window.location.replace("/SE_Project/public/student/deleteCourse?idcourse="+idcourse);
+				},2000);
+		}
+		});
+	}
+</script>
 </body>
 </html>
