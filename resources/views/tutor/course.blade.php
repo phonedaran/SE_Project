@@ -136,14 +136,12 @@ http://www.tooplate.com/view/2082-pure-mix
 <section id="header" class="header-five">
 	<div class="container">
 		<div class="row">
-
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-          <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Tutor Course</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="0.9s">all courses which you place</h3>
-          </div>
+            <div class="header-thumb">
+               <h1 class="wow fadeIn" data-wow-delay="0.6s">Tutor Course</h1>
+               <h3 class="wow fadeInUp" data-wow-delay="0.9s">all courses which you place</h3>
+            </div>
 			</div>
-
 		</div>
 	</div>
 </section>
@@ -164,7 +162,7 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div> 
                         <div class="col-md-9">
                            <!-- เพิ่ม link ไปหน้า course information ด้วย -->
-                           <h4 class="col-md-9" align="left"><b>{{$course->Ncourse}}</b></h4> 
+                           <h4 class="col-md-9" align="left"><a class="click" onClick="fncAction4({{$course->idcourse}})"><b>{{$course->Ncourse}}</b></a></h4> 
                            <h4 class="col-md-3">
                               <div id="outer">
                                  <div class="inner" onClick="fncAction0({{$course->idcourse}})">
@@ -226,6 +224,10 @@ http://www.tooplate.com/view/2082-pure-mix
 
    function fncAction3(idcourse){
 		window.location.replace("/SE_Project/public/course/studentList?idcourse="+idcourse); //เติม path ไปหา edit course
+	}
+
+   function fncAction4(idcourse){
+		window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse);
 	}
    
 </script>

@@ -34,7 +34,7 @@ class HomeController extends Controller
         // }
         else{
             $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
-            return view('home',['courses'=>$courses]);
+            return view('/course/home',['courses'=>$courses]);
         }
     }
 

@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Add Course</title>
+	<title>Tutor Course</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -38,19 +38,15 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Google web font
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-
 
 <!-- Preloader section
 ================================================== -->
 <div class="preloader">
-
 	<div class="sk-spinner sk-spinner-pulse"></div>
-
 </div>
-
 
 <!-- Navigation section
 ================================================== -->
@@ -92,7 +88,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                   <li><a href="#">review</a></li>
                                <!-- tutor -->
                                @elseif ( Auth:: user()->status == 'tutor')
-                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                                 <li><a href="#">edit profile</a></li>
                                <!-- admin -->
                                @else
                                   <!-- <li><a href="#">admin area</a></li> -->
@@ -134,49 +131,32 @@ http://www.tooplate.com/view/2082-pure-mix
 <section id="header" class="header-five">
 	<div class="container">
 		<div class="row">
-
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">add course</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="0.9s">Let's create a course for learning.</h3>
+              <h1 class="wow fadeIn" data-wow-delay="0.6s">Course Information</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="0.9s">have fun with our course</h3>
           </div>
-			</div>
-
 		</div>
 	</div>
 </section>
 
-
-<!-- Add course section
+<!-- course section
 ================================================== -->
 <section id="contact">
-	<div class="container">
-		<div class="row">
-		  <div class="wow fadeInUp col-md-6" data-wow-delay="1.6s">
-			  <h1>add your course</h1>
-			  <div class="contact-form">
-				  <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
-              {{-- <input name="idTutor" type="number" class="form-control" placeholder="Your ID" required> --}}
-                    {{-- <input name="idcourse" type="number" class="form-control" placeholder="Course ID" required> --}}
-                    <input name="Ncourse" type="name" class="form-control" maxlength="45" placeholder="Course Name" required >
-					<input name="subject" type="name" class="form-control" placeholder="Subject" required>
-					<input name="maxStudent" type="number" class="form-control" placeholder="Number of students accepted" required>
-					<input name="day" type="text" class="form-control" placeholder="Day" required>
-					<h3>Start Time</h3><input name="stime" type="time" class="form-control col-md-6" placeholder="Start Time" required>
-					<h3>End Time</h3><input name="etime" type="time" class="form-control col-md-6" placeholder="End Time" required>
-                    <h3>Start Date</h3><input name="startDate" type="Date" class="form-control col-md-6" placeholder="Start Date" required>
-					<h3>End Date</h3><input name="endDate" type="Date" class="form-control col-md-6"  placeholder="End Date" required>
-                    <input name="location" type="text" class="form-control" maxlength="45" placeholder="Location" required>
-                    <input name="price" type="number" class="form-control" placeholder="Price per course (Bath)" required>
-					<textarea name="message" class="form-control" placeholder="Course Description" rows="4" required></textarea>
-				    <div class="contact-submit">
-						<input type="submit" class="form-control submit" value="SAVE">
-					</div>
-				  </form>
-			  </div>
-		  </div>
-		</div>
-	 </div>
+    <div class="container">
+        <div class="row" >
+            <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">           
+                <div class="col-md-12">
+                    <div class="col-md-9" >
+                        <h1>course</h1>
+                    </div>
+                    <div class="col-md-3" >
+                        <h1>tutor</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br /><br /><br />
 </section>
 
 <!-- Footer section
@@ -195,7 +175,6 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-
 		</div>
 	</div>
 </footer>
