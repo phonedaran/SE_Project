@@ -149,11 +149,9 @@ http://www.tooplate.com/view/2082-pure-mix
 				<h1>All Request ({{sizeof($tutors)}})</h1><br />
 				@if(sizeof($tutors)>0)
 					@foreach ($tutors as $tutor)
-					<div class="card col-md-12">
-						<div class="contentCard">
-							<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
-
-
+						<div class="card col-md-12">
+							<div class="contentCard">
+								<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
 								@foreach($idCards as $idCard)
 									@if($tutor->idTutor == $idCard->idTutor)
 										<div class="col-md-3" align="center">
@@ -168,7 +166,6 @@ http://www.tooplate.com/view/2082-pure-mix
 										</div>
 									@endif
 								@endforeach
-
 								<div class="col-md-9">
 									<p class="col-md-6" align="left"><b>Sex :</b> {{$tutor->sex}}</p>
 									<p class="col-md-6" align="left"><b>DOB :</b> {{$tutor->DOB}}</p>
@@ -179,8 +176,7 @@ http://www.tooplate.com/view/2082-pure-mix
 									<p class="col-md-6" align="left"><b>Education :</b> {{$tutor->education}}</p>
 									<p class="col-md-6" align="left"><b>Experient :</b> {{$tutor->work_experient}}</p>
 								</div>
-
-								<div class="contact-form">
+								<div class="contact-form col-md-12">
 									<form id="contact-form" method="get">
 										<div id="outer">
 											<input type="button" class="inner button button1" value="Accept" onClick="fncAction1({{$tutor->idTutor}})">
@@ -188,26 +184,12 @@ http://www.tooplate.com/view/2082-pure-mix
 										</div>
 									</form>
 								</div>
-
-
-							<div class="contact-form col-md-12">
-								<form id="contact-form" method="get">
-									<div id="outer">
-										<input type="button" class="inner button button1" value="Accept" onClick="fncAction1({{$tutor->idTutor}})">
-										<input type="button" class="inner button button2" value="Reject" onClick="fncAction2({{$tutor->idTutor}})">
-									</div>
-								</form>
-							</div>
-
+							</div><br>
 						</div>
-
-						<br>
-						@endforeach
-					@else
-						<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
-					@endif
-				</div>
-
+					@endforeach
+				@else
+					<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
+				@endif
 			</div>
 		</div>
 	</div><br /><br /><br />

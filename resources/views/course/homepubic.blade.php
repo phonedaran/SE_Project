@@ -141,9 +141,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
                                  <li><a href="#">edit profile</a></li>
 
                               <!-- admin -->
@@ -375,7 +373,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                     <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : time</p>
                                     <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
                                     <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : location</p>
-                                    <a href="single-post.html" class="btn btn-default">MORE INFO</a>
+                                    <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
                                  </div>
                               </div>
                               </div>
@@ -390,6 +388,16 @@ http://www.tooplate.com/view/2082-pure-mix
       </div>
    </div>
 </section>
+
+<!-- javascript section
+================================================== -->
+<script type="text/javascript">
+
+   function fncAction0(idcourse){
+      window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
+   }
+
+</script>
 
 <!-- Footer section
 ================================================== -->

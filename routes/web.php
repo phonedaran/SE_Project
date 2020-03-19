@@ -50,8 +50,7 @@ Route::get('/admin/tutorList/fired','adminController@fired');
 
 
 Route::get('/course', 'CourseController@fillter');
-
-Route::get('/course', 'CourseController@fillter');
+Route::get('/courseInformation', 'CourseController@info');
 
 Auth::routes(['verify' => true]);
 
