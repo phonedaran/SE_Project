@@ -36,7 +36,7 @@ body {
 
 html,body {
   width: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 html {
@@ -540,6 +540,20 @@ a.icon {
   padding: 15px;
 }
 
+.card2 {
+  border: 1px solid #d3d3d3;
+  width:300px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: .25rem;
+  padding-bottom: 1rem;
+  margin-bottom:25px;
+
+}
+
+.card2:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 /*filter css*/
 .filter-wrapper {
     width: 100%;
@@ -651,7 +665,7 @@ a.icon {
 }
 
 #blog .blog-thumb {
-  padding-top: 60px;
+  /* padding-top: 60px; */
   padding-bottom: 40px;
 }
 
@@ -879,6 +893,22 @@ a.icon {
   background-color: #555;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  width: 25%;
+  height: 100%;
+}
+.main {  
+  width: 70%;
+  height: 100%;
+}
+
 .backBtn {
   width: 30%;
   padding: 10px;
@@ -901,6 +931,21 @@ a.icon {
   padding: 62px 0px 32px 42px;
   position: relative;
   bottom: -50px;
+}
+
+.center { 
+  height: 250px;
+  position: relative;
+}
+
+.center h1 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 

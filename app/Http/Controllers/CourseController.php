@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use App\Course;
+use Carbon\Carbon;
+use strtotime;
 
 class CourseController extends Controller
 {
@@ -52,7 +54,25 @@ class CourseController extends Controller
         $course = DB::table('courses')->where(['idcourse'=>$idcourse])->get();
         $idTutor = DB::table('courses')->where(['idcourse'=>$idcourse])->value('idTutor');
         $tutor = DB::table('tutors')->where(['idTutor'=>$idTutor])->get();
-        return view('course/courseInfo',['course' => $course,['tutor' => $tutor]]);
+        $imageTutor = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_path');
+        $DOB = Carbon::parse($tutor[0]->DOB);
+        $age = $DOB->diff(Carbon::now())->format('%y');
+        $startTime =date('g:ia', strtotime($course[0]->start_time));
+        $endTime =date('g:ia', strtotime($course[0]->end_time));
+
+        return view('course/courseInfo',['course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+    }
+
+    public function enrolled(request $request){
+        $idcourse = $request->input('idcourse');
+        $idstudent=Auth::id();
+        $idTutor = DB::table('courses')->where(['idcourse'=>$idcourse])->value('idTutor');
+        DB::table('enroll')->insert(
+            ['idTutor' => $idTutor,
+            'idcourse' => $idcourse,
+            'idstudent' =>$idstudent]
+        );
+        return redirect('/');
     }
 
 }
