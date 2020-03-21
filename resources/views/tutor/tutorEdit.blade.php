@@ -354,14 +354,14 @@ http://www.tooplate.com/view/2082-pure-mix
 												<input type="comment" name="about"  class="form-control" placeholder="{{$tu->about_me}}" value="{{$tu->about_me}}" style="height: 70px"></input>
 
 
-									<p class="col-md-12" align="left" style="font-size:20px"><b>For Changing Password</b></p><br>
-									<p class="col-md-6" align="left"><label>Old Password*</label>
-									<input id="password-field" type="password" class="form-control" name="pass" >
+									<!-- <p class="col-md-12" align="left" style="font-size:20px"><b>For Changing Password</b></p><br> -->
+									<!-- <p class="col-md-6" align="left"><label>Old Password*</label>
+									<input id="password-field" type="password" class="form-control" name="pass" > -->
 									
 
-									<p class="col-md-6" align="left"><label>New Password*</label>
+									<!-- <p class="col-md-6" align="left"><label>New Password*</label>
 									<input id="password-field" type="password" class="form-control" name="passNew" >
-									<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+									<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span> -->
 								</div>
 								<br>
 								

@@ -214,11 +214,10 @@ text: 'Success!!'
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
-                                <li><a href="{{url('/course')}}">Tutor course</a></li>
-                              <!-- admin -->
-                              @else
-                                 <!-- <li><a href="#">admin area</a></li> -->
+                                 <li><a href="{{url('/Profile')}}">Profile</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
+
+
                               @endif
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
