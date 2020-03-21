@@ -182,25 +182,26 @@ text: 'Success!!'
          <div class="container">
             <div class="row">
 
-              <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
-              </div>
 
-              <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+               <div class="brand">
+                  <a href="{{url('/')}}">Shared Tutoring</a>
+               </div>
+
+               <div class="navicon">
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif
+                  <div class="menu-container">
+
                      <div class="circle dark inline">
-                     <i class="icon ion-navicon"></i>
-                     </div></h3>
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
+
                     <div class="intro-inner">
                         <ul id="nav-menu">
-
                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
                         @if (Auth::check())
                            <li><a href="{{url('/')}}">Home</a></li>
@@ -213,6 +214,13 @@ text: 'Success!!'
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
+
+                                <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                <li><a href="{{url('/course')}}">Tutor course</a></li>
+                              <!-- admin -->
+                              @else
+                                 <li><a href="#">admin area</a></li>
+
                                  <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
                                  <li><a href="{{url('/myCourse')}}">My course</a></li>
@@ -223,7 +231,9 @@ text: 'Success!!'
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
+
                               @endif
+
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -243,17 +253,19 @@ text: 'Success!!'
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
+
                     </div>
                   </div>
 
                 </div>
               </div>
 
+
             </div>
          </div>
-
-      </nav>
-   </div>
+      </div>
+   </nav>
+</div>
 
 
                               
@@ -507,11 +519,11 @@ text: 'Success!!'
 
    <!-- javascript section
 ================================================== -->
-   <script type="text/javascript">
-      function fncAction0(idcourse) {
-         window.location.replace("/SE_Project/public/courseInformation?idcourse=" + idcourse); //เติม path ไปหา edit course
-      }
-   </script>
+<script type="text/javascript">
+
+   function fncAction0(idcourse){
+      window.location.assign("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
+   }
 
    <!-- Footer section
 ================================================== -->
