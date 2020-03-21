@@ -119,8 +119,8 @@ class TutorController extends Controller
         );
 
         return redirect('/addCourse')->with('course','Course created');
-        }
-    
+    }
+
     public function showProfile(){
         $idTutor = Auth::id();
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();

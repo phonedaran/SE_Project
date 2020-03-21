@@ -61,8 +61,12 @@ class CourseController extends Controller
         $age = $DOB->diff(Carbon::now())->format('%y');
         $startTime =date('g:ia', strtotime($course[0]->start_time));
         $endTime =date('g:ia', strtotime($course[0]->end_time));
-
-        return view('course/courseInfo',['course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+        $avgReview = DB::table('review')->where(['idTutor'=>$idTutor])->avg('review');
+        $nReview = DB::table('review')->where(['idTutor'=>$idTutor])->count();
+        if($avgReview==null){
+            $avgReview=0;
+        }
+        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
     }
 
     public function enrolled(request $request){
@@ -77,7 +81,6 @@ class CourseController extends Controller
         return redirect('/');
     }
 
-
     public function deleteCourse(request $request){
         $id = Auth::id();
         $idcourse = $request->input('idcourse');
@@ -89,30 +92,11 @@ class CourseController extends Controller
         return redirect()->back()->with('success','success');
     }
 
-
-    public function my()
-    {
-        $id=Auth::id();
-        $courses = DB::table('courses')->where(['idTutor' => $id])->get();
-
-        return view('tutor.myCourse', ['courses' => $courses]);
-
-    }
-
-
     public function edit()
     {
         $id=Auth::id();
         $courses = DB::table('courses')->where(['idTutor' => $id])->get();
-
-
-        return view('/course/editCourse', ['courses' => $courses]);
-
-
-        return view('editCourse', ['courses' => $courses]);
-
-
-
+        return view('course.editCourse', ['courses' => $courses]);
     }
     public function editCheck(request $request)
     {
@@ -131,12 +115,9 @@ class CourseController extends Controller
             $message = $request->input('description');
             $cId = $request->input('cId');
             $img = $request->input('image');
-
-
-
+             
             $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
-
-
+             
              $cName = DB::table('courses')
          ->select('Ncourse')
          ->where([
@@ -144,15 +125,15 @@ class CourseController extends Controller
             ['idcourse', '=', $cId],
             ['Ncourse', '=', $Ncourse]
          ])->get();
-
              
-
          if ($haveName) {
              if($cName == "[]"){
                     return redirect()->back()->with('haveName', 'The course name has already in use.');
-             }                 
              }
-
+                 
+             }
+           
+            
             if($img === null){
                 $tutor = DB::table('courses')
         ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
@@ -196,12 +177,11 @@ class CourseController extends Controller
 
             return redirect('/home')->with('success','Course created');
             }
+            
 
-
-
-
-
+            
     }
+
 
 
 }

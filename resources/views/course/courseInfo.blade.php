@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Tutor Course</title>
+	<title>Course Information</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -200,15 +200,95 @@ http://www.tooplate.com/view/2082-pure-mix
                         <img src="images/imageProfile/{{$imageTutor}}" onerror="this.src='images/user.png'" style="border-radius: 50%; width:100%;max-width:100px">
                      </div> 
                      <div class="col-md-7">
-                        <a class="click" onClick="fncAction1({{$tutor[0]->idTutor}})"><p><b>{{$tutor[0]->Fname}}<br>{{$tutor[0]->Lname}}</b></p></a> <!-- link ไป profile tutor -->
+                        <a class="click" onClick="fncAction1({{$tutor[0]->idTutor}})"><p><b>{{$tutor[0]->Fname}}<br>{{$tutor[0]->Lname}}</b></p></a> <!-- link ไป profile tutor -->                
+                        <?php
+                           if ($avgReview>=0 and $avgReview<0.5){
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=0.5 and $avgReview<1){
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=1 and $avgReview<1.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=1.5 and $avgReview<2){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=2 and $avgReview<2.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=2.5 and $avgReview<3){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=3 and $avgReview<3.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=3.5 and $avgReview<4){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=4 and $avgReview<4.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($avgReview>=4.5 and $avgReview<5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>  ';
+                           }
+                           elseif($avgReview>=5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>  ';
+                           }
+                           echo '<span style="color: #777;font-size: 14px;letter-spacing:1px">(', $nReview, ')</span>';
+                        ?>
                      </div>
-                     <div class="col-md-12" align="center">
-                        <p>Rating</p> <!-- รอโฟน -->
-                     </div>
+                     
                      <div class="col-md-7">
+                        <br>
                         <p><b>Sex : </b>{{$tutor[0]->sex}}</p>
                      </div> 
                      <div class="col-md-5">
+                        <br>
                         <p><b>Age : </b>{{$age}}</p>
                      </div> 
                      <div class="col-md-12">

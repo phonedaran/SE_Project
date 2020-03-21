@@ -185,15 +185,13 @@ http://www.tooplate.com/view/2082-pure-mix
                   </div>
 
                   <div class="navicon">
-                     <div class="menu-container">
-                        <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                           @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                           @endif
-                           <div class="circle dark inline">
-                              <i class="icon ion-navicon"></i>
-                           </div>
-                        </h3>
+                     @if (Auth:: check())
+                        <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                     @endif  
+                  <div class="menu-container">
+                     <div class="circle dark inline">
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
                         <div class="list-menu">
                            <i class="icon ion-close-round close-iframe"></i>
@@ -282,8 +280,9 @@ http://www.tooplate.com/view/2082-pure-mix
          <div class="leftcolumn">
             <div class="card">
                <h1 style="text-align: center">about me</h1>
-               <div align="right" onClick="fncAction1({{$tutor->idTutor}})">
-                  <i class="fa fa-edit click fa-2x"></i>
+               <div align="right" >
+                  <a href="/SE_Project/public/tutorEdit"><i class="fa fa-edit click fa-2x"></i></a>
+                  
                </div>
                <hr>
                <h4 style="text-align:left">Education : {{$tutor->education}}</h4>
@@ -456,7 +455,7 @@ http://www.tooplate.com/view/2082-pure-mix
    </script>
    <script type="text/javascript">
       function fncAction1(idTutor) {
-         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); //เติม path ไปหา edit course
+         window.location.assign("/SE_Project/public//tutorEdit?idTutor=" + idtutor); //เติม path ไปหา edit course
       }
    </script>
 
