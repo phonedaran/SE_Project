@@ -63,9 +63,7 @@ class TutorController extends Controller
     public function addCheck(request $request)
     {
         $idTutor=Auth::id();
-        //define
-        // $idTutor = $request->input('idTutor');
-        // $idcourse = $request->input('idcourse');
+        $image_course=$request->input('image'); //รูปคอร์สเรียน
         $Ncourse = $request->input('Ncourse');
         //ถ้าชื่อซ้ำ
         $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
@@ -82,6 +80,11 @@ class TutorController extends Controller
         $location = $request->input('location');
         $price = $request->input('price');
         $message = $request->input('description');
+
+        if($file = $request->file('image') ){
+            $image_course = $file -> getClientOriginalName();
+            $file -> move('images',$image_course);
+        }
 
         $cId=Course::max('idcourse');
         if($cId === null){$cId = 0 ;}
@@ -100,10 +103,21 @@ class TutorController extends Controller
             'end_date' => $endDate,
             'location' => $location,
             'price' => $price,
-            'description' => $message]
-
+            'description' => $message,
+            'img' => $image_course]
         );
-        return redirect('/course')->with('course','Course created');
+
+        return redirect('/addCourse')->with('course','Course created');
+    }
+
+
+    public function showProfile(){
+        $idTutor = Auth::id();
+        $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
+        $course = DB::table('courses')-> join('tutors','courses.idTutor','=','tutors.idTutor')
+        -> where(['courses.idTutor' => $idTutor])->get(); 
+        $img = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_path');
+        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img]);
     }
 
 
