@@ -199,23 +199,24 @@ http://www.tooplate.com/view/2082-pure-mix
                            <i class="icon ion-navicon"></i>
                         </div>
 
-                        <div class="list-menu">
-                           <i class="icon ion-close-round close-iframe"></i>
+                  <div class="list-menu">
+                    <i class="icon ion-close-round close-iframe"></i>
+                    <div class="intro-inner">
+                        <ul id="nav-menu">
 
-                           <div class="intro-inner">
-                              <ul id="nav-menu">
-                                 <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
-                                 @if (Auth::check())
-                                 <li><a href="{{url('/')}}">Home</a></li>
+                        <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
+                        @if (Auth::check())
+                           <li><a href="{{url('/')}}">Home</a></li>
 
-                                 <!-- check status -->
-                                 <!-- student -->
-                                 @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
+                           <!-- check status -->
+                              <!-- student -->
+                              @if ( Auth:: user()->status == 'student')
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
-                                 <!-- tutor -->
-                                 @elseif ( Auth:: user()->status == 'tutor')
+                                 <li><a href="{{url('/review')}}">review</a></li>
+                              <!-- tutor -->
+                              @elseif ( Auth:: user()->status == 'tutor')
+
                                  <li><a href="{{url('/Profile')}}">Profile</a></li>
                                  <li><a href="{{url('/course')}}">Tutor Course</a></li>
 
@@ -224,6 +225,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
                                  <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
+
                                        Logout</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -241,11 +243,13 @@ http://www.tooplate.com/view/2082-pure-mix
                               </ul>
                               @endif
 
+
                            </div>
                         </div>
 
                      </div>
                   </div>
+
 
 
                </div>
