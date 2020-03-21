@@ -102,15 +102,13 @@ http://www.tooplate.com/view/2082-pure-mix
                   </div>
 
                   <div class="navicon">
+                     @if (Auth:: check())
+                        <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                     @endif  
                      <div class="menu-container">
-                        <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                           @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                           @endif
-                           <div class="circle dark inline">
-                              <i class="icon ion-navicon"></i>
-                           </div>
-                        </h3>
+                        <div class="circle dark inline">
+                           <i class="icon ion-navicon"></i>
+                        </div>
 
                         <div class="list-menu">
                            <i class="icon ion-close-round close-iframe"></i>

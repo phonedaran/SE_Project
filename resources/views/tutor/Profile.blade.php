@@ -59,7 +59,7 @@ http://www.tooplate.com/view/2082-pure-mix
    <!-- Google web font
    ================================================== -->
    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
    <style>
@@ -167,6 +167,16 @@ http://www.tooplate.com/view/2082-pure-mix
 </head>
 
 <body>
+
+@if (Session('success'))
+   <script type="text/javascript">
+      Swal.fire({
+         icon: 'success',
+         title: 'OK',
+         text: 'Success!!'
+      })
+   </script>
+@endif
 
 
    <!-- Preloader section
@@ -309,7 +319,7 @@ http://www.tooplate.com/view/2082-pure-mix
             <hr>
             @foreach ($courses as $course)
             <h5>
-               <li><a class="pagelink" onclick="fncAction0({{$course->idcourse}})">{{$course -> Ncourse}}</a></li>
+               <li><a class="pagelink click" onclick="fncAction0({{$course->idcourse}})">{{$course -> Ncourse}}</a></li>
             </h5>
             @endforeach
          </div>
@@ -549,12 +559,12 @@ http://www.tooplate.com/view/2082-pure-mix
 
    <script type="text/javascript">
       function fncAction0(idcourse) {
-         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); //เติม path ไปหา edit course
+         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); 
       }
    </script>
    <script type="text/javascript">
       function fncAction1(idTutor) {
-         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); //เติม path ไปหา edit course
+         window.location.assign("/SE_Project/public/tutorEdit?idTutor=" + idtutor); 
       }
    </script>
 
@@ -596,7 +606,7 @@ http://www.tooplate.com/view/2082-pure-mix
    <script src="js/bootstrap.min.js"></script>
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="js/ie10-viewport-bug-workaround.js"></script>
-
+   @include('sweet::alert')
 </body>
 
 </html>

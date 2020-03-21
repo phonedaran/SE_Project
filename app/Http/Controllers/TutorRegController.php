@@ -163,7 +163,7 @@ class TutorRegController extends Controller
             'name' => $Fname,
                 ]
              );
-             return  redirect('/home')->with('success','The customer has been stored in database');
+             return  redirect('/Profile')->with('success','The customer has been stored in database');
         
         }else{
             $tutor = DB::table('tutors')
@@ -193,7 +193,7 @@ class TutorRegController extends Controller
                       'name' => $Fname,
             ]
              );
-             return  redirect('/home')->with('success','The customer has been stored in database');
+             return  redirect('/Profile')->with('success','The customer has been stored in database');
         }
    
         

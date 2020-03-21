@@ -39,9 +39,19 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
 
+@if (Session('success'))
+   <script type="text/javascript">
+      Swal.fire({
+         icon: 'success',
+         title: 'OK',
+         text: 'Success!!'
+      })
+   </script>
+@endif
 
 <!-- Preloader section
 ================================================== -->
@@ -258,6 +268,6 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
-
+@include('sweet::alert')
 </body>
 </html>
