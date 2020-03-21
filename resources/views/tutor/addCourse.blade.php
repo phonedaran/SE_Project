@@ -85,18 +85,6 @@ http://www.tooplate.com/view/2082-pure-mix
          })
       </script>
       @endif
-
-      @if (Session('etime'))
-      <script type="text/javascript">
-         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Please set a new time.'
-         })
-      </script>
-      @endif
-
-
    </div>
 
 

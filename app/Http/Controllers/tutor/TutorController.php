@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Course;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class TutorController extends Controller
 {
@@ -97,8 +98,6 @@ class TutorController extends Controller
         } elseif (strlen($subject) > 45) {
                 return redirect()->back()->with('subject', 'Name cannot exceed 45 characters.');
             
-        } elseif ($stime = $etime) {
-                return redirect()->back()->with('etime', 'Please set a new time.');
         } else 
         
         DB::table('courses')->insert(
@@ -121,13 +120,30 @@ class TutorController extends Controller
         return redirect('/addCourse')->with('course','Course created');
     }
 
-    public function showProfile(){
-        $idTutor = Auth::id();
+    public function showProfile(request $request){
+        if(Auth:: user()->status == 'tutor'){
+            $idTutor = Auth::id();
+        }
+       else{
+        $idTutor = $request->input('idTutor');
+       }
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
         $course = DB::table('courses')-> join('tutors','courses.idTutor','=','tutors.idTutor')
-        -> where(['courses.idTutor' => $idTutor])->get(); 
+        -> where(['courses.idTutor' => $idTutor])->get();
         $img = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_path');
-        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img]);
+
+        $rate = DB::table('review')->where(['idTutor'=>$idTutor])->avg('review');
+        $star1 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",1)->count();
+        $star2 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",2)->count();
+        $star3 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",3)->count();
+        $star4 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",4)->count();
+        $star5 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",5)->count();
+
+        $reviewList = DB::table('review')->join('students','review.idstudent','=','students.idstudent')
+        ->join('Courses','review.idcourse','=','Courses.idcourse')->where(['review.idTutor'=>$idTutor])->get();
+
+        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img, 'rate'=>$rate,
+        'star1'=>$star1,'star2'=>$star2,'star3'=>$star3,'star4'=>$star4,'star5'=>$star5,'reviewList'=>$reviewList]);
     }
 
 
