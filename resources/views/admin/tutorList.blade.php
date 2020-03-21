@@ -88,7 +88,8 @@ http://www.tooplate.com/view/2082-pure-mix
 									<li><a href="#">review</a></li>
 								<!-- tutor -->
 								@elseif ( Auth:: user()->status == 'tutor')
-									<li><a href="#">tutor area</a></li>
+									<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                 	<li><a href="{{url('/course')}}">Tutor course</a></li>
 								<!-- admin -->
 								@else
 									<li><a href="{{URL::to('/admin')}}">Admin</a></li>
@@ -186,11 +187,11 @@ http://www.tooplate.com/view/2082-pure-mix
 <script type="text/javascript">
 
 	function fncAction0(idTutor){
-		window.location.replace("/SE_Project/public/admin/tutorList/image?idTutor="+idTutor);
+		window.location.assign("/SE_Project/public/admin/image?idTutor="+idTutor);
 	}
 
 	function fncAction1(idTutor){
-		window.location.replace("/SE_Project/public/profile?idTutor="+idTutor); //แปะไว้ก่อน รอฮัททำ
+		window.location.assign("/SE_Project/public/Profile?idTutor="+idTutor);
 	}
 	
 	function fncAction2(idTutor){
@@ -205,7 +206,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			if (willDelete) {
 				swal("Success! The tutor has been fired!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/admin/tutorList/fired?idTutor="+idTutor);
+					window.location.assign("/SE_Project/public/admin/tutorList/fired?idTutor="+idTutor);
 				},2000);
 			} else {
 				swal("The tutor is safe!");

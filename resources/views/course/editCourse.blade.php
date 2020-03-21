@@ -4,8 +4,8 @@
 <!--
 
 Template 2082 Pure Mix
-
 http://www.tooplate.com/view/2082-pure-mix
+
 
 -->
 	<meta charset="utf-8">
@@ -36,16 +36,15 @@ http://www.tooplate.com/view/2082-pure-mix
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <style>
-
-
 
 .field-icon {
 						size:10px;
@@ -56,7 +55,7 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
-					
+
 .above{
 	margin-top: 5px;
 	font-size:14px;
@@ -77,9 +76,6 @@ http://www.tooplate.com/view/2082-pure-mix
 	margin-top: -0.2px;
 	border-radius: 0px;
 	width:30%;
-	
-}
-
 
 .btn{
 	padding: 13px 32px;
@@ -106,11 +102,13 @@ http://www.tooplate.com/view/2082-pure-mix
   border-color: #f0f0f0;
 }
 
+
 .avartar-picker {
     padding-left: 15px;
     margin-top: 20px; }
     .avartar-picker .inputfile {
-      display: none; 
+      display: none;
+
     }
     .avartar-picker label {
       display: block;
@@ -125,7 +123,6 @@ http://www.tooplate.com/view/2082-pure-mix
        }
       .avartar-picker label i {
         margin-right: 3px; }
-
 
 </style>
 
@@ -149,6 +146,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Navigation section
 ================================================== -->
 <div class="nav-container">
+
    <nav class="nav-inner transparent">
 
       <div class="navbar">
@@ -230,6 +228,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
+
 <!-- register section
 ================================================== -->
 <?php
@@ -244,7 +243,7 @@ http://www.tooplate.com/view/2082-pure-mix
   text: 'Input all requied field!'
 })
 				</script>
-    
+
 			@endif
 			@if (Session('haveName'))
       <script type="text/javascript">
@@ -271,7 +270,8 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
+
 })
 				</script>
       @endif
@@ -286,6 +286,7 @@ http://www.tooplate.com/view/2082-pure-mix
 					<h1>Edit Your Course</h1>
 						<div class="card" style="background :">
 							<div class="contentCard">
+
                             <p class="col-md-12" align="left"> 
 							<input name="cId" type="hidden" value="{{$cId}}" ></p>
 									
@@ -300,6 +301,7 @@ http://www.tooplate.com/view/2082-pure-mix
 										<i class="zmdi zmdi-camera"></i>
 										<span>Choose Picture</span>
 									</label>
+
 								</div> 
 									<br>
 								
@@ -318,10 +320,12 @@ http://www.tooplate.com/view/2082-pure-mix
 	                    	<input type="text" name="day" class="form-control" required  value="{{$c->day}}" >
 									</p>
 
+
 									<p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label> 
 									<input name="stime" type="time" class="form-control"  value="{{$c->start_time}}" required></p>
 
 									<p class="col-md-6" align="left"><label ><font size="3">End time*</font></label> 
+
 									<input name="etime" type="time" class="form-control"  value="{{$c->end_time}}" required></p>
 
 									<p class="col-md-6" align="left"><label >Start date *</label>
@@ -329,34 +333,38 @@ http://www.tooplate.com/view/2082-pure-mix
 
 									<p class="col-md-6" align="left"><label>End date*</label>
 									<input type="date" name="endDate" class="form-control" value="{{$c->end_date}}" required ></p>
-												
+
 									<p class="col-md-6" align="left"><label>Location*</label>
 												<input type="text" name="location"  class="form-control" value="{{$c->location}}" style="height: 70px" required></input>
 
 									<p class="col-md-6" align="left"><label>Price*</label>
 												<input type="number" name="price"  class="form-control" value="{{$c->price}}"  style="height: 70px" required></input>
-                                   
+
                                                 <p class="col-md-12" align="left"><label>Description*</label>
 								            <input type="text" name="description" class="form-control" value="{{$c->description}}" style="height: 70px" required></p>
-										
+
 								</div>
 								<br>
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
+
 											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+
 										</div>
 
 							</div>
 						</div>
 				</div>
 
-				
+
 		</div><br /><br /><br />
 </form>
     </section>
     @endif
-   @endforeach    
-		  
+
+   @endforeach
+
+
 
 
 <!-- Footer section
@@ -375,12 +383,14 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>
 
+
 <!-- Javascript 
+
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -395,6 +405,7 @@ http://www.tooplate.com/view/2082-pure-mix
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
+
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result)
@@ -402,12 +413,13 @@ http://www.tooplate.com/view/2082-pure-mix
 						;
                 };
 
+
                 reader.readAsDataURL(input.files[0]);
             }
         }
 </script>
 
-       
+
 
 @include('sweet::alert')
 </body>
