@@ -182,15 +182,17 @@ text: 'Success!!'
          <div class="container">
             <div class="row">
 
-              <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
-              </div>
 
-              <div class="navicon">
-			  	@if (Auth:: check())
-                    <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-                @endif
+               <div class="brand">
+                  <a href="{{url('/')}}">Shared Tutoring</a>
+               </div>
+
+               <div class="navicon">
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif
                   <div class="menu-container">
+
                      <div class="circle dark inline">
                         <i class="icon ion-navicon"></i>
                      </div>
@@ -212,12 +214,12 @@ text: 'Success!!'
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
-                                <li><a href="{{url('/course')}}">Tutor course</a></li>
-                              <!-- admin -->
-                              @else
-                                 <!-- <li><a href="#">admin area</a></li> -->
+                                 <li><a href="{{url('/Profile')}}">Profile</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
+
+         
                               @endif
+
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">

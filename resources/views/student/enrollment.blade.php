@@ -120,7 +120,8 @@ http://www.tooplate.com/view/2082-pure-mix
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
-                     </div>
+                    </div>
+
                   </div>
                </div>
             </div>
