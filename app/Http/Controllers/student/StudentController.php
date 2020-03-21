@@ -111,7 +111,6 @@ class StudentController extends Controller
         $idCourse = $request->input('idCourse');
         $rate = $request->input('rating');
         $comment = $request->input('review-comment');
-        //$idTutor = DB::table('enroll')->where(['idcourse' => $idCourse])->where(['idstudent' => $id])->get();
 
         DB::table('review')->insert(
             ['idTutor' => $idTutor,
@@ -121,6 +120,6 @@ class StudentController extends Controller
             'comment' => $comment]
         );
 
-        redirect('/review');
+        return  redirect('/review')->with('success','Review completed');
     }
 }
