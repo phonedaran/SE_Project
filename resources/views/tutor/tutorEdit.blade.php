@@ -13,7 +13,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Edit Profile</title>
+	<title>Edit</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -31,6 +31,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Main CSS
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
 	<!-- Google web font
    ================================================== -->
@@ -49,6 +50,7 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
+
 .above{
 	margin-top: 5px;
 	font-size:14px;
@@ -60,14 +62,15 @@ http://www.tooplate.com/view/2082-pure-mix
 	border-color: #111112;
 	/* transparent */
   color:#111112 ;
-	height: 47px;
+	height: 50px;
 	font-size: 16px;
   font-weight: 525;
   letter-spacing: 1px;
   transition: all 0.4s ease-in-out;
-	margin-top: 11px;
+	margin-top: -0.2px;
 	border-radius: 0px;
-	width:100%;
+	width:30%;
+
 }
 .btn{
 	padding: 13px 32px;
@@ -90,6 +93,25 @@ http://www.tooplate.com/view/2082-pure-mix
 #contact .form-control:hover {
   border-color: #f0f0f0;
 }
+.avartar-picker {
+    padding-left: 15px;
+    margin-top: 20px; }
+    .avartar-picker .inputfile {
+      display: none;
+    }
+    .avartar-picker label {
+      display: block;
+      cursor: pointer;
+      display: inline-block;
+      color: #333;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 800; }
+      .avartar-picker label:hover {
+        color: #666666;
+       }
+      .avartar-picker label i {
+        margin-right: 3px; }
 </style>
 
 
@@ -144,12 +166,12 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                 <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="{{url('/review')}}">review</a></li>
+                                 <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
                                  <li><a href="#">edit course</a></li>
                               <!-- admin -->
@@ -191,13 +213,9 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
+
 <!-- register section
 ================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row" style="background-color : ">
-		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
-
 				@if (Session('null'))
 				<script type="text/javascript">
 				Swal.fire({
@@ -229,69 +247,132 @@ http://www.tooplate.com/view/2082-pure-mix
       @endif
 
 @if (Session('success'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'success',
-		title: 'OK!',
-		text: 'Update complete!!'
-		})
-	</script>
-@endif
+      <script type="text/javascript">
+				Swal.fire({
+  icon: 'success',
+  title: 'OK',
+  text: 'Succecc!!'
+})
+				</script>
+      @endif
+	  @if (Session('wrong'))
+      <script type="text/javascript">
+				Swal.fire({
+	icon: 'error',
+  title: 'Oops...',
+  text: 'You fill a wrong password'
+})
+				</script>
+      @endif
 
-			  <h1>My Profile</h1>
-			<div class="contact-form">
-			@foreach($students as $student)
+@if (Session('pass2'))
+      <script type="text/javascript">
+				Swal.fire({
+	icon: 'error',
+  title: 'Oops...',
+  text: 'plaese fill all password field'
+})
+				</script>
+      @endif
 
-				<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}" >
-				@csrf
-				  	<label for="firstName"><font size="3">First name*</font></label>
-					<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
+@foreach($tutors as $tu)
+			<section id="contact">
+			<form action="{{ URL::to('/tutorEdit/check') }}" method ="post" enctype="multipart/form-data">
+				{{csrf_field()}}
+		<div class="container">
+			<!-- <div class="row" > -->
+				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
+					<h1>Edit Your Profile</h1>
+						<div class="card" style="background :">
+							<div class="contentCard">
 
-					<label for="lastName"><font size="3">Last name*</font></label>
-					<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
+								<div class="col-md-12">
+									<br>
+								@foreach($image as $img)
+									<div class="avartar-picker col-md-6" align="center" style="background-image: url(images/imageProfile/{{$img->img_path}}) ;">
+										<br>
+										<p><img id="blah" src="images/imageProfile/{{$img->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:200px"></p>
+									<input type="file"  onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
+									<label for="file-1">
+										<i class="zmdi zmdi-camera"></i>
+										<span>Choose Picture</span>
+									</label>
+								</div>
+								@endforeach
 
-					<label for="email"><font size="3">Email*</font></label>
-					<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
 
-					<label for="address"><font size="3">Address</font></label>
-					<textarea name="address"  class="form-control"  cols="10" rows="4">{{$student->address}}</textarea>
-					<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
 
-					<label for="phone" ><font size="3">Phone*</font></label>
-					<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
+									<br>
+									<p class="col-md-6" align="left"><label><font size="3">First name*</font></label>
+									<input name="Fname" type="text" class="form-control"  value="{{$tu->Fname}}" required></p>
 
-					<!-- <div class="contact-submit"> -->
-						<div class="col-md-6 col-sm-4">
-							<input type="submit" class="form-control submit" value="Update Profile" >
+									<p class="col-md-6" align="left"><label ><font size="3">Last name*</font></label>
+									<input name="Lname" type="text" class="form-control"  value="{{$tu->Lname}}" required></p>
+
+									<p class="col-md-6" align="left"><label for="">Gender *</label>
+									<i class="zmdi zmdi-caret-down"></i>
+									<select name="gender" class="form-control"  value="{{$tu->sex}}" required>
+									<option value="Female" class="option">Female</option>
+									<option value="Male" class="option">Male</option>
+									<option value="Lgbt" class="option">Lgbt</option>
+								</select></p>
+
+									<p class="col-md-6" align="left">
+									<label for="">Birthday *</label>
+	                    	<input type="date" name="DOB" class="form-control" required  value="{{$tu->DOB}}" >
+									</p>
+
+									<p class="col-md-6" align="left"><label ><font size="3">Address*</font></label>
+									<input name="addr" type="text" class="form-control"  value="{{$tu->address}}" required></p>
+
+									<p class="col-md-6" align="left"><label >Email*</label>
+	                    	<input type="email" name="email" class="form-control" value="{{$tu->email}}" required></p>
+
+									<p class="col-md-6" align="left"><label >Phone *</label>
+	                    		<input type="tel" name="phone" class="form-control" value="{{$tu->phone}}" required></p>
+
+									<p class="col-md-6" align="left"><label>Education*</label>
+												<input type="text" name="education" class="form-control" value="{{$tu->education}}" required ></p>
+
+									<p class="col-md-6" align="left"><label>Partner*</label>
+												<input type="text" name="partner" class="form-control" value="{{$tu->partner}}" required></p>
+
+									<p class="col-md-6" align="left"><label>Work experient*</label>
+												<input type="comment" name="work"  class="form-control" placeholder="{{$tu->work_experient}}" value="{{$tu->work_experient}}" style="height: 70px"></input>
+
+									<p class="col-md-6" align="left"><label>About me*</label>
+												<input type="comment" name="about"  class="form-control" placeholder="{{$tu->about_me}}" value="{{$tu->about_me}}" style="height: 70px"></input>
+
+
+									<p class="col-md-12" align="left" style="font-size:20px"><b>For Changing Password</b></p><br>
+									<p class="col-md-6" align="left"><label>Old Password*</label>
+									<input id="password-field" type="password" class="form-control" name="pass" >
+
+
+									<p class="col-md-6" align="left"><label>New Password*</label>
+									<input id="password-field" type="password" class="form-control" name="passNew" >
+									<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+								</div>
+								<br>
+
+										<div id="outer" >
+											<input type="submit" class="inner button " value="Save" >
+											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+										</div>
+
+
+							</div>
 						</div>
+				</div>
 
-						<div class="col-md-6 col-sm-4">
-						<a href="{{url('/')}}" class="btn">Cancle</a>
-						</div>
-				</form>
-				@endforeach
-			</div>
-		  </div>
 
-			<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
-			<section id="header" class="header-five">
-	<div class="container">
-		<!-- <div class="row"> -->
-<!--   -->
-			<div class="col-md-offset-0.8 col-md-5  col-sm-offset-0.5 col-sm-2">
-          <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Edit Profile</h1>
-          </div>
-			</div>
+			<!-- </div> -->
+		</div><br /><br /><br />
+</form>
+	</section>
+   @endforeach
 
-		<!-- </div> -->
-	</div>
-</section>
-			</div>
 
-		</div>
-	 </div>
-</section>
 
 <!-- Footer section
 ================================================== -->
@@ -337,7 +418,19 @@ if (input.attr("type") == "password") {
 
 
 
-
+<script>
+	function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+						;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 
 

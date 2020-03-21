@@ -68,13 +68,13 @@ http://www.tooplate.com/view/2082-pure-mix
                 <a href="{{url('/')}}">Shared Tutoring</a>
               </div>
               <div class="navicon">
-                <div class="menu-container">
-					@if (Auth:: check())
-                           {{ Auth::user()->name }}
-                    @endif
-                  <div class="circle dark inline">
-                    <i class="icon ion-navicon"></i>
-                  </div>
+			  	@if (Auth:: check())
+					<h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+				@endif  
+				<div class="menu-container">
+					<div class="circle dark inline">
+						<i class="icon ion-navicon"></i>
+					</div>
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">

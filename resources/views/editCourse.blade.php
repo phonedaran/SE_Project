@@ -13,7 +13,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Edit Profile</title>
+	<title>Edit</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -31,6 +31,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Main CSS
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
 	<!-- Google web font
    ================================================== -->
@@ -49,6 +50,7 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
+
 .above{
 	margin-top: 5px;
 	font-size:14px;
@@ -60,14 +62,15 @@ http://www.tooplate.com/view/2082-pure-mix
 	border-color: #111112;
 	/* transparent */
   color:#111112 ;
-	height: 47px;
+	height: 50px;
 	font-size: 16px;
   font-weight: 525;
   letter-spacing: 1px;
   transition: all 0.4s ease-in-out;
-	margin-top: 11px;
+	margin-top: -0.2px;
 	border-radius: 0px;
-	width:100%;
+	width:30%;
+
 }
 .btn{
 	padding: 13px 32px;
@@ -90,6 +93,25 @@ http://www.tooplate.com/view/2082-pure-mix
 #contact .form-control:hover {
   border-color: #f0f0f0;
 }
+.avartar-picker {
+    padding-left: 15px;
+    margin-top: 20px; }
+    .avartar-picker .inputfile {
+      display: none;
+    }
+    .avartar-picker label {
+      display: block;
+      cursor: pointer;
+      display: inline-block;
+      color: #333;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 800; }
+      .avartar-picker label:hover {
+        color: #666666;
+       }
+      .avartar-picker label i {
+        margin-right: 3px; }
 </style>
 
 
@@ -144,12 +166,12 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                 <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="{{url('/review')}}">review</a></li>
+                                 <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
                                  <li><a href="#">edit course</a></li>
                               <!-- admin -->
@@ -191,12 +213,12 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
+
 <!-- register section
 ================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row" style="background-color : ">
-		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
+<?php
+            $cId = $_GET['cId'];
+        ?>
 
 				@if (Session('null'))
 				<script type="text/javascript">
@@ -208,12 +230,12 @@ http://www.tooplate.com/view/2082-pure-mix
 				</script>
 
 			@endif
-			@if (Session('pass'))
+			@if (Session('haveName'))
       <script type="text/javascript">
 				Swal.fire({
   icon: 'error',
   title: 'Oops...',
-  text: 'Password is min lenght of 8'
+  text: 'The course name has already in use.'
 })
 				</script>
 			@endif
@@ -229,69 +251,97 @@ http://www.tooplate.com/view/2082-pure-mix
       @endif
 
 @if (Session('success'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'success',
-		title: 'OK!',
-		text: 'Update complete!!'
-		})
-	</script>
-@endif
+      <script type="text/javascript">
+				Swal.fire({
+  icon: 'success',
+  title: 'OK',
+  text: 'Succecc!!'
+})
+				</script>
+      @endif
 
-			  <h1>My Profile</h1>
-			<div class="contact-form">
-			@foreach($students as $student)
+@foreach($courses as $c)
+@if($c->idcourse == $cId )
+			<section id="contact">
+			<form action="{{ URL::to('/courseEdit/check') }}" method ="post" enctype="multipart/form-data">
+				{{csrf_field()}}
+		<div class="container">
+				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
+					<h1>Edit Your Course</h1>
+						<div class="card" style="background :">
+							<div class="contentCard">
+                            <p class="col-md-12" align="left">
+							<input name="cId" type="hidden" value="{{$cId}}" ></p>
 
-				<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}" >
-				@csrf
-				  	<label for="firstName"><font size="3">First name*</font></label>
-					<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
+								<div class="col-md-12">
+									<br>
+                  <!-- style="background-image: url(images/imageProfile/{{$c->img}}) ;" -->
+									<div class="avartar-picker col-md-12" align="center" >
+										<br>
+										<p><img id="blah" src="images/imageCourse/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:200px"></p>
+									<input type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
+									<label for="file-1">
+										<i class="zmdi zmdi-camera"></i>
+										<span>Choose Picture</span>
+									</label>
+								</div>
+									<br>
 
-					<label for="lastName"><font size="3">Last name*</font></label>
-					<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
+									<p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label>
+									<input name="Ncourse" type="text" class="form-control"  value="{{$c->Ncourse}}" required></p>
 
-					<label for="email"><font size="3">Email*</font></label>
-					<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
+									<p class="col-md-6" align="left"><label ><font size="3">Subject*</font></label>
+                                    <input name="subject" type="text" class="form-control"  value="{{$c->subject}}" required></p>
 
-					<label for="address"><font size="3">Address</font></label>
-					<textarea name="address"  class="form-control"  cols="10" rows="4">{{$student->address}}</textarea>
-					<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
+                                    <p class="col-md-6" align="left"><label for="">Number of students accepted*</label>
+                                    <input name="maxStudent" type="number" class="form-control" value="{{$c->max_student}}" required>
+					                </p>
 
-					<label for="phone" ><font size="3">Phone*</font></label>
-					<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
+									<p class="col-md-6" align="left">
+									<label for="">Day*</label>
+	                    	<input type="text" name="day" class="form-control" required  value="{{$c->day}}" >
+									</p>
 
-					<!-- <div class="contact-submit"> -->
-						<div class="col-md-6 col-sm-4">
-							<input type="submit" class="form-control submit" value="Update Profile" >
+									<p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label>
+									<input name="stime" type="time" class="form-control"  value="{{$c->start_time}}" required></p>
+
+									<p class="col-md-6" align="left"><label ><font size="3">End time*</font></label>
+									<input name="etime" type="time" class="form-control"  value="{{$c->end_time}}" required></p>
+
+									<p class="col-md-6" align="left"><label >Start date *</label>
+	                    		<input type="date" name="startDate" class="form-control" value="{{$c->start_date}}" required></p>
+
+									<p class="col-md-6" align="left"><label>End date*</label>
+									<input type="date" name="endDate" class="form-control" value="{{$c->end_date}}" required ></p>
+
+									<p class="col-md-6" align="left"><label>Location*</label>
+												<input type="text" name="location"  class="form-control" value="{{$c->location}}" style="height: 70px" required></input>
+
+									<p class="col-md-6" align="left"><label>Price*</label>
+												<input type="number" name="price"  class="form-control" value="{{$c->price}}"  style="height: 70px" required></input>
+
+                                                <p class="col-md-12" align="left"><label>Description*</label>
+								            <input type="text" name="description" class="form-control" value="{{$c->description}}" style="height: 70px" required></p>
+
+								</div>
+								<br>
+										<div id="outer" >
+											<input type="submit" class="inner button " value="Save" >
+											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+										</div>
+
+							</div>
 						</div>
+				</div>
 
-						<div class="col-md-6 col-sm-4">
-						<a href="{{url('/')}}" class="btn">Cancle</a>
-						</div>
-				</form>
-				@endforeach
-			</div>
-		  </div>
 
-			<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
-			<section id="header" class="header-five">
-	<div class="container">
-		<!-- <div class="row"> -->
-<!--   -->
-			<div class="col-md-offset-0.8 col-md-5  col-sm-offset-0.5 col-sm-2">
-          <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Edit Profile</h1>
-          </div>
-			</div>
+		</div><br /><br /><br />
+</form>
+    </section>
+    @endif
+   @endforeach
 
-		<!-- </div> -->
-	</div>
-</section>
-			</div>
 
-		</div>
-	 </div>
-</section>
 
 <!-- Footer section
 ================================================== -->
@@ -323,21 +373,20 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
 <script>
-	$(".toggle-password").click(function() {
-$(this).toggleClass("fa-eye fa-eye-slash");
-var input = $($(this).attr("toggle"));
-if (input.attr("type") == "password") {
-	input.attr("type", "text");
-} else {
-	input.attr("type", "password");
-}
-});
+	function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+						;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
-
-
-
-
 
 
 

@@ -135,74 +135,72 @@ http://www.tooplate.com/view/2082-pure-mix
 <div class="nav-container">
     <nav class="nav-inner transparent">
 
-       <div class="navbar">
-          <div class="container">
-             <div class="row">
+    <div class="navbar">
+        <div class="container">
+            <div class="row">
 
-               <div class="brand">
-                 <a href="{{url('/')}}">Shared Tutoring</a>
-               </div>
+            <div class="brand">
+                <a href="{{url('/')}}">Shared Tutoring</a>
+            </div>
 
-               <div class="navicon">
-                 <div class="menu-container">
-                   <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                      @if (Auth:: check())
-                            {{ Auth::user()->name }}
-                      @endif
-                      <div class="circle dark inline">
-                      <i class="icon ion-navicon"></i>
-                      </div></h3>
+            <div class="navicon">
+                @if (Auth:: check())
+                    <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                @endif  
+                <div class="menu-container">
+                    <div class="circle dark inline">
+                        <i class="icon ion-navicon"></i>
+                    </div>
 
-                   <div class="list-menu">
-                     <i class="icon ion-close-round close-iframe"></i>
-                     <div class="intro-inner">
-                         <ul id="nav-menu">
+                    <div class="list-menu">
+                        <i class="icon ion-close-round close-iframe"></i>
+                        <div class="intro-inner">
+                            <ul id="nav-menu">
 
-                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
-                         @if (Auth::check())
-                            <li><a href="{{url('/')}}">Home</a></li>
+                            <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
+                            @if (Auth::check())
+                                <li><a href="{{url('/')}}">Home</a></li>
 
-                            <!-- check status -->
-                               <!-- student -->
-                               @if ( Auth:: user()->status == 'student')
-                                  <li><a href="#">edit profile</a></li>
-                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                  <li><a href="#">review</a></li>
-                               <!-- tutor -->
-                               @elseif ( Auth:: user()->status == 'tutor')
-                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
-                               <!-- admin -->
-                               @else
-                                  <!-- <li><a href="#">admin area</a></li> -->
-                               @endif
-                            <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                  onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                                           Logout</a>
+                                <!-- check status -->
+                                <!-- student -->
+                                @if ( Auth:: user()->status == 'student')
+                                    <li><a href="#">edit profile</a></li>
+                                    <li><a href="{{url('/enroll')}}">enrollment</a></li>
+                                    <li><a href="#">review</a></li>
+                                <!-- tutor -->
+                                @elseif ( Auth:: user()->status == 'tutor')
+                                    <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                <!-- admin -->
+                                @else
+                                    <!-- <li><a href="#">admin area</a></li> -->
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            Logout</a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                           @csrf
-                                        </form>
-                               </li>
-                         <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
-                         @else
-                            <li><a href="{{url('/')}}">Home</a></li>
-                            <li><a href="{{url('/login')}}">Log-in</a></li>
-                            @if (Route::has('register'))
-                               <li><a href="{{url('/register')}}">Register</a></li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                </li>
+                            <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
+                            @else
+                                <li><a href="{{url('/')}}">Home</a></li>
+                                <li><a href="{{url('/login')}}">Log-in</a></li>
+                                @if (Route::has('register'))
+                                <li><a href="{{url('/register')}}">Register</a></li>
+                                @endif
+                                <li><a href="{{url('/contact')}}">Contact</a></li>
+                            </ul>
                             @endif
-                               <li><a href="{{url('/contact')}}">Contact</a></li>
-                         </ul>
-                         @endif
-                     </div>
-                   </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                 </div>
-               </div>
-
-             </div>
-          </div>
-       </div>
+            </div>
+        </div>
+    </div>
 
     </nav>
  </div>
@@ -233,18 +231,22 @@ http://www.tooplate.com/view/2082-pure-mix
 		  <div class="wow fadeInUp col-md-6" data-wow-delay="1.6s">
 			  <h1>Review</h1>
 			  <div class="contact-form">
-                    <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
+                    <form id="contact-form" method="get" action="{{ URL::to('/review/add') }} ">
                         <div class="tutorName"></div>
                             <p style="padding-left: 10px;">Course</p>
-                            <select name="tutor" id="soflow-color" onchange="showName()" >
+                            <select name="course" id="soflow-color" onchange="addReview()" >
                                 <option value="">เลือกคอร์ส</option>
                                     @foreach ($list as $l)
-                                        <option value="{{$l->Fname}} {{$l->Lname}}">{{$l->idcourse}} - {{$l->Ncourse}}</option>
+                                        <option value="{{$l->idcourse}}">{{$l->idcourse}} - {{$l->Ncourse}}</option>
                                     @endforeach
                             </select>
                         </div>
+                        @foreach ($list as $l)
+                            <input type="hidden" id="1-{{$l->idcourse}}" name="idTutor" value="{{$l->idTutor}}" disabled>
+                            <input type="hidden" id="2-{{$l->idcourse}}" name="idCourse" value="{{$l->idcourse}}" disabled>
+                        @endforeach
+
                         <br>
-                        <p id="showName" style="padding-left: 10px;"></p>
                         <br>
                         <div class="rate">
                             <p>Rate</p>
@@ -300,10 +302,14 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/custom.js"></script>
 
 <script>
-    function showName() {
+    function addReview() {
         var x = document.getElementById("soflow-color").value;
+
         if(x != ""){
-            document.getElementById("showName").innerHTML = "Tutor : " + x;
+
+            $('#1-'+x).attr('disabled', false);
+            $('#2-'+x).attr('disabled', false);
+
         }else{
             document.getElementById("showName").innerHTML = "";
         }
