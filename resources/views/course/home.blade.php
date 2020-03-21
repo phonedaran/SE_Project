@@ -261,7 +261,7 @@ text: 'Success!!'
 
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <form id="filter-form" action="{{ URL::to('/course') }} " method="get">
+                    <form id="filter-form" action="{{ URL::to('/filter') }} " method="get">
                         <p>
                             <label for="amount">Price range:</label>
                             <input id="min" type="hidden" value='0' name="min">
@@ -417,10 +417,13 @@ text: 'Success!!'
                                         // }
 
                                         // if($courses == "[]"){
-                                        //     echo "<h1>Don't have courses</h1>";
+                                        //     //echo "<h1>ไม่มีคอร์สที่ต้องการ</h1>";
                                         // }
 
                                 ?>
+                                @if ($courses == "[]")
+                                    <img src="images/form-wizard.jpg" style="width:100%;max-width:300px" class="img-responsive" alt="Blog">
+                                @endif
                             </div>
                             @foreach ( $courses as $c )
                                 <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
