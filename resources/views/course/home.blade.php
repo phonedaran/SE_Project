@@ -228,10 +228,6 @@ text: 'Success!!'
                                  <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
                                  <li><a href="{{url('/myCourse')}}">My course</a></li>
-                              <!-- admin -->
-                              @else
-                                 <!-- <li><a href="#">admin area</a></li> -->
-
                               @endif
 
                            <li><a class="dropdown-item" href="{{ route('logout') }}"

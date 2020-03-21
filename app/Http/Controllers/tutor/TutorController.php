@@ -90,6 +90,17 @@ class TutorController extends Controller
         if($cId === null){$cId = 0 ;}
         $idcourse=($cId +1);
 
+        if ($subject === null or $day === null or $maxStudent === null or $stime === null or $etime === null
+            or $startDate === null or $endDate === null or $location === null or $price === null) {
+                return redirect()->back()->with('null', 'Please fill all required field.');
+        
+        } elseif (strlen($subject) > 45) {
+                return redirect()->back()->with('subject', 'Name cannot exceed 45 characters.');
+            
+        } elseif ($stime = $etime) {
+                return redirect()->back()->with('etime', 'Please set a new time.');
+        } else 
+        
         DB::table('courses')->insert(
             ['idTutor' => $idTutor,
             'idcourse' => $idcourse,
@@ -108,9 +119,8 @@ class TutorController extends Controller
         );
 
         return redirect('/addCourse')->with('course','Course created');
-    }
-
-
+        }
+    
     public function showProfile(){
         $idTutor = Auth::id();
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
