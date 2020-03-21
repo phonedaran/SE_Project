@@ -221,15 +221,9 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="{{url('/course')}}">Tutor Course</a></li>
 
 
-<<<<<<< HEAD
-                              @endif
-                           <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-=======
                                  @endif
 
                                  <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
->>>>>>> 380d7b2e1258f3fe171926faf54de78e465fa4a8
                                     document.getElementById('logout-form').submit();">
 
                                        Logout</a>
@@ -266,10 +260,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 380d7b2e1258f3fe171926faf54de78e465fa4a8
 
    <!-- Header section
 ================================================== -->
