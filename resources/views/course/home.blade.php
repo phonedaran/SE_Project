@@ -469,7 +469,6 @@ text: 'Success!!'
 
                      </form>
                   </div>
-                  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>
 
                   <!-- iso box section -->
                   <div class="container">
