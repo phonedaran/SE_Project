@@ -20,6 +20,7 @@
 
 .wrap-table100 {
   width: 1170px;
+  margin-bottom:25px;
 }
 
 table {
@@ -86,34 +87,40 @@ tbody tr {
 tbody tr:hover {
   color: #555555;
   background-color: #f5f5f5;
-  cursor: pointer;
 }
 
 .column1 {
-  width: 100px;
+  width: 50px;
   align-content: center;
   padding-left: 40px;
 }
 
 .column2 {
-  width: 200px;
+  width: 150px;
 }
 
 .column3 {
-  width: 100px;
+  width: 80px;
 }
 
 .column4 {
-  width: 250px;
+  width: 100px;
 }
 
 .column5 {
-  width: 150px;
+  width: 100px;
 }
 
 .column6 {
-  width: 150px;
-  padding-right: 62px;
+  width: 100px;
+}
+
+.column7 {
+  width: 50px;
+}
+
+.column8 {
+  width: 50px;
 }
 
 
@@ -150,7 +157,7 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "TutorID";
+    content: "ID";
   }
   table tbody tr td:nth-child(2):before {
     content: "Name";
@@ -159,13 +166,13 @@ tbody tr:hover {
     content: "Sex";
   }
   table tbody tr td:nth-child(4):before {
-    content: "Address";
+    content: "Phone";
   }
   table tbody tr td:nth-child(5):before {
     content: "Email";
   }
   table tbody tr td:nth-child(6):before {
-    content: "Phone";
+    content: "IDcard";
   }
 
   .column4,
@@ -177,6 +184,8 @@ tbody tr:hover {
   .column4,
   .column5,
   .column6,
+  .column7,
+  .column8,
   .column1,
   .column2,
   .column3 {

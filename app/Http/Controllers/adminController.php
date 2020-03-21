@@ -24,7 +24,9 @@ class adminController extends Controller
         $Fname = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('Fname');
         $email = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('email');
         $password = DB::table('tutors')->where(['idTutor'=>$idTutor])->value('password');
+
         print_r($Fname);
+
         DB::table('users')->insert([
             'id' => $idTutor,
             'name' => $Fname,
@@ -38,14 +40,31 @@ class adminController extends Controller
     public function rejected(request $request){
         $idTutor = $request->input('idTutor');
         DB::table('image')->where(['idTutor'=>$idTutor])->delete();
-        DB::table('courses')->where(['idTutor'=>$idTutor])->delete();
         DB::table('tutors')->where(['idTutor'=>$idTutor])->delete();
         return redirect()->back();
     }
 
-    public function image(request $request){
-        $idCard = $_GET['image'];
+    public function fired(request $request){
+        $idTutor = $_GET['idTutor'];
+        DB::table('image')->where(['idTutor'=>$idTutor])->delete();
+        DB::table('enroll')->where(['idTutor'=>$idTutor])->delete();
+        DB::table('courses')->where(['idTutor'=>$idTutor])->delete();
+        DB::table('users')->where(['id'=>$idTutor])->delete();
+
+        DB::table('tutors')->where(['idTutor'=>$idTutor])->delete();
+        return redirect()->back();
+    }
+
+    public function imageAdmin(request $request){
+        $idTutor = $_GET['idTutor'];
+        $idCard = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_IDcard');
         return view('admin/IDcard',['idCard' => $idCard]);
+    }
+
+    public function imageTutorList(request $request){
+        $idTutor = $_GET['idTutor'];
+        $idCard = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_IDcard');
+        return view('admin/IDcardTutorList',['idCard' => $idCard]);
     }
 
     public function tutorList(){

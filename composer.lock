@@ -424,6 +424,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v6.18.0",
             "source": {
                 "type": "git",
@@ -434,6 +435,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/077b895d935b7fbcfb1d1eb34217fa4f80a130d8",
                 "reference": "077b895d935b7fbcfb1d1eb34217fa4f80a130d8",
+
                 "shasum": ""
             },
             "require": {

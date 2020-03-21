@@ -37,21 +37,18 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Google web font
    ================================================== -->
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 </head>
 <body>
-
 
 <!-- Preloader section
 ================================================== -->
 <div class="preloader">
 	<div class="sk-spinner sk-spinner-pulse"></div>
 </div>
-
-<!-- Add button section
-================================================== -->
-<button onclick="fncAction2()" id="myBtn" ><i class="fa fa-plus"></i></button>
 
 <!-- Navigation section
 ================================================== -->
@@ -137,100 +134,136 @@ http://www.tooplate.com/view/2082-pure-mix
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-            <div class="header-thumb">
-               <h1 class="wow fadeIn" data-wow-delay="0.6s">Tutor Course</h1>
-               <h3 class="wow fadeInUp" data-wow-delay="0.9s">all courses which you place</h3>
-            </div>
-			</div>
+          <div class="header-thumb">
+              <h1 class="wow fadeIn" data-wow-delay="0.6s">Course Information</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="0.9s">have fun with our course</h3>
+          </div>
 		</div>
 	</div>
 </section>
 
 <!-- course section
 ================================================== -->
-<section id="contact">
-   <div class="container">
-      <div class="row" >
-         <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
-            <h1>All Courses ({{sizeof($courses)}})</h1><br /> 
-            @if(sizeof($courses)>0)
-               @foreach ($courses as $index => $course)
-                  <div class="card col-md-12">
-							<div class="contentCard">
-                        <div class="col-md-3" align="center">
-                           <img src="images/{{$course->img}}" onerror="this.src='images/blog-img3.jpg'" ></a>
+<section id="blog">
+    <div class="container">
+        <div class="row" >
+            <div class="wow fadeInUp wrapper col-md-12 col-sm-12" data-wow-delay="1.2s">           
+               <div class="blog-thumb main col-md-8">
+                  <div class="card col-md-12" >
+                     <br>
+                     <div class="col-md-7">
+                        <img src="images/{{$course[0]->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                     </div> 
+                     <div class="col-md-5">
+                        <div class="center">
+                           <h1>{{$course[0]->Ncourse}}</h1>
                         </div> 
-                        <div class="col-md-9">
-                           <!-- เพิ่ม link ไปหน้า course information ด้วย -->
-                           <h4 class="col-md-9" align="left"><a class="click" onClick="fncAction4({{$course->idcourse}})"><b>{{$course->Ncourse}}</b></a></h4> 
-                           <h4 class="col-md-3">
-                              <div id="outer">
-                                 <div class="inner" onClick="fncAction0({{$course->idcourse}})">
-                                    <i class="fa fa-edit click"></i>
-                                 </div>
-                                 <div class="inner" onClick="fncAction1({{$course->idcourse}})">
-                                    <i class="fa fa-trash click"></i>
-                                 </div>
-                              </div>
-                           </h4> 
-                           <p class="col-md-6" align="left"><b>Subject : </b>{{$course->subject}}</p>
-                           <p class="col-md-6" align="left"><a class="click" onClick="fncAction3({{$course->idcourse}})"><b>Student : </b>{{$n[$index]}}/{{$course->max_student}}</a></p>
-                           <p class="col-md-6" align="left"><b>Schedule : </b>{{$course->day}} {{$course->start_time}}-{{$course->end_time}}</p>
-                           <p class="col-md-6" align="left"><b>Period : </b>{{$course->start_date}} ~ {{$course->end_date}}</p>
-                           <p class="col-md-6" align="left"><b>Location : </b>{{$course->location}}</p>
-                           <p class="col-md-6" align="left"><b>Price : </b>{{$course->price}}</p>
-                        </div>
                      </div>
                   </div>
-                  <br>
-               @endforeach
-            @else
-               <br /><h3 style="color: silver;">No Course</h3><br /><br /><br />
-            @endif
-         </div>
-      </div>
-   </div><br /><br /><br />
+
+                  <div class="card col-md-12" >
+                     <br>
+                     <h3><b>Description</b></h3>
+                     @if ($course[0]->description == null)
+                        <p>&nbsp;&nbsp;-</p>
+                     @else
+                        <p>{{$course[0]->description}}</p>
+                     @endif
+                     <hr>
+                     <h3><b>Subject</b></h3>
+                     <p>{{$course[0]->subject}}</p>
+                     <hr>
+                     <h3><b>Student</b></h3>
+                     @if ($course[0]->max_student > 1)
+                        <p>Group of {{$course[0]->max_student}} students</p>
+                     @else
+                        <p>One to one</p>
+                     @endif
+                     <hr>
+                     <h3><b>Period</b></h3>
+                     <p>{{$course[0]->start_date}} ~ {{$course[0]->end_date}}</p>
+                     <hr>
+                     <h3><b>Schedue</b></h3>
+                     <p>{{$course[0]->day}}<br>{{$startTime}} - {{$endTime}}</p> 
+                     <hr>
+                     <h3><b>Schedue</b></h3>
+                     <p>{{$course[0]->day}}<br>{{$startTime}} - {{$endTime}}</p> 
+                     <hr>
+                     <h3><b>Price</b></h3>
+                     <p>{{$course[0]->price}} Bath</p>
+                  </div>
+               </div> 
+               
+               <div class="sidebar col-md-12">
+                  <div class="card col-md-12">
+                     <br>
+                     <div class="col-md-5">
+                        <img src="images/imageProfile/{{$imageTutor}}" onerror="this.src='images/user.png'" style="border-radius: 50%; width:100%;max-width:100px">
+                     </div> 
+                     <div class="col-md-7">
+                        <p><b>{{$tutor[0]->Fname}}<br>{{$tutor[0]->Lname}}</b></p> <!-- link ไป profile tutor -->
+                     </div>
+                     <div class="col-md-12" align="center">
+                        <p>Rating</p> <!-- รอโฟน -->
+                     </div>
+                     <div class="col-md-7">
+                        <p><b>Sex : </b>{{$tutor[0]->sex}}</p>
+                     </div> 
+                     <div class="col-md-5">
+                        <p><b>Age : </b>{{$age}}</p>
+                     </div> 
+                     <div class="col-md-12">
+                        <p><b>Partner : </b>{{$tutor[0]->partner}}</p>
+                        <p><b>Education : </b>{{$tutor[0]->education}}</p>
+                        <p><b>Experient : </b>{{$tutor[0]->work_experient}}</p>
+                        <p><b>E-mail : </b>{{$tutor[0]->email}}</p>
+                        <p><b>Phone : </b>{{$tutor[0]->phone}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     @if (Auth::check())
+                        @if ( Auth:: user()->status == 'student')
+                           <button style="width:100%"class="btn button button1" onClick="fncAction0({{$course[0]->idcourse}})">Enroll</button>
+                        @endif
+                     @endif 
+                     <button style="width:100%"class="btn button button2" onClick="fncAction1()">Back</button>  
+                  </div>
+               </div>
+               
+            </div>
+        </div>
+    </div><br /><br /><br />
 </section>
 
+<!-- javascript section
+================================================== -->
 <script type="text/javascript">
 
-	function fncAction0(idcourse){
-		window.location.replace("/SE_Project/public/.........?idcourse="+idcourse); //เติม path ไปหา edit course
-	}
-   
-   function fncAction1(idcourse){
+   function fncAction0(idcourse){
       swal({
 			title: "Are you sure?",
-			text: "Once accepted, you will delete this course!",
+			text: "Once accepted, you will enroll this course!",
 			icon: "warning",
 			buttons: true,
 			successMode: true,
 			})
 			.then((willDelete) => {
 			if (willDelete) {
-				swal("Poof! The course has been deleted!", {icon: "success"});
+				swal("Poof! You have just enrolled this course!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/course/deleted?idcourse="+idcourse);
+					window.location.replace("/SE_Project/public/courseInformation/enrolled?idcourse="+idcourse);
 				},2000);
 			} else {
-				swal("The course is safe!");
+				swal("Cancel !");
 			}
 		});
 	}
-
-   function fncAction2(){
-      window.location.replace("/SE_Project/public/addCourse");
-   }
-
-   function fncAction3(idcourse){
-		window.location.replace("/SE_Project/public/course/studentList?idcourse="+idcourse); //เติม path ไปหา edit course
+   function fncAction1(){
+		window.location.replace("/SE_Project/public/");
 	}
 
-   function fncAction4(idcourse){
-		window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse);
-	}
-   
 </script>
+
 <!-- Footer section
 ================================================== -->
 <footer>
