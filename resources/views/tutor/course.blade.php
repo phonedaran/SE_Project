@@ -92,8 +92,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                   <li><a href="#">review</a></li>
                                <!-- tutor -->
                                @elseif ( Auth:: user()->status == 'tutor')
+                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                  <li><a href="{{url('/course')}}">Tutor course</a></li>
-                                 <li><a href="#">edit profile</a></li>
                                <!-- admin -->
                                @else
                                   <!-- <li><a href="#">admin area</a></li> -->
@@ -194,7 +194,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <script type="text/javascript">
 
 	function fncAction0(idcourse){
-		window.location.replace("/SE_Project/public/.........?idcourse="+idcourse); //เติม path ไปหา edit course
+		window.location.assign("/SE_Project/public/courseEdit?idcourse="+idcourse);
 	}
    
    function fncAction1(idcourse){
@@ -209,7 +209,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			if (willDelete) {
 				swal("Poof! The course has been deleted!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/course/deleted?idcourse="+idcourse);
+					window.location.assign("/SE_Project/public/course/deleted?idcourse="+idcourse);
 				},2000);
 			} else {
 				swal("The course is safe!");
@@ -218,15 +218,15 @@ http://www.tooplate.com/view/2082-pure-mix
 	}
 
    function fncAction2(){
-      window.location.replace("/SE_Project/public/addCourse");
+      window.location.assign("/SE_Project/public/addCourse");
    }
 
    function fncAction3(idcourse){
-		window.location.replace("/SE_Project/public/course/studentList?idcourse="+idcourse); //เติม path ไปหา edit course
+		window.location.assign("/SE_Project/public/course/studentList?idcourse="+idcourse); //เติม path ไปหา edit course
 	}
 
    function fncAction4(idcourse){
-		window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse);
+		window.location.assign("/SE_Project/public/courseInformation?idcourse="+idcourse);
 	}
    
 </script>

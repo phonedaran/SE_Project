@@ -134,81 +134,79 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Navigation section
 ================================================== -->
 <div class="nav-container">
-   <nav class="nav-inner transparent">
+    <nav class="nav-inner transparent">
 
-      <div class="navbar">
-         <div class="container">
-            <div class="row">
+       <div class="navbar">
+          <div class="container">
+             <div class="row">
 
-              <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
-              </div>
+               <div class="brand">
+                 <a href="{{url('/')}}">Shared Tutoring</a>
+               </div>
 
-              <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+               <div class="navicon">
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif  
+                  <div class="menu-container">
                      <div class="circle dark inline">
-                     <i class="icon ion-navicon"></i>
-                     </div></h3>
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
-                  <div class="list-menu">
-                    <i class="icon ion-close-round close-iframe"></i>
-                    <div class="intro-inner">
-                        <ul id="nav-menu">
+                   <div class="list-menu">
+                     <i class="icon ion-close-round close-iframe"></i>
+                     <div class="intro-inner">
+                         <ul id="nav-menu">
 
-                        <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
-                        @if (Auth::check())
-                           <li><a href="{{url('/')}}">Home</a></li>
+                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
+                         @if (Auth::check())
+                            <li><a href="{{url('/')}}">Home</a></li>
 
-                           <!-- check status -->
-                              <!-- student -->
-                              @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
-                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
-                              <!-- tutor -->
-                              @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
-                              <!-- admin -->
-                              @else
-                                 <!-- <li><a href="#">admin area</a></li> -->
-                              @endif
-                           <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                          Logout</a>
+                            <!-- check status -->
+                               <!-- student -->
+                               @if ( Auth:: user()->status == 'student')
+                                  <li><a href="#">edit profile</a></li>
+                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
+                                  <li><a href="#">review</a></li>
+                               <!-- tutor -->
+                               @elseif ( Auth:: user()->status == 'tutor')
+                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                               <!-- admin -->
+                               @else
+                                  <!-- <li><a href="#">admin area</a></li> -->
+                               @endif
+                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                           Logout</a>
 
-                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                          @csrf
-                                       </form>
-                              </li>
-                        <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
-                        @else
-                           <li><a href="{{url('/')}}">Home</a></li>
-                           <li><a href="{{url('/login')}}">Log-in</a></li>
-                           @if (Route::has('register'))
-                              <li><a href="{{url('/register')}}">Register</a></li>
-                           @endif
-                              <li><a href="{{url('/contact')}}">Contact</a></li>
-                        </ul>
-                        @endif
-                    </div>
-                  </div>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                           @csrf
+                                        </form>
+                               </li>
+                         <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
+                         @else
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('/login')}}">Log-in</a></li>
+                            @if (Route::has('register'))
+                               <li><a href="{{url('/register')}}">Register</a></li>
+                            @endif
+                               <li><a href="{{url('/contact')}}">Contact</a></li>
+                         </ul>
+                         @endif
+                     </div>
+                   </div>
 
-                </div>
-              </div>
+                 </div>
+               </div>
 
-            </div>
-         </div>
-      </div>
+             </div>
+          </div>
+       </div>
 
-   </nav>
-</div>
+    </nav>
+ </div>
 
 
 
@@ -217,7 +215,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- register section
 ================================================== -->
 <?php
-            $cId = $_GET['cId'];
+            $cId = $_GET['idcourse'];
         ?>
 
 				@if (Session('null'))
@@ -255,7 +253,7 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
 })
 				</script>
       @endif
@@ -327,7 +325,7 @@ http://www.tooplate.com/view/2082-pure-mix
 								<br>
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
-											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+											<a href="/SE_Project/public/course" class="inner button btn">Cancle</a>
 										</div>
 
 							</div>

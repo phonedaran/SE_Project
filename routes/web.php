@@ -45,7 +45,6 @@ Route::get('/admin/image','adminController@imageAdmin');
 Route::get('/admin/accepted','adminController@accepted');
 Route::get('/admin/rejected','adminController@rejected');
 Route::get('/admin/tutorList','adminController@tutorList');
-Route::get('/admin/tutorList/image','adminController@imageTutorList');
 Route::get('/admin/tutorList/fired','adminController@fired');
 
 

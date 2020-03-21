@@ -45,7 +45,7 @@ class adminController extends Controller
     }
 
     public function fired(request $request){
-        $idTutor = $_GET['idTutor'];
+        $idTutor = $request->input('idTutor');
         DB::table('image')->where(['idTutor'=>$idTutor])->delete();
         DB::table('enroll')->where(['idTutor'=>$idTutor])->delete();
         DB::table('courses')->where(['idTutor'=>$idTutor])->delete();
@@ -56,15 +56,9 @@ class adminController extends Controller
     }
 
     public function imageAdmin(request $request){
-        $idTutor = $_GET['idTutor'];
+        $idTutor = $request->input('idTutor');
         $idCard = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_IDcard');
         return view('admin/IDcard',['idCard' => $idCard]);
-    }
-
-    public function imageTutorList(request $request){
-        $idTutor = $_GET['idTutor'];
-        $idCard = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_IDcard');
-        return view('admin/IDcardTutorList',['idCard' => $idCard]);
     }
 
     public function tutorList(){

@@ -100,7 +100,7 @@ class CourseController extends Controller
     {
         $id=Auth::id();
         $courses = DB::table('courses')->where(['idTutor' => $id])->get();
-        return view('editCourse', ['courses' => $courses]);
+        return view('/course/editCourse', ['courses' => $courses]);
     }
     public function editCheck(request $request)
     {
