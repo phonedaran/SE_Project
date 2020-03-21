@@ -20,26 +20,27 @@ http://www.tooplate.com/view/2082-pure-mix
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $( function() {
-        $( "#slider-range" ).slider({
-            orientation: "horizontal",
-            range: true,
-            min: 0,
-            max: 3500,
-            step:100,
-            values: [ 500, 2500 ],
+            $( "#slider-range" ).slider({
+                orientation: "horizontal",
+                range: true,
+                min: 0,
+                max: 3500,
+                step:100,
+                values: [ 0, 3500 ],
 
-            slide: function( event, ui ) {
-                $("#min").val(ui.values[ 0 ]);
-                $("#max").val(ui.values[ 1 ]);
-                $( "#amount" ).val(ui.values[ 0 ] + " THB - " + ui.values[ 1 ] + " THB" );
-            }
-        });
-        $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
-            " THB - " + $( "#slider-range" ).slider( "values", 1 ) + " THB" );
+                slide: function( event, ui ) {
+                    $("#min").val(ui.values[ 0 ]);
+                    $("#max").val(ui.values[ 1 ]);
+                    $( "#amount" ).val(ui.values[ 0 ] + " THB - " + ui.values[ 1 ] + " THB" );
+                }
+            });
+            $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+                " THB - " + $( "#slider-range" ).slider( "values", 1 ) + " THB" );
         } );
     </script>
 
     <style>
+        /* side nav */
 
         .sidenav {
           height: 100%;
@@ -79,6 +80,34 @@ http://www.tooplate.com/view/2082-pure-mix
           .sidenav {padding-top: 15px;}
           .sidenav a {font-size: 18px;}
         }
+
+        select.soflow, select.soflow-color {
+            -webkit-appearance: button;
+            -webkit-border-radius: 2px;
+            -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            -webkit-padding-end: 20px;
+            -webkit-padding-start: 2px;
+            -webkit-user-select: none;
+            text-align-last: center;
+            border: 1px solid #AAA;
+            color: #555;
+            font-size: inherit;
+            overflow: hidden;
+            padding: 5px 10px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 200px;
+        }
+
+        select.soflow-color {
+            color: #131313;
+            background-color: #ffffff;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            padding-left: 15px;
+        }
+
 
 
         </style>
@@ -227,12 +256,15 @@ text: 'Succecc!!'
                               @if ( Auth:: user()->status == 'student')
                                  <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+                                 <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
                                  <li><a href="{{url('/myCourse')}}">My course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
+                                 <!-- <li><a href="#">edit profile</a></li> -->
+
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -303,28 +335,41 @@ text: 'Succecc!!'
 
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <form action="{{ URL::to('/course') }} " method="get">
+                    <form id="filter-form" action="{{ URL::to('/course') }} " method="get">
                         <p>
                             <label for="amount">Price range:</label>
-                            <input id="min" type="hidden" value='500' name="min">
-                            <input id="max" type="hidden" value='2500' name="max">
+                            <input id="min" type="hidden" value='0' name="min">
+                            <input id="max" type="hidden" value='3500' name="max">
                             <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
                         </p>
                         <div id="slider-range"></div>
 
                             <br>
+                            {{-- <p>
+                                <label>Person</label>
+
+                            </p>
+                                <select name="person" id="person"  class="soflow-color">
+                                    <option value="" selected disabled>ประเภท</option>
+                                    <option value="เรียนเดี่ยว">เรียนเดี่ยว</option>
+                                    <option value="เรียนกลุ่ม">เรียนกลุ่ม</option>
+                                    <option value="เรียนออนไลน์">เรียนออนไลน์</option>
+                                </select>
+                            <br>
+                            <br> --}}
                             <p>
                                 <label>Subject</label>
-                            </p>
 
-                            <select name="subject">
-                                <option value="">--------- วิชา ---------</option>
-                                <option value="ภาษาไทย">ภาษาไทย</option>
-                                <option value="สังคมศึกษา">สังคมศึกษา</option>
-                                <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
-                                <option value="คณิตศาสตร์">คณิตศาสตร์</option>
-                                <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
-                            </select>
+
+                            </p>
+                                <select name="subject" id="subject" class="soflow-color">
+                                    <option value="" selected >วิชา</option>
+                                    <option value="ภาษาไทย">ภาษาไทย</option>
+                                    <option value="สังคมศึกษา">สังคมศึกษา</option>
+                                    <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
+                                    <option value="คณิตศาสตร์">คณิตศาสตร์</option>
+                                    <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
+                                </select>
 
                             <br>
                             <br>
@@ -332,8 +377,8 @@ text: 'Succecc!!'
                                 <label>Location</label>
 
                             </p>
-                            <select name="province" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option value="" selected>--------- จังหวัด ---------</option>
+                            <select name="province" id="province" class="soflow-color">
+                                <option value="" selected >จังหวัด</option>
                                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                 <option value="กระบี่">กระบี่ </option>
                                 <option value="กาญจนบุรี">กาญจนบุรี </option>
@@ -417,6 +462,7 @@ text: 'Succecc!!'
                             <br>
 
                             <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                            <input type="button" class="btn btn-secondary" name="view" value="Reset" onclick="resetOption()" >
 
                     </form>
                 </div>
@@ -426,8 +472,32 @@ text: 'Succecc!!'
                         <div class="container">
                            <div class="row">
 
+                            <div class="wow fadeInUp col-md-12 " data-wow-delay="1.3s">
+                                <?php
+                                        // $min = $_GET['min'];
+                                        // $max = $_GET['max'];
+                                        // $subject = $_GET['subject'];
+                                        // $province = $_GET['province'];
+
+                                        // if($_GET['view'] == "Filter"){
+                                        //     echo "<br><p>ราคา : $min บาท - $max บาท </p>";
+                                        //     if($subject != ""){
+                                        //         echo "<p>วิชา : $subject</p>";
+                                        //     }
+                                        //     if($province != ""){
+                                        //         echo "<p>จังหวัด : $province</p>";
+                                        //     }
+
+                                        // }
+
+                                        // if($courses == "[]"){
+                                        //     echo "<h1>Don't have courses</h1>";
+                                        // }
+
+                                ?>
+                            </div>
                             @foreach ( $courses as $c )
-                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
                                     <div class="blog-thumb">
                                         <a href="#"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
                                         <a href="#"><h1>{{$c->Ncourse}}</h1></a>
@@ -435,10 +505,10 @@ text: 'Succecc!!'
                                         <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
+                                        <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
                                         <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
-                                        <a href="#" class="btn btn-default">MORE INFO</a>
+                                        <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
                                     </div>
                                 </div>
                             @endforeach
@@ -453,6 +523,16 @@ text: 'Succecc!!'
       </div>
    </div>
 </section>
+
+<!-- javascript section
+================================================== -->
+<script type="text/javascript">
+
+   function fncAction0(idcourse){
+      window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
+   }
+
+</script>
 
 <!-- Footer section
 ================================================== -->
@@ -517,6 +597,14 @@ text: 'Succecc!!'
 
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+<script>
+    function resetOption(){
+        $('#person').prop('selectedIndex',0);
+        $('#subject').prop('selectedIndex',0);
+        $('#province').prop('selectedIndex',0);
     }
 </script>
 

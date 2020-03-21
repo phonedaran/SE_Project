@@ -159,7 +159,7 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
 })
 				</script>
       @endif
@@ -244,10 +244,11 @@ http://www.tooplate.com/view/2082-pure-mix
 						<label for="">
 	                    		Evidence*
 		                    </label>
-									<input type="file"style=" margin-bottom: 20px;" class="form-control3 custom-file-upload  " 
+
+									<input type="file"style=" margin-bottom: 20px;" class="form-control3 custom-file-upload  "
 									name="evidence"  accept="image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple required/>
-									
-								
+
+
 						</div>
 
 						<div class="form-row">
@@ -309,15 +310,14 @@ http://www.tooplate.com/view/2082-pure-mix
 							<input id="password-field" type="password" class="form-control" name="password" required>
 							<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
 </div>
-						
+
 						<!-- <div class="col-md-6 col-sm-20" style="margin-right:50px;"> onClick="this.form.action='{{ URL::to('/tutorReg/check') }}'; submit()"-->
 							<!-- form-control submit -->
 							<input type="submit" id="" class="actions li a" value="Create account" >
 						<!-- </div> -->
 						<br>
 					</section>
-					
-					
+
             	</div>
             </form>
 		</div>

@@ -16,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>IDcard</title>
+	<title>Admin</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -142,22 +142,21 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- request section
 ================================================== -->
-	<section id="contact">
-		<div class="container">
-			<div class="row" >
-				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
-					<h1>All Request ({{sizeof($tutors)}})</h1><br />
-					@if(sizeof($tutors)>0)
-						@foreach ($tutors as $tutor)
-						<div class="card">
+<section id="contact">
+	<div class="container">
+		<div class="row" >
+			<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
+				<h1>All Request ({{sizeof($tutors)}})</h1><br />
+				@if(sizeof($tutors)>0)
+					@foreach ($tutors as $tutor)
+						<div class="card col-md-12">
 							<div class="contentCard">
-							<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
-
+								<h4 class="col-md-12" align="left"><b>{{$tutor->Fname}}&nbsp;&nbsp;{{$tutor->Lname}}</b></h4>
 								@foreach($idCards as $idCard)
 									@if($tutor->idTutor == $idCard->idTutor)
 										<div class="col-md-3" align="center">
 											<br>
-											<img src="images/{{$idCard->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p>
+											<img src="images/imageProfile/{{$idCard->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p>
 											<br>
 											<form method="get" action="{{URL::to('/admin/image')}}">
 												<input type="hidden" name="image" id="image" value="{{$idCard->img_IDcard}}">
@@ -167,7 +166,6 @@ http://www.tooplate.com/view/2082-pure-mix
 										</div>
 									@endif
 								@endforeach
-
 								<div class="col-md-9">
 									<p class="col-md-6" align="left"><b>Sex :</b> {{$tutor->sex}}</p>
 									<p class="col-md-6" align="left"><b>DOB :</b> {{$tutor->DOB}}</p>
@@ -178,8 +176,7 @@ http://www.tooplate.com/view/2082-pure-mix
 									<p class="col-md-6" align="left"><b>Education :</b> {{$tutor->education}}</p>
 									<p class="col-md-6" align="left"><b>Experient :</b> {{$tutor->work_experient}}</p>
 								</div>
-
-								<div class="contact-form">
+								<div class="contact-form col-md-12">
 									<form id="contact-form" method="get">
 										<div id="outer">
 											<input type="button" class="inner button button1" value="Accept" onClick="fncAction1({{$tutor->idTutor}})">
@@ -187,23 +184,25 @@ http://www.tooplate.com/view/2082-pure-mix
 										</div>
 									</form>
 								</div>
-
-							</div>
+							</div><br>
 						</div>
-						<br>
-						@endforeach
-					@else
-						<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
-					@endif
-				</div>
+					@endforeach
+				@else
+					<br /><h3 style="color: silver;">No Request</h3><br /><br /><br />
+				@endif
 			</div>
-		</div><br /><br /><br />
-	</section>
+		</div>
+	</div><br /><br /><br />
+</section>
 
 <!-- Javascript section
 ================================================== -->
 
 <script type="text/javascript">
+
+	function fncAction0(idTutor){
+		window.location.replace("/SE_Project/public/admin/image?idTutor="+idTutor);
+	}
 
 	function fncAction1(idTutor){
 		swal({
