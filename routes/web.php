@@ -40,9 +40,7 @@ Route::get('/admin/accepted','adminController@accepted');
 Route::get('/admin/rejected','adminController@rejected');
 Route::get('/admin/tutorList','adminController@tutorList');
 
-Route::get('/course', 'CourseController@fillter');
-
-Route::get('/course', 'CourseController@fillter');
+Route::get('/course', 'CourseController@filter');
 
 Auth::routes(['verify' => true]);
 
@@ -64,6 +62,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/addCourse', 'CourseController@add');
 
 
+//Route::post('/course/add/check', 'tutor\TutorController@addCheck'); //อาจจะใช้ post
+Route::get('/Profile', 'tutor\TutorController@showProfile');
 Route::get('/course/add/check', 'CourseController@addCheck');
 
 
@@ -75,4 +75,5 @@ Route::get('/enroll', 'student\StudentController@index');
 // Route::get('/home', 'HomeController@index')->name('home');
 
 route::get('/review','student\StudentController@reviewFrom');
+route::get('/review/add','student\StudentController@addReview');
 

@@ -20,22 +20,22 @@ http://www.tooplate.com/view/2082-pure-mix
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $( function() {
-        $( "#slider-range" ).slider({
-            orientation: "horizontal",
-            range: true,
-            min: 0,
-            max: 3500,
-            step:100,
-            values: [ 500, 2500 ],
+            $( "#slider-range" ).slider({
+                orientation: "horizontal",
+                range: true,
+                min: 0,
+                max: 3500,
+                step:100,
+                values: [ 0, 3500 ],
 
-            slide: function( event, ui ) {
-                $("#min").val(ui.values[ 0 ]);
-                $("#max").val(ui.values[ 1 ]);
-                $( "#amount" ).val(ui.values[ 0 ] + " THB - " + ui.values[ 1 ] + " THB" );
-            }
-        });
-        $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
-            " THB - " + $( "#slider-range" ).slider( "values", 1 ) + " THB" );
+                slide: function( event, ui ) {
+                    $("#min").val(ui.values[ 0 ]);
+                    $("#max").val(ui.values[ 1 ]);
+                    $( "#amount" ).val(ui.values[ 0 ] + " THB - " + ui.values[ 1 ] + " THB" );
+                }
+            });
+            $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+                " THB - " + $( "#slider-range" ).slider( "values", 1 ) + " THB" );
         } );
     </script>
 
@@ -80,7 +80,7 @@ http://www.tooplate.com/view/2082-pure-mix
           .sidenav a {font-size: 18px;}
         }
 
-        select#soflow, select#soflow-color {
+        select.soflow, select.soflow-color {
             -webkit-appearance: button;
             -webkit-border-radius: 2px;
             -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -98,7 +98,7 @@ http://www.tooplate.com/view/2082-pure-mix
             width: 200px;
         }
 
-        select#soflow-color {
+        select.soflow-color {
             color: #131313;
             background-color: #ffffff;
             -webkit-border-radius: 20px;
@@ -328,22 +328,34 @@ text: 'Succecc!!'
 
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <form action="{{ URL::to('/course') }} " method="get">
+                    <form id="filter-form" action="{{ URL::to('/course') }} " method="get">
                         <p>
                             <label for="amount">Price range:</label>
-                            <input id="min" type="hidden" value='500' name="min">
-                            <input id="max" type="hidden" value='2500' name="max">
+                            <input id="min" type="hidden" value='0' name="min">
+                            <input id="max" type="hidden" value='3500' name="max">
                             <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
                         </p>
                         <div id="slider-range"></div>
 
                             <br>
+                            {{-- <p>
+                                <label>Person</label>
+
+                            </p>
+                                <select name="person" id="person"  class="soflow-color">
+                                    <option value="" selected disabled>ประเภท</option>
+                                    <option value="เรียนเดี่ยว">เรียนเดี่ยว</option>
+                                    <option value="เรียนกลุ่ม">เรียนกลุ่ม</option>
+                                    <option value="เรียนออนไลน์">เรียนออนไลน์</option>
+                                </select>
+                            <br>
+                            <br> --}}
                             <p>
                                 <label>Subject</label>
 
                             </p>
-                                <select name="subject"  id="soflow-color">
-                                    <option value="">วิชา</option>
+                                <select name="subject" id="subject" class="soflow-color">
+                                    <option value="" selected >วิชา</option>
                                     <option value="ภาษาไทย">ภาษาไทย</option>
                                     <option value="สังคมศึกษา">สังคมศึกษา</option>
                                     <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
@@ -356,8 +368,8 @@ text: 'Succecc!!'
                                 <label>Location</label>
 
                             </p>
-                            <select name="province"  id="soflow-color">
-                                <option value="" selected>จังหวัด</option>
+                            <select name="province" id="province" class="soflow-color">
+                                <option value="" selected >จังหวัด</option>
                                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                 <option value="กระบี่">กระบี่ </option>
                                 <option value="กาญจนบุรี">กาญจนบุรี </option>
@@ -441,6 +453,7 @@ text: 'Succecc!!'
                             <br>
 
                             <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                            <input type="button" class="btn btn-secondary" name="view" value="Reset" onclick="resetOption()" >
 
                     </form>
                 </div>
@@ -450,7 +463,30 @@ text: 'Succecc!!'
                         <div class="container">
                            <div class="row">
 
-                            <?php //echo $courses; ?>
+                            <div class="wow fadeInUp col-md-12 " data-wow-delay="1.3s">
+                                <?php
+                                        // $min = $_GET['min'];
+                                        // $max = $_GET['max'];
+                                        // $subject = $_GET['subject'];
+                                        // $province = $_GET['province'];
+
+                                        // if($_GET['view'] == "Filter"){
+                                        //     echo "<br><p>ราคา : $min บาท - $max บาท </p>";
+                                        //     if($subject != ""){
+                                        //         echo "<p>วิชา : $subject</p>";
+                                        //     }
+                                        //     if($province != ""){
+                                        //         echo "<p>จังหวัด : $province</p>";
+                                        //     }
+
+                                        // }
+
+                                        // if($courses == "[]"){
+                                        //     echo "<h1>Don't have courses</h1>";
+                                        // }
+
+                                ?>
+                            </div>
                             @foreach ( $courses as $c )
                                 <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                                     <div class="blog-thumb">
@@ -542,6 +578,14 @@ text: 'Succecc!!'
 
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+<script>
+    function resetOption(){
+        $('#person').prop('selectedIndex',0);
+        $('#subject').prop('selectedIndex',0);
+        $('#province').prop('selectedIndex',0);
     }
 </script>
 

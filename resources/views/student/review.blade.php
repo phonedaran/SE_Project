@@ -233,18 +233,22 @@ http://www.tooplate.com/view/2082-pure-mix
 		  <div class="wow fadeInUp col-md-6" data-wow-delay="1.6s">
 			  <h1>Review</h1>
 			  <div class="contact-form">
-                    <form id="contact-form" method="get" action="{{ URL::to('/course/add/check') }} ">
+                    <form id="contact-form" method="get" action="{{ URL::to('/review/add') }} ">
                         <div class="tutorName"></div>
                             <p style="padding-left: 10px;">Course</p>
-                            <select name="tutor" id="soflow-color" onchange="showName()" >
+                            <select name="course" id="soflow-color" onchange="addReview()" >
                                 <option value="">เลือกคอร์ส</option>
                                     @foreach ($list as $l)
-                                        <option value="{{$l->Fname}} {{$l->Lname}}">{{$l->idcourse}} - {{$l->Ncourse}}</option>
+                                        <option value="{{$l->idcourse}}">{{$l->idcourse}} - {{$l->Ncourse}}</option>
                                     @endforeach
                             </select>
                         </div>
+                        @foreach ($list as $l)
+                            <input type="hidden" id="1-{{$l->idcourse}}" name="idTutor" value="{{$l->idTutor}}" disabled>
+                            <input type="hidden" id="2-{{$l->idcourse}}" name="idCourse" value="{{$l->idcourse}}" disabled>
+                        @endforeach
+
                         <br>
-                        <p id="showName" style="padding-left: 10px;"></p>
                         <br>
                         <div class="rate">
                             <p>Rate</p>
@@ -300,10 +304,14 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/custom.js"></script>
 
 <script>
-    function showName() {
+    function addReview() {
         var x = document.getElementById("soflow-color").value;
+
         if(x != ""){
-            document.getElementById("showName").innerHTML = "Tutor : " + x;
+
+            $('#1-'+x).attr('disabled', false);
+            $('#2-'+x).attr('disabled', false);
+
         }else{
             document.getElementById("showName").innerHTML = "";
         }

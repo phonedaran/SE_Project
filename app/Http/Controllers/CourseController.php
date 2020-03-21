@@ -14,7 +14,7 @@ class CourseController extends Controller
         $this->middleware('auth', ['only' => ['add','addCheck']]);
     }
 
-    function fillter(){
+    function filter(){
 
         $min = $_GET['min'];
         $max = $_GET['max'];
@@ -45,6 +45,8 @@ class CourseController extends Controller
     }
 
     public function courseShow(){
+        session_start();
+        $_session['filter'] = false;
         $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
         return view('home',['courses' => $courses]);
     }
@@ -98,6 +100,8 @@ class CourseController extends Controller
             );
             return redirect('/home')->with('course','Course created');
     }
+
+    
 
 }
 
