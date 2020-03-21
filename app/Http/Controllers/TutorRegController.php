@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Tutor;
-use App\image;
+use Auth;
+// use App\image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 
 class TutorRegController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['edit','editCheck']]);
@@ -34,24 +35,19 @@ class TutorRegController extends Controller
         $status='waiting';
         $education=$request->input('education');
         $work=$request->input('work');
-        // $about=$request->input('about');
         $partner=$request->input('partner');
         $evidence=$request->input('evidence');
         $image_card=$request->input('image'); //profile
-        // $image_path = substr($image_card, strpos($image_card, ".") + 1);
-        // $evidence_path=substr($evidence, strpos($evidence, ".") + 1);
         $DOB=$request->input('DOB');
 
         if($file = $request->file('image') ){
             $image_card = $file -> getClientOriginalName();
-            // $request -> file('image') -> storeAs('public/imageProfile',$image_card);
             $file -> move('images/imageProfile',$image_card);
         }
 
         if($Efile = $request->file('evidence') ){
 
             $evidence = $Efile -> getClientOriginalName();
-            // $request -> file('evidence') -> storeAs('public/idCard',$evidence);
             $Efile -> move('images/idCard',$evidence);
         }
 
@@ -88,7 +84,6 @@ class TutorRegController extends Controller
            'status' => $status,
            'work_experient' => $work,
            'education' => $education,
-        //    'about_me' => $about,
            'partner' => $partner,
            'password' => Hash::make($pass),
            'passReal' => $pass]
@@ -127,7 +122,7 @@ class TutorRegController extends Controller
         $education=$request->input('education');
         $work=$request->input('work');
         $about=$request->input('about');
-        $partner=$request->input('partner');
+        $partner=$request->input('partner'); 
         $DOB=$request->input('DOB');
         $image_card=$request->input('image');
         $passNew = $request->input('passNew');
@@ -139,9 +134,9 @@ class TutorRegController extends Controller
         }
 
         $data = DB::select('select email from tutors where email=? ',[$email]);
-
-        if($Fname === null or $Lname === null or $email === null or $phone === null
-        or $sex === null or $addr === null or $education === null or $DOB === null )
+        
+        if($Fname === null or $Lname === null or $email === null or $phone === null 
+        or $sex === null or $addr === null or $education === null or $DOB === null ) 
        {
         return redirect()->back()->with('null','Please fill all required field.');
     }
@@ -161,14 +156,14 @@ class TutorRegController extends Controller
                 'education' => $education,
                 'about_me' => $about,
                 'partner' => $partner,]);
-
+            
              $user = DB::table('users')
             ->where(['id' => $idTutor])
             ->update(['email' => $email
                 ]
              );
              return  redirect('/home')->with('success','The customer has been stored in database');
-
+        
         }elseif($image_card != null){
             $tutor = DB::table('tutors')
             ->where(['idTutor' => $idTutor])
@@ -184,13 +179,13 @@ class TutorRegController extends Controller
                 'education' => $education,
                 'about_me' => $about,
                 'partner' => $partner,]);
-
+            
              $images = DB::table('image')
              ->where(['idTutor' => $idTutor])
              ->update(['img_path' => $image_card
                 ]
              );
-
+    
              $user = DB::table('users')
             ->where(['id' => $idTutor])
             ->update(['email' => $email
@@ -199,7 +194,7 @@ class TutorRegController extends Controller
              return  redirect('/home')->with('success','The customer has been stored in database');
         }
     }elseif($pass === null or $passNew === null){
-
+        
         return redirect()->back()->with('pass2','Please fill all required field.');
     }
     else{
@@ -209,7 +204,7 @@ class TutorRegController extends Controller
              ['idTutor','=', $idTutor],
             ['passReal', '=', $pass]
          ])->get();
-
+        
           if($pR == "[]"){
                 return redirect()->back()->with('wrong','Please fill all required field.');
           }
@@ -234,16 +229,16 @@ class TutorRegController extends Controller
             'password' => $pR,
             'passReal' => $passNew ,
             ]);
-
+    
          $user = DB::table('users')
         ->where(['id' => $idTutor])
         ->update(['email' => $email,
         'password' => $passH
             ]
          );
-
+         
          return  redirect('/home')->with('success','The customer has been stored in database');
-
+    
         }
         elseif($image_card != null){
             $tutor = DB::table('tutors')
@@ -262,7 +257,7 @@ class TutorRegController extends Controller
             'partner' => $partner,
             'password' => $passH,
             'passReal' => $passNew,]);
-
+        
         $images = DB::table('image')
         ->where(['idTutor' => $idTutor])
         ->update(['img_path' => $image_card
@@ -275,14 +270,13 @@ class TutorRegController extends Controller
        'password' => $passH
             ]
          );
-
+         
          return  redirect('/home')->with('success','The customer has been stored in database');
     }
          }
-
+        
         }
 
     }
-
-
+ 
 }

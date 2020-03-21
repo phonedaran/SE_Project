@@ -61,6 +61,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	margin-top: 5px;
 	font-size:14px;
 }
+
 .btn {
 	font-family: 'Source Sans Pro', sans-serif;
 	background: #f9f9fc;
@@ -84,11 +85,13 @@ http://www.tooplate.com/view/2082-pure-mix
 	padding: 13px 32px;
 	margin-bottom: 5px;
 }
+
 .btn:hover {
 	background: rgb(214, 213, 210);
 	/* color:#ffffff ; */
 	/* font-weight: 400; */
 }
+
 #contact .form-control {
   background: transparent;
   border: 1px solid #eee;
@@ -185,7 +188,8 @@ http://www.tooplate.com/view/2082-pure-mix
                               @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                                 <!-- <li><a href="#">edit course</a></li> -->
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -228,6 +232,10 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- register section
 ================================================== -->
+<?php
+            $cId = $_GET['idcourse'];
+        ?>
+
 				@if (Session('null'))
 				<script type="text/javascript">
 				Swal.fire({
@@ -238,12 +246,12 @@ http://www.tooplate.com/view/2082-pure-mix
 				</script>
     
 			@endif
-			@if (Session('pass'))
+			@if (Session('haveName'))
       <script type="text/javascript">
 				Swal.fire({
   icon: 'error',
   title: 'Oops...',
-  text: 'Password is min lenght of 8'
+  text: 'The course name has already in use.'
 })
 				</script>
 			@endif
@@ -267,121 +275,86 @@ http://www.tooplate.com/view/2082-pure-mix
 })
 				</script>
       @endif
-	  @if (Session('wrong'))
-      <script type="text/javascript">
-				Swal.fire({
-	icon: 'error',
-  title: 'Oops...',
-  text: 'You fill a wrong password'
-})
-				</script>
-      @endif
 
-@if (Session('pass2'))
-      <script type="text/javascript">
-				Swal.fire({
-	icon: 'error',
-  title: 'Oops...',
-  text: 'plaese fill all password field'
-})
-				</script>
-      @endif
-
-@foreach($tutors as $tu)
+@foreach($courses as $c)
+@if($c->idcourse == $cId )
 			<section id="contact">
-			<form action="{{ URL::to('/tutorEdit/check') }}" method ="post" enctype="multipart/form-data">
+			<form action="{{ URL::to('/courseEdit/check') }}" method ="post" enctype="multipart/form-data">
 				{{csrf_field()}}
 		<div class="container">
-			<!-- <div class="row" > -->
 				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
-					<h1>Edit Your Profile</h1>
+					<h1>Edit Your Course</h1>
 						<div class="card" style="background :">
 							<div class="contentCard">
+                            <p class="col-md-12" align="left"> 
+							<input name="cId" type="hidden" value="{{$cId}}" ></p>
 									
 								<div class="col-md-12">
 									<br>
-								@foreach($image as $img)
-									<div class="avartar-picker col-md-6" align="center" style="background-image: url(images/imageProfile/{{$img->img_path}}) ;">
+                  <!-- style="background-image: url(images/imageProfile/{{$c->img}}) ;" -->
+									<div class="avartar-picker col-md-12" align="center" >
 										<br>
-										<p><img id="blah" src="images/imageProfile/{{$img->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:200px"></p>
-									<input type="file"  onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
+										<p><img id="blah" src="images/imageCourse/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:200px"></p>
+									<input type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
 									<label for="file-1">
 										<i class="zmdi zmdi-camera"></i>
 										<span>Choose Picture</span>
 									</label>
-								</div>
-								@endforeach
-									
-								
-									
+								</div> 
 									<br>
-									<p class="col-md-6" align="left"><label><font size="3">First name*</font></label> 
-									<input name="Fname" type="text" class="form-control"  value="{{$tu->Fname}}" required></p>
-									
-									<p class="col-md-6" align="left"><label ><font size="3">Last name*</font></label> 
-									<input name="Lname" type="text" class="form-control"  value="{{$tu->Lname}}" required></p>
 								
-									<p class="col-md-6" align="left"><label for="">Gender *</label>
-									<i class="zmdi zmdi-caret-down"></i>
-									<select name="gender" class="form-control"  value="{{$tu->sex}}" required>
-									<option value="Female" class="option">Female</option>
-									<option value="Male" class="option">Male</option>
-									<option value="Lgbt" class="option">Lgbt</option>
-								</select></p>
+									<p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label> 
+									<input name="Ncourse" type="text" class="form-control"  value="{{$c->Ncourse}}" required></p>
+									
+									<p class="col-md-6" align="left"><label ><font size="3">Subject*</font></label> 
+                                    <input name="subject" type="text" class="form-control"  value="{{$c->subject}}" required></p>
+                                    
+                                    <p class="col-md-6" align="left"><label for="">Number of students accepted*</label>
+                                    <input name="maxStudent" type="number" class="form-control" value="{{$c->max_student}}" required>
+					                </p>
 
 									<p class="col-md-6" align="left">
-									<label for="">Birthday *</label>
-	                    	<input type="date" name="DOB" class="form-control" required  value="{{$tu->DOB}}" >
+									<label for="">Day*</label>
+	                    	<input type="text" name="day" class="form-control" required  value="{{$c->day}}" >
 									</p>
 
-									<p class="col-md-6" align="left"><label ><font size="3">Address*</font></label> 
-									<input name="addr" type="text" class="form-control"  value="{{$tu->address}}" required></p>
+									<p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label> 
+									<input name="stime" type="time" class="form-control"  value="{{$c->start_time}}" required></p>
 
-									<p class="col-md-6" align="left"><label >Email*</label>
-	                    	<input type="email" name="email" class="form-control" value="{{$tu->email}}" required></p>
+									<p class="col-md-6" align="left"><label ><font size="3">End time*</font></label> 
+									<input name="etime" type="time" class="form-control"  value="{{$c->end_time}}" required></p>
 
-									<p class="col-md-6" align="left"><label >Phone *</label>
-	                    		<input type="tel" name="phone" class="form-control" value="{{$tu->phone}}" required></p>
+									<p class="col-md-6" align="left"><label >Start date *</label>
+	                    		<input type="date" name="startDate" class="form-control" value="{{$c->start_date}}" required></p>
 
-									<p class="col-md-6" align="left"><label>Education*</label>
-												<input type="text" name="education" class="form-control" value="{{$tu->education}}" required ></p>
+									<p class="col-md-6" align="left"><label>End date*</label>
+									<input type="date" name="endDate" class="form-control" value="{{$c->end_date}}" required ></p>
 												
-									<p class="col-md-6" align="left"><label>Partner*</label>
-												<input type="text" name="partner" class="form-control" value="{{$tu->partner}}" required></p>
-												
-									<p class="col-md-6" align="left"><label>Work experient*</label>
-												<input type="comment" name="work"  class="form-control" placeholder="{{$tu->work_experient}}" value="{{$tu->work_experient}}" style="height: 70px"></input>
+									<p class="col-md-6" align="left"><label>Location*</label>
+												<input type="text" name="location"  class="form-control" value="{{$c->location}}" style="height: 70px" required></input>
 
-									<p class="col-md-6" align="left"><label>About me*</label>
-												<input type="comment" name="about"  class="form-control" placeholder="{{$tu->about_me}}" value="{{$tu->about_me}}" style="height: 70px"></input>
-
-
-									<p class="col-md-12" align="left" style="font-size:20px"><b>For Changing Password</b></p><br>
-									<p class="col-md-6" align="left"><label>Old Password*</label>
-									<input id="password-field" type="password" class="form-control" name="pass" >
-									
-
-									<p class="col-md-6" align="left"><label>New Password*</label>
-									<input id="password-field" type="password" class="form-control" name="passNew" >
-									<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+									<p class="col-md-6" align="left"><label>Price*</label>
+												<input type="number" name="price"  class="form-control" value="{{$c->price}}"  style="height: 70px" required></input>
+                                   
+                                                <p class="col-md-12" align="left"><label>Description*</label>
+								            <input type="text" name="description" class="form-control" value="{{$c->description}}" style="height: 70px" required></p>
+										
 								</div>
 								<br>
-								
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
 											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
 										</div>
-										
 
 							</div>
 						</div>
 				</div>
 
 				
-			<!-- </div> -->
 		</div><br /><br /><br />
 </form>
-	</section>
+    </section>
+    @endif
    @endforeach    
 		  
 
@@ -416,19 +389,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
-	$(".toggle-password").click(function() {
-$(this).toggleClass("fa-eye fa-eye-slash");
-var input = $($(this).attr("toggle"));
-if (input.attr("type") == "password") {
-	input.attr("type", "text");
-} else {
-	input.attr("type", "password");
-}
-});
-</script>
-
-
 
 <script>
 	function readURL(input) {
@@ -452,3 +412,4 @@ if (input.attr("type") == "password") {
 @include('sweet::alert')
 </body>
 </html>
+

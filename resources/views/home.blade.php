@@ -247,7 +247,7 @@ text: 'Succecc!!'
 
                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
                         @if (Auth::check())
-                           <li><a href="{{url('/')}}">Home123</a></li>
+                           <li><a href="{{url('/')}}">Home</a></li>
 
                            <!-- check status -->
                               <!-- student -->
