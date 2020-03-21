@@ -249,7 +249,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
                         <br>
                         <br>
-                        <div class="rate">
+                        <div class="rate center" >
                             <p>Rate</p>
                             <fieldset class="rating">
                                 <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stars"></label>
