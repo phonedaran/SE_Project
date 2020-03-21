@@ -188,7 +188,8 @@ http://www.tooplate.com/view/2082-pure-mix
                               @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                                 <!-- <li><a href="#">edit course</a></li> -->
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -232,7 +233,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- register section
 ================================================== -->
 <?php
-            $cId = $_GET['cId'];
+            $cId = $_GET['idcourse'];
         ?>
 
 				@if (Session('null'))
