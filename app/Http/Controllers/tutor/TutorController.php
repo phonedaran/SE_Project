@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Course;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class TutorController extends Controller
 {
@@ -97,8 +98,6 @@ class TutorController extends Controller
         } elseif (strlen($subject) > 45) {
                 return redirect()->back()->with('subject', 'Name cannot exceed 45 characters.');
             
-        } elseif ($stime = $etime) {
-                return redirect()->back()->with('etime', 'Please set a new time.');
         } else 
         
         DB::table('courses')->insert(
@@ -121,8 +120,13 @@ class TutorController extends Controller
         return redirect('/addCourse')->with('course','Course created');
     }
 
-    public function showProfile(){
-        $idTutor = Auth::id();
+    public function showProfile(request $request){
+        if(Auth:: user()->status == 'tutor'){
+            $idTutor = Auth::id();
+        }
+       else{
+        $idTutor = $request->input('idTutor');
+       }
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
         $course = DB::table('courses')-> join('tutors','courses.idTutor','=','tutors.idTutor')
         -> where(['courses.idTutor' => $idTutor])->get(); 
