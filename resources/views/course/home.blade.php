@@ -212,11 +212,24 @@ text: 'Success!!'
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
+
                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
                                  <li><a href="#">admin area</a></li>
+
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
+                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
+                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
+                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
+
+                                 <!-- admin -->
+                                 @else
+                                 <!-- <li><a href="#">admin area</a></li> -->
+
                               @endif
 
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
@@ -248,7 +261,9 @@ text: 'Success!!'
 </div>
 
 
-   <!-- Header section
+                              
+
+<!-- Header section
 ================================================== -->
    <section id="header" class="header-one">
       <div class="container">
