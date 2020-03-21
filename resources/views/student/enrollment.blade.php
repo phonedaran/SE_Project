@@ -64,26 +64,24 @@ http://www.tooplate.com/view/2082-pure-mix
          <div class="container">
             <div class="row">
 
-              <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
-              </div>
+               <div class="brand">
+                  <a href="{{url('/')}}">Shared Tutoring</a>
+               </div>
 
-              <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+               <div class="navicon">
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif
+                  <div class="menu-container">
                      <div class="circle dark inline">
-                     <i class="icon ion-navicon"></i>
-                     </div></h3>
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
 
                     <div class="intro-inner">
                         <ul id="nav-menu">
-
                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
                         @if (Auth::check())
                            <li><a href="{{url('/')}}">Home</a></li>
@@ -123,17 +121,17 @@ http://www.tooplate.com/view/2082-pure-mix
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
+<<<<<<< HEAD
                     </div>
 
+=======
+                     </div>
+>>>>>>> 87ce5749efa3116ab9930800ce7d4c99ce720692
                   </div>
-
-                </div>
-              </div>
-
+               </div>
             </div>
          </div>
       </div>
-
    </nav>
 </div>
 

@@ -157,7 +157,7 @@ http://www.tooplate.com/view/2082-pure-mix
               Swal.fire({
 icon: 'success',
 title: 'OK',
-text: 'Succecc!!'
+text: 'Success!!'
 })
 
 </script>
@@ -173,71 +173,19 @@ text: 'Succecc!!'
 
 <!-- Navigation section
 ================================================== -->
-<!-- alert success login -->
-
-{{-- <div class="nav-container">
-   @if (Route::has('login'))
-      @auth
-      <script type="text/javascript">
-         const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-               toast.addEventListener('mouseenter', Swal.stopTimer)
-               toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            })
-
-            Toast.fire({
-            icon: 'success',
-            title: 'Log in in successfully'
-            })
-      </script>
-      @else
-      <script type="text/javascript">
-         const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-               toast.addEventListener('mouseenter', Swal.stopTimer)
-               toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            })
-
-            Toast.fire({
-            icon: 'success',
-            title: 'Log out successfully'
-            })
-      </script>
-      @endauth
-   @endif
-</div> --}}
-
-<!-- ต้องสร้างหน้า home 2 ไฟล์ => homepublic ,  home -->
-<!-- ================================================= -->
 <div class="nav-container">
    <nav class="nav-inner transparent">
-
       <div class="navbar">
          <div class="container">
             <div class="row">
-
-              <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
-              </div>
-
-              <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+               <div class="brand">
+                  <a href="{{url('/')}}">Shared Tutoring</a>
+               </div>
+               <div class="navicon">
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif
+                  <div class="menu-container">
                      <div class="circle dark inline">
                      <i class="icon ion-navicon"></i>
                      </div></h3>
@@ -267,31 +215,13 @@ text: 'Succecc!!'
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
                               @endif
-                           <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                          Logout</a>
-
-                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                          @csrf
-                                       </form>
-                              </li>
-                        <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
-                        @else
-                           <li><a href="{{url('/')}}">Home</a></li>
-                           <li><a href="{{url('/login')}}">Log-in</a></li>
-                           @if (Route::has('register'))
-                              <li><a href="{{url('/register')}}">Register</a></li>
+                                 <li><a href="{{url('/contact')}}">Contact</a></li>
+                           </ul>
                            @endif
-                              <li><a href="{{url('/contact')}}">Contact</a></li>
-                        </ul>
-                        @endif
-                    </div>
+                        </div>
+                     </div>
                   </div>
-
-                </div>
               </div>
-
             </div>
          </div>
       </div>
