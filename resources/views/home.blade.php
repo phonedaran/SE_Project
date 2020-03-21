@@ -230,9 +230,9 @@ text: 'Succecc!!'
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -269,6 +269,8 @@ text: 'Succecc!!'
    </nav>
 </div>
 
+
+                              
 
 <!-- Header section
 ================================================== -->
@@ -427,7 +429,7 @@ text: 'Succecc!!'
                             @foreach ( $courses as $c )
                                 <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                                     <div class="blog-thumb">
-                                        <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
                                         <a href="#"><h1>{{$c->Ncourse}}</h1></a>
                                         <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
                                         <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>

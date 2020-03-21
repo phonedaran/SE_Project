@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['add','addCheck']]);
+        $this->middleware('auth', ['only' => ['add','addCheck','my','edit','editCheck']]);
     }
 
     function fillter(){
@@ -96,6 +96,105 @@ class CourseController extends Controller
             );
             return redirect('/home')->with('course','Course created');
     }
+
+    public function my()
+    {
+        $id=Auth::id();
+        $courses = DB::table('courses')->where(['idTutor' => $id])->get();
+        return view('myCourse', ['courses' => $courses]);
+    }
+
+    public function edit()
+    {
+        $id=Auth::id();
+        $courses = DB::table('courses')->where(['idTutor' => $id])->get();
+        return view('editCourse', ['courses' => $courses]);
+    }
+    public function editCheck(request $request)
+    {
+            $idTutor=Auth::id();
+            $Ncourse = $request->input('Ncourse');
+            //ถ้าชื่อซ้ำ
+            $subject = $request->input('subject');
+            $day = $request->input('day');
+            $maxStudent = $request->input('maxStudent');
+            $stime = $request->input('stime');
+            $etime = $request->input('etime');
+            $startDate = $request->input('startDate');
+            $endDate = $request->input('endDate');
+            $location = $request->input('location');
+            $price = $request->input('price');
+            $message = $request->input('description');
+            $cId = $request->input('cId');
+            $img = $request->input('image');
+             
+            $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
+             
+             $cName = DB::table('courses')
+         ->select('Ncourse')
+         ->where([
+             ['idTutor','=', $idTutor],
+            ['idcourse', '=', $cId],
+            ['Ncourse', '=', $Ncourse]
+         ])->get();
+             
+         if ($haveName) {
+             if($cName == "[]"){
+                    return redirect()->back()->with('haveName', 'The course name has already in use.');
+             }
+                 
+             }
+           
+            
+            if($img === null){
+                $tutor = DB::table('courses')
+        ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
+            ->update([
+                'Ncourse' =>$Ncourse,
+                'subject'=> $subject,
+                'day' => $day,
+                'max_student' => $maxStudent,
+                'start_time' => $stime,
+                'end_time' => $etime,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'location' => $location,
+                'price' => $price,
+                'description' => $message
+            ]);
+
+            return redirect('/home')->with('success','Course created');
+
+            }elseif($img != null){
+                $tutor = DB::table('courses')
+        ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
+            ->update([
+                'Ncourse' =>$Ncourse,
+                'subject'=> $subject,
+                'day' => $day,
+                'max_student' => $maxStudent,
+                'start_time' => $stime,
+                'end_time' => $etime,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'location' => $location,
+                'price' => $price,
+                'description' => $message,
+                'img' => $img]);
+
+                if($file = $request->file('image') ){
+                    $img = $file -> getClientOriginalName();
+                    $file -> move('images/imageCourse',$img);
+                }
+
+            return redirect('/home')->with('success','Course created');
+            }
+            
+
+            
+    }
+
+
 
 }
 
