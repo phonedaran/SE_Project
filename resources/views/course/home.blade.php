@@ -457,7 +457,7 @@ text: 'Succecc!!'
 
 
                             @foreach ( $courses as $c )
-                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
                                     <div class="blog-thumb">
                                         <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
                                         <a href="#"><h1>{{$c->Ncourse}}</h1></a>
