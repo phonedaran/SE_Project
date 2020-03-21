@@ -121,12 +121,8 @@ http://www.tooplate.com/view/2082-pure-mix
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
-<<<<<<< HEAD
                     </div>
 
-=======
-                     </div>
->>>>>>> 87ce5749efa3116ab9930800ce7d4c99ce720692
                   </div>
                </div>
             </div>
@@ -162,46 +158,6 @@ http://www.tooplate.com/view/2082-pure-mix
 	</script>
 @endif
 
-<!-- list section
-================================================== -->
-<!-- <section id="blog">
-   <div class="container">
-      <div class="row">
-
-         <div class="col-md-12 col-sm-12">
-             -->
-               <!-- iso section -->
-               <!-- <div class="iso-section wow fadeInUp" data-wow-delay="1s"> -->
-
-                        <!-- iso box section -->
-                        <!-- <div class="container">
-                           <div class="row">
-                              @foreach ( $enrolls as $enroll )
-                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
-                                    <div class="blog-thumb">
-                                        <a href="#"><img src="images/{{$enroll->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
-                                        <a href="#"><h1>{{$enroll->Ncourse}}</h1></a>
-                                        <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$enroll->subject}} </p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$enroll->max_student}}</p>
-                                        <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$enroll->start_date}} => {{$enroll->end_date}}</p>
-                                        <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$enroll->start_time}} - {{$enroll->end_time}}</p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-user"></i> : {{$enroll->Fname}} {{$enroll->Lname}}</p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$enroll->location}}</p>
-                                        <p class="col-md-6" align="left">ราคา {{$enroll->price}} บาท</p>
-                                        <a href="#" class="btn btn-default">MORE INFO</a>
-                                    </div>
-                                </div>
-                            @endforeach
-                           </div>
-                        </div>
-
-               </div>
-
-         </div>
-
-      </div>
-   </div>
-</section> -->
 
 <!-- same admin =======================================-->
 <section id="contact">
