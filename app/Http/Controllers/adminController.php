@@ -72,4 +72,5 @@ class adminController extends Controller
         $idCards = DB::table('image')->get();
         return view('admin/tutorList',['tutors' => $tutors,'idCards' => $idCards]);
     }
+    
 }
