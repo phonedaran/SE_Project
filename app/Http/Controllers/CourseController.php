@@ -77,18 +77,41 @@ class CourseController extends Controller
         return redirect('/');
     }
 
+<<<<<<< HEAD
+=======
+    public function deleteCourse(request $request){
+        $id = Auth::id();
+        $idcourse = $request->input('idcourse');
+
+        DB:: table('enroll')
+        ->where(['idcourse' => $idcourse])
+        ->where(['idstudent' => $id])
+        ->delete();
+        return redirect()->back()->with('success','success');
+    }
+
+    //
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
     public function my()
     {
         $id=Auth::id();
         $courses = DB::table('courses')->where(['idTutor' => $id])->get();
+<<<<<<< HEAD
         return view('tutor.myCourse', ['courses' => $courses]);
+=======
+        return view('myCourse', ['courses' => $courses]);
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
     }
 
     public function edit()
     {
         $id=Auth::id();
         $courses = DB::table('courses')->where(['idTutor' => $id])->get();
+<<<<<<< HEAD
         return view('course.editCourse', ['courses' => $courses]);
+=======
+        return view('editCourse', ['courses' => $courses]);
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
     }
     public function editCheck(request $request)
     {
@@ -107,9 +130,15 @@ class CourseController extends Controller
             $message = $request->input('description');
             $cId = $request->input('cId');
             $img = $request->input('image');
+<<<<<<< HEAD
              
             $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
              
+=======
+
+            $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
+
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
              $cName = DB::table('courses')
          ->select('Ncourse')
          ->where([
@@ -117,15 +146,26 @@ class CourseController extends Controller
             ['idcourse', '=', $cId],
             ['Ncourse', '=', $Ncourse]
          ])->get();
+<<<<<<< HEAD
              
+=======
+
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
          if ($haveName) {
              if($cName == "[]"){
                     return redirect()->back()->with('haveName', 'The course name has already in use.');
              }
+<<<<<<< HEAD
                  
              }
            
             
+=======
+
+             }
+
+
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
             if($img === null){
                 $tutor = DB::table('courses')
         ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
@@ -169,12 +209,20 @@ class CourseController extends Controller
 
             return redirect('/home')->with('success','Course created');
             }
+<<<<<<< HEAD
             
 
             
     }
 
 
+=======
+
+
+
+    }
+
+>>>>>>> bdaa21cb487aa92b7563a8c938c7df1a0d0e29b0
 
 }
 

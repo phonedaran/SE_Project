@@ -61,7 +61,6 @@ http://www.tooplate.com/view/2082-pure-mix
 	margin-top: 5px;
 	font-size:14px;
 }
-
 .btn {
 	font-family: 'Source Sans Pro', sans-serif;
 	background: #f9f9fc;
@@ -85,13 +84,11 @@ http://www.tooplate.com/view/2082-pure-mix
 	padding: 13px 32px;
 	margin-bottom: 5px;
 }
-
 .btn:hover {
 	background: rgb(214, 213, 210);
 	/* color:#ffffff ; */
 	/* font-weight: 400; */
 }
-
 #contact .form-control {
   background: transparent;
   border: 1px solid #eee;
@@ -421,7 +418,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <script>
 	$(".toggle-password").click(function() {
-
 $(this).toggleClass("fa-eye fa-eye-slash");
 var input = $($(this).attr("toggle"));
 if (input.attr("type") == "password") {
@@ -456,4 +452,3 @@ if (input.attr("type") == "password") {
 @include('sweet::alert')
 </body>
 </html>
-

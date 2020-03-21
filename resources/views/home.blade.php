@@ -41,7 +41,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
     <style>
         /* side nav */
-
         .sidenav {
           height: 100%;
           width: 0;
@@ -109,7 +108,6 @@ http://www.tooplate.com/view/2082-pure-mix
         }
 
 
-
         </style>
 
 	<!-- Site title
@@ -157,7 +155,7 @@ http://www.tooplate.com/view/2082-pure-mix
               Swal.fire({
 icon: 'success',
 title: 'OK',
-text: 'Success!!'
+text: 'Succecc!!'
 })
 
 </script>
@@ -173,19 +171,71 @@ text: 'Success!!'
 
 <!-- Navigation section
 ================================================== -->
+<!-- alert success login -->
+
+{{-- <div class="nav-container">
+   @if (Route::has('login'))
+      @auth
+      <script type="text/javascript">
+         const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({
+            icon: 'success',
+            title: 'Log in in successfully'
+            })
+      </script>
+      @else
+      <script type="text/javascript">
+         const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({
+            icon: 'success',
+            title: 'Log out successfully'
+            })
+      </script>
+      @endauth
+   @endif
+</div> --}}
+
+<!-- ต้องสร้างหน้า home 2 ไฟล์ => homepublic ,  home -->
+<!-- ================================================= -->
 <div class="nav-container">
    <nav class="nav-inner transparent">
+
       <div class="navbar">
          <div class="container">
             <div class="row">
-               <div class="brand">
-                  <a href="{{url('/')}}">Shared Tutoring</a>
-               </div>
-               <div class="navicon">
-                  @if (Auth:: check())
-                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-                  @endif
-                  <div class="menu-container">
+
+              <div class="brand">
+                <a href="{{url('/')}}">Shared Tutoring</a>
+              </div>
+
+              <div class="navicon">
+                <div class="menu-container">
+                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
+                     @if (Auth:: check())
+                           {{ Auth::user()->name }}
+                     @endif
                      <div class="circle dark inline">
                      <i class="icon ion-navicon"></i>
                      </div></h3>
@@ -202,29 +252,43 @@ text: 'Success!!'
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                 <li><a href="#">edit course</a></li>
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
                               @endif
-                                 <li><a href="{{url('/contact')}}">Contact</a></li>
-                           </ul>
+                           <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                 onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                          Logout</a>
+
+                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                       </form>
+                              </li>
+                        <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
+                        @else
+                           <li><a href="{{url('/')}}">Home</a></li>
+                           <li><a href="{{url('/login')}}">Log-in</a></li>
+                           @if (Route::has('register'))
+                              <li><a href="{{url('/register')}}">Register</a></li>
                            @endif
-                        </div>
-                     </div>
+                              <li><a href="{{url('/contact')}}">Contact</a></li>
+                        </ul>
+                        @endif
+                    </div>
                   </div>
+
+                </div>
               </div>
+
             </div>
          </div>
       </div>
@@ -232,8 +296,6 @@ text: 'Success!!'
    </nav>
 </div>
 
-
-                              
 
 <!-- Header section
 ================================================== -->
@@ -291,7 +353,6 @@ text: 'Success!!'
                             <p>
                                 <label>Subject</label>
 
-
                             </p>
                                 <select name="subject" id="subject" class="soflow-color">
                                     <option value="" selected >วิชา</option>
@@ -301,7 +362,6 @@ text: 'Success!!'
                                     <option value="คณิตศาสตร์">คณิตศาสตร์</option>
                                     <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
                                 </select>
-
                             <br>
                             <br>
                             <p>
@@ -428,9 +488,9 @@ text: 'Success!!'
                                 ?>
                             </div>
                             @foreach ( $courses as $c )
-                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                                     <div class="blog-thumb">
-                                        <a href="#"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
                                         <a href="#"><h1>{{$c->Ncourse}}</h1></a>
                                         <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
                                         <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
@@ -439,7 +499,7 @@ text: 'Success!!'
                                         <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
                                         <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
-                                        <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
+                                        <a href="#" class="btn btn-default">MORE INFO</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -454,16 +514,6 @@ text: 'Success!!'
       </div>
    </div>
 </section>
-
-<!-- javascript section
-================================================== -->
-<script type="text/javascript">
-
-   function fncAction0(idcourse){
-      window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
-   }
-
-</script>
 
 <!-- Footer section
 ================================================== -->

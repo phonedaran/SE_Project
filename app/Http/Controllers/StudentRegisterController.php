@@ -76,7 +76,8 @@ class StudentRegisterController extends Controller
             'email' => $email,
             'status' => "student",
             'password' => Hash::make($pass),]
-         );
+         );    return  redirect('/')->with('success','Please fill all required field.');
+
 
 
     return  redirect('/')->with('success','Please fill all required field.');

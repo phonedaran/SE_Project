@@ -50,15 +50,15 @@ class TutorRegController extends Controller
             $evidence = $Efile -> getClientOriginalName();
             $Efile -> move('images/idCard',$evidence);
         }
-        
-        
+
+
 
         $tId=Tutor::max('idTutor');
         if($tId === null){$tId = 0 ;}
         $TutorId=($tId +2);
-        
+
     $data = DB::select('select email from tutors where email=? ',[$email]);
-    
+
     if($Fname === null or $Lname === null or $email === null or $phone === null or $pass === null
  or $sex === null or $addr === null or $evidence === null or $education === null or $DOB === null ) {
         return redirect()->back()->with('null','Please fill all required field.');

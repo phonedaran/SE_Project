@@ -49,11 +49,18 @@ Route::get('/admin/tutorList/image','adminController@imageTutorList');
 Route::get('/admin/tutorList/fired','adminController@fired');
 
 
-Route::get('/course', 'CourseController@fillter');
 Route::get('/courseInformation', 'CourseController@info');
 Route::get('/courseInformation/enrolled', 'CourseController@enrolled');
+Route::get('/myCourse', 'CourseController@my');
+Route::get('/courseEdit', 'CourseController@edit');
+Route::post('/courseEdit/check', 'CourseController@editCheck');
+
 
 Auth::routes(['verify' => true]);
+
+Route::get('/studentEdit', 'student\StudentController@editProfile');
+Route::post('/studentEdit/check', 'student\StudentController@editCheck');
+Route::get('/student/deleteCourse', 'CourseController@deleteCourse');
 
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
@@ -61,7 +68,6 @@ Route::get('/tutorReg', 'TutorRegController@reg');
 Route::post('/tutorReg/check', 'TutorRegController@regcheck')->name('upload.flie');
 Route::get('/tutorEdit', 'TutorRegController@edit');
 Route::post('/tutorEdit/check', 'TutorRegController@editCheck');
-
 
 // ต้อง login ก่อน ถึงจะเข้าได้
 Auth::routes();
