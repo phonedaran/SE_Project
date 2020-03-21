@@ -96,6 +96,7 @@ class CourseController extends Controller
         return view('tutor.myCourse', ['courses' => $courses]);
     }
 
+
     public function edit()
     {
         $id=Auth::id();

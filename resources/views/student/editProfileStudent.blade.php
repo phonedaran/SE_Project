@@ -123,14 +123,13 @@ http://www.tooplate.com/view/2082-pure-mix
               </div>
 
               <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+			  	@if (Auth:: check())
+                    <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                @endif
+                  <div class="menu-container">
                      <div class="circle dark inline">
-                     <i class="icon ion-navicon"></i>
-                     </div></h3>
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
@@ -149,9 +148,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -198,35 +196,35 @@ http://www.tooplate.com/view/2082-pure-mix
 		<div class="row" style="background-color : ">
 		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
 
-				@if (Session('null'))
-				<script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Input all requied field!'
-})
-				</script>
+@if (Session('null'))
+	<script type="text/javascript">
+		Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'Input all requied field!'
+		})
+	</script>
+@endif
 
-			@endif
-			@if (Session('pass'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Password is min lenght of 8'
-})
-				</script>
-			@endif
+@if (Session('pass'))
+	<script type="text/javascript">
+		Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'Password is min lenght of 8'
+		})
+	</script>
+@endif
 
-			@if (Session('mail'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'This Email is duplicate'
-})
-				</script>
-      @endif
+@if (Session('mail'))
+	<script type="text/javascript">
+		Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'This Email is duplicate'
+		})
+	</script>
+@endif
 
 @if (Session('success'))
 	<script type="text/javascript">
@@ -334,12 +332,6 @@ if (input.attr("type") == "password") {
 }
 });
 </script>
-
-
-
-
-
-
 
 @include('sweet::alert')
 </body>
