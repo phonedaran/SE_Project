@@ -182,14 +182,14 @@ text: 'Success!!'
          <div class="container">
             <div class="row">
 
-               <div class="brand">
-                  <a href="{{url('/')}}">Shared Tutoring</a>
-               </div>
+              <div class="brand">
+                <a href="{{url('/')}}">Shared Tutoring</a>
+              </div>
 
-               <div class="navicon">
-                  @if (Auth:: check())
-                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-                  @endif
+              <div class="navicon">
+			  	@if (Auth:: check())
+                    <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                @endif
                   <div class="menu-container">
                      <div class="circle dark inline">
                         <i class="icon ion-navicon"></i>
@@ -197,9 +197,9 @@ text: 'Success!!'
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
-
                     <div class="intro-inner">
                         <ul id="nav-menu">
+
                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
                         @if (Auth::check())
                            <li><a href="{{url('/')}}">Home</a></li>
@@ -207,29 +207,16 @@ text: 'Success!!'
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+                                 <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-
-                                <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
-                                 <li><a href="#">admin area</a></li>
-
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-                              <!-- admin -->
-                              @else
                                  <!-- <li><a href="#">admin area</a></li> -->
-
                               @endif
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
@@ -250,14 +237,19 @@ text: 'Success!!'
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
-                     </div>
+                    </div>
                   </div>
-               </div>
+
+                </div>
+              </div>
+
             </div>
          </div>
       </div>
+
    </nav>
 </div>
+
 
 
                               
