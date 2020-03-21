@@ -81,7 +81,6 @@ class CourseController extends Controller
         return redirect('/');
     }
 
-
     public function deleteCourse(request $request){
         $id = Auth::id();
         $idcourse = $request->input('idcourse');
@@ -116,12 +115,9 @@ class CourseController extends Controller
             $message = $request->input('description');
             $cId = $request->input('cId');
             $img = $request->input('image');
-
-
-
+             
             $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
-
-
+             
              $cName = DB::table('courses')
          ->select('Ncourse')
          ->where([
@@ -129,15 +125,15 @@ class CourseController extends Controller
             ['idcourse', '=', $cId],
             ['Ncourse', '=', $Ncourse]
          ])->get();
-
              
-
          if ($haveName) {
              if($cName == "[]"){
                     return redirect()->back()->with('haveName', 'The course name has already in use.');
-             }                 
              }
-
+                 
+             }
+           
+            
             if($img === null){
                 $tutor = DB::table('courses')
         ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
@@ -181,12 +177,11 @@ class CourseController extends Controller
 
             return redirect('/home')->with('success','Course created');
             }
+            
 
-
-
-
-
+            
     }
+
 
 
 }

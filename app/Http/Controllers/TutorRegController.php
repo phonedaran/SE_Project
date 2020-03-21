@@ -100,6 +100,7 @@ class TutorRegController extends Controller
         }
     }
 
+
     public function edit()
     {
         $id=Auth::id();
@@ -107,6 +108,7 @@ class TutorRegController extends Controller
         $images = DB::table('image')->where(['idTutor' => $id])->get();
         return view('tutor.tutorEdit', ['tutors' => $tutors,'image' => $images]);
     }
+
 
     public function editCheck(request $request)
     {
@@ -116,7 +118,6 @@ class TutorRegController extends Controller
         $Lname=$request->input('Lname');
         $email=$request->input('email');
         $phone=$request->input('phone');
-        $pass=$request->input('pass');
         $sex=$request->input('gender');
         $addr=$request->input('addr');
         $education=$request->input('education');
@@ -125,8 +126,6 @@ class TutorRegController extends Controller
         $partner=$request->input('partner'); 
         $DOB=$request->input('DOB');
         $image_card=$request->input('image');
-        $passNew = $request->input('passNew');
-        $passH = Hash::make($passNew);
 
         if($file = $request->file('image') ){
             $image_card = $file -> getClientOriginalName();
@@ -140,7 +139,8 @@ class TutorRegController extends Controller
        {
         return redirect()->back()->with('null','Please fill all required field.');
     }
-    elseif($pass === null and $passNew === null ){
+    else
+    {
         if($image_card === null){
             $tutor = DB::table('tutors')
             ->where(['idTutor' => $idTutor])
@@ -159,12 +159,13 @@ class TutorRegController extends Controller
             
              $user = DB::table('users')
             ->where(['id' => $idTutor])
-            ->update(['email' => $email
+            ->update(['email' => $email,
+            'name' => $Fname,
                 ]
              );
              return  redirect('/home')->with('success','The customer has been stored in database');
         
-        }elseif($image_card != null){
+        }else{
             $tutor = DB::table('tutors')
             ->where(['idTutor' => $idTutor])
                 ->update([
@@ -188,94 +189,15 @@ class TutorRegController extends Controller
     
              $user = DB::table('users')
             ->where(['id' => $idTutor])
-            ->update(['email' => $email
-                ]
+            ->update(['email' => $email,
+                      'name' => $Fname,
+            ]
              );
              return  redirect('/home')->with('success','The customer has been stored in database');
         }
-    }elseif($pass === null or $passNew === null){
+   
         
-        return redirect()->back()->with('pass2','Please fill all required field.');
-    }
-    else{
-         $pR = DB::table('tutors')
-         ->select('passReal')
-         ->where([
-             ['idTutor','=', $idTutor],
-            ['passReal', '=', $pass]
-         ])->get();
-        
-          if($pR == "[]"){
-                return redirect()->back()->with('wrong','Please fill all required field.');
-          }
-        elseif(strlen($passNew) <8){
-        return redirect()->back()->with('pass','Please fill all required field.');
-     }else{
-        if($image_card === null){
-            $tutor = DB::table('tutors')
-        ->where(['idTutor' => $idTutor])
-            ->update([
-            'Fname' => $Fname,
-            'Lname' => $Lname,
-            'DOB' => $DOB,
-            'email' => $email,
-            'phone' => $phone,
-            'sex' => $sex,
-            'address' => $addr,
-            'work_experient' => $work,
-            'education' => $education,
-            'about_me' => $about,
-            'partner' => $partner,
-            'password' => $pR,
-            'passReal' => $passNew ,
-            ]);
-    
-         $user = DB::table('users')
-        ->where(['id' => $idTutor])
-        ->update(['email' => $email,
-        'password' => $passH
-            ]
-         );
-         
-         return  redirect('/home')->with('success','The customer has been stored in database');
-    
-        }
-        elseif($image_card != null){
-            $tutor = DB::table('tutors')
-        ->where(['idTutor' => $idTutor])
-            ->update([
-            'Fname' => $Fname,
-            'Lname' => $Lname,
-            'DOB' => $DOB,
-            'email' => $email,
-            'phone' => $phone,
-            'sex' => $sex,
-            'address' => $addr,
-            'work_experient' => $work,
-            'education' => $education,
-            'about_me' => $about,
-            'partner' => $partner,
-            'password' => $passH,
-            'passReal' => $passNew,]);
-        
-        $images = DB::table('image')
-        ->where(['idTutor' => $idTutor])
-        ->update(['img_path' => $image_card
-            ]
-         );
-
-         $user = DB::table('users')
-        ->where(['id' => $idTutor])
-        ->update(['email' => $email,
-       'password' => $passH
-            ]
-         );
-         
-         return  redirect('/home')->with('success','The customer has been stored in database');
-    }
          }
-        
-        }
 
     }
  
