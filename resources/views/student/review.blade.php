@@ -146,7 +146,7 @@ http://www.tooplate.com/view/2082-pure-mix
             <div class="navicon">
                 @if (Auth:: check())
                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-                @endif  
+                @endif
                 <div class="menu-container">
                     <div class="circle dark inline">
                         <i class="icon ion-navicon"></i>
@@ -166,7 +166,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                 @if ( Auth:: user()->status == 'student')
                                     <li><a href="#">edit profile</a></li>
                                     <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                    <li><a href="#">review</a></li>
+                                    <li><a href="{{url('/review')}}">review</a></li>
                                 <!-- tutor -->
                                 @elseif ( Auth:: user()->status == 'tutor')
                                     <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>

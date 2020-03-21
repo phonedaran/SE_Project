@@ -209,31 +209,17 @@ text: 'Success!!'
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+                                 <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-
-                                <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
-                                 <li><a href="#">admin area</a></li>
-
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-                              <!-- admin -->
-                              @else
                                  <!-- <li><a href="#">admin area</a></li> -->
-
                               @endif
-
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -268,7 +254,7 @@ text: 'Success!!'
 </div>
 
 
-                              
+
 
 <!-- Header section
 ================================================== -->
@@ -527,6 +513,7 @@ text: 'Success!!'
    function fncAction0(idcourse){
       window.location.assign("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
    }
+</script>
 
    <!-- Footer section
 ================================================== -->

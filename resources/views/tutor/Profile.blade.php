@@ -319,7 +319,7 @@ http://www.tooplate.com/view/2082-pure-mix
                   <div class="col-sm-3">
                      <div class="rating-block">
                         <h4>Average user rating</h4>
-                        <h4 class="bold padding-bottom-7">4.3 <small>/ 5</small></h4>
+                        <h4 class="bold padding-bottom-7"><?php echo round($rate,1) ?> <small>/ 5</small></h4>
                         <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </button>
@@ -337,6 +337,15 @@ http://www.tooplate.com/view/2082-pure-mix
                         </button>
                      </div>
                   </div>
+
+                  <?php
+                        //cal % star
+                        $P1 = $star1/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P2 = $star2/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P3 = $star3/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P4 = $star4/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P5 = $star5/($star1+$star2+$star3+$star4+$star5)*100;
+                  ?>
                   <div class="col-sm-5">
                      <h4>Rating breakdown</h4>
                      <div class="pull-left">
@@ -345,12 +354,12 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
                         <div class="pull-left" style="width:400px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: {{$P5}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">1</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star5}}</div>
                      </div>
                      <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -358,12 +367,12 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
                         <div class="pull-left" style="width:400px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+                              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: {{$P4}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">1</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star4}}</div>
                      </div>
                      <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -371,12 +380,12 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
                         <div class="pull-left" style="width:400px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: {{$P3}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star3}}</div>
                      </div>
                      <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -384,12 +393,12 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
                         <div class="pull-left" style="width:400px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: {{$P2}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star2}}</div>
                      </div>
                      <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -397,12 +406,12 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
                         <div class="pull-left" style="width:400px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+                              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: {{$P1}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star1}}</div>
                      </div>
                   </div>
                </div>
@@ -411,34 +420,65 @@ http://www.tooplate.com/view/2082-pure-mix
                   <div class="col-sm-8">
                      <hr />
                      <div class="review-block">
-                        <div class="row">
-                           <div class="col-sm-3">
+                        @foreach ($reviewList as $com)
 
-                              <div class="review-block-name"><a href="#">nktailor</a></div>
-                              <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                           </div>
-                           <div class="col-sm-9">
-                              <div class="review-block-rate">
-                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                              </div>
-                              <div class="review-block-title">this was nice in buy</div>
-                              <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                           </div>
-                        </div>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <div class="review-block-name"><a href="#">{{$com->Fname}} {{$com->Lname}}</a></div>
+                                <div class="review-block-date">{{$com->date}}<br /></div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="review-block-rate">
+                                    @if ($com->review >= 1)
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @endif
+                                    @if ($com->review >= 2)
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @endif
+
+                                    @if ($com->review >= 3)
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @endif
+                                    @if ($com->review >= 4)
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @endif
+                                    @if ($com->review >= 5)
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>
+                                    @endif
+                                </div>
+
+                            <div class="review-block-title">{{$com->idcourse}} - {{$com->Ncourse}}</div>
+                            <div class="review-block-description">{{$com->comment}}</div><br>
+                            </div>
+                            </div>
+
+                        @endforeach
                      </div>
                   </div>
                </div>

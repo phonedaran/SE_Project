@@ -115,9 +115,21 @@ class TutorController extends Controller
         $idTutor = Auth::id();
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
         $course = DB::table('courses')-> join('tutors','courses.idTutor','=','tutors.idTutor')
-        -> where(['courses.idTutor' => $idTutor])->get(); 
+        -> where(['courses.idTutor' => $idTutor])->get();
         $img = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_path');
-        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img]);
+
+        $rate = DB::table('review')->where(['idTutor'=>$idTutor])->avg('review');
+        $star1 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",1)->count();
+        $star2 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",2)->count();
+        $star3 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",3)->count();
+        $star4 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",4)->count();
+        $star5 = DB::table('review')->where(['idTutor'=>$idTutor])->where('review',"=",5)->count();
+
+        $reviewList = DB::table('review')->join('students','review.idstudent','=','students.idstudent')
+        ->join('Courses','review.idcourse','=','Courses.idcourse')->where(['review.idTutor'=>$idTutor])->get();
+
+        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img, 'rate'=>$rate,
+        'star1'=>$star1,'star2'=>$star2,'star3'=>$star3,'star4'=>$star4,'star5'=>$star5,'reviewList'=>$reviewList]);
     }
 
 
