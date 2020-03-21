@@ -94,9 +94,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                              <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
                                  <li><a href="#">admin area</a></li>
@@ -121,8 +120,7 @@ http://www.tooplate.com/view/2082-pure-mix
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
-                    </div>
-
+                     </div>
                   </div>
                </div>
             </div>
@@ -183,7 +181,7 @@ http://www.tooplate.com/view/2082-pure-mix
 									<p class="col-md-6" align="left"><b>Tutor :</b> {{$enroll->Fname}}&nbsp;&nbsp;{{$enroll->Lname}}</p>
 									<p class="col-md-6" align="left"><b>Location :</b> {{$enroll->location}}</p>
 									<p class="col-md-6" align="left"><b>Price :</b> {{$enroll->price}} บาท</p>
-                           <p class="col-md-6" align="right"><a href="#" class="btn btn-default">MORE INFO</a></p>
+                           <p class="col-md-6" align="right"><a onclick="fncAction0({{$enroll->idcourse}})" class="btn btn-default">MORE INFO</a></p>
                            <p class="col-md-6" align="right" onClick="fncAction({{$enroll->idcourse}})"><a href="#" class="btn" ><i class="fa fa-trash"></i></a></p>
 								</div>
 							</div>
@@ -197,6 +195,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			</div>
 		</div><br /><br /><br />
 </section>
+
 
 <!-- Footer section
 ================================================== -->
@@ -241,11 +240,14 @@ http://www.tooplate.com/view/2082-pure-mix
 		}).then((result) => {
 		if (result.value) {
          setTimeout(function(){
-					window.location.replace("/SE_Project/public/student/deleteCourse?idcourse="+idcourse);
+					window.location.assign("/SE_Project/public/student/deleteCourse?idcourse="+idcourse);
 				},2000);
 		}
 		});
 	}
+   function fncAction0(idcourse){
+      window.location.assign("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
+   }
 </script>
 
 

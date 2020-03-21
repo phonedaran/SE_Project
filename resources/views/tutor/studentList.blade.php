@@ -60,71 +60,79 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Navigation section
 ================================================== -->
 <div class="nav-container">
-   <nav class="nav-inner transparent">
-      <div class="navbar">
-         <div class="container">
-            <div class="row">
-              <div class="brand">
-                <a href="{{url('/')}}">Shared Tutoring</a>
-              </div>
-              <div class="navicon">
-			  	@if (Auth:: check())
-					<h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-				@endif  
-				<div class="menu-container">
-					<div class="circle dark inline">
-						<i class="icon ion-navicon"></i>
-					</div>
-                  <div class="list-menu">
-                    <i class="icon ion-close-round close-iframe"></i>
-                    <div class="intro-inner">
-                     	<ul id="nav-menu">
-						 @if (Auth::check())
-					  	<!-- check status -->
-						<!-- student -->
-						@if ( Auth:: user()->status == 'student')
-							<li><a href="#">edit profile</a></li>
-							<li><a href="#">enrollment</a></li>
-							<li><a href="#">review</a></li>
-						<!-- tutor -->
-						@elseif ( Auth:: user()->status == 'tutor')
-                            <li><a href="{{url('/course')}}">Tutor course</a></li>
-                            <li><a href="#">edit profile</a></li>
-						<!-- admin -->
-						@else
-							<li><a href="{{URL::to('/admin')}}">Admin</a></li>
-								<li><a href="{{URL::to('/admin/tutorList')}}">Tutor List</a></li>
-						@endif
+    <nav class="nav-inner transparent">
 
-						<li><a class="dropdown-item" href="{{ route('logout') }}"
-							onclick="event.preventDefault();
-								document.getElementById('logout-form').submit();">
-									Logout</a>
+       <div class="navbar">
+          <div class="container">
+             <div class="row">
 
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-									@csrf
-									</form>
-						</li>
-						<!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
-						@else
-						<li><a href="{{url('/')}}">Home</a></li>
-						<li><a href="{{url('/login')}}">Log-in</a></li>
-						@if (Route::has('register'))
-						<li><a href="{{url('/register')}}">Register</a></li>
-						@endif
-						</ul>
-						@endif
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-         </div>
-      </div>
+               <div class="brand">
+                 <a href="{{url('/')}}">Shared Tutoring</a>
+               </div>
 
-   </nav>
-</div>
+               <div class="navicon">
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif  
+                  <div class="menu-container">
+                     <div class="circle dark inline">
+                        <i class="icon ion-navicon"></i>
+                     </div>
+
+                   <div class="list-menu">
+                     <i class="icon ion-close-round close-iframe"></i>
+                     <div class="intro-inner">
+                         <ul id="nav-menu">
+
+                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
+                         @if (Auth::check())
+                            <li><a href="{{url('/')}}">Home</a></li>
+
+                            <!-- check status -->
+                               <!-- student -->
+                               @if ( Auth:: user()->status == 'student')
+                                  <li><a href="#">edit profile</a></li>
+                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
+                                  <li><a href="#">review</a></li>
+                               <!-- tutor -->
+                               @elseif ( Auth:: user()->status == 'tutor')
+                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                               <!-- admin -->
+                               @else
+                                  <!-- <li><a href="#">admin area</a></li> -->
+                               @endif
+                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                           Logout</a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                           @csrf
+                                        </form>
+                               </li>
+                         <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
+                         @else
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('/login')}}">Log-in</a></li>
+                            @if (Route::has('register'))
+                               <li><a href="{{url('/register')}}">Register</a></li>
+                            @endif
+                               <li><a href="{{url('/contact')}}">Contact</a></li>
+                         </ul>
+                         @endif
+                     </div>
+                   </div>
+
+                 </div>
+               </div>
+
+             </div>
+          </div>
+       </div>
+
+    </nav>
+ </div>
 
 
 <!-- Header section
@@ -187,7 +195,7 @@ http://www.tooplate.com/view/2082-pure-mix
             </div>
         @endif
         <div id="outer">
-            <button onclick="fncAction1()" class="button button2 backBtn">back</button><br><br>
+            <button onclick="javascript:history.go(-1)" class="button button2 backBtn">back</button><br><br>
         </div>
         
     </div>
@@ -208,7 +216,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			if (willDelete) {
 				swal("Success! The student has been delete!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/course/studentList/deleted?idstudent="+idstudent);
+					window.location.assign("/SE_Project/public/course/studentList/deleted?idstudent="+idstudent);
 				},2000);
 			} else {
 				swal("The student is safe!");
@@ -216,9 +224,6 @@ http://www.tooplate.com/view/2082-pure-mix
 		});
 	}
 
-    function fncAction1(){
-        window.location.replace("/SE_Project/public/course");
-    }
 
 </script>
 

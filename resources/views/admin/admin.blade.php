@@ -84,7 +84,8 @@ http://www.tooplate.com/view/2082-pure-mix
 										<li><a href="#">review</a></li>
 									<!-- tutor -->
 									@elseif ( Auth:: user()->status == 'tutor')
-										<li><a href="#">tutor area</a></li>
+										<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                 		<li><a href="{{url('/course')}}">Tutor course</a></li>
 									<!-- admin -->
 									@else
 										<li><a href="{{URL::to('/admin')}}">Admin</a></li>
@@ -201,7 +202,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <script type="text/javascript">
 
 	function fncAction0(idTutor){
-		window.location.replace("/SE_Project/public/admin/image?idTutor="+idTutor);
+		window.location.assign("/SE_Project/public/admin/image?idTutor="+idTutor);
 	}
 
 	function fncAction1(idTutor){
@@ -216,7 +217,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			if (willDelete) {
 				swal("Poof! The tutor has been accepted!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/admin/accepted?idTutor="+idTutor);
+					window.location.assign("/SE_Project/public/admin/accepted?idTutor="+idTutor);
 				},2000);
 			} else {
 				swal("The request is safe!");
@@ -236,7 +237,7 @@ http://www.tooplate.com/view/2082-pure-mix
 			if (willDelete) {
 				swal("Poof! The tutor has been rejected!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/admin/rejected?idTutor="+idTutor);
+					window.location.assign("/SE_Project/public/admin/rejected?idTutor="+idTutor);
 				},2000);
 			} else {
 				swal("The request is safe!");

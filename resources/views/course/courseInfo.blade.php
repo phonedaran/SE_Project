@@ -89,9 +89,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                   <li><a href="#">review</a></li>
                                <!-- tutor -->
                                @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/Profile')}}">profile</a></li>
+                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                  <li><a href="{{url('/course')}}">Tutor course</a></li>
-                                 <li><a href="#">edit profile</a></li>
                                <!-- admin -->
                                @else
                                   <!-- <li><a href="#">admin area</a></li> -->
@@ -201,7 +200,7 @@ http://www.tooplate.com/view/2082-pure-mix
                         <img src="images/imageProfile/{{$imageTutor}}" onerror="this.src='images/user.png'" style="border-radius: 50%; width:100%;max-width:100px">
                      </div> 
                      <div class="col-md-7">
-                        <p><b>{{$tutor[0]->Fname}}<br>{{$tutor[0]->Lname}}</b></p> <!-- link ไป profile tutor -->
+                        <a class="click" onClick="fncAction1({{$tutor[0]->idTutor}})"><p><b>{{$tutor[0]->Fname}}<br>{{$tutor[0]->Lname}}</b></p></a> <!-- link ไป profile tutor -->
                      </div>
                      <div class="col-md-12" align="center">
                         <p>Rating</p> <!-- รอโฟน -->
@@ -226,7 +225,7 @@ http://www.tooplate.com/view/2082-pure-mix
                            <button style="width:100%"class="btn button button1" onClick="fncAction0({{$course[0]->idcourse}})">Enroll</button>
                         @endif
                      @endif 
-                     <button style="width:100%"class="btn button button2" onClick="fncAction1()">Back</button>  
+                     <button style="width:100%"class="btn button button2" onClick="javascript:history.go(-1)">Back</button>  
                   </div>
                </div>
                
@@ -251,15 +250,16 @@ http://www.tooplate.com/view/2082-pure-mix
 			if (willDelete) {
 				swal("Poof! You have just enrolled this course!", {icon: "success"});
 				setTimeout(function(){
-					window.location.replace("/SE_Project/public/courseInformation/enrolled?idcourse="+idcourse);
+					window.location.assign("/SE_Project/public/courseInformation/enrolled?idcourse="+idcourse);
 				},2000);
 			} else {
 				swal("Cancel !");
 			}
 		});
 	}
-   function fncAction1(){
-		window.location.replace("/SE_Project/public/");
+   
+   function fncAction1(idTutor){
+		window.location.assign("/SE_Project/public/Profile?idTutor="+idTutor);
 	}
 
 </script>
