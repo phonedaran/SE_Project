@@ -217,10 +217,7 @@ text: 'Success!!'
                                  <li><a href="{{url('/Profile')}}">Profile</a></li>
                                  <li><a href="{{url('/course')}}">Tutor Course</a></li>
 
-                                 <!-- admin -->
-                                 @else
-                                 <!-- <li><a href="#">admin area</a></li> -->
-
+         
                               @endif
 
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
