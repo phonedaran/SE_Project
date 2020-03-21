@@ -182,6 +182,7 @@ text: 'Success!!'
          <div class="container">
             <div class="row">
 
+
                <div class="brand">
                   <a href="{{url('/')}}">Shared Tutoring</a>
                </div>
@@ -191,6 +192,7 @@ text: 'Success!!'
                      <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
                   @endif
                   <div class="menu-container">
+
                      <div class="circle dark inline">
                         <i class="icon ion-navicon"></i>
                      </div>
@@ -212,11 +214,24 @@ text: 'Success!!'
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
+
                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
                                  <li><a href="#">admin area</a></li>
+
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
+                                 <!-- <li><a href="{{url('/addCourse')}}">add course</a></li> -->
+                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
+                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
+                              <!-- admin -->
+                              @else
+                                 <!-- <li><a href="#">admin area</a></li> -->
+
                               @endif
 
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
@@ -238,9 +253,14 @@ text: 'Success!!'
                               <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                         @endif
-                     </div>
+
+                    </div>
                   </div>
-               </div>
+
+                </div>
+              </div>
+
+
             </div>
          </div>
       </div>
@@ -248,7 +268,9 @@ text: 'Success!!'
 </div>
 
 
-   <!-- Header section
+                              
+
+<!-- Header section
 ================================================== -->
    <section id="header" class="header-one">
       <div class="container">
@@ -459,7 +481,6 @@ text: 'Success!!'
 
                      </form>
                   </div>
-                  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>
 
                   <!-- iso box section -->
                   <div class="container">

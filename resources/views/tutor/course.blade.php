@@ -194,7 +194,9 @@ http://www.tooplate.com/view/2082-pure-mix
 <script type="text/javascript">
 
 	function fncAction0(idcourse){
-		window.location.assign("/SE_Project/public/courseEdit?idcourse="+idcourse);
+
+		window.location.replace("/SE_Project/public/courseEdit?idcourse="+idcourse); //เติม path ไปหา edit course
+
 	}
    
    function fncAction1(idcourse){

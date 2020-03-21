@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <!--
+
 Template 2082 Pure Mix
+
 http://www.tooplate.com/view/2082-pure-mix
+
 -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -13,7 +16,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Site title
    ================================================== -->
-	<title>Edit Profile</title>
+	<title>Edit</title>
 
 	<!-- Bootstrap CSS
    ================================================== -->
@@ -31,15 +34,19 @@ http://www.tooplate.com/view/2082-pure-mix
 	<!-- Main CSS
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
-	<!-- Google web font
-   ================================================== -->
+	<!-- Google web font 
+   ================================================== -->	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <style>
+
+
+
 .field-icon {
 						size:10px;
             float: right;
@@ -49,47 +56,9 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
-.above{
-	margin-top: 5px;
-	font-size:14px;
-}
-.btn {
-	font-family: 'Source Sans Pro', sans-serif;
-	background: #f9f9fc;
-	/* rgb(156, 150, 140) */
-	border-color: #111112;
-	/* transparent */
-  color:#111112 ;
-	height: 47px;
-	font-size: 16px;
-  font-weight: 525;
-  letter-spacing: 1px;
-  transition: all 0.4s ease-in-out;
-	margin-top: 11px;
-	border-radius: 0px;
-	width:100%;
-}
-.btn{
-	padding: 13px 32px;
-	margin-bottom: 5px;
-}
-.btn:hover {
-	background: rgb(214, 213, 210);
-	/* color:#ffffff ; */
-	/* font-weight: 400; */
-}
-#contact .form-control {
-  background: transparent;
-  border: 1px solid #eee;
-  border-radius: 0px;
-  box-shadow: none;
-  font-size: 16px;
-  margin-bottom: 16px;
-  transition: all 0.4s ease-in-out;
-}
-#contact .form-control:hover {
-  border-color: #f0f0f0;
-}
+
+
+
 </style>
 
 
@@ -123,13 +92,14 @@ http://www.tooplate.com/view/2082-pure-mix
               </div>
 
               <div class="navicon">
-			  	@if (Auth:: check())
-                    <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-                @endif
-                  <div class="menu-container">
+                <div class="menu-container">
+                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
+                     @if (Auth:: check())
+                           {{ Auth::user()->name }}
+                     @endif
                      <div class="circle dark inline">
-                        <i class="icon ion-navicon"></i>
-                     </div>
+                     <i class="icon ion-navicon"></i>
+                     </div></h3>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
@@ -143,13 +113,14 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                 <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="{{url('/review')}}">review</a></li>
+                                 <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
-                                <li><a href="{{url('/course')}}">Tutor course</a></li>
+                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
+                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -189,106 +160,50 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
+
 <!-- register section
 ================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row" style="background-color : ">
-		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
 
-@if (Session('null'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'error',
-		title: 'Oops...',
-		text: 'Input all requied field!'
-		})
-	</script>
-@endif
+<section id="blog">
+   <div class="container">
+      <div class="row">
 
-@if (Session('pass'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'error',
-		title: 'Oops...',
-		text: 'Password is min lenght of 8'
-		})
-	</script>
-@endif
+         <div class="col-md-12 col-sm-12">
 
-@if (Session('mail'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'error',
-		title: 'Oops...',
-		text: 'This Email is duplicate'
-		})
-	</script>
-@endif
+               <!-- iso section -->
+               <div class="iso-section wow fadeInUp" data-wow-delay="1s">
+                            <div class="container">
+                           <div class="row">
 
-@if (Session('success'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'success',
-		title: 'OK!',
-		text: 'Update complete!!'
-		})
-	</script>
-@endif
+                            @foreach ( $courses as $c )
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                                    <div class="blog-thumb">
+                                        <form method="Get">
+                                        <a href="#"><img src="images/imageCourse/{{$c->img}}"style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><h1>{{$c->Ncourse}}</h1></a>
+                                        <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-user"></i> : tutor</p>
+                                        <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
+                                        <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
+                                        <!-- <a href="#" class="btn btn-default">MORE INFO</a> -->
+                                        <input type="hidden"  name="cId" value="{{$c->idcourse}}" ><button class="btn btn-default" onClick="this.form.action='{{ URL::to('/courseEdit') }}'; submit()" > Edit </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endforeach
 
-			  <h1>My Profile</h1>
-			<div class="contact-form">
-			@foreach($students as $student)
+                           </div>
+                        </div>
 
-				<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}" >
-				@csrf
-				  	<label for="firstName"><font size="3">First name*</font></label>
-					<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
+               </div>
 
-					<label for="lastName"><font size="3">Last name*</font></label>
-					<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
+         </div>
 
-					<label for="email"><font size="3">Email*</font></label>
-					<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
-
-					<label for="address"><font size="3">Address</font></label>
-					<textarea name="address"  class="form-control"  cols="10" rows="4">{{$student->address}}</textarea>
-					<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
-
-					<label for="phone" ><font size="3">Phone*</font></label>
-					<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
-
-					<!-- <div class="contact-submit"> -->
-						<div class="col-md-6 col-sm-4">
-							<input type="submit" class="form-control submit" value="Update Profile" >
-						</div>
-
-						<div class="col-md-6 col-sm-4">
-						<a href="{{url('/')}}" class="btn">Cancle</a>
-						</div>
-				</form>
-				@endforeach
-			</div>
-		  </div>
-
-			<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
-			<section id="header" class="header-five">
-	<div class="container">
-		<!-- <div class="row"> -->
-<!--   -->
-			<div class="col-md-offset-0.8 col-md-5  col-sm-offset-0.5 col-sm-2">
-          <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Edit Profile</h1>
-          </div>
-			</div>
-
-		<!-- </div> -->
-	</div>
-</section>
-			</div>
-
-		</div>
-	 </div>
+      </div>
+   </div>
 </section>
 
 <!-- Footer section
@@ -307,12 +222,12 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-
+			
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript
+<!-- Javascript 
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -321,18 +236,8 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
-	$(".toggle-password").click(function() {
-$(this).toggleClass("fa-eye fa-eye-slash");
-var input = $($(this).attr("toggle"));
-if (input.attr("type") == "password") {
-	input.attr("type", "text");
-} else {
-	input.attr("type", "password");
-}
-});
-</script>
 
 @include('sweet::alert')
 </body>
 </html>
+

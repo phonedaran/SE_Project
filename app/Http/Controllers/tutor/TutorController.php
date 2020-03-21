@@ -114,10 +114,10 @@ class TutorController extends Controller
         $idTutor = Auth::id();
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
         $course = DB::table('courses')-> join('tutors','courses.idTutor','=','tutors.idTutor')
-        -> where(['courses.idTutor' => $idTutor])->get();
+        -> where(['courses.idTutor' => $idTutor])->get(); 
         $img = DB::table('image')->where(['idTutor'=>$idTutor])->value('img_path');
-
         return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img]);
     }
+
 
 }
