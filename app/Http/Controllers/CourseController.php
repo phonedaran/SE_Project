@@ -48,7 +48,12 @@ class CourseController extends Controller
         session_start();
         $_session['filter'] = false;
         $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
-        return view('/course/home',['courses' => $courses]);
+
+        $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+                                FROM courses
+                                LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+                                GROUP BY courses.idcourse');
+        return view('/course/home',['courses' => $courses,'students'=>$students]);
     }
 
     public function info(request $request){
@@ -151,7 +156,7 @@ class CourseController extends Controller
                 'description' => $message
             ]);
 
-            return redirect('/home')->with('success','Course created');
+            return redirect('/course')->with('success','Course created');
 
             }elseif($img != null){
                 $tutor = DB::table('courses')
@@ -175,7 +180,7 @@ class CourseController extends Controller
                     $file -> move('images/imageCourse',$img);
                 }
 
-            return redirect('/home')->with('success','Course created');
+            return redirect('/course')->with('success','Course created');
             }
             
 
