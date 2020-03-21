@@ -181,9 +181,6 @@ class CourseController extends Controller
 
             return redirect('/home')->with('success','Course created');
             }
-
-
-
     }
 
 
