@@ -959,6 +959,12 @@ footer {
   text-align: center;
 }
 
+.fa-star-half-o,
+.fa-star-o,
+.fa-star{
+  color: orange;
+}
+
 .fa-trash{
   color: rgb(126, 126, 126);
 }

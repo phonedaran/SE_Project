@@ -61,8 +61,12 @@ class CourseController extends Controller
         $age = $DOB->diff(Carbon::now())->format('%y');
         $startTime =date('g:ia', strtotime($course[0]->start_time));
         $endTime =date('g:ia', strtotime($course[0]->end_time));
-
-        return view('course/courseInfo',['course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+        $avgReview = DB::table('review')->where(['idTutor'=>$idTutor])->avg('review');
+        $nReview = DB::table('review')->where(['idTutor'=>$idTutor])->count();
+        if($avgReview==null){
+            $avgReview=0;
+        }
+        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
     }
 
     public function enrolled(request $request){
@@ -88,19 +92,11 @@ class CourseController extends Controller
         return redirect()->back()->with('success','success');
     }
 
-    //
-    public function my()
-    {
-        $id=Auth::id();
-        $courses = DB::table('courses')->where(['idTutor' => $id])->get();
-        return view('myCourse', ['courses' => $courses]);
-    }
-
     public function edit()
     {
         $id=Auth::id();
         $courses = DB::table('courses')->where(['idTutor' => $id])->get();
-        return view('/course/editCourse', ['courses' => $courses]);
+        return view('course.editCourse', ['courses' => $courses]);
     }
     public function editCheck(request $request)
     {
