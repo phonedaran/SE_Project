@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <!--
+
 Template 2082 Pure Mix
+
 http://www.tooplate.com/view/2082-pure-mix
+
 -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -33,14 +36,17 @@ http://www.tooplate.com/view/2082-pure-mix
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
-	<!-- Google web font
-   ================================================== -->
+	<!-- Google web font 
+   ================================================== -->	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <style>
+
+
+
 .field-icon {
 						size:10px;
             float: right;
@@ -50,7 +56,7 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
-
+					
 .above{
 	margin-top: 5px;
 	font-size:14px;
@@ -70,8 +76,10 @@ http://www.tooplate.com/view/2082-pure-mix
 	margin-top: -0.2px;
 	border-radius: 0px;
 	width:30%;
-
+	
 }
+
+
 .btn{
 	padding: 13px 32px;
 	margin-bottom: 5px;
@@ -90,14 +98,16 @@ http://www.tooplate.com/view/2082-pure-mix
   margin-bottom: 16px;
   transition: all 0.4s ease-in-out;
 }
+
 #contact .form-control:hover {
   border-color: #f0f0f0;
 }
+
 .avartar-picker {
     padding-left: 15px;
     margin-top: 20px; }
     .avartar-picker .inputfile {
-      display: none;
+      display: none; 
     }
     .avartar-picker label {
       display: block;
@@ -112,6 +122,8 @@ http://www.tooplate.com/view/2082-pure-mix
        }
       .avartar-picker label i {
         margin-right: 3px; }
+
+
 </style>
 
 
@@ -145,14 +157,13 @@ http://www.tooplate.com/view/2082-pure-mix
               </div>
 
               <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+			  		@if (Auth:: check())
+                     	<h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  	@endif  
+                  <div class="menu-container">
                      <div class="circle dark inline">
-                     <i class="icon ion-navicon"></i>
-                     </div></h3>
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
@@ -171,9 +182,8 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                <li><a href="{{url('/course')}}">Tutor course</a></li>
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -224,7 +234,7 @@ http://www.tooplate.com/view/2082-pure-mix
   text: 'Input all requied field!'
 })
 				</script>
-
+    
 			@endif
 			@if (Session('pass'))
       <script type="text/javascript">
@@ -285,7 +295,7 @@ http://www.tooplate.com/view/2082-pure-mix
 					<h1>Edit Your Profile</h1>
 						<div class="card" style="background :">
 							<div class="contentCard">
-
+									
 								<div class="col-md-12">
 									<br>
 								@foreach($image as $img)
@@ -299,16 +309,16 @@ http://www.tooplate.com/view/2082-pure-mix
 									</label>
 								</div>
 								@endforeach
-
-
-
+									
+								
+									
 									<br>
-									<p class="col-md-6" align="left"><label><font size="3">First name*</font></label>
+									<p class="col-md-6" align="left"><label><font size="3">First name*</font></label> 
 									<input name="Fname" type="text" class="form-control"  value="{{$tu->Fname}}" required></p>
-
-									<p class="col-md-6" align="left"><label ><font size="3">Last name*</font></label>
+									
+									<p class="col-md-6" align="left"><label ><font size="3">Last name*</font></label> 
 									<input name="Lname" type="text" class="form-control"  value="{{$tu->Lname}}" required></p>
-
+								
 									<p class="col-md-6" align="left"><label for="">Gender *</label>
 									<i class="zmdi zmdi-caret-down"></i>
 									<select name="gender" class="form-control"  value="{{$tu->sex}}" required>
@@ -322,7 +332,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	                    	<input type="date" name="DOB" class="form-control" required  value="{{$tu->DOB}}" >
 									</p>
 
-									<p class="col-md-6" align="left"><label ><font size="3">Address*</font></label>
+									<p class="col-md-6" align="left"><label ><font size="3">Address*</font></label> 
 									<input name="addr" type="text" class="form-control"  value="{{$tu->address}}" required></p>
 
 									<p class="col-md-6" align="left"><label >Email*</label>
@@ -333,10 +343,10 @@ http://www.tooplate.com/view/2082-pure-mix
 
 									<p class="col-md-6" align="left"><label>Education*</label>
 												<input type="text" name="education" class="form-control" value="{{$tu->education}}" required ></p>
-
+												
 									<p class="col-md-6" align="left"><label>Partner*</label>
 												<input type="text" name="partner" class="form-control" value="{{$tu->partner}}" required></p>
-
+												
 									<p class="col-md-6" align="left"><label>Work experient*</label>
 												<input type="comment" name="work"  class="form-control" placeholder="{{$tu->work_experient}}" value="{{$tu->work_experient}}" style="height: 70px"></input>
 
@@ -347,31 +357,31 @@ http://www.tooplate.com/view/2082-pure-mix
 									<p class="col-md-12" align="left" style="font-size:20px"><b>For Changing Password</b></p><br>
 									<p class="col-md-6" align="left"><label>Old Password*</label>
 									<input id="password-field" type="password" class="form-control" name="pass" >
-
+									
 
 									<p class="col-md-6" align="left"><label>New Password*</label>
 									<input id="password-field" type="password" class="form-control" name="passNew" >
 									<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
 								</div>
 								<br>
-
+								
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
 											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
 										</div>
-
+										
 
 							</div>
 						</div>
 				</div>
 
-
+				
 			<!-- </div> -->
 		</div><br /><br /><br />
 </form>
 	</section>
-   @endforeach
-
+   @endforeach    
+		  
 
 
 <!-- Footer section
@@ -390,12 +400,12 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-
+			
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript
+<!-- Javascript 
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -422,17 +432,20 @@ if (input.attr("type") == "password") {
 	function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result)
+
 						;
                 };
+
                 reader.readAsDataURL(input.files[0]);
             }
         }
 </script>
 
-
+       
 
 @include('sweet::alert')
 </body>

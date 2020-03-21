@@ -45,7 +45,6 @@ Route::get('/admin/image','adminController@imageAdmin');
 Route::get('/admin/accepted','adminController@accepted');
 Route::get('/admin/rejected','adminController@rejected');
 Route::get('/admin/tutorList','adminController@tutorList');
-Route::get('/admin/tutorList/image','adminController@imageTutorList');
 Route::get('/admin/tutorList/fired','adminController@fired');
 
 
@@ -85,11 +84,8 @@ Route::get('/course/studentList', 'tutor\TutorController@studentList');
 Route::get('/course/studentList/deleted', 'tutor\TutorController@deletedStudent');
 Route::get('/course/deleted', 'tutor\TutorController@deleted');
 Route::get('/addCourse', 'tutor\TutorController@add');
-Route::get('/course/add/check', 'tutor\TutorController@addCheck');
-
-//Route::post('/course/add/check', 'tutor\TutorController@addCheck'); //อาจจะใช้ post
+Route::post('/course/add/check', 'tutor\TutorController@addCheck');
 Route::get('/Profile', 'tutor\TutorController@showProfile');
-Route::get('/course/add/check', 'CourseController@addCheck');
 
 
 Route::get('/test', function () {

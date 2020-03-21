@@ -31,16 +31,6 @@ class StudentRegisterController extends Controller
 
     function regcheck(request $request)
     {
-    // Alert::success('Success Title', 'Success Message');
-//     Alert::info('Info Title', 'Info Message');
-//     Alert::warning('Warning Title', 'Warning Message');
-//     Alert::error('Error Title', 'Error Message');
-
-// // Using the helper
-//     alert()->success('Title','Lorem Lorem Lorem');
-//     alert()->info('Title','Lorem Lorem Lorem');
-//     alert()->warning('Title','Lorem Lorem Lorem');
-    //alert()->error('Title','Lorem Lorem Lorem');
 
         $Fname=$request->input('Fname');
         $Lname=$request->input('Lname');
@@ -52,9 +42,9 @@ class StudentRegisterController extends Controller
     if($sId === null){$sId = 0 ;}
         $studentId=$sId +1;
 
-        $Id=user::max('id');
-    if($Id === null){$Id = 0 ;}
-        $uId=$Id +1;
+    //     $Id=user::max('id');
+    // if($Id === null){$Id = 0 ;}
+    //     $uId=$Id +1;
 
     $data = DB::select('select email from students where email=? ',[$email]);
 
@@ -81,7 +71,7 @@ class StudentRegisterController extends Controller
         );
 
         $student = DB::table('users')->insert(
-            ['id' =>$uId,
+            ['id' =>$studentId,
             'name' =>$Fname,
             'email' => $email,
             'status' => "student",

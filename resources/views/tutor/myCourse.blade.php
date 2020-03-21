@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <!--
+
 Template 2082 Pure Mix
+
 http://www.tooplate.com/view/2082-pure-mix
+
 -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -33,14 +36,17 @@ http://www.tooplate.com/view/2082-pure-mix
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
-	<!-- Google web font
-   ================================================== -->
+	<!-- Google web font 
+   ================================================== -->	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <style>
+
+
+
 .field-icon {
 						size:10px;
             float: right;
@@ -50,6 +56,9 @@ http://www.tooplate.com/view/2082-pure-mix
             position: relative;
 						z-index: 2;
 					}
+
+
+
 </style>
 
 
@@ -213,12 +222,12 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-
+			
 		</div>
 	</div>
 </footer>
 
-<!-- Javascript
+<!-- Javascript 
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -231,3 +240,4 @@ http://www.tooplate.com/view/2082-pure-mix
 @include('sweet::alert')
 </body>
 </html>
+

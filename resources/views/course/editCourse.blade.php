@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <!--
+
 Template 2082 Pure Mix
 http://www.tooplate.com/view/2082-pure-mix
+
+
 -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -33,6 +36,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
+
 	<!-- Google web font
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
@@ -41,6 +45,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <style>
+
 .field-icon {
 						size:10px;
             float: right;
@@ -55,6 +60,7 @@ http://www.tooplate.com/view/2082-pure-mix
 	margin-top: 5px;
 	font-size:14px;
 }
+
 .btn {
 	font-family: 'Source Sans Pro', sans-serif;
 	background: #f9f9fc;
@@ -71,16 +77,17 @@ http://www.tooplate.com/view/2082-pure-mix
 	border-radius: 0px;
 	width:30%;
 
-}
 .btn{
 	padding: 13px 32px;
 	margin-bottom: 5px;
 }
+
 .btn:hover {
 	background: rgb(214, 213, 210);
 	/* color:#ffffff ; */
 	/* font-weight: 400; */
 }
+
 #contact .form-control {
   background: transparent;
   border: 1px solid #eee;
@@ -90,14 +97,18 @@ http://www.tooplate.com/view/2082-pure-mix
   margin-bottom: 16px;
   transition: all 0.4s ease-in-out;
 }
+
 #contact .form-control:hover {
   border-color: #f0f0f0;
 }
+
+
 .avartar-picker {
     padding-left: 15px;
     margin-top: 20px; }
     .avartar-picker .inputfile {
       display: none;
+
     }
     .avartar-picker label {
       display: block;
@@ -112,6 +123,7 @@ http://www.tooplate.com/view/2082-pure-mix
        }
       .avartar-picker label i {
         margin-right: 3px; }
+
 </style>
 
 
@@ -134,6 +146,7 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- Navigation section
 ================================================== -->
 <div class="nav-container">
+
    <nav class="nav-inner transparent">
 
       <div class="navbar">
@@ -173,7 +186,8 @@ http://www.tooplate.com/view/2082-pure-mix
                               @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
+                                 <!-- <li><a href="#">edit course</a></li> -->
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -214,10 +228,11 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
+
 <!-- register section
 ================================================== -->
 <?php
-            $cId = $_GET['cId'];
+            $cId = $_GET['idcourse'];
         ?>
 
 				@if (Session('null'))
@@ -255,7 +270,8 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
+
 })
 				</script>
       @endif
@@ -270,9 +286,10 @@ http://www.tooplate.com/view/2082-pure-mix
 					<h1>Edit Your Course</h1>
 						<div class="card" style="background :">
 							<div class="contentCard">
-                            <p class="col-md-12" align="left">
-							<input name="cId" type="hidden" value="{{$cId}}" ></p>
 
+                            <p class="col-md-12" align="left"> 
+							<input name="cId" type="hidden" value="{{$cId}}" ></p>
+									
 								<div class="col-md-12">
 									<br>
                   <!-- style="background-image: url(images/imageProfile/{{$c->img}}) ;" -->
@@ -284,15 +301,16 @@ http://www.tooplate.com/view/2082-pure-mix
 										<i class="zmdi zmdi-camera"></i>
 										<span>Choose Picture</span>
 									</label>
-								</div>
+
+								</div> 
 									<br>
-
-									<p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label>
+								
+									<p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label> 
 									<input name="Ncourse" type="text" class="form-control"  value="{{$c->Ncourse}}" required></p>
-
-									<p class="col-md-6" align="left"><label ><font size="3">Subject*</font></label>
+									
+									<p class="col-md-6" align="left"><label ><font size="3">Subject*</font></label> 
                                     <input name="subject" type="text" class="form-control"  value="{{$c->subject}}" required></p>
-
+                                    
                                     <p class="col-md-6" align="left"><label for="">Number of students accepted*</label>
                                     <input name="maxStudent" type="number" class="form-control" value="{{$c->max_student}}" required>
 					                </p>
@@ -302,10 +320,12 @@ http://www.tooplate.com/view/2082-pure-mix
 	                    	<input type="text" name="day" class="form-control" required  value="{{$c->day}}" >
 									</p>
 
-									<p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label>
+
+									<p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label> 
 									<input name="stime" type="time" class="form-control"  value="{{$c->start_time}}" required></p>
 
-									<p class="col-md-6" align="left"><label ><font size="3">End time*</font></label>
+									<p class="col-md-6" align="left"><label ><font size="3">End time*</font></label> 
+
 									<input name="etime" type="time" class="form-control"  value="{{$c->end_time}}" required></p>
 
 									<p class="col-md-6" align="left"><label >Start date *</label>
@@ -327,7 +347,9 @@ http://www.tooplate.com/view/2082-pure-mix
 								<br>
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
+
 											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+
 										</div>
 
 							</div>
@@ -339,7 +361,9 @@ http://www.tooplate.com/view/2082-pure-mix
 </form>
     </section>
     @endif
+
    @endforeach
+
 
 
 
@@ -364,7 +388,9 @@ http://www.tooplate.com/view/2082-pure-mix
 	</div>
 </footer>
 
-<!-- Javascript
+
+<!-- Javascript 
+
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -378,11 +404,16 @@ http://www.tooplate.com/view/2082-pure-mix
 	function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+
+
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result)
+
 						;
                 };
+
+
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -393,3 +424,4 @@ http://www.tooplate.com/view/2082-pure-mix
 @include('sweet::alert')
 </body>
 </html>
+
