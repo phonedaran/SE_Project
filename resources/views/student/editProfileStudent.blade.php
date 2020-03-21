@@ -196,35 +196,35 @@ http://www.tooplate.com/view/2082-pure-mix
 		<div class="row" style="background-color : ">
 		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
 
-				@if (Session('null'))
-				<script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Input all requied field!'
-})
-				</script>
+@if (Session('null'))
+	<script type="text/javascript">
+		Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'Input all requied field!'
+		})
+	</script>
+@endif
 
-			@endif
-			@if (Session('pass'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Password is min lenght of 8'
-})
-				</script>
-			@endif
+@if (Session('pass'))
+	<script type="text/javascript">
+		Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'Password is min lenght of 8'
+		})
+	</script>
+@endif
 
-			@if (Session('mail'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'This Email is duplicate'
-})
-				</script>
-      @endif
+@if (Session('mail'))
+	<script type="text/javascript">
+		Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'This Email is duplicate'
+		})
+	</script>
+@endif
 
 @if (Session('success'))
 	<script type="text/javascript">
@@ -332,12 +332,6 @@ if (input.attr("type") == "password") {
 }
 });
 </script>
-
-
-
-
-
-
 
 @include('sweet::alert')
 </body>

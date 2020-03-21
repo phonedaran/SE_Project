@@ -99,15 +99,18 @@ class CourseController extends Controller
 
     }
 
+
     public function edit()
     {
         $id=Auth::id();
         $courses = DB::table('courses')->where(['idTutor' => $id])->get();
 
+
         return view('/course/editCourse', ['courses' => $courses]);
 
 
         return view('editCourse', ['courses' => $courses]);
+
 
 
     }
@@ -130,6 +133,7 @@ class CourseController extends Controller
             $img = $request->input('image');
 
 
+
             $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
 
 
@@ -141,12 +145,13 @@ class CourseController extends Controller
             ['Ncourse', '=', $Ncourse]
          ])->get();
 
+             
+
          if ($haveName) {
              if($cName == "[]"){
                     return redirect()->back()->with('haveName', 'The course name has already in use.');
              }                 
              }
-           
 
             if($img === null){
                 $tutor = DB::table('courses')
@@ -191,6 +196,7 @@ class CourseController extends Controller
 
             return redirect('/home')->with('success','Course created');
             }
+
 
 
 
