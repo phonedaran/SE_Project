@@ -425,86 +425,9 @@ http://www.tooplate.com/view/2082-pure-mix
                 </div>
               <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>
 
-                        <!-- iso box section -->
-                        <div class="container">
-                           <div class="row">
-
-                            <div class="wow fadeInUp col-md-12 " data-wow-delay="1.3s">
-                                <?php
-                                        // $min = $_GET['min'];
-                                        // $max = $_GET['max'];
-                                        // $subject = $_GET['subject'];
-                                        // $province = $_GET['province'];
-
-                                        // if($_GET['view'] == "Filter"){
-                                        //     echo "<br><p>ราคา : $min บาท - $max บาท </p>";
-                                        //     if($subject != ""){
-                                        //         echo "<p>วิชา : $subject</p>";
-                                        //     }
-                                        //     if($province != ""){
-                                        //         echo "<p>จังหวัด : $province</p>";
-                                        //     }
-
-                                        // }
-
-                                        // if($courses == "[]"){
-                                        //     //echo "<h1>ไม่มีคอร์สที่ต้องการ</h1>";
-                                        // }
-
-                                ?>
-                                @if ($courses == "[]")
-                                    <img src="images/form-wizard.jpg" style="width:100%;max-width:300px" class="img-responsive" alt="Blog">
-                                @endif
-                            </div>
-                            @foreach ( $courses as $c )
-                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
-                                    <div class="blog-thumb">
-                                        <a href="#"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
-                                        <a href="#"><h1>{{$c->Ncourse}}</h1></a>
-                                        <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
-                                        <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
-                                        <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
-                                        <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
-                                        <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                     </form>
-                  </div>
-                  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>
-
                   <!-- iso box section -->
                   <div class="container">
                      <div class="row">
-
-                        <div class="wow fadeInUp col-md-12 " data-wow-delay="1.3s">
-                           <?php
-                           // $min = $_GET['min'];
-                           // $max = $_GET['max'];
-                           // $subject = $_GET['subject'];
-                           // $province = $_GET['province'];
-
-                           // if($_GET['view'] == "Filter"){
-                           //     echo "<br><p>ราคา : $min บาท - $max บาท </p>";
-                           //     if($subject != ""){
-                           //         echo "<p>วิชา : $subject</p>";
-                           //     }
-                           //     if($province != ""){
-                           //         echo "<p>จังหวัด : $province</p>";
-                           //     }
-
-                           // }
-
-                           // if($courses == "[]"){
-                           //     echo "<h1>Don't have courses</h1>";
-                           // }
-
-                           ?>
-                        </div>
                         @foreach ( $courses as $c )
                         <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
                            <div class="blog-thumb">
@@ -512,13 +435,18 @@ http://www.tooplate.com/view/2082-pure-mix
                               <a href="#">
                                  <h1>{{$c->Ncourse}}</h1>
                               </a>
-                              <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
-                              <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
-                              <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
-                              <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                              @foreach ( $students as $student)
+                                 @if ($student->idcourse == $c->idcourse)
+                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : {{$student->nStudent}}/{{$c->max_student}}</p>
+                                 @endif
+                              @endforeach
+                              
+                              <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}} ~ {{$c->end_date}}</p>
+                              <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}} {{$c->start_time}} - {{$c->end_time}}</p>
                               <p onclick="fncAction1({{$c->idTutor}})" class=" col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
                               <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
-                              <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-dollar"></i> : {{$c->price}} bath</p>
                               <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
                            </div>
                         </div>
@@ -539,17 +467,14 @@ http://www.tooplate.com/view/2082-pure-mix
 
    <!-- javascript section
 ================================================== -->
-   <script type="text/javascript">
-      function fncAction0(idcourse) {
-         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); //เติม path ไปหา edit course
-      }
-   </script>
-
 <script type="text/javascript">
-      function fncAction1(idTutor) {
-         window.location.assign("/SE_Project/public/Profile?idTutor=" + idTutor); //เติม path ไปหา tutor profile
-      }
-   </script>
+   function fncAction0(idcourse) {
+      window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse);
+   }
+   function fncAction1(idTutor) {
+      window.location.assign("/SE_Project/public/Profile?idTutor=" + idTutor);
+   }
+</script>
 
    <!-- Footer section
 ================================================== -->

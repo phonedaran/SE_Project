@@ -158,14 +158,14 @@ http://www.tooplate.com/view/2082-pure-mix
               </div>
 
               <div class="navicon">
-                <div class="menu-container">
-                  <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                     @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                     @endif
+                  @if (Auth:: check())
+                     <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                  @endif
+                  <div class="menu-container">
+
                      <div class="circle dark inline">
-                     <i class="icon ion-navicon"></i>
-                     </div></h3>
+                        <i class="icon ion-navicon"></i>
+                     </div>
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
@@ -296,14 +296,15 @@ http://www.tooplate.com/view/2082-pure-mix
 									<div class="avartar-picker col-md-12" align="center" >
 										<br>
 										<p><img id="blah" src="images/imageCourse/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:200px"></p>
-									<input type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
+									<input style="display:none" type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
 									<label for="file-1">
 										<i class="zmdi zmdi-camera"></i>
-										<span>Choose Picture</span>
+                              <p class="click">Choose Picture</p>
+                              <br>
 									</label>
 
 								</div> 
-									<br>
+									
 								
 									<p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label> 
 									<input name="Ncourse" type="text" class="form-control"  value="{{$c->Ncourse}}" required></p>
@@ -347,8 +348,7 @@ http://www.tooplate.com/view/2082-pure-mix
 								<br>
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
-
-											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+											<button href="/SE_Project/public/course" class="inner button btn">Cancle</button>
 
 										</div>
 

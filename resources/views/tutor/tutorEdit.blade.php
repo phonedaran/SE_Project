@@ -261,7 +261,7 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
 })
 				</script>
       @endif
@@ -367,7 +367,7 @@ http://www.tooplate.com/view/2082-pure-mix
 								
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
-											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+											<button href="/SE_Project/public/Profile" class="inner button btn">Cancle</button>
 										</div>
 										
 
