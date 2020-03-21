@@ -35,12 +35,12 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-	<!-- Google web font 
-   ================================================== -->	
+	<!-- Google web font
+   ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-   
+
   <!-- sweet 2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </head>
 <body>
@@ -80,7 +80,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
                   <div class="list-menu">
                     <i class="icon ion-close-round close-iframe"></i>
-                    
+
                     <div class="intro-inner">
                         <ul id="nav-menu">
 
@@ -96,14 +96,14 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <li><a href="#">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="#">edit profile</a></li>
+                              <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/addCourse')}}">add course</a></li>
                                  <li><a href="#">edit course</a></li>
                               <!-- admin -->
                               @else
                                  <li><a href="#">admin area</a></li>
                               @endif
-                              
+
                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -124,7 +124,7 @@ http://www.tooplate.com/view/2082-pure-mix
                         </ul>
                         @endif
                     </div>
-                    
+
                   </div>
 
                 </div>
@@ -151,9 +151,18 @@ http://www.tooplate.com/view/2082-pure-mix
 			</div>
 
 		</div>
-	</div>		
+	</div>
 </section>
 
+@if (Session('success'))
+	<script type="text/javascript">
+		Swal.fire(
+			'Deleted!',
+			'Your file has been deleted.',
+			'success'
+			)
+	</script>
+@endif
 
 <!-- list section
 ================================================== -->
@@ -221,6 +230,7 @@ http://www.tooplate.com/view/2082-pure-mix
 									<p class="col-md-6" align="left"><b>Location :</b> {{$enroll->location}}</p>
 									<p class="col-md-6" align="left"><b>Price :</b> {{$enroll->price}} บาท</p>
                            <p class="col-md-6" align="right"><a href="#" class="btn btn-default">MORE INFO</a></p>
+                           <p class="col-md-6" align="right" onClick="fncAction({{$enroll->idcourse}})"><a href="#" class="btn" ><i class="fa fa-trash"></i></a></p>
 								</div>
 							</div>
 						</div>
@@ -250,13 +260,13 @@ http://www.tooplate.com/view/2082-pure-mix
 					<li><a href="#" class="fa fa-google-plus"></a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>
 
 
-<!-- Javascript 
+<!-- Javascript
 ================================================== -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -264,6 +274,26 @@ http://www.tooplate.com/view/2082-pure-mix
 <script src="js/imagesloaded.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
+<script type="text/javascript">
+	function fncAction (idcourse){
+		Swal.fire({
+		title: 'Are you sure?',
+		text: "You will delete this course!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+		if (result.value) {
+         setTimeout(function(){
+					window.location.replace("/SE_Project/public/student/deleteCourse?idcourse="+idcourse);
+				},2000);
+		}
+		});
+	}
+</script>
+
 
 </body>
 </html>

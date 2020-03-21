@@ -41,7 +41,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
     <style>
         /* side nav */
-
         .sidenav {
           height: 100%;
           width: 0;
@@ -107,7 +106,6 @@ http://www.tooplate.com/view/2082-pure-mix
             border-radius: 20px;
             padding-left: 15px;
         }
-
 
 
         </style>
@@ -249,20 +247,19 @@ text: 'Succecc!!'
 
                         <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
                         @if (Auth::check())
-                           <li><a href="{{url('/')}}">Home</a></li>
+                           <li><a href="{{url('/')}}">Home123</a></li>
 
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
-                                 <li><a href="{{url('/tutorEdit')}}">edit profile</a></li>
-                                 <li><a href="{{url('/myCourse')}}">My course</a></li>
-
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
+                                 <li><a href="#">edit course</a></li>
                               <!-- admin -->
                               @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -356,7 +353,6 @@ text: 'Succecc!!'
                             <p>
                                 <label>Subject</label>
 
-
                             </p>
                                 <select name="subject" id="subject" class="soflow-color">
                                     <option value="" selected >วิชา</option>
@@ -366,7 +362,6 @@ text: 'Succecc!!'
                                     <option value="คณิตศาสตร์">คณิตศาสตร์</option>
                                     <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
                                 </select>
-
                             <br>
                             <br>
                             <p>
@@ -493,9 +488,9 @@ text: 'Succecc!!'
                                 ?>
                             </div>
                             @foreach ( $courses as $c )
-                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
+                                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                                     <div class="blog-thumb">
-                                        <a href="#"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                                        <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
                                         <a href="#"><h1>{{$c->Ncourse}}</h1></a>
                                         <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
                                         <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
@@ -504,7 +499,7 @@ text: 'Succecc!!'
                                         <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
                                         <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
                                         <p class="col-md-6" align="left">ราคา {{$c->price}} บาท</p>
-                                        <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
+                                        <a href="#" class="btn btn-default">MORE INFO</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -519,16 +514,6 @@ text: 'Succecc!!'
       </div>
    </div>
 </section>
-
-<!-- javascript section
-================================================== -->
-<script type="text/javascript">
-
-   function fncAction0(idcourse){
-      window.location.replace("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
-   }
-
-</script>
 
 <!-- Footer section
 ================================================== -->
