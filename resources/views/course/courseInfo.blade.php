@@ -185,7 +185,6 @@ http://www.tooplate.com/view/2082-pure-mix
                      <h3><b>Schedue</b></h3>
                      <p>{{$course[0]->day}}<br>{{$startTime}} - {{$endTime}}</p> 
                      <hr>
-                     <hr>
                      <h3><b>Price</b></h3>
                      <p>{{$course[0]->price}} Bath</p>
                   </div>

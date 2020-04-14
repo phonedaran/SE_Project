@@ -202,15 +202,14 @@ http://www.tooplate.com/view/2082-pure-mix
                   </div>
 
                   <div class="navicon">
+                     @if (Auth:: check())
+                        <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                     @endif  
                      <div class="menu-container">
-                        <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                           @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                           @endif
-                           <div class="circle dark inline">
-                              <i class="icon ion-navicon"></i>
-                           </div>
-                        </h3>
+                        <div class="circle dark inline">
+                           <i class="icon ion-navicon"></i>
+                        </div>
+
 
                         <div class="list-menu">
                            <i class="icon ion-close-round close-iframe"></i>
@@ -299,8 +298,8 @@ http://www.tooplate.com/view/2082-pure-mix
          <div class="leftcolumn">
             <div class="card">
                <h1 style="text-align: center">about me</h1>
-               <div align="right" onClick="fncAction1({{$tutor->idTutor}})">
-                  <i class="fa fa-edit click fa-2x"></i>
+               <div align="right">
+                  <a href="/SE_Project/public/tutorEdit"><i class="fa fa-edit click fa-2x"></i></a>
                </div>
                <hr>
                <h4 style="text-align:left">Education : {{$tutor->education}}</h4>
@@ -336,79 +335,85 @@ http://www.tooplate.com/view/2082-pure-mix
                   <div class="col-sm-3">
                      <div class="rating-block">
                         <h4>Average user rating</h4>
-                        <h4 class="bold padding-bottom-7"><?php echo round($rate,1) ?> <small>/ 5</small></h4>
-
-                            @if ($rate <= 0.5)
-                                <span class="fa fa-star-half-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 0.5 && $rate <= 1)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-0 fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 1 && $rate <= 1.5)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-half-0"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 1.5 && $rate <= 2)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 2 && $rate <= 2.5)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-half-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 2.5 && $rate <= 3)
-                                <span class="fa fa-star v"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 3 && $rate <= 3.5)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-half-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 3.5 && $rate <= 4)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x" ></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 4 && $rate <= 4.5)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-half-o fa-2x"></span>
-                            @endif
-                            @if ($rate > 4.5 && $rate <= 5)
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                                <span class="fa fa-star-o fa-2x"></span>
-                            @endif
-
+                        <h4 class="bold padding-bottom-7"><?php echo round($avgReview,1) ?> <small>/ 5</small></h4>
+                        <?php
+                           if ($avgReview>=0 and $avgReview<0.5){
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=0.5 and $avgReview<1){
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=1 and $avgReview<1.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=1.5 and $avgReview<2){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=2 and $avgReview<2.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=2.5 and $avgReview<3){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=3 and $avgReview<3.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=3.5 and $avgReview<4){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=4 and $avgReview<4.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=4.5 and $avgReview<5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>  ';
+                           }?>
                         </button>
                      </div>
                   </div>
@@ -496,14 +501,14 @@ http://www.tooplate.com/view/2082-pure-mix
                      <hr />
                      <div class="review-block">
                         @foreach ($reviewList as $com)
-
                             <div class="row">
                             <div class="col-sm-3">
-                                <div class="review-block-name"><a href="#">{{$com->Fname}} {{$com->Lname}}</a></div>
-                                <div class="review-block-date">{{$com->date}}<br /></div>
+                                <div class="review-block-name"><h3>{{$com->Fname}}<br>{{$com->Lname}}</h3></div>
+                                <div class="review-block-date"><p>{{$com->date}}</p><br /></div>
                             </div>
                             <div class="col-sm-9">
-                                <div class="review-block-rate">
+                                <div class="review-block-rate" style="padding-top:18px">
+                                <span style="color: #777;font-size: 16px;letter-spacing:1px"><b>{{$com->idcourse}} - {{$com->Ncourse}}&nbsp;&nbsp;</b></span>
                                     @if ($com->review == 1)
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star-o"></span>
@@ -540,9 +545,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                         <span class="fa fa-star"></span>
                                     @endif
                                 </div>
-
-                            <div class="review-block-title">{{$com->idcourse}} - {{$com->Ncourse}}</div>
-                            <div class="review-block-description">{{$com->comment}}</div><br>
+                            <div class="review-block-description"><p>{{$com->comment}}</p></div><br>
                             </div>
                             </div>
 
@@ -555,16 +558,11 @@ http://www.tooplate.com/view/2082-pure-mix
       </div> <!-- //leftcolumn review  -->
    </div>
    <!--/row -->
-   </div><!-- /container -->
+
 
    <script type="text/javascript">
       function fncAction0(idcourse) {
          window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); 
-      }
-   </script>
-   <script type="text/javascript">
-      function fncAction1(idTutor) {
-         window.location.assign("/SE_Project/public/tutorEdit?idTutor=" + idtutor); 
       }
    </script>
 
