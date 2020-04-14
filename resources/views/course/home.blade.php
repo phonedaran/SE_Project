@@ -431,7 +431,7 @@ http://www.tooplate.com/view/2082-pure-mix
                         @foreach ( $courses as $c )
                         <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
                            <div class="blog-thumb">
-                              <a href="#"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                              <a href="#"><img src="images/{{$c->img}}" style="width:100%;max-width:300px high='100%'" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
                               <a href="#">
                                  <h1>{{$c->Ncourse}}</h1>
                               </a>
@@ -441,7 +441,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                     <p class="col-md-6" align="left"><i class="fa fa-users"></i> : {{$student->nStudent}}/{{$c->max_student}}</p>
                                  @endif
                               @endforeach
-                              
+
                               <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}} ~ {{$c->end_date}}</p>
                               <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}} {{$c->start_time}} - {{$c->end_time}}</p>
                               <p onclick="fncAction1({{$c->idTutor}})" class=" col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
