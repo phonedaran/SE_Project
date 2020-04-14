@@ -34,12 +34,11 @@ class HomeController extends Controller
         // }
         else{
             $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
-            $students= DB::select('SELECT COUNT(idstdent)
-            FROM enroll
-            GROUP BY idcourse');
-            
-            print_r ($students);
-            //return view('/course/home',['courses'=>$courses]);
+            $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+            FROM courses
+            LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+            GROUP BY courses.idcourse');
+            return view('/course/home',['courses' => $courses,'students'=>$students]);
         }
     }
 

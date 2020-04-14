@@ -260,10 +260,6 @@ http://www.tooplate.com/view/2082-pure-mix
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 380d7b2e1258f3fe171926faf54de78e465fa4a8
 
    <!-- Header section
 ================================================== -->
