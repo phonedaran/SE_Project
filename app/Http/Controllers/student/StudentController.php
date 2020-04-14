@@ -111,7 +111,9 @@ class StudentController extends Controller
         $idCourse = $request->input('idCourse');
         $rate = $request->input('rating');
         $comment = $request->input('review-comment');
-
+        if($rate===null or $idCourse===null){
+            redirect()->back()->with('null','Review incompleted');
+        }else
         DB::table('review')->insert(
             ['idTutor' => $idTutor,
             'idcourse' => $idCourse,
@@ -119,7 +121,6 @@ class StudentController extends Controller
             'review' => $rate,
             'comment' => $comment]
         );
-
-        return  redirect('/review')->with('success','Review completed');
+        return  redirect()->back()->with('pass','Review completed');
     }
 }
