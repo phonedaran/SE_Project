@@ -39,7 +39,7 @@ http://www.tooplate.com/view/2082-pure-mix
    ================================================== -->
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 </head>
 <body>
 
@@ -102,7 +102,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                   <li><a href="#">review</a></li>
                                <!-- tutor -->
                                @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                 <li><a href="{{url('/Profile')}}">Profile</a></li>
                                  <li><a href="{{url('/course')}}">Tutor course</a></li>
                                <!-- admin -->
                                @else

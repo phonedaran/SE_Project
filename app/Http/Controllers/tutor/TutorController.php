@@ -142,7 +142,7 @@ class TutorController extends Controller
         $reviewList = DB::table('review')->join('students','review.idstudent','=','students.idstudent')
         ->join('Courses','review.idcourse','=','Courses.idcourse')->where(['review.idTutor'=>$idTutor])->get();
 
-        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img, 'rate'=>$rate,
+        return view('/tutor/Profile',['tutors' => $tutor,'courses' => $course,'image' => $img, 'avgReview'=>$rate,
         'star1'=>$star1,'star2'=>$star2,'star3'=>$star3,'star4'=>$star4,'star5'=>$star5,'reviewList'=>$reviewList]);
     }
 
