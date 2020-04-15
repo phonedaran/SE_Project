@@ -60,6 +60,9 @@ Auth::routes(['verify' => true]);
 Route::get('/studentEdit', 'student\StudentController@editProfile');
 Route::post('/studentEdit/check', 'student\StudentController@editCheck');
 Route::get('/student/deleteCourse', 'CourseController@deleteCourse');
+Route::get('/student/announce', 'student\StudentController@Announce');
+Route::post('/announce/add', 'student\StudentController@AddAnnounce');
+Route::get('/announce/delete', 'student\StudentController@DeleteAnnounce');
 
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
