@@ -16,6 +16,14 @@ class CourseController extends Controller
         $this->middleware('auth', ['only' => ['add','addCheck','my','edit','editCheck']]);
     }
 
+    public function welcome(){
+         $tutors = DB::table('tutors')->orderBy('rating','desc')->take(3)->get();
+        $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
+        $idCards = DB::table('image')->get();
+        return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,'idCards' => $idCards]);
+    }
+    
+
     function filter(){
 
         $min = $_GET['min'];
@@ -66,7 +74,8 @@ class CourseController extends Controller
         if($avgReview==null){
             $avgReview=0;
         }
-        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 
+        'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
     }
 
     public function enrolled(request $request){
@@ -151,7 +160,7 @@ class CourseController extends Controller
                 'description' => $message
             ]);
 
-            return redirect('/home')->with('success','Course created');
+            return redirect('/')->with('success','Course created');
 
             }elseif($img != null){
                 $tutor = DB::table('courses')
@@ -175,7 +184,7 @@ class CourseController extends Controller
                     $file -> move('images/imageCourse',$img);
                 }
 
-            return redirect('/home')->with('success','Course created');
+            return redirect('/')->with('success','Course created');
             }
             
 

@@ -85,6 +85,7 @@ class TutorRegController extends Controller
            'work_experient' => $work,
            'education' => $education,
            'partner' => $partner,
+           'rating' => 0,
            'password' => Hash::make($pass),
            'passReal' => $pass]
         );
@@ -163,7 +164,7 @@ class TutorRegController extends Controller
             'name' => $Fname,
                 ]
              );
-             return  redirect('/home')->with('success','The customer has been stored in database');
+             return  redirect('/')->with('success','The customer has been stored in database');
         
         }else{
             $tutor = DB::table('tutors')
@@ -193,7 +194,7 @@ class TutorRegController extends Controller
                       'name' => $Fname,
             ]
              );
-             return  redirect('/home')->with('success','The customer has been stored in database');
+             return  redirect('/')->with('success','The customer has been stored in database');
         }
    
         

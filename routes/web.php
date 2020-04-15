@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/','CourseController@courseShow');
+Route::get('/','CourseController@welcome');//show หน้าแรกของ web คือหน้า welcome.blade
+Route::get('/allcourse','CourseController@courseShow');//show หน้า course
 
 Route::get('/login', function () {
     return view('login');
