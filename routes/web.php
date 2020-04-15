@@ -78,12 +78,7 @@ Auth::routes();
 //home
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/myCourse', 'CourseController@my');
-Route::get('/courseEdit', 'CourseController@edit');
-Route::post('/courseEdit/check', 'CourseController@editCheck');
-
-Route::get('/addCourse', 'CourseController@add');
-Route::get('/course', 'CourseController@fillter');
+Route::get('/filter', 'CourseController@filter');
 // Route::get('/contact', 'LoginController@index')->$this->middleware('auth'); เจาะจง route
 
 //tutor
