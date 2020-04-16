@@ -280,10 +280,10 @@ text: 'Success!!'
 
 <!-- Header section
 ================================================== -->
-   <section id="header2">
-    <h1 class="wow fadeIn" align="center" data-wow-delay="1.4s">Announce</h1><br>
+   <section id="header2" style="background-color: #f9f9f9;">
       <div class="container">
          <div class ="row">
+            <h1 class="wow fadeIn" align="center" data-wow-delay="1s">Announce</h1><br>
             <div class="pull-left" style="width:700px;">
                 <div class ="card col-md-12 ">
                     <div id="contact" >
@@ -311,13 +311,13 @@ text: 'Success!!'
                                 <input name="phone" type="text" class="form-control" maxlength="10" placeholder="เบอร์ติดต่อ" required>
 
                                 <!-- <div class="contact-submit"> -->
-                                <div class="col-md-3 col-sm-4">
+                                
+                                <div class="col-md-6 col-sm-4">
                                     <input type="submit" class="form-control submit" value="Submit" >
                                 </div>
 
-                                <div class="col-md-3 col-sm-4">
-                                    <br>
-                                    <a href="{{url('/')}}" class="btn">Cancle</a>
+                                <div class="col-md-6 col-sm-4">
+                                    <button href="{{url('/')}}" class="button btn2">Cancle</button>
                                 </div>
                         </form>
                     </div>
@@ -352,14 +352,10 @@ text: 'Success!!'
                     </div>
                     </div>
                 </div>
-            
-
             </div>
-        </div>
-         
-    </div>
-      
-    </section>
+         </div>
+      </div>
+   </section>
 
 
 <!-- Footer section
