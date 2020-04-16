@@ -16,6 +16,22 @@ class CourseController extends Controller
         $this->middleware('auth', ['only' => ['add','addCheck','my','edit','editCheck']]);
     }
 
+    public function welcome(){
+        $tutors = DB::table('tutors')->orderBy('rating','desc')->take(3)->get();
+        $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
+        $idCards = DB::table('image')->get();
+        $rate = DB::table('tutors')
+            ->update(['rating' => DB::raw("(SELECT AVG(review.review) FROM review
+                WHERE review.idTutor = tutors.idTutor)")
+            ]);
+        $rate = DB::table('tutors')
+            ->where('rating', null)
+            ->update(['rating' => 0]);
+        
+        return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,
+        'idCards' => $idCards]);
+    }
+    
     function filter(){
 
         $min = $_GET['min'];
@@ -71,7 +87,8 @@ class CourseController extends Controller
         if($avgReview==null){
             $avgReview=0;
         }
-        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 
+        'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
     }
 
     public function enrolled(request $request){
