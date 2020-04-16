@@ -325,9 +325,9 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <!-- check status -->
                                  <!-- student -->
                                  @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+                                 <li><a href="{{url('/review')}}">review</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <!-- tutor -->
                                  @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/Profile')}}">profile</a></li>

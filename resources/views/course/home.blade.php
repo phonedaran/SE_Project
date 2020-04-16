@@ -211,9 +211,9 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="{{url('/review')}}">review</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
 
@@ -431,9 +431,9 @@ http://www.tooplate.com/view/2082-pure-mix
                         @foreach ( $courses as $c )
                         <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s" style="padding-top: 25px">
                            <div class="blog-thumb">
-                              <a href="#"><img src="images/{{$c->img}}" style="width:100%;max-width:300px high='100%'" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
-                              <a href="#">
-                                 <h1>{{$c->Ncourse}}</h1>
+                              <a onclick="fncAction0({{$c->idcourse}})" class="click"><img src="images/imageCourse/{{$c->img}}" style="width:100%;max-width:300px" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                              <a onclick="fncAction0({{$c->idcourse}})">
+                                 <h1 class="click">{{$c->Ncourse}}</h1>
                               </a>
                               <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
                               @foreach ( $students as $student)
@@ -444,7 +444,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
                               <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}} ~ {{$c->end_date}}</p>
                               <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}} {{$c->start_time}} - {{$c->end_time}}</p>
-                              <p onclick="fncAction1({{$c->idTutor}})" class=" col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
+                              <p onclick="fncAction1({{$c->idTutor}})" class="click col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
                               <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
                               <p class="col-md-6" align="left"><i class="fa fa-dollar"></i> : {{$c->price}} bath</p>
                               <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
