@@ -193,9 +193,9 @@ text: 'Success!!'
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-								<li><a href="{{url('/studentEdit')}}">edit profile</a></li>
 								<li><a href="{{url('/enroll')}}">enrollment</a></li>
-								<li><a href="{{url('/review')}}">review</a></li>
+                        <li><a href="{{url('/review')}}">review</a></li>
+                        <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
 								<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
@@ -250,8 +250,9 @@ text: 'Success!!'
 
             <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
                <div class="header-thumb">
-                  <h1 class="wow fadeIn" data-wow-delay="0.4s">WELCOME TO SHARED TUTORING</h1>
-                  <h3 class="wow fadeInUp" data-wow-delay="0.4s">LEARN WITH THE BEST TUTORS</h3>
+                  <h1 class="wow fadeIn" style="padding-top:0px;" data-wow-delay="0.4s">WELCOME TO</h1>
+                  <h1 class="wow fadeIn" style="padding-top:0px;" data-wow-delay="0.4s">SHARED TUTORING</h1>
+                  <h3 class="wow fadeInUp" style="padding-top:10px;" data-wow-delay="0.4s">LEARN WITH THE BEST TUTORS</h3>
                </div>
             </div>
 
@@ -263,13 +264,13 @@ text: 'Success!!'
 <section id="feature">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
+					<div class="col-md-6 wow fadeInLeft" data-wow-delay="2s">
 						<h1 style="float:center;margin-left:100px;" class="text-uppercase">learner</h1>
                         <p style="float:center;margin-left:100px;"><i class="fa fa-circle"></i>ค้นหาติวเตอร์ที่ต้องการ</p>
                         <p style="float:center;margin-left:100px;"><i class="fa fa-circle"></i>ลงทะเบียนคอร์สเรียนผ่านระบบ</p>
                         <p style="float:center;margin-left:100px;"><i class="fa fa-circle"></i>ลงประกาศหาติวเตอร์ที่ตรงกับความต้องการ</p>
 					</div>
-					<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">
+					<div class="col-md-6 wow fadeInRight" data-wow-delay="2.5s">
                         <img src="images/reading.png" class="img-responsive" alt="feature img"
                          style="width:100%;max-width:250px;float:left;">
 					</div>
@@ -282,11 +283,11 @@ text: 'Success!!'
 		<section id="feature1">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+					<div class="col-md-6 wow fadeInUp" data-wow-delay="2.3s">
                         <img src="images/tt.png" class="img-responsive" alt="feature img" 
                         style="width:100%;max-width:250px;float:center;margin-left:100px;">
 					</div>
-					<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+					<div class="col-md-6 wow fadeInUp" data-wow-delay="2s">
 						<h1 class="text-uppercase">Tutor</h1>
                         <p><i class="fa fa-circle" ></i>เพิ่มคอร์สเรียนที่น่าสนใจ</p>
                         <p><i class="fa fa-circle"></i>รับงานสอนได้โดยตรง ไม่ต้องเสียค่าใช้จ่าย</p>
@@ -297,32 +298,47 @@ text: 'Success!!'
 
 <section id="contact">
   <div class="container">
-  @if (Auth::check())
-    @if ( Auth:: user()->status == 'student')
-    <div class="row">
-       <div class="col-md-offset-1 col-md-10 col-sm-12">
-            <p style="font-size:25px">Click to <b>Add</b> announcment</p>
-        </div>
-    </div>
-    <div class="row">
-        <a href="/SE_Project/public/student/announce" class="btn yel" style="float: center;width:20%;font-size: 15px;">
-    <b>ADD ANNOUNCEMENT</b></a></div> 
-   <br>
-    <div class="row" style="margin-bottom:10px;">
-        <i style='font-size:15px'class='fa fa-circle'></i>
-        <i style='font-size:15px'class='fa fa-circle'></i>
-        <i style='font-size:15px'class='fa fa-circle'></i>
-        <i style='font-size:15px'class='fa fa-circle'></i>
-    </div>
-    @endif
- @endif 
+      <div class="row">
+         <div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeInUp" data-wow-delay="1.8s">
+            <h1>Find your tutor</h1>
+            <h1 style="padding-top:0px;padding-bottom:20px;font-size:20px;">by announcement</h1>
+         </div>
+      </div>
 
-    <div class="row">
-       <div class="col-md-offset-1 col-md-10 col-sm-12">
-        <p style="font-size:25px">Click to <b>See</b> all announcment</p> </div>
-</div>
-<div class="row"><a href="/SE_Project/public/showAnn" class="btn" style="float: center;width:20%;font-size: 15px;"><b>ANNOUNCEMENT</b></a></div> 
-  </div>
+      @if (Auth::check())
+         @if ( Auth:: user()->status == 'student')
+         <div class="wow fadeInUp" data-wow-delay="2s">
+         <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-12">
+                  <p style="font-size:25px">Click to <b>Add</b> announcement</p>
+            </div>
+         </div>
+         <div class="row">
+            <a href="/SE_Project/public/student/announce" class="btn yel" style="float: center;width:20%;font-size: 15px;">
+         <b>ADD ANNOUNCEMENT</b></a></div> 
+         <br>
+         </div>
+
+         <div class="row wow fadeInUp" data-wow-delay="2.3s" style="margin-bottom:10px;">
+            <i style='font-size:15px'class='fa fa-circle'></i>
+            <i style='font-size:15px'class='fa fa-circle'></i>
+            <i style='font-size:15px'class='fa fa-circle'></i>
+            <i style='font-size:15px'class='fa fa-circle'></i>
+         </div>
+      
+         @endif
+      @endif 
+      <div class="wow fadeInUp" data-wow-delay="2.5s">
+         <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-12">
+               <p style="font-size:25px">Click to <b>See</b> all announcement</p> 
+            </div>
+         </div>
+         <div class="row">
+            <a href="/SE_Project/public/showAnn" class="btn" style="float: center;width:20%;font-size: 15px;"><b>ANNOUNCEMENT</b></a>
+         </div> 
+      </div>
+   </div>
 </section>
 
 
@@ -489,16 +505,14 @@ text: 'Success!!'
 </section>
 
 <section id="contact" style="background:#cecece;">
-<div class="row">
-    <div class="col-md-offset-1 col-md-5 col-sm-12">
-        <h1 style="float:right;">Register to be our tutor</h1>
-    </div>
-    <div class="col-md-offset-1 col-md-5 col-sm-12">
-        <a href="/SE_Project/public/tutorReg" class="btn" 
-        style="float: left;width:10em;font-size: 20px;">
-    <b>REGISTER</b></a>
-    </div>
-</div>
+   <div class="row wow fadeInUp" data-wow-delay="0.2s">
+      <div class="col-md-offset-1 col-md-5 col-sm-12">
+         <h1 style="float:right;padding-top:0px;">Register to be our tutor</h1>
+      </div>
+      <div class="col-md-offset-1 col-md-5 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
+         <a href="/SE_Project/public/tutorReg" class="btn" style="float: left;width:10em;font-size: 20px; line-height:38px;"><b>REGISTER</b></a>
+      </div>
+   </div>
 </section>
 
 
