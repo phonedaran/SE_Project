@@ -111,7 +111,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- Navigation section
 ================================================== -->
-<div class="nav-container">
+<div class="nav-container" style="background-color:#F4F6F7;">
    <nav class="nav-inner transparent">
 
       <div class="navbar">
@@ -143,9 +143,9 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                  <li><a href="{{url('/review')}}">review</a></li>
+                                 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
 							  	<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
@@ -186,16 +186,8 @@ http://www.tooplate.com/view/2082-pure-mix
    </nav>
 </div>
 
-
-
-
-<!-- register section
+<!-- alert section
 ================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row" style="background-color : ">
-		  <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
-
 @if (Session('null'))
 	<script type="text/javascript">
 		Swal.fire({
@@ -236,57 +228,60 @@ http://www.tooplate.com/view/2082-pure-mix
 	</script>
 @endif
 
-			  <h1>My Profile</h1>
-			<div class="contact-form">
-			@foreach($students as $student)
 
-				<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}" >
-				@csrf
-				  	<label for="firstName"><font size="3">First name*</font></label>
-					<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
-
-					<label for="lastName"><font size="3">Last name*</font></label>
-					<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
-
-					<label for="email"><font size="3">Email*</font></label>
-					<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
-
-					<label for="address"><font size="3">Address</font></label>
-					<textarea name="address"  class="form-control"  cols="10" rows="4">{{$student->address}}</textarea>
-					<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
-
-					<label for="phone" ><font size="3">Phone*</font></label>
-					<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
-
-					<!-- <div class="contact-submit"> -->
-						<div class="col-md-6 col-sm-4">
-							<input type="submit" class="form-control submit" value="Update Profile" >
-						</div>
-
-						<div class="col-md-6 col-sm-4">
-						<a href="{{url('/')}}" class="btn">Cancle</a>
-						</div>
-				</form>
-				@endforeach
-			</div>
-		  </div>
-
-			<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
-			<section id="header" class="header-five">
+<!-- register section
+================================================== -->
+<section id="contact">
 	<div class="container">
-		<!-- <div class="row"> -->
-<!--   -->
-			<div class="col-md-offset-0.8 col-md-5  col-sm-offset-0.5 col-sm-2">
-          <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="0.6s">Edit Profile</h1>
-          </div>
-			</div>
+		<div class="row" >
+		  	<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.4s">
+			  	<div class="col-md-6">
+					<h1>My Profile</h1>
+					<div class="contact-form">
+						@foreach($students as $student)
+							<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}" >
+							@csrf
+								<label for="firstName"><font size="3">First name*</font></label>
+								<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
 
-		<!-- </div> -->
-	</div>
-</section>
-			</div>
+								<label for="lastName"><font size="3">Last name*</font></label>
+								<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
 
+								<label for="email"><font size="3">Email*</font></label>
+								<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
+
+								<label for="address"><font size="3">Address</font></label>
+								<textarea name="address"  class="form-control"  cols="10" rows="4">{{$student->address}}</textarea>
+								<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
+
+								<label for="phone" ><font size="3">Phone*</font></label>
+								<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
+
+								<!-- <div class="contact-submit"> -->
+								<div class="col-md-6 col-sm-4">
+									<input type="submit" class="form-control submit" value="Update" >
+								</div>
+
+								<div class="col-md-6 col-sm-4">
+									<a href="{{url('/')}}" class="btn">Cancle</a>
+								</div>
+							</form>
+						@endforeach
+					</div>
+				</div>
+
+				<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
+					<section id="header" class="header-five">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-8  col-sm-offset-0.5 col-sm-2">
+								<div class="header-thumb">
+									<h1 class="wow fadeIn" data-wow-delay="0.6s">Edit Profile</h1>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+		  	</div>
 		</div>
 	 </div>
 </section>

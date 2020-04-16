@@ -136,7 +136,7 @@ http://www.tooplate.com/view/2082-pure-mix
         Swal.fire({
             icon: 'success',
             title: 'Completed',
-            text: "you've just reviewed the course"
+            text: "you've just reviewed the tutor"
         })
     </script>
 @endif
@@ -145,7 +145,7 @@ http://www.tooplate.com/view/2082-pure-mix
         Swal.fire({
             icon: 'error',
             title: 'Wrong!!',
-            text: "Try to review the course again"
+            text: "Try to review the tutor again"
         })
     </script>
 @endif
@@ -184,9 +184,9 @@ http://www.tooplate.com/view/2082-pure-mix
                                 <!-- check status -->
                                 <!-- student -->
                                 @if ( Auth:: user()->status == 'student')
-                                    <li><a href="#">edit profile</a></li>
                                     <li><a href="{{url('/enroll')}}">enrollment</a></li>
                                     <li><a href="{{url('/review')}}">review</a></li>
+                                    <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                                 <!-- tutor -->
                                 @elseif ( Auth:: user()->status == 'tutor')
                                     <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
@@ -238,11 +238,10 @@ http://www.tooplate.com/view/2082-pure-mix
                                 <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
                                     <div class="header-thumb">
                                         <h1 class="wow fadeIn" data-wow-delay="0.6s">review</h1>
-                                        <h3 class="wow fadeInUp" data-wow-delay="0.9s">Let's review tutor.</h3>
+                                        <h3 class="wow fadeInUp" data-wow-delay="0.9s">Let's review your tutor</h3>
                                     </div>
                                 </div>
                             </div>
-
                     </section>
                 </div>
                 <div class="col-md-6 col-sm-4" style="top:-40px;">
