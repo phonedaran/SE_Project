@@ -232,137 +232,113 @@ http://www.tooplate.com/view/2082-pure-mix
 <!-- register section
 ================================================== -->
 <?php
-            $cId = $_GET['idcourse'];
-        ?>
+   $cId = $_GET['idcourse'];
+?>
 
-				@if (Session('null'))
-				<script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Input all requied field!'
-})
-				</script>
-
-			@endif
-			@if (Session('haveName'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'The course name has already in use.'
-})
-				</script>
-			@endif
-
-			@if (Session('mail'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'This Email is duplicate'
-})
-				</script>
-      @endif
-
+@if (Session('null'))
+   <script type="text/javascript">
+		Swal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'Input all requied field!'
+   })
+	</script>
+@endif	
+@if (Session('haveName'))
+   <script type="text/javascript">
+		Swal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'The course name has already in use.'
+      })
+   </script>
+@endif
+@if (Session('mail'))
+   <script type="text/javascript">
+		Swal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'This Email is duplicate'
+      })
+	</script>
+@endif
 @if (Session('success'))
-      <script type="text/javascript">
-				Swal.fire({
-  icon: 'success',
-  title: 'OK',
-  text: 'Success!!'
-
-})
-				</script>
-      @endif
+   <script type="text/javascript">
+		Swal.fire({
+         icon: 'success',
+         title: 'OK',
+         text: 'Success!!'
+      })
+	</script>
+@endif
 
 @foreach($courses as $c)
 @if($c->idcourse == $cId )
-			<section id="contact">
-			<form action="{{ URL::to('/courseEdit/check') }}" method ="post" enctype="multipart/form-data">
-				{{csrf_field()}}
+	<section id="contact">
 		<div class="container">
 				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
 					<h1>Edit Your Course</h1>
 						<div class="card" style="background :">
 							<div class="contentCard">
-
-                            <p class="col-md-12" align="left"> 
-							<input name="cId" type="hidden" value="{{$cId}}" ></p>
+                        <p class="col-md-12" align="left"> 
+                        <form action="{{ URL::to('/courseEdit/check') }}" method ="post" enctype="multipart/form-data">
+				               {{csrf_field()}}
+							      <input name="cId" type="hidden" value="{{$cId}}" ></p>
+								   
+                           <div class="col-md-12"><br>
+									   <div class="avartar-picker col-md-12" align="center" >
+										   <br>
+										   <p><img id="blah" src="images/imageCourse/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:200px"></p>
+									      <input style="display:none" type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
+									      <label for="file-1"><i class="zmdi zmdi-camera"></i><p class="click">Choose Picture</p><br></label>
+								      </div> 
+									   <p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label> 
+									   <input name="Ncourse" type="text" class="form-control"  value="{{$c->Ncourse}}" required></p>
 									
-								<div class="col-md-12">
-									<br>
-                  <!-- style="background-image: url(images/imageProfile/{{$c->img}}) ;" -->
-									<div class="avartar-picker col-md-12" align="center" >
-										<br>
-										<p><img id="blah" src="images/imageCourse/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:200px"></p>
-									<input style="display:none" type="file" onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
-									<label for="file-1">
-										<i class="zmdi zmdi-camera"></i>
-                              <p class="click">Choose Picture</p>
-                              <br>
-									</label>
-
-								</div> 
-									
-								
-									<p class="col-md-6" align="left"><label><font size="3">Name Course*</font></label> 
-									<input name="Ncourse" type="text" class="form-control"  value="{{$c->Ncourse}}" required></p>
-									
-									<p class="col-md-6" align="left"><label ><font size="3">Subject*</font></label> 
-                                    <input name="subject" type="text" class="form-control"  value="{{$c->subject}}" required></p>
+									   <p class="col-md-6" align="left"><label ><font size="3">Subject*</font></label> 
+                              <input name="subject" type="text" class="form-control"  value="{{$c->subject}}" required></p>
                                     
-                                    <p class="col-md-6" align="left"><label for="">Number of students accepted*</label>
-                                    <input name="maxStudent" type="number" class="form-control" value="{{$c->max_student}}" required>
-					                </p>
+                              <p class="col-md-6" align="left"><label for="">Number of students accepted*</label>
+                              <input name="maxStudent" type="number" class="form-control" value="{{$c->max_student}}" required></p>
 
-									<p class="col-md-6" align="left">
-									<label for="">Day*</label>
-	                    	<input type="text" name="day" class="form-control" required  value="{{$c->day}}" >
-									</p>
+									   <p class="col-md-6" align="left"><label for="">Day*</label>
+	                    	      <input type="text" name="day" class="form-control" required  value="{{$c->day}}" ></p>
 
 
-									<p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label> 
-									<input name="stime" type="time" class="form-control"  value="{{$c->start_time}}" required></p>
+									   <p class="col-md-6" align="left"><label ><font size="3">Start time*</font></label> 
+									   <input name="stime" type="time" class="form-control"  value="{{$c->start_time}}" required></p>
 
-									<p class="col-md-6" align="left"><label ><font size="3">End time*</font></label> 
+									   <p class="col-md-6" align="left"><label ><font size="3">End time*</font></label>
+                              <input name="etime" type="time" class="form-control"  value="{{$c->end_time}}" required></p>
 
-									<input name="etime" type="time" class="form-control"  value="{{$c->end_time}}" required></p>
+									   <p class="col-md-6" align="left"><label >Start date *</label>
+	                    		   <input type="date" name="startDate" class="form-control" value="{{$c->start_date}}" required></p>
 
-									<p class="col-md-6" align="left"><label >Start date *</label>
-	                    		<input type="date" name="startDate" class="form-control" value="{{$c->start_date}}" required></p>
+									   <p class="col-md-6" align="left"><label>End date*</label>
+									   <input type="date" name="endDate" class="form-control" value="{{$c->end_date}}" required ></p>
 
-									<p class="col-md-6" align="left"><label>End date*</label>
-									<input type="date" name="endDate" class="form-control" value="{{$c->end_date}}" required ></p>
+									   <p class="col-md-6" align="left"><label>Location*</label>
+										<input type="text" name="location"  class="form-control" value="{{$c->location}}" style="height: 70px" required></input>
 
-									<p class="col-md-6" align="left"><label>Location*</label>
-												<input type="text" name="location"  class="form-control" value="{{$c->location}}" style="height: 70px" required></input>
+									   <p class="col-md-6" align="left"><label>Price*</label>
+										<input type="number" name="price"  class="form-control" value="{{$c->price}}"  style="height: 70px" required></input>
 
-									<p class="col-md-6" align="left"><label>Price*</label>
-												<input type="number" name="price"  class="form-control" value="{{$c->price}}"  style="height: 70px" required></input>
+                              <p class="col-md-12" align="left"><label>Description*</label>
+								      <input type="text" name="description" class="form-control" value="{{$c->description}}" style="height: 70px" required></p>
 
-                                                <p class="col-md-12" align="left"><label>Description*</label>
-								            <input type="text" name="description" class="form-control" value="{{$c->description}}" style="height: 70px" required></p>
-
-								</div>
-								<br>
-										<div id="outer" >
-											<input type="submit" class="inner button " value="Save" >
-											<button href="/SE_Project/public/course" class="inner button btn">Cancle</button>
-
-										</div>
-
+                              <p class="col-md-12" align="left"></p>
+									   <input style="width:40%;margin-left:300px;" type="submit" class="button col-md-6" align="center" value="Save">
+								   
+                           </div>
+                        </form>	
+                        <button style="width:39%;margin-left:315px;" class="button btn" onclick="window.location.href = '{{url('/course')}}';">Cancle</button>	
 							</div>
 						</div>
 				</div>
-
-
 		</div><br /><br /><br />
-</form>
-    </section>
-    @endif
-
-   @endforeach
+   </section>
+@endif
+@endforeach
 
 
 

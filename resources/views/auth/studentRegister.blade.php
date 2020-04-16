@@ -262,7 +262,7 @@ http://www.tooplate.com/view/2082-pure-mix
 						</div>
 						<!--  -->
 						<div class="col-md-6 col-sm-4">
-						<a href="/SE_Project/public/home" class="btn">Cancle</a>
+						<a href="/SE_Project/public/" class="btn">Cancle</a>
 						<!-- <input type="submit" stlye="background-color:pink;" class="form-control submit" value="Cancle" onClick="this.form.action='{{ URL::to('/main/employee') }}'; submit()">  -->
 						</div>
 
