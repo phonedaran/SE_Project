@@ -364,20 +364,16 @@ text: 'Success!!'
             <div class="swiper-slide ">
                         <div class="wow fadeInUp col-md-11 col-sm-10 " data-wow-delay="0.8s" style="padding-top: 25px">
                            <div class="blog-thumb">
-                              <a onclick="fncAction0({{$c->idcourse}})" class="click"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
-                              <h1 onclick="fncAction0({{$c->idcourse}})" class="text click">{{$c->Ncourse}}</h1>
-                              
-                              <p class="col-md-6" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
-                              @foreach ( $students as $student)
-                                 @if ($student->idcourse == $c->idcourse)
-                                    <p class="col-md-6" align="left"><i class="fa fa-users"></i> : {{$student->nStudent}}/{{$c->max_student}}</p>
-                                 @endif
-                              @endforeach
-                              <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}} ~ {{$c->end_date}}</p>
-                              <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : : {{$c->day}} {{$c->start_time}} - {{$c->end_time}}</p>
-                              <p onclick="fncAction1({{$c->idTutor}})" class="col-md-12 click" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
-                              <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
-                              <p class="col-md-6" align="left"><i class="fa fa-dollar"></i> : {{$c->price}} bath</p>
+                              <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                              <h1 class="text">{{$c->Ncourse}}</h1>
+
+                              <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                              <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+                              <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
+                              <p class="col-md-12" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
+                              <p class="col-md-12" align="left">ราคา {{$c->price}} บาท</p>
                               <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
                            </div>
                         </div>
@@ -628,3 +624,4 @@ var swiper = new Swiper('.swiper-container', {
 </body>
 
 </html>
+
