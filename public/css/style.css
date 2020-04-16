@@ -707,6 +707,7 @@ a.icon {
   color: #ffffff;
 }
 
+
 #single-post blockquote {
   margin-top: 32px;
   letter-spacing: 2px;
@@ -823,6 +824,8 @@ a.icon {
   background: #444;
 }
 
+
+
 .button {
   background-color: #4CAF50; /* Green */
   border: none;
@@ -836,6 +839,22 @@ a.icon {
   margin: 4px 2px;
   transition: all 0.4s ease-in-out;
   cursor: pointer;
+}
+
+.btn2{
+  
+  background-color: #f3f3f3;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  transition: all 0.4s ease-in-out;
+  margin-top: 10px;
+  width:100%;
+  height: 50px;
+}
+.btn2:hover {
+  background: #e4e4e4;
 }
 
 .button0 {

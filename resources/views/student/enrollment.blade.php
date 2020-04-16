@@ -89,9 +89,9 @@ http://www.tooplate.com/view/2082-pure-mix
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
                                  <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+								 <li><a href="{{url('/review')}}">review</a></li>
+								 <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
@@ -139,7 +139,8 @@ http://www.tooplate.com/view/2082-pure-mix
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="1.6s">Enrollment</h1>
+			  <h1 class="wow fadeIn" data-wow-delay="1.6s">Enrollment</h1>
+			  <h3 class="wow fadeInUp" data-wow-delay="0.9s">all of your courses</h3>
           </div>
 			</div>
 
@@ -168,22 +169,28 @@ http://www.tooplate.com/view/2082-pure-mix
 						@foreach ($enrolls as $enroll)
 						<div class="card col-md-12 col-sm-12">
 							<div class="contentCard">
-                        <h4 class="col-md-12" align="left"><b>{{$enroll->Ncourse}}</b></h4>
-                        <div class="col-md-3" align="center">
-                           <br>
-                           <img src="images/{{$enroll->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:190px"></p>
-                           <br>
-                        </div>
-								<div class="col-md-9">
-                           <br>
+								<div class="col-md-12">
+									<div class="col-md-8" align="left" >
+										<h1 style="font-size:25px;" class="click" onclick="fncAction0({{$enroll->idcourse}})"><b>{{$enroll->Ncourse}}</b></h1>
+									</div>
+									<div class="col-md-2"></div>
+									<div class="col-md-2" align="right" style="top:20px;">
+										<a href="#" class="click" onClick="fncAction({{$enroll->idcourse}})"><i class="fa fa-trash"></i></a>
+									</div>
+								</div>
+								<div class="col-md-3" align="center">
+								<br>
+								<img src="images/{{$enroll->img}}" onerror="this.src='images/blog-img3.jpg'" style="width:100%;max-width:190px"></p>
+								<br>
+								</div>
+								<div class="col-md-9"style="top:35px;">
+									
 									<p class="col-md-6" align="left"><b>Subject :</b> {{$enroll->subject}}</p>
 									<p class="col-md-6" align="left"><b>Date :</b> {{$enroll->start_date}}&nbsp;To&nbsp;{{$enroll->end_date}}</p>
 									<p class="col-md-6" align="left"><b>Time :</b> {{$enroll->start_time}} - {{$enroll->end_time}}</p>
-									<p class="col-md-6" align="left"><b>Tutor :</b> {{$enroll->Fname}}&nbsp;&nbsp;{{$enroll->Lname}}</p>
+									<p class="col-md-6 click" align="left" onclick="fncAction1({{$enroll->idTutor}})"><b>Tutor :</b> {{$enroll->Fname}}&nbsp;&nbsp;{{$enroll->Lname}}</p>
 									<p class="col-md-6" align="left"><b>Location :</b> {{$enroll->location}}</p>
 									<p class="col-md-6" align="left"><b>Price :</b> {{$enroll->price}} บาท</p>
-                           <p class="col-md-6" align="right"><a onclick="fncAction0({{$enroll->idcourse}})" class="btn btn-default">MORE INFO</a></p>
-                           <p class="col-md-6" align="right" onClick="fncAction({{$enroll->idcourse}})"><a href="#" class="btn" ><i class="fa fa-trash"></i></a></p>
 								</div>
 							</div>
 						</div>
@@ -247,7 +254,10 @@ http://www.tooplate.com/view/2082-pure-mix
 		});
 	}
    function fncAction0(idcourse){
-      window.location.assign("/SE_Project/public/courseInformation?idcourse="+idcourse); //เติม path ไปหา edit course
+      	window.location.assign("/SE_Project/public/courseInformation?idcourse="+idcourse);
+   }
+   function fncAction1(idTutor){
+		window.location.assign("/SE_Project/public/Profile?idTutor="+idTutor);
    }
 </script>
 

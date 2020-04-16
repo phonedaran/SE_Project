@@ -191,11 +191,11 @@ display:block;
 									<td class="column1">{{$a->level}}</td>
 									<td class="column4">{{$a->sex}}</td>
 									<td class="column3">{{$a->location}}</td>
-									<td class="column2 click">{{$a->announce}}</td>
+									<td class="column2">{{$a->announce}}</td>
                                     <td class="column5">{{$a->date}}</td>
                                     @if (Auth::check())
                                     @if ( Auth:: user()->status == 'tutor')
-                                    <td class="column6 click">
+                                    <td class="column6">
                                         <a class="clicker" tabindex="1">contact</a>
                                         <div class="hiddendiv">{{$a->contact}}</div>
                                         </td>
