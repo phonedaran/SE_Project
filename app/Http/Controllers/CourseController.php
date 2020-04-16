@@ -57,18 +57,20 @@ class CourseController extends Controller
                 ->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
             }
         }
+
         return view('/course/home',['courses' => $courses]);
     }
 
     public function courseShow(){
-        session_start();
-        $_session['filter'] = false;
+        $id = Auth::id();
         $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
 
         $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
                                 FROM courses
                                 LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
                                 GROUP BY courses.idcourse');
+
+
         return view('/course/home',['courses' => $courses,'students'=>$students]);
     }
 
@@ -137,9 +139,9 @@ class CourseController extends Controller
             $message = $request->input('description');
             $cId = $request->input('cId');
             $img = $request->input('image');
-             
+
             $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
-             
+
              $cName = DB::table('courses')
          ->select('Ncourse')
          ->where([
@@ -147,15 +149,15 @@ class CourseController extends Controller
             ['idcourse', '=', $cId],
             ['Ncourse', '=', $Ncourse]
          ])->get();
-             
+
          if ($haveName) {
              if($cName == "[]"){
                     return redirect()->back()->with('haveName', 'The course name has already in use.');
              }
-                 
+
              }
-           
-            
+
+
             if($img === null){
                 $tutor = DB::table('courses')
         ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
@@ -199,9 +201,9 @@ class CourseController extends Controller
 
             return redirect('/course')->with('success','Course created');
             }
-            
 
-            
+
+
     }
 
 

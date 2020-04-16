@@ -441,7 +441,7 @@ http://www.tooplate.com/view/2082-pure-mix
                                     <p class="col-md-6" align="left"><i class="fa fa-users"></i> : {{$student->nStudent}}/{{$c->max_student}}</p>
                                  @endif
                               @endforeach
-                              
+
                               <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}} ~ {{$c->end_date}}</p>
                               <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}} {{$c->start_time}} - {{$c->end_time}}</p>
                               <p onclick="fncAction1({{$c->idTutor}})" class="click col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
