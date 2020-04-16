@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--
+	<!--
 Template 2082 Pure Mix
 http://www.tooplate.com/view/2082-pure-mix
 -->
@@ -34,63 +34,69 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Google web font
    ================================================== -->
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-<style>
-.field-icon {
-						size:10px;
-            float: right;
-            padding-right: 20px;
-            /* margin-left: -25px; */
-            margin-top: -52px;
-            position: relative;
-						z-index: 2;
-					}
-.above{
-	margin-top: 5px;
-	font-size:14px;
-}
-.btn {
-	font-family: 'Source Sans Pro', sans-serif;
-	background: #f9f9fc;
-	/* rgb(156, 150, 140) */
-	border-color: #111112;
-	/* transparent */
-  color:#111112 ;
-	height: 47px;
-	font-size: 16px;
-  font-weight: 525;
-  letter-spacing: 1px;
-  transition: all 0.4s ease-in-out;
-	margin-top: 11px;
-	border-radius: 0px;
-	width:100%;
-}
-.btn{
-	padding: 13px 32px;
-	margin-bottom: 5px;
-}
-.btn:hover {
-	background: rgb(214, 213, 210);
-	/* color:#ffffff ; */
-	/* font-weight: 400; */
-}
-#contact .form-control {
-  background: transparent;
-  border: 1px solid #eee;
-  border-radius: 0px;
-  box-shadow: none;
-  font-size: 16px;
-  margin-bottom: 16px;
-  transition: all 0.4s ease-in-out;
-}
-#contact .form-control:hover {
-  border-color: #f0f0f0;
-}
-</style>
+	<style>
+		.field-icon {
+			size: 10px;
+			float: right;
+			padding-right: 20px;
+			/* margin-left: -25px; */
+			margin-top: -52px;
+			position: relative;
+			z-index: 2;
+		}
+
+		.above {
+			margin-top: 5px;
+			font-size: 14px;
+		}
+
+		.btn {
+			font-family: 'Source Sans Pro', sans-serif;
+			background: #f9f9fc;
+			/* rgb(156, 150, 140) */
+			border-color: #111112;
+			/* transparent */
+			color: #111112;
+			height: 47px;
+			font-size: 16px;
+			font-weight: 525;
+			letter-spacing: 1px;
+			transition: all 0.4s ease-in-out;
+			margin-top: 11px;
+			border-radius: 0px;
+			width: 100%;
+		}
+
+		.btn {
+			padding: 13px 32px;
+			margin-bottom: 5px;
+		}
+
+		.btn:hover {
+			background: rgb(214, 213, 210);
+			/* color:#ffffff ; */
+			/* font-weight: 400; */
+		}
+
+		#contact .form-control {
+			background: transparent;
+			border: 1px solid #eee;
+			border-radius: 0px;
+			box-shadow: none;
+			font-size: 16px;
+			margin-bottom: 16px;
+			transition: all 0.4s ease-in-out;
+		}
+
+		#contact .form-control:hover {
+			border-color: #f0f0f0;
+		}
+	</style>
 
 
 </head>
@@ -100,16 +106,16 @@ http://www.tooplate.com/view/2082-pure-mix
 <body>
 
 
-<!-- Preloader section
+	<!-- Preloader section
 ================================================== -->
-<div class="preloader">
+	<div class="preloader">
 
-	<div class="sk-spinner sk-spinner-pulse"></div>
+		<div class="sk-spinner sk-spinner-pulse"></div>
 
-</div>
+	</div>
 
 
-<!-- Navigation section
+	<!-- Navigation section
 ================================================== -->
 <div class="nav-container" style="background-color:#F4F6F7;">
    <nav class="nav-inner transparent">
@@ -186,86 +192,100 @@ http://www.tooplate.com/view/2082-pure-mix
    </nav>
 </div>
 
-<!-- alert section
+
+
+
+
+
+
+	<!-- register section
 ================================================== -->
-@if (Session('null'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'error',
-		title: 'Oops...',
-		text: 'Input all requied field!'
-		})
-	</script>
-@endif
+	<section id="contact">
+		<div class="container">
+			<div class="row" style="background-color : ">
+				<div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.4s">
 
-@if (Session('pass'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'error',
-		title: 'Oops...',
-		text: 'Password is min lenght of 8'
-		})
-	</script>
-@endif
+					@if (Session('null'))
+					<script type="text/javascript">
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Input all requied field!'
+						})
+					</script>
+					@endif
 
-@if (Session('mail'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'error',
-		title: 'Oops...',
-		text: 'This Email is duplicate'
-		})
-	</script>
-@endif
+					@if (Session('pass'))
+					<script type="text/javascript">
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Password is min lenght of 8'
+						})
+					</script>
+					@endif
 
-@if (Session('success'))
-	<script type="text/javascript">
-		Swal.fire({
-		icon: 'success',
-		title: 'OK!',
-		text: 'Update complete!!'
-		})
-	</script>
-@endif
+					@if (Session('mail'))
+					<script type="text/javascript">
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'This Email is duplicate'
+						})
+					</script>
+					@endif
 
+					@if (Session('success'))
+					<script type="text/javascript">
+						Swal.fire({
+							icon: 'success',
+							title: 'OK!',
+							text: 'Update complete!!'
+						})
+					</script>
+					@endif
 
-<!-- register section
-================================================== -->
-<section id="contact">
-	<div class="container">
-		<div class="row" >
-		  	<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.4s">
-			  	<div class="col-md-6">
 					<h1>My Profile</h1>
 					<div class="contact-form">
 						@foreach($students as $student)
-							<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}" >
+
+						<form id="contact-form" name="frmhot" method="POST" action="{{ URL::to('/studentEdit/check') }}">
 							@csrf
-								<label for="firstName"><font size="3">First name*</font></label>
-								<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
+							<label for="firstName">
+								<font size="3">First name*</font>
+							</label>
+							<input name="Fname" type="text" class="form-control" value="{{$student->Fname}}" placeholder="Your Frist Name" required>
 
-								<label for="lastName"><font size="3">Last name*</font></label>
-								<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
+							<label for="lastName">
+								<font size="3">Last name*</font>
+							</label>
+							<input name="Lname" type="text" class="form-control" value="{{$student->Lname}}" placeholder="Your Last Name" required>
 
-								<label for="email"><font size="3">Email*</font></label>
-								<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
+							<label for="email">
+								<font size="3">Email*</font>
+							</label>
+							<input name="email" type="email" class="form-control" value="{{$student->email}}" placeholder="Your Email" required readonly>
 
-								<label for="address"><font size="3">Address</font></label>
-								<textarea name="address"  class="form-control"  cols="10" rows="4">{{$student->address}}</textarea>
-								<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
+							<label for="address">
+								<font size="3">Address</font>
+							</label>
+							<textarea name="address" class="form-control" cols="10" rows="4">{{$student->address}}</textarea>
+							<!-- <input name="address" type="text" class="form-control" value="{{$student->address}}" placeholder="Your Address" required> -->
 
-								<label for="phone" ><font size="3">Phone*</font></label>
-								<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
+							<label for="phone">
+								<font size="3">Phone*</font>
+							</label>
+							<input name="phone" type="text" class="form-control" value="{{$student->phone}}" placeholder="Your Phon number" required>
 
-								<!-- <div class="contact-submit"> -->
-								<div class="col-md-6 col-sm-4">
-									<input type="submit" class="form-control submit" value="Update" >
-								</div>
+							<!-- <div class="contact-submit"> -->
+							<div class="col-md-6 col-sm-4">
+								<input type="submit" class="form-control submit" value="Update Profile">
+							</div>
 
-								<div class="col-md-6 col-sm-4">
-									<a href="{{url('/')}}" class="btn">Cancle</a>
-								</div>
-							</form>
+							<div class="col-md-6 col-sm-4">
+								<a href="{{url('/')}}" class="btn">Cancle</a>
+							</div>
+						</form>
 						@endforeach
 					</div>
 				</div>
@@ -283,51 +303,51 @@ http://www.tooplate.com/view/2082-pure-mix
 				</div>
 		  	</div>
 		</div>
-	 </div>
-</section>
+	</section>
 
-<!-- Footer section
+	<!-- Footer section
 ================================================== -->
-<footer>
-	<div class="container">
-		<div class="row">
+	<footer>
+		<div class="container">
+			<div class="row">
 
-			<div class="col-md-12 col-sm-12">
-				<p class="wow fadeInUp"  data-wow-delay="0.3s">Shared Tutoring by Teletubbies - Software Engineering 2020</p>
-				<ul class="social-icon wow fadeInUp"  data-wow-delay="0.6s">
-					<li><a href="#" class="fa fa-facebook"></a></li>
-					<li><a href="#" class="fa fa-twitter"></a></li>
-					<li><a href="#" class="fa fa-dribbble"></a></li>
-					<li><a href="#" class="fa fa-behance"></a></li>
-					<li><a href="#" class="fa fa-google-plus"></a></li>
-				</ul>
+				<div class="col-md-12 col-sm-12">
+					<p class="wow fadeInUp" data-wow-delay="0.3s">Shared Tutoring by Teletubbies - Software Engineering 2020</p>
+					<ul class="social-icon wow fadeInUp" data-wow-delay="0.6s">
+						<li><a href="#" class="fa fa-facebook"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-dribbble"></a></li>
+						<li><a href="#" class="fa fa-behance"></a></li>
+						<li><a href="#" class="fa fa-google-plus"></a></li>
+					</ul>
+				</div>
+
 			</div>
-
 		</div>
-	</div>
-</footer>
+	</footer>
 
-<!-- Javascript
+	<!-- Javascript
 ================================================== -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/custom.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/custom.js"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
-	$(".toggle-password").click(function() {
-$(this).toggleClass("fa-eye fa-eye-slash");
-var input = $($(this).attr("toggle"));
-if (input.attr("type") == "password") {
-	input.attr("type", "text");
-} else {
-	input.attr("type", "password");
-}
-});
-</script>
+	<script>
+		$(".toggle-password").click(function() {
+			$(this).toggleClass("fa-eye fa-eye-slash");
+			var input = $($(this).attr("toggle"));
+			if (input.attr("type") == "password") {
+				input.attr("type", "text");
+			} else {
+				input.attr("type", "password");
+			}
+		});
+	</script>
 
-@include('sweet::alert')
+	@include('sweet::alert')
 </body>
+
 </html>
