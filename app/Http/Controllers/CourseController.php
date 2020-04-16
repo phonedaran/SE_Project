@@ -27,11 +27,11 @@ class CourseController extends Controller
         $rate = DB::table('tutors')
             ->where('rating', null)
             ->update(['rating' => 0]);
-        
+
         return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,
         'idCards' => $idCards]);
     }
-    
+
     function filter(){
 
         $min = $_GET['min'];
@@ -58,12 +58,23 @@ class CourseController extends Controller
             }
         }
 
-        return view('/course/home',['courses' => $courses]);
+        $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+                                FROM courses
+                                LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+                                GROUP BY courses.idcourse');
+
+        return view('/course/home',['courses' => $courses,'students'=>$students]);
     }
 
     public function courseShow(){
         $id = Auth::id();
-        $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
+        if(Auth:: user()->status == 'student'){
+            $courses = DB::select("SELECT * FROM courses
+                                    LEFT JOIN tutors ON courses.idTutor = tutors.idTutor
+                                    WHERE idcourse NOT IN (SELECT idcourse FROM enroll WHERE idstudent = '$id')");
+        }else{
+            $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
+        }
 
         $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
                                 FROM courses
@@ -89,7 +100,7 @@ class CourseController extends Controller
         if($avgReview==null){
             $avgReview=0;
         }
-        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 
+        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor,
         'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
     }
 
