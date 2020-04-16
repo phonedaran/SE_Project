@@ -167,4 +167,9 @@ class StudentController extends Controller
         return redirect()->back()->with('success','success');
     }
 
+    public function showAnnounce(){
+        // $ann = DB::table('announces')->get();
+        $ann = announce::paginate(25);
+        return view('/course/showannounce',['ann' => $ann]);
+    }
 }
