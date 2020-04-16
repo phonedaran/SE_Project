@@ -420,6 +420,17 @@ a.icon {
   padding-bottom: 100px;
 }
 
+#header2 {
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  background: #ffffff;
+  border: 10px solid #f9f9f9;
+  text-align: center;
+  padding-top: 110px;
+  padding-bottom: 100px;
+}
+
 #header .header-thumb {
   background: #ffffff;
   border: 10px solid #f9f9f9;

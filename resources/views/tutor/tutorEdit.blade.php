@@ -261,7 +261,7 @@ http://www.tooplate.com/view/2082-pure-mix
 				Swal.fire({
   icon: 'success',
   title: 'OK',
-  text: 'Succecc!!'
+  text: 'Success!!'
 })
 				</script>
       @endif
@@ -299,7 +299,7 @@ http://www.tooplate.com/view/2082-pure-mix
 								<div class="col-md-12">
 									<br>
 								@foreach($image as $img)
-									<div class="avartar-picker col-md-6" align="center" style="background-image: url(images/imageProfile/{{$img->img_path}}) ;">
+									<div class="avartar-picker col-md-6" align="center" style="background-image: none ;">
 										<br>
 										<p><img id="blah" src="images/imageProfile/{{$img->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:200px"></p>
 									<input type="file"  onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
@@ -367,7 +367,7 @@ http://www.tooplate.com/view/2082-pure-mix
 								
 										<div id="outer" >
 											<input type="submit" class="inner button " value="Save" >
-											<a href="/SE_Project/public/home" class="inner button btn">Cancle</a>
+											<button href="/SE_Project/public/Profile" class="inner button btn">Cancle</button>
 										</div>
 										
 

@@ -59,54 +59,153 @@ http://www.tooplate.com/view/2082-pure-mix
    <!-- Google web font
    ================================================== -->
    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
    <style>
-      .colum1 {
-         float: left;
-         width: 25%;
+       body {
+         background: #efefef;
+         font-family: "Arial";
       }
 
-      .colum2 {
-         float: left;
-         width: 75%;
+      .cont {
+         max-width: 1250px;
+         margin: 30px auto 30px;
+         padding: 0 !important;
+         width: 90%;
+         background-color: #fff;
+         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.10), 0 3px 6px rgba(0, 0, 0, 0.10);
       }
 
-      .leftcolumn {
-         float: left;
-         width: 70%;
+      header {
+         background: #eee;
+         background-image: url("https://image.freepik.com/free-photo/university-students-college-students-studying-reading-together-library_18497-1184.jpg");
+         background-repeat: no-repeat;
+         background-position: center;
+         background-size: cover;
+         background-color: red;
+         height: 250px;
       }
 
-      .rightcolumn {
-         float: left;
-         width: 30%;
-         padding-left: 20px;
+      header i {
+         position: relative;
+         cursor: pointer;
+         right: -96%;
+         top: 25px;
+         font-size: 18px !important;
+         color: #fff;
       }
 
-      .row:after {
-         content: "";
-         display: table;
-         clear: both;
+      @media (max-width:800px) {
+         header {
+            height: 150px;
+         }
+
+         header i {
+            right: -90%;
+         }
       }
 
-      .card {
-         background-color: white;
-         padding: 20px;
+      main {
+         padding: 20px 20px 0px 20px;
+      }
+
+      .left {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         flex-direction: column;
+      }
+
+      .photo {
+         width: 200px;
+         height: 200px;
+         margin-top: -120px;
+         border-radius: 100px;
+         border: 4px solid #fff;
+      }
+
+      .name {
          margin-top: 20px;
-         width: 100%;
+         font-family: "Open Sans";
+         font-weight: 600;
+         font-size: 18pt;
+         color: #777;
       }
 
-      a.pagelink:hover {
-         color: #008B8B;
-         text-decoration: none;
+      .info {
+         margin-top: -5px;
+         margin-bottom: 5px;
+         font-family: 'Montserrat', sans-serif;
+         font-size: 11pt;
+         color: #aaa;
       }
 
-      /* review part  */
+      .desc {
+         text-align: center;
+         margin-top: 25px;
+         margin: 25px 40px;
+         color: #999;
+         font-size: 11pt;
+         font-family: "Open Sans";
+         padding-bottom: 25px;
+         border-bottom: 1px solid #ededed;
+      }
 
-      .btn-grey {
-         background-color: #D8D8D8;
-         color: #FFF;
+      .right {
+         padding: 0 25px 0 25px !important;
+      }
+
+      .navi {
+         display: inline-flex;
+      }
+
+      .navi lii {
+         margin: 40px 30px 0 10px;
+         cursor: pointer;
+         font-size: 13pt;
+         text-transform: uppercase;
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 500;
+         color: #888;
+      }
+
+      .navi lii:hover,
+      .navi lii:nth-child(1) {
+         color: #999;
+         border-bottom: 2px solid #999;
+      }
+
+      .follow {
+         position: absolute;
+         right: 8%;
+         top: 35px;
+         font-size: 11pt;
+         background-color: #42b1fa;
+         color: #fff;
+         padding: 8px 15px;
+         cursor: pointer;
+         transition: all .4s;
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 400;
+      }
+
+      .follow:hover {
+         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width:990px) {
+         .navi {
+            display: none;
+         }
+
+         .follow {
+            width: 50%;
+            margin-left: 25%;
+            display: block;
+            position: unset;
+            text-align: center;
+         }
       }
 
       .rating-block {
@@ -155,11 +254,31 @@ http://www.tooplate.com/view/2082-pure-mix
       .review-block-description {
          font-size: 13px;
       }
+
+      .half {
+         position: relative;
+      }
+
+      p.pagelink:hover {
+         color: #008B8B;
+         text-decoration: none;
+      }
+
    </style>
 
 </head>
 
 <body>
+
+@if (Session('success'))
+   <script type="text/javascript">
+      Swal.fire({
+         icon: 'success',
+         title: 'OK',
+         text: 'Success!!'
+      })
+   </script>
+@endif
 
 
    <!-- Preloader section
@@ -188,10 +307,11 @@ http://www.tooplate.com/view/2082-pure-mix
                      @if (Auth:: check())
                         <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
                      @endif  
-                  <div class="menu-container">
-                     <div class="circle dark inline">
-                        <i class="icon ion-navicon"></i>
-                     </div>
+                     <div class="menu-container">
+                        <div class="circle dark inline">
+                           <i class="icon ion-navicon"></i>
+                        </div>
+
 
                         <div class="list-menu">
                            <i class="icon ion-close-round close-iframe"></i>
@@ -246,216 +366,294 @@ http://www.tooplate.com/view/2082-pure-mix
       </nav>
    </div>
 
-   <!-- Header section
+  <!-- end Navigation section
 ================================================== -->
 
-   <section id="header" class="header-five">
-      <div class="container">
+   <!-- detail section
+================================================== -->
+
+<div class="cont">
+      <header>
+         <i aria-hidden="true"></i>
+      </header>
+      <main>
          <div class="row">
-            <div class="column1">
-               <div class="col-md-3">
-                  <div class="header-thumb">
-                     <img src="images/imageProfile/{{$image}}" onerror="this.src='images/user.png'" style="width:100%;max-width:100px"></p>
-                  </div>
+            <div class="left col-lg-7">
+               <div class="photo-left">
+                  <img class="photo" src="images/imageProfile/{{$image}}" onerror="this.src='images/user.png'" />
+
                </div>
-            </div>
+               @foreach ($tutors as $tutor)
+               <h4 class="name">{{$tutor->Fname}} {{$tutor->Lname}}</h4>
+               <p class="info">{{$tutor->email}}</p>
 
-            <div class="column2">
-               <div class="col-md-3">
-                  <div style="margin-top:100px">
-                     @foreach ($tutors as $tutor)
-                     <h1>{{$tutor->Fname}} {{$tutor->Lname}}</h1>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
+               <p class="desc" style="text-align:left">Education : {{$tutor->education}}<br>
+                  Work Experient :{{$tutor->work_experient}}<br>
+                  Phone : {{$tutor->phone}}<br>
+                  Address : {{$tutor->address}}
+               </p>
+               @endforeach
 
-   <!-- Detail Profile section
-================================================== -->
+               <h4>Review</h4>
 
-   <div class=container>
-      <div class="row">
-         <div class="leftcolumn">
-            <div class="card">
-               <h1 style="text-align: center">about me</h1>
-               <div align="right" >
-                  <a href="/SE_Project/public/tutorEdit"><i class="fa fa-edit click fa-2x"></i></a>
-                  
-               </div>
-               <hr>
-               <h4 style="text-align:left">Education : {{$tutor->education}}</h4>
-               <h4 style="text-align:left">Work Experient :{{$tutor->work_experient}}</h4>
-               <h4 style="text-align:left">Email: {{$tutor->email}}</h4>
-               <h4 style="text-align:left">Phone : {{$tutor->phone}}</h4>
-               <h4 style="text-align:left">Address : {{$tutor->address}}</h4>
-            </div>
-         </div>
-      @endforeach
-
-
-      <div class="rightcolumn">
-         <div class="card">
-            <h1 style=" text-align: center">Courses</h1>
-            <hr>
-            @foreach ($courses as $course)
-            <h5>
-               <li><a class="pagelink" onclick="fncAction0({{$course->idcourse}})">{{$course -> Ncourse}}</a></li>
-            </h5>
-            @endforeach
-         </div>
-      </div>
-
-
-
-      <div class="leftcolumn">
-         <div class="card">
-            <h1>Review</h1>
-            <hr>
-            <div class="container">
                <div class="row">
-                  <div class="col-sm-3">
-                     <div class="rating-block">
-                        <h4>Average user rating</h4>
-                        <h4 class="bold padding-bottom-7">4.3 <small>/ 5</small></h4>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <div class="col-md-12">
+                     <div class="rating-block" align="center">
+                        <h3>Average user rating</h3>
+                        <h4 class="bold padding-bottom-7"><?php echo round($avgReview,1) ?> <small>/ 5</small></h4>
+                        <?php
+                           if ($avgReview>=0 and $avgReview<0.5){
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=0.5 and $avgReview<1){
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=1 and $avgReview<1.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=1.5 and $avgReview<2){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=2 and $avgReview<2.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=2.5 and $avgReview<3){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=3 and $avgReview<3.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=3.5 and $avgReview<4){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=4 and $avgReview<4.5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=4.5 and $avgReview<5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star-half-o fa-2x"></span>  ';
+                           }
+                           elseif($avgReview>=5){
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>';
+                              echo ' <span class="fa fa-star fa-2x"></span>  ';
+                           }?>
                         </button>
                      </div>
                   </div>
-                  <div class="col-sm-5">
+
+                  <?php
+                        //cal % star
+                        $P1 = $star1/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P2 = $star2/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P3 = $star3/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P4 = $star4/($star1+$star2+$star3+$star4+$star5)*100;
+                        $P5 = $star5/($star1+$star2+$star3+$star4+$star5)*100;
+                  ?>
+                  <div class="col-sm-12" align="center">
                      <h4>Rating breakdown</h4>
                      <div class="pull-left">
-                        <div class="pull-left" style="width:35px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="pull-left" style="width:100px; line-height:1;">
+                           <div style="height:9px; margin:5px 0;">5 <span class="fa fa-star"></span></div>
                         </div>
-                        <div class="pull-left" style="width:400px;">
+                        <div class="pull-left" style="width:425px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: {{$P5}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">1</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star5}}</div>
                      </div>
                      <div class="pull-left">
-                        <div class="pull-left" style="width:35px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="pull-left" style="width:100px; line-height:1;">
+                           <div style="height:9px; margin:5px 0;">4 <span class="fa fa-star"></span></div>
                         </div>
-                        <div class="pull-left" style="width:400px;">
+                        <div class="pull-left" style="width:425px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+                              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: {{$P4}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">1</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star4}}</div>
                      </div>
                      <div class="pull-left">
-                        <div class="pull-left" style="width:35px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="pull-left" style="width:100px; line-height:1;">
+                           <div style="height:9px; margin:5px 0;">3 <span class="fa fa-star"></span></div>
                         </div>
-                        <div class="pull-left" style="width:400px;">
+                        <div class="pull-left" style="width:425px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: {{$P3}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star3}}</div>
                      </div>
                      <div class="pull-left">
-                        <div class="pull-left" style="width:35px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="pull-left" style="width:100px; line-height:1;">
+                           <div style="height:9px; margin:5px 0;">2 <span class="fa fa-star"></span></div>
                         </div>
-                        <div class="pull-left" style="width:400px;">
+                        <div class="pull-left" style="width:425px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: {{$P2}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star2}}</div>
                      </div>
                      <div class="pull-left">
-                        <div class="pull-left" style="width:35px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="pull-left" style="width:100px; line-height:1;">
+                           <div style="height:9px; margin:5px 0;">1 <span class="fa fa-star"></span></div>
                         </div>
-                        <div class="pull-left" style="width:400px;">
+                        <div class="pull-left" style="width:425px;">
                            <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+                              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: {{$P1}}%">
                                  <span class="sr-only">80% Complete (danger)</span>
                               </div>
                            </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{$star1}}</div>
                      </div>
                   </div>
                </div>
 
                <div class="row">
-                  <div class="col-sm-8">
-                     <hr />
+               <div class="col-md-12">
+                  <div class="col-sm-3">
+                     <hr>
                      <div class="review-block">
-                        <div class="row">
-                           <div class="col-sm-3">
+                        @foreach ($reviewList as $com)
+                            <div class="row">
+                            <div class="col-sm-9">
+                                <div class="review-block-name"><h3>{{$com->Fname}}<br>{{$com->Lname}}</h3></div>
+                                <div class="review-block-date"><p>{{$com->date}}</p><br /></div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="review-block-rate" style="padding-top:18px">
+                                <span style="color: #777;font-size: 16px;letter-spacing:1px"><b>{{$com->idcourse}} - {{$com->Ncourse}}&nbsp;&nbsp;</b></span>
+                                    @if ($com->review == 1)
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    @endif
+                                    @if ($com->review == 2)
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    @endif
+                                    @if ($com->review == 3)
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    @endif
+                                    @if ($com->review == 4)
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    @endif
+                                    @if ($com->review == 5)
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    @endif
+                                </div>
+                            <div class="review-block-description"><p>{{$com->comment}}</p></div><br>
+                            </div>
+                            </div>
 
-                              <div class="review-block-name"><a href="#">nktailor</a></div>
-                              <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                        @endforeach
+                     </div>
+                  </div>
+               </div>
+
+
+            <div class="right col-lg-5">
+               <ul class="navi">
+                  <lii>Course</lii>
+               </ul>
+               <span class="follow"><a href="/SE_Project/public/tutorEdit">Edit</a></span>
+
+               @foreach ($courses as $course)
+               <div class="cont">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="blog-thumb">
+                           <div class="col-md-6" align="center">
+                              <img src="images/{{$course->img}}" style="width:100%;max-width:300px high='100%'" onerror="this.src='images/blog-img3.jpg'" class="img-responsive alt=" Blog"></a>
                            </div>
-                           <div class="col-sm-9">
-                              <div class="review-block-rate">
-                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                                 <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                 </button>
-                              </div>
-                              <div class="review-block-title">this was nice in buy</div>
-                              <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                           <div class="col-md-6" align="center" style="margin-top: 35px;">
+                              <p class="pagelink click" onclick="fncAction0({{$course->idcourse}})">{{$course -> Ncourse}}</p>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-            </div> <!-- /container -->
-         </div>
-      </div> <!-- //leftcolumn review  -->
+               @endforeach
+            </div>
+      </main>
    </div>
-   <!--/row -->
-   </div><!-- /container -->
+   <!-- end detail section
+================================================== -->
+
+
 
    <script type="text/javascript">
       function fncAction0(idcourse) {
-         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); //เติม path ไปหา edit course
-      }
-   </script>
-   <script type="text/javascript">
-      function fncAction1(idTutor) {
-         window.location.assign("/SE_Project/public//tutorEdit?idTutor=" + idtutor); //เติม path ไปหา edit course
+         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); 
       }
    </script>
 
@@ -497,7 +695,7 @@ http://www.tooplate.com/view/2082-pure-mix
    <script src="js/bootstrap.min.js"></script>
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="js/ie10-viewport-bug-workaround.js"></script>
-
+   @include('sweet::alert')
 </body>
 
 </html>

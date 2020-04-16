@@ -33,6 +33,14 @@ http://www.tooplate.com/view/2082-pure-mix
    -webkit-line-clamp: 1; /* number of lines to show */
    -webkit-box-orient: vertical;
         }
+
+        .text2 {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+        }
         
 .swiper_wrap{padding:0px 5px;height:100%;width: 100%;position: relative;display: block;text-align: left;}
 .swiper-button-next{
@@ -56,26 +64,35 @@ transform: translateY(-50%);
 
 .btn {
 	font-family: 'Source Sans Pro', sans-serif;
-	background: #e44c65;
+	background: #18b6f5;
 	border-color: #111112;
-	/* transparent */
+    /* transparent */
+    text-align: center;
+    padding:0.5em;
   color:#111112 ;
-	height: 47px;
-	font-size: 100px;
+	height: 3em;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   transition: all 0.4s ease-in-out;
-	margin-right: 65px;
-	border-radius: 0px;
-	width:10%;
-    float: right;
+    border-radius: 0px;
+}
+.yel{
+    background:#e6ce4b;
+}
+.btn:hover{
+    border-width: 5px;
+    border-style: double;
+    border-color: #a9e4fc;
+    color:#111112 ;
+    
+}
+.yel:hover{
+	border-width: 5px;
+    border-style: double;
+    border-color: #fdfc9f;
+    color:#111112 ;
 }
 
-.btn:hover {
-	background: rgb(214, 213, 210);
-	/* color:#ffffff ; */
-	/* font-weight: 400; */
-}
      </style>
 
 	<!-- Site title
@@ -98,7 +115,7 @@ transform: translateY(-50%);
    <!-- Main CSS
    ================================================== -->
    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
-   <link rel="stylesheet" href="{{ URL::asset('css/ms.css') }}">
+   <link rel="stylesheet" href="{{ URL::asset('css/ag.css') }}">
    <link rel="stylesheet" href="{{ URL::asset('css/owl.theme.css') }}">
    <!-- <link rel="stylesheet" href="{{ URL::asset('css/owl.carousel.css') }}"> -->
    <!-- Google web font
@@ -176,14 +193,13 @@ text: 'Success!!'
                            <!-- check status -->
                               <!-- student -->
                               @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
-                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
+								<li><a href="{{url('/studentEdit')}}">edit profile</a></li>
+								<li><a href="{{url('/enroll')}}">enrollment</a></li>
+								<li><a href="{{url('/review')}}">review</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/Profile')}}">Profile</a></li>
-                                 <li><a href="{{url('/course')}}">Tutor Course</a></li>
-
+								<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
+                                <li><a href="{{url('/course')}}">Tutor course</a></li>
                                  <!-- admin -->
                                  @else
                                  <!-- <li><a href="#">admin area</a></li> -->
@@ -206,7 +222,7 @@ text: 'Success!!'
                            @if (Route::has('register'))
                               <li><a href="{{url('/register')}}">Register</a></li>
                            @endif
-                              <li><a href="{{url('/contact')}}">Contact</a></li>
+                              <!-- <li><a href="{{url('/contact')}}">Contact</a></li> -->
                         </ul>
                         @endif
 
@@ -228,28 +244,101 @@ text: 'Success!!'
 
 <!-- Header section
 ================================================== -->
-   <section id="header" class="header-one">
+   <section id="header" class="head">
       <div class="container">
          <div class="row">
 
             <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
                <div class="header-thumb">
-                  <h1 class="wow fadeIn" data-wow-delay="1.6s">WELCOME TO SHARED TUTORING</h1>
-                  <h3 class="wow fadeInUp" data-wow-delay="1.9s">LEARN WITH THE BEST TUTORS</h3>
+                  <h1 class="wow fadeIn" data-wow-delay="0.4s">WELCOME TO SHARED TUTORING</h1>
+                  <h3 class="wow fadeInUp" data-wow-delay="0.4s">LEARN WITH THE BEST TUTORS</h3>
                </div>
             </div>
 
          </div>
       </div>
    </section>
-
-
    <!-- list section
 ================================================== -->
+<section id="feature">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
+						<h1 style="float:center;margin-left:100px;" class="text-uppercase">learner</h1>
+                        <p style="float:center;margin-left:100px;"><i class="fa fa-circle"></i>ค้นหาติวเตอร์ที่ต้องการ</p>
+                        <p style="float:center;margin-left:100px;"><i class="fa fa-circle"></i>ลงทะเบียนคอร์สเรียนผ่านระบบ</p>
+                        <p style="float:center;margin-left:100px;"><i class="fa fa-circle"></i>ลงประกาศหาติวเตอร์ที่ตรงกับความต้องการ</p>
+					</div>
+					<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">
+                        <img src="images/reading.png" class="img-responsive" alt="feature img"
+                         style="width:100%;max-width:250px;float:left;">
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end feature -->
+
+		<!-- start feature1 -->
+		<section id="feature1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <img src="images/tt.png" class="img-responsive" alt="feature img" 
+                        style="width:100%;max-width:250px;float:center;margin-left:100px;">
+					</div>
+					<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+						<h1 class="text-uppercase">Tutor</h1>
+                        <p><i class="fa fa-circle" ></i>เพิ่มคอร์สเรียนที่น่าสนใจ</p>
+                        <p><i class="fa fa-circle"></i>รับงานสอนได้โดยตรง ไม่ต้องเสียค่าใช้จ่าย</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+<section id="contact">
+  <div class="container">
+  @if (Auth::check())
+    @if ( Auth:: user()->status == 'student')
+    <div class="row">
+       <div class="col-md-offset-1 col-md-10 col-sm-12">
+            <p style="font-size:25px">Click to <b>Add</b> announcment</p>
+        </div>
+    </div>
+    <div class="row">
+        <a href="/SE_Project/public/student/announce" class="btn yel" style="float: center;width:20%;font-size: 15px;">
+    <b>ADD ANNOUNCEMENT</b></a></div> 
+   <br>
+    <div class="row" style="margin-bottom:10px;">
+        <i style='font-size:15px'class='fa fa-circle'></i>
+        <i style='font-size:15px'class='fa fa-circle'></i>
+        <i style='font-size:15px'class='fa fa-circle'></i>
+        <i style='font-size:15px'class='fa fa-circle'></i>
+    </div>
+    @endif
+ @endif 
+
+    <div class="row">
+       <div class="col-md-offset-1 col-md-10 col-sm-12">
+        <p style="font-size:25px">Click to <b>See</b> all announcment</p> </div>
+</div>
+<div class="row"><a href="/SE_Project/public/showAnn" class="btn" style="float: center;width:20%;font-size: 15px;"><b>ANNOUNCEMENT</b></a></div> 
+  </div>
+</section>
+
+
    <section id="blog" >
-   
    <div class="container">
-   <div class="row"><a href="/SE_Project/public/allcourse" class="btn"><b>All course</b></a></div> 
+   <div class="row">
+      <div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
+        <div class="section-title text-center">
+          <h1>Courses</h1>
+          <h3>An Interesting Courses</h3>
+        </div>
+      </div>
+   <div class="row">
+       <a href="/SE_Project/public/allcourse" class="btn" style="float: right;margin-right: 65px;width:10%;">
+       <b>All course</b></a>
+    </div> 
    <div class="swiper_wrap">
 <div class="slider-wrapper">
        <div class="swiper-button-prev"></div>
@@ -263,11 +352,11 @@ text: 'Success!!'
                               <h1 class="text">{{$c->Ncourse}}</h1>
                               
                               <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
-                              <!-- <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p> -->
-                              <!-- <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p> -->
-                              <!-- <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p> -->
+                              <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
                               <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
-                              <!-- <p class="col-md-6" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p> -->
+                              <p class="col-md-12" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
                               <p class="col-md-12" align="left">ราคา {{$c->price}} บาท</p>
                               <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
                            </div>
@@ -283,24 +372,21 @@ text: 'Success!!'
 </div>
 </div>
    </section>
-
+<!-- // show top 3 tutor -->
   <section id="about">
   <div class="container">
     <div class="row">
-
-      <div class="clearfix"></div>
-
-      <div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+      <div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
         <div class="section-title text-center">
-          <h1>Snapshot Team</h1>
-          <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+          <h1>Top 3 Tutors</h1>
+          <h3>The tutor that received the best reviews.</h3>
         </div>
       </div>
 
-      <!-- team carousel ??-->
+      <!-- team carousel -->
       <div id=" team-carousel" class="owl-carousel">
       @foreach ( $tutors as $t )
-      <div class="item col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.4s">
+      <div class="item col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.2s">
         <div class="team-thumb">
         @foreach($idCards as $idCard)
 		@if($t->idTutor == $idCard->idTutor)
@@ -309,8 +395,92 @@ text: 'Success!!'
           </div>
           @endif
         @endforeach
-        <a class="click" onClick="fncAction1({{$t->idTutor}})"><h2 class="heading">{{$t->Fname}}</h2></a> <!-- link ไป profile tutor -->                
-          <p class="description">Aliquam ac justo est. Praesent feugiat cursus est.</p>
+        <a class="click" onClick="fncAction1({{$t->idTutor}})">
+            <h2 class="heading">{{$t->Fname}}</h2>
+            <h2 class="heading">{{$t->Lname}}</h2>
+        </a> <!-- link ไป profile tutor -->
+        <div class="heading">
+        <?php
+                           if ($t->rating>=0 and $t->rating<0.5){
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=0.5 and $t->rating<1){
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=1 and $t->rating<1.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=1.5 and $t->rating<2){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=2 and $t->rating<2.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=2.5 and $t->rating<3){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=3 and $t->rating<3.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=3.5 and $t->rating<4){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=4 and $t->rating<4.5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-o"></span>  ';
+                           }
+                           elseif($t->rating>=4.5 and $t->rating<5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star-half-o"></span>  ';
+                           }
+                           elseif($t->rating>=5){
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>';
+                              echo ' <span class="fa fa-star"></span>  ';
+                           }
+                          ?>
+                     </div>
+          <p class="description text2">{{$t->about_me}}</p>
         </div>
       </div>
       @endforeach
@@ -318,9 +488,19 @@ text: 'Success!!'
   </div>
 </section>
 
+<section id="contact" style="background:#cecece;">
+<div class="row">
+    <div class="col-md-offset-1 col-md-5 col-sm-12">
+        <h1 style="float:right;">Register to be our tutor</h1>
+    </div>
+    <div class="col-md-offset-1 col-md-5 col-sm-12">
+        <a href="/SE_Project/public/tutorReg" class="btn" 
+        style="float: left;width:10em;font-size: 20px;">
+    <b>REGISTER</b></a>
+    </div>
+</div>
+</section>
 
-
-   
 
    <!-- javascript section
 ================================================== -->
@@ -344,7 +524,7 @@ text: 'Success!!'
 
             <div class="col-md-12 col-sm-12">
                <p class="wow fadeInUp" data-wow-delay="0.3s">Shared Tutoring by Teletubbies - Software Engineering 2020</p>
-               <ul class="social-icon wow fadeInUp" data-wow-delay="0.6s">
+               <ul class="social-icon wow fadeInUp" data-wow-delay="0.3s">
                   <li><a href="#" class="fa fa-facebook"></a></li>
                   <li><a href="#" class="fa fa-twitter"></a></li>
                   <li><a href="#" class="fa fa-dribbble"></a></li>
@@ -357,6 +537,9 @@ text: 'Success!!'
       </div>
    </footer>
 
+<!-- Back top -->
+<!-- <a href="#" class="go-top"><i class="fa fa-plus"></i></a> -->
+<a href="#" class="go-top" ><i class="fa fa-angle-up"></i></a>
 
    <!-- Javascript
 ================================================== -->
@@ -373,23 +556,6 @@ text: 'Success!!'
 
 
 
-   <script>
-      $("input:checkbox").on('click', function() {
-         // in the handler, 'this' refers to the box clicked on
-         var $box = $(this);
-         if ($box.is(":checked")) {
-            // the name of the box is retrieved using the .attr() method
-            // as it is assumed and expected to be immutable
-            var group = "input:checkbox[name='" + $box.attr("name") + "']";
-            // the checked state of the group/box on the other hand will change
-            // and the current value is retrieved using .prop() method
-            $(group).prop("checked", false);
-            $box.prop("checked", true);
-         } else {
-            $box.prop("checked", false);
-         }
-      });
-   </script>
 
    <script>
       function openNav() {

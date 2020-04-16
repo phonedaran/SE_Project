@@ -17,13 +17,21 @@ class CourseController extends Controller
     }
 
     public function welcome(){
-         $tutors = DB::table('tutors')->orderBy('rating','desc')->take(3)->get();
+        $tutors = DB::table('tutors')->orderBy('rating','desc')->take(3)->get();
         $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
         $idCards = DB::table('image')->get();
-        return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,'idCards' => $idCards]);
+        $rate = DB::table('tutors')
+            ->update(['rating' => DB::raw("(SELECT AVG(review.review) FROM review
+                WHERE review.idTutor = tutors.idTutor)")
+            ]);
+        $rate = DB::table('tutors')
+            ->where('rating', null)
+            ->update(['rating' => 0]);
+        
+        return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,
+        'idCards' => $idCards]);
     }
     
-
     function filter(){
 
         $min = $_GET['min'];
@@ -56,7 +64,12 @@ class CourseController extends Controller
         session_start();
         $_session['filter'] = false;
         $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
-        return view('/course/home',['courses' => $courses]);
+
+        $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+                                FROM courses
+                                LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+                                GROUP BY courses.idcourse');
+        return view('/course/home',['courses' => $courses,'students'=>$students]);
     }
 
     public function info(request $request){
@@ -160,7 +173,7 @@ class CourseController extends Controller
                 'description' => $message
             ]);
 
-            return redirect('/')->with('success','Course created');
+            return redirect('/course')->with('success','Course created');
 
             }elseif($img != null){
                 $tutor = DB::table('courses')
@@ -184,13 +197,12 @@ class CourseController extends Controller
                     $file -> move('images/imageCourse',$img);
                 }
 
-            return redirect('/')->with('success','Course created');
+            return redirect('/course')->with('success','Course created');
             }
             
 
             
     }
-
 
 
 }

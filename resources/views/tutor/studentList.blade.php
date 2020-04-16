@@ -195,7 +195,7 @@ http://www.tooplate.com/view/2082-pure-mix
             </div>
         @endif
         <div id="outer">
-            <button onclick="javascript:history.go(-1)" class="button button2 backBtn">back</button><br><br>
+            <button onclick="window.location.href = '{{url('/course')}}';" class="button button2 backBtn">back</button><br><br>
         </div>
         
     </div>

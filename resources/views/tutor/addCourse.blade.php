@@ -58,8 +58,37 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <body>
 
-
    <!-- Preloader section
+================================================== -->
+   <div class="preloader">
+
+      <div class="sk-spinner sk-spinner-pulse"></div>
+
+   </div>
+   <div class="wrapper">
+      @if (Session('null'))
+      <script type="text/javascript">
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Input all requied field!'
+         })
+      </script>
+
+      @endif
+      @if (Session('subject'))
+      <script type="text/javascript">
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Name cannot exceed 45 characters.'
+         })
+      </script>
+      @endif
+   </div>
+
+
+   <!-- Navigation section
 ================================================== -->
    <div class="nav-container">
       <nav class="nav-inner transparent">
@@ -73,15 +102,13 @@ http://www.tooplate.com/view/2082-pure-mix
                   </div>
 
                   <div class="navicon">
+                     @if (Auth:: check())
+                        <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
+                     @endif  
                      <div class="menu-container">
-                        <h3 class="wow fadeIn" data-wow-delay="1.6s">
-                           @if (Auth:: check())
-                           {{ Auth::user()->name }}
-                           @endif
-                           <div class="circle dark inline">
-                              <i class="icon ion-navicon"></i>
-                           </div>
-                        </h3>
+                        <div class="circle dark inline">
+                           <i class="icon ion-navicon"></i>
+                        </div>
 
                         <div class="list-menu">
                            <i class="icon ion-close-round close-iframe"></i>
@@ -101,14 +128,13 @@ http://www.tooplate.com/view/2082-pure-mix
                                  <!-- tutor -->
                                  @elseif ( Auth:: user()->status == 'tutor')
                                  <li><a href="{{url('/Profile')}}">profile</a></li>
-                                 <li><a href="{{url('/addCourse')}}">add course</a></li>
-                                 <li><a href="#">edit course</a></li>
+                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                                  <!-- admin -->
                                  @else
                                  <!-- <li><a href="#">admin area</a></li> -->
                                  @endif
                                  <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                               document.getElementById('logout-form').submit();">
                                        Logout</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -129,80 +155,14 @@ http://www.tooplate.com/view/2082-pure-mix
                         </div>
 
                      </div>
-=======
-<div class="nav-container">
-   <nav class="nav-inner transparent">
-
-      <div class="navbar">
-         <div class="container">
-            <div class="row">
-
-            <div class="brand">
-               <a href="{{url('/')}}">Shared Tutoring</a>
-            </div>
-
-            <div class="navicon">
-               @if (Auth:: check())
-						<h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-					@endif  
-					<div class="menu-container">
-						<div class="circle dark inline">
-							<i class="icon ion-navicon"></i>
-						</div>
-                  <div class="list-menu">
-                  <i class="icon ion-close-round close-iframe"></i>
-                  <div class="intro-inner">
-                        <ul id="nav-menu">
-
-                        <!-- ================= แสดงเมื่อมีการ login แล้ว ================= -->
-                        @if (Auth::check())
-                           <li><a href="{{url('/')}}">Home</a></li>
-
-                           <!-- check status -->
-                              <!-- student -->
-                              @if ( Auth:: user()->status == 'student')
-                                 <li><a href="#">edit profile</a></li>
-                                 <li><a href="{{url('/enroll')}}">enrollment</a></li>
-                                 <li><a href="#">review</a></li>
-                              <!-- tutor -->
-                              @elseif ( Auth:: user()->status == 'tutor')
-                                 <li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
-                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
-                              <!-- admin -->
-                              @else
-                                 <!-- <li><a href="#">admin area</a></li> -->
-                              @endif
-                           <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                          Logout</a>
-
-                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                          @csrf
-                                       </form>
-                              </li>
-                        <!-- ================= แสดงเมื่อยังไม่ได้ login ================= -->
-                        @else
-                           <li><a href="{{url('/')}}">Home</a></li>
-                           <li><a href="{{url('/login')}}">Log-in</a></li>
-                           @if (Route::has('register'))
-                              <li><a href="{{url('/register')}}">Register</a></li>
-                           @endif
-                              <li><a href="{{url('/contact')}}">Contact</a></li>
-                        </ul>
-                        @endif
-                  </div>
                   </div>
 
                </div>
             </div>
-
-            </div>
          </div>
-      </div>
+      </nav>
+   </div>
 
-   </nav>
- </div>
 
    <!-- Header section
 ================================================== -->
@@ -224,6 +184,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
    <!-- Add course section
 ================================================== -->
+
    <section id="contact">
       <div class="container">
          <div class="row">
@@ -231,8 +192,8 @@ http://www.tooplate.com/view/2082-pure-mix
                <h1>add your course</h1>
                <div class="contact-form">
                   <form id="contact-form" method="POST" action="{{ URL::to('/course/add/check') }}" enctype="multipart/form-data">
-                  {{csrf_field()}}
-                  <h3>Choose Picture</h3>
+                     {{csrf_field()}}
+                     <h3>Choose Picture</h3>
                      <input type="file" onchange="readURL(this);" name="image" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
                      <input name="Ncourse" type="name" class="form-control" maxlength="45" placeholder="Course Name" required>
                      <input name="subject" type="name" class="form-control" placeholder="Subject" required>
@@ -272,7 +233,6 @@ http://www.tooplate.com/view/2082-pure-mix
                   <li><a href="#" class="fa fa-google-plus"></a></li>
                </ul>
             </div>
-
          </div>
       </div>
    </footer>
@@ -284,6 +244,7 @@ http://www.tooplate.com/view/2082-pure-mix
    <script src="js/wow.min.js"></script>
    <script src="js/custom.js"></script>
 
+   @include('sweet::alert')
 </body>
 
 </html>
