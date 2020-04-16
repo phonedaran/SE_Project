@@ -28,8 +28,13 @@ class CourseController extends Controller
             ->where('rating', null)
             ->update(['rating' => 0]);
 
+        $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+        FROM courses
+        LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+        GROUP BY courses.idcourse');
+    
         return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,
-        'idCards' => $idCards]);
+        'idCards' => $idCards,'students'=>$students]);
     }
 
     function filter(){
