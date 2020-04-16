@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\student;
 
+use App\announce;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+
 
 class StudentController extends Controller
 {
@@ -122,5 +124,52 @@ class StudentController extends Controller
             'comment' => $comment]
         );
         return  redirect()->back()->with('pass','Review completed');
+    }
+
+    public function Announce(){
+        $id = Auth::id();
+        $Anns = DB::table('announces')
+        ->where(['idstudent' => $id])->get();
+
+        return view('course.announce',['Anns' => $Anns]);
+    }
+
+    public function AddAnnounce(request $request){
+        $id = Auth::id();
+        $idAnn=announce::max('idAnnounce');
+
+        if($idAnn === null){$idAnnounce = 0 ;}
+            $idAnnounce=$idAnn +1;
+        $Ann = $request->input('Ann');
+        $contact = $request->input('phone');
+        $sex = $request->input('sex');
+        $level = $request->input('level');
+        $location = $request->input('loca');
+        $date = date('d M Y');
+
+        DB::table('announces')->insert(
+            ['idAnnounce' => $idAnnounce,
+            'idstudent' => $id,
+            'sex' => $sex,
+            'level' => $level,
+            'location' => $location,
+            'contact' => $contact,
+            'announce' => $Ann,
+            'date' => $date]
+        );
+        return  redirect('/student/announce')->with('success','Add announce completed');
+    }
+
+    public function DeleteAnnounce(request $request){
+        $idAnn = $request->input('idAnnounce');
+        DB::table('announces')
+        ->where(['idAnnounce' => $idAnn])->delete();
+        return redirect()->back()->with('success','success');
+    }
+
+    public function showAnnounce(){
+        // $ann = DB::table('announces')->get();
+        $ann = announce::paginate(25);
+        return view('/course/showannounce',['ann' => $ann]);
     }
 }

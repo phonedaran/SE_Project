@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/','CourseController@courseShow');
+Route::get('/','CourseController@welcome');//show หน้าแรกของ web คือหน้า welcome.blade
+Route::get('/allcourse','CourseController@courseShow');//show หน้า course ทั้งหมด
 
 Route::get('/login', function () {
     return view('login');
@@ -60,6 +61,11 @@ Auth::routes(['verify' => true]);
 Route::get('/studentEdit', 'student\StudentController@editProfile');
 Route::post('/studentEdit/check', 'student\StudentController@editCheck');
 Route::get('/student/deleteCourse', 'CourseController@deleteCourse');
+Route::get('/student/announce', 'student\StudentController@Announce');//show หน้า add anounce
+Route::post('/announce/add', 'student\StudentController@AddAnnounce');
+Route::get('/announce/delete', 'student\StudentController@DeleteAnnounce');
+
+Route::get('/showAnn', 'student\StudentController@showAnnounce');//show ประกาศทั้งหมด
 
 Route::get('/studentReg', 'StudentRegisterController@reg');
 Route::get('/studentReg/check', 'StudentRegisterController@regcheck');
