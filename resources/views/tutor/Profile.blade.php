@@ -306,7 +306,7 @@ http://www.tooplate.com/view/2082-pure-mix
                   <div class="navicon">
                      @if (Auth:: check())
                         <h3 style="text-align:right;">{{ Auth::user()->name }}</h3>
-                     @endif  
+                     @endif
                      <div class="menu-container">
                         <div class="circle dark inline">
                            <i class="icon ion-navicon"></i>
@@ -373,279 +373,273 @@ http://www.tooplate.com/view/2082-pure-mix
 ================================================== -->
 
 <div class="cont">
-      <header>
-         <i aria-hidden="true"></i>
-      </header>
-      <main>
-         <div class="row">
-            <div class="left col-lg-7">
-               <div class="photo-left">
-                  <img class="photo" src="images/imageProfile/{{$image}}" onerror="this.src='images/user.png'" />
+    <header>
+       <i aria-hidden="true"></i>
+    </header>
+    <main>
+       <div class="row">
+          <div class="left col-lg-7">
+             <div class="photo-left">
+                <img class="photo" src="images/imageProfile/{{$image}}" onerror="this.src='images/user.png'" />
+             </div>
+             @foreach ($tutors as $tutor)
+             <h4 class="name">{{$tutor->Fname}} {{$tutor->Lname}}</h4>
+             <p class="info">{{$tutor->email}}</p>
+             <p class="desc" style="text-align:left">Education : {{$tutor->education}}<br>
+                Work Experient :{{$tutor->work_experient}}<br>
+                Phone : {{$tutor->phone}}<br>
+                Address : {{$tutor->address}}
+             </p>
+             @endforeach
 
-               </div>
-               @foreach ($tutors as $tutor)
-               <h4 class="name">{{$tutor->Fname}} {{$tutor->Lname}}</h4>
-               <p class="info">{{$tutor->email}}</p>
+             <h4>Review</h4>
+             <div class="row">
+                <div class="col-md-12">
+                   <div class="rating-block" align="center">
+                      <h3>Average user rating</h3>
+                      <h4 class="bold padding-bottom-7"><?php echo round($avgReview, 1) ?> <small>/ 5</small></h4>
+                      <?php
+                      if ($avgReview >= 0 and $avgReview < 0.5) {
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 0.5 and $avgReview < 1) {
+                         echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 1 and $avgReview < 1.5) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 1.5 and $avgReview < 2) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 2 and $avgReview < 2.5) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 2.5 and $avgReview < 3) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 3 and $avgReview < 3.5) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 3.5 and $avgReview < 4) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-half-o fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 4 and $avgReview < 4.5) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 4.5 and $avgReview < 5) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star-half-o fa-2x"></span>  ';
+                      } elseif ($avgReview >= 5) {
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>';
+                         echo ' <span class="fa fa-star fa-2x"></span>  ';
+                      } ?>
+                      </button>
+                   </div>
+                </div>
 
-               <p class="desc" style="text-align:left">Education : {{$tutor->education}}<br>
-                  Work Experient :{{$tutor->work_experient}}<br>
-                  Phone : {{$tutor->phone}}<br>
-                  Address : {{$tutor->address}}
-               </p>
-               @endforeach
-
-               <h4>Review</h4>
-
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="rating-block" align="center">
-                        <h3>Average user rating</h3>
-                        <h4 class="bold padding-bottom-7"><?php echo round($avgReview,1) ?> <small>/ 5</small></h4>
-                        <?php
-                           if ($avgReview>=0 and $avgReview<0.5){
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=0.5 and $avgReview<1){
-                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=1 and $avgReview<1.5){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=1.5 and $avgReview<2){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=2 and $avgReview<2.5){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=2.5 and $avgReview<3){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=3 and $avgReview<3.5){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=3.5 and $avgReview<4){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-half-o fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=4 and $avgReview<4.5){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=4.5 and $avgReview<5){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star-half-o fa-2x"></span>  ';
-                           }
-                           elseif($avgReview>=5){
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>';
-                              echo ' <span class="fa fa-star fa-2x"></span>  ';
-                           }?>
-                        </button>
-                     </div>
-                  </div>
-
-                  <?php
-                        //cal % star
-                        $P1 = $star1/($star1+$star2+$star3+$star4+$star5)*100;
-                        $P2 = $star2/($star1+$star2+$star3+$star4+$star5)*100;
-                        $P3 = $star3/($star1+$star2+$star3+$star4+$star5)*100;
-                        $P4 = $star4/($star1+$star2+$star3+$star4+$star5)*100;
-                        $P5 = $star5/($star1+$star2+$star3+$star4+$star5)*100;
-                  ?>
-                  <div class="col-sm-12" align="center">
-                     <h4>Rating breakdown</h4>
-                     <div class="pull-left">
-                        <div class="pull-left" style="width:100px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">5 <span class="fa fa-star"></span></div>
-                        </div>
-                        <div class="pull-left" style="width:425px;">
-                           <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: {{$P5}}%">
-                                 <span class="sr-only">80% Complete (danger)</span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="pull-right" style="margin-left:10px;">{{$star5}}</div>
-                     </div>
-                     <div class="pull-left">
-                        <div class="pull-left" style="width:100px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">4 <span class="fa fa-star"></span></div>
-                        </div>
-                        <div class="pull-left" style="width:425px;">
-                           <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: {{$P4}}%">
-                                 <span class="sr-only">80% Complete (danger)</span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="pull-right" style="margin-left:10px;">{{$star4}}</div>
-                     </div>
-                     <div class="pull-left">
-                        <div class="pull-left" style="width:100px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">3 <span class="fa fa-star"></span></div>
-                        </div>
-                        <div class="pull-left" style="width:425px;">
-                           <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: {{$P3}}%">
-                                 <span class="sr-only">80% Complete (danger)</span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="pull-right" style="margin-left:10px;">{{$star3}}</div>
-                     </div>
-                     <div class="pull-left">
-                        <div class="pull-left" style="width:100px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">2 <span class="fa fa-star"></span></div>
-                        </div>
-                        <div class="pull-left" style="width:425px;">
-                           <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: {{$P2}}%">
-                                 <span class="sr-only">80% Complete (danger)</span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="pull-right" style="margin-left:10px;">{{$star2}}</div>
-                     </div>
-                     <div class="pull-left">
-                        <div class="pull-left" style="width:100px; line-height:1;">
-                           <div style="height:9px; margin:5px 0;">1 <span class="fa fa-star"></span></div>
-                        </div>
-                        <div class="pull-left" style="width:425px;">
-                           <div class="progress" style="height:9px; margin:8px 0;">
-                              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: {{$P1}}%">
-                                 <span class="sr-only">80% Complete (danger)</span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="pull-right" style="margin-left:10px;">{{$star1}}</div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="row">
-               <div class="col-md-12">
-                  <div class="col-sm-3">
-                     <hr>
-                     <div class="review-block">
-                        @foreach ($reviewList as $com)
-                            <div class="row">
-                            <div class="col-sm-9">
-                                <div class="review-block-name"><h3>{{$com->Fname}}<br>{{$com->Lname}}</h3></div>
-                                <div class="review-block-date"><p>{{$com->date}}</p><br /></div>
+                <?php
+                //cal % star
+                $P1 = $star1 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
+                $P2 = $star2 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
+                $P3 = $star3 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
+                $P4 = $star4 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
+                $P5 = $star5 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
+                ?>
+                <div class="col-sm-12" align="center">
+                   <h4>Rating breakdown</h4>
+                   <div class="pull-left">
+                      <div class="pull-left" style="width:100px; line-height:1;">
+                         <div style="height:9px; margin:5px 0;">5 <span class="fa fa-star"></span></div>
+                      </div>
+                      <div class="pull-left" style="width:425px;">
+                         <div class="progress" style="height:9px; margin:8px 0;">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: {{$P5}}%">
+                               <span class="sr-only">80% Complete (danger)</span>
                             </div>
-                            <div class="col-sm-9">
-                                <div class="review-block-rate" style="padding-top:18px">
-                                <span style="color: #777;font-size: 16px;letter-spacing:1px"><b>{{$com->idcourse}} - {{$com->Ncourse}}&nbsp;&nbsp;</b></span>
-                                    @if ($com->review == 1)
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star-o"></span>
-                                        <span class="fa fa-star-o"></span>
-                                        <span class="fa fa-star-o"></span>
-                                        <span class="fa fa-star-o"></span>
-                                    @endif
-                                    @if ($com->review == 2)
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star-o"></span>
-                                        <span class="fa fa-star-o"></span>
-                                        <span class="fa fa-star-o"></span>
-                                    @endif
-                                    @if ($com->review == 3)
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star-o"></span>
-                                        <span class="fa fa-star-o"></span>
-                                    @endif
-                                    @if ($com->review == 4)
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star-o"></span>
-                                    @endif
-                                    @if ($com->review == 5)
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    @endif
-                                </div>
-                            <div class="review-block-description"><p>{{$com->comment}}</p></div><br>
+                         </div>
+                      </div>
+                      <div class="pull-right" style="margin-left:10px;">{{$star5}}</div>
+                   </div>
+                   <div class="pull-left">
+                      <div class="pull-left" style="width:100px; line-height:1;">
+                         <div style="height:9px; margin:5px 0;">4 <span class="fa fa-star"></span></div>
+                      </div>
+                      <div class="pull-left" style="width:425px;">
+                         <div class="progress" style="height:9px; margin:8px 0;">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: {{$P4}}%">
+                               <span class="sr-only">80% Complete (danger)</span>
                             </div>
+                         </div>
+                      </div>
+                      <div class="pull-right" style="margin-left:10px;">{{$star4}}</div>
+                   </div>
+                   <div class="pull-left">
+                      <div class="pull-left" style="width:100px; line-height:1;">
+                         <div style="height:9px; margin:5px 0;">3 <span class="fa fa-star"></span></div>
+                      </div>
+                      <div class="pull-left" style="width:425px;">
+                         <div class="progress" style="height:9px; margin:8px 0;">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: {{$P3}}%">
+                               <span class="sr-only">80% Complete (danger)</span>
                             </div>
+                         </div>
+                      </div>
+                      <div class="pull-right" style="margin-left:10px;">{{$star3}}</div>
+                   </div>
+                   <div class="pull-left">
+                      <div class="pull-left" style="width:100px; line-height:1;">
+                         <div style="height:9px; margin:5px 0;">2 <span class="fa fa-star"></span></div>
+                      </div>
+                      <div class="pull-left" style="width:425px;">
+                         <div class="progress" style="height:9px; margin:8px 0;">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: {{$P2}}%">
+                               <span class="sr-only">80% Complete (danger)</span>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="pull-right" style="margin-left:10px;">{{$star2}}</div>
+                   </div>
+                   <div class="pull-left">
+                      <div class="pull-left" style="width:100px; line-height:1;">
+                         <div style="height:9px; margin:5px 0;">1 <span class="fa fa-star"></span></div>
+                      </div>
+                      <div class="pull-left" style="width:425px;">
+                         <div class="progress" style="height:9px; margin:8px 0;">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: {{$P1}}%">
+                               <span class="sr-only">80% Complete (danger)</span>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="pull-right" style="margin-left:10px;">{{$star1}}</div>
+                   </div>
+                </div>
+             </div>
 
-                        @endforeach
-                     </div>
-                  </div>
-               </div>
+             <div class="row">
+                <div class="col-md-12">
+                   <div class="col-md-3">
+                      <hr>
+                      <div class="review-block">
+                         @foreach ($reviewList as $com)
+                         <div class="row">
+                            <div class="col-md-9">
+                               <div class="review-block-name">
+                                  <h3>{{$com->Fname}}<br>{{$com->Lname}}</h3>
+                               </div>
+                               <div class="review-block-date">
+                                  <p>{{$com->date}}</p><br />
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="review-block-rate" style="padding-top:18px">
+                                  <span style="color: #777;font-size: 16px;letter-spacing:1px"><b>{{$com->idcourse}} - {{$com->Ncourse}}&nbsp;&nbsp;</b></span>
+                                  @if ($com->review == 1)
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  @endif
+                                  @if ($com->review == 2)
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  @endif
+                                  @if ($com->review == 3)
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  @endif
+                                  @if ($com->review == 4)
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star-o"></span>
+                                  @endif
+                                  @if ($com->review == 5)
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                  @endif
+                               </div>
+                               <div class="review-block-description">
+                                  <p>{{$com->comment}}</p>
+                               </div><br>
+                            </div>
+                         </div>
+                         @endforeach
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
 
+          <div class="right col-lg-5">
+             <ul class="navi">
+                <lii>Course</lii>
+             </ul>
+             <span class="follow"><a href="/SE_Project/public/tutorEdit">Edit</a></span>
 
-            <div class="right col-lg-5">
-               <ul class="navi">
-                  <lii>Course</lii>
-               </ul>
-               <span class="follow"><a href="/SE_Project/public/tutorEdit">Edit</a></span>
-
-               @foreach ($courses as $course)
-               <div class="cont">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="blog-thumb">
-                           <div class="col-md-6" align="center">
-                              <img src="images/{{$course->img}}" style="width:100%;max-width:300px high='100%'" onerror="this.src='images/blog-img3.jpg'" class="img-responsive alt=" Blog"></a>
-                           </div>
-                           <div class="col-md-6" align="center" style="margin-top: 35px;">
-                              <p class="pagelink click" onclick="fncAction0({{$course->idcourse}})">{{$course -> Ncourse}}</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               @endforeach
-            </div>
-      </main>
-   </div>
+             @foreach ($courses as $course)
+             <div class="cont">
+                <div class="row">
+                   <div class="col-md-12">
+                      <div class="blog-thumb">
+                         <div class="col-md-6" align="center">
+                            <img src="images/{{$course->img}}" style="width:100%;max-width:300px high='100%'" onerror="this.src='images/blog-img3.jpg'" class="img-responsive alt=" Blog"></a>
+                         </div>
+                         <div class="col-md-6" align="center" style="margin-top: 35px;">
+                            <p class="pagelink click" onclick="fncAction0({{$course->idcourse}})">{{$course -> Ncourse}}</p>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             @endforeach
+          </div>
+       </div>
+    </main>
+ </div>
    <!-- end detail section
 ================================================== -->
 
@@ -653,7 +647,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
    <script type="text/javascript">
       function fncAction0(idcourse) {
-         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse); 
+         window.location.assign("/SE_Project/public/courseInformation?idcourse=" + idcourse);
       }
    </script>
 
