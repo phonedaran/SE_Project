@@ -331,18 +331,22 @@ text: 'Success!!'
                     <div class="force-overflow">
                     <br>
                         <div class="blog-thumb">
-                        <h2 style="color:black;" align="center"><b>All Announces ({{sizeof($Anns)}})</b></h2>
+                        <h2 style="color:black;" align="center"><b>All of your Announces ({{sizeof($Anns)}})</b></h2>
                         <hr color="black" width = "90%">
                         @if(sizeof($Anns)>0)
                             @foreach($Anns as $Ann)
-                            <p class="col-md-10" style="word-wrap: break-word;" align="left"><b>Announce</b> : {{$Ann->announce}}</p>
-                            <p class="col-md-2" align="right" onClick="fncAction({{$Ann->idAnnounce}})"><a href="#" class="btn" ><i class="fa fa-trash"></i></a></p>
-                            <p class="col-md-10" align="left"><b>sex</b> : {{$Ann->sex}}</p>
-                            <p class="col-md-10" align="left"><b>Level</b> : {{$Ann->level}}</p>
-                            <p class="col-md-10" align="left"><b>Location</b> : {{$Ann->location}}</p>
-                            <p class="col-md-10" align="left"><b>Contact</b> : {{$Ann->contact}}</p>
-                            <p class="col-md-10" align="left"><b>Announce at</b> : {{$Ann->date}}</p>
-                            <hr color="black" width = "90%">                                                                             
+                            <div class="col-md-12">
+                            <p class="col-md-10" style="word-wrap: break-word;" align="left"><b>{{$Ann->announce}}</b></p>
+                            <p class="col-md-2" align="right" style="top:-7px;" onClick="fncAction({{$Ann->idAnnounce}})"><a href="#" class="btn" ><i class="fa fa-trash fa-lg"></i></a></p>
+                            </div>
+                            <div class="col-md-12">
+                            <p class="col-md-12" style="top:-7px;" align="left">sex : {{$Ann->sex}}</p>
+                            <p class="col-md-12" align="left">Level : {{$Ann->level}}</p>
+                            <p class="col-md-12" align="left">Location : {{$Ann->location}}</p>
+                            <p class="col-md-12" align="left">Contact : {{$Ann->contact}}</p>
+                            <p class="col-md-12" align="right">{{$Ann->date}}</p>
+                            <hr color="black" width = "90%">      
+                            </div>                                                                    
                             @endforeach
                         @else
                             <br><br>
