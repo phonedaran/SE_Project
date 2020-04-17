@@ -299,7 +299,9 @@ http://www.tooplate.com/view/2082-pure-mix
                   <div class="col-md-12">
                      @if (Auth::check())
                         @if ( Auth:: user()->status == 'student')
-                           <button style="width:100%"class="btn button button1" onClick="fncAction0({{$course[0]->idcourse}})">Enroll</button>
+                           @if ($enrolled == 0)
+                              <button style="width:100%"class="btn button button1" onClick="fncAction0({{$course[0]->idcourse}})">Enroll</button>
+                           @endif
                         @endif
                      @endif 
                      <button style="width:100%"class="btn button button2" onClick="javascript:history.go(-1)">Back</button>  

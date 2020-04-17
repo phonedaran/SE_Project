@@ -287,90 +287,73 @@ http://www.tooplate.com/view/2082-pure-mix
 
 @foreach($tutors as $tu)
 			<section id="contact">
-			<form action="{{ URL::to('/tutorEdit/check') }}" method ="post" enctype="multipart/form-data">
-				{{csrf_field()}}
 		<div class="container">
 			<!-- <div class="row" > -->
 				<div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="1.2s">
 					<h1>Edit Your Profile</h1>
 						<div class="card" style="background :">
 							<div class="contentCard">
-									
-								<div class="col-md-12">
-									<br>
-								@foreach($image as $img)
-									<div class="avartar-picker col-md-6" align="center" style="background-image: none ;">
+								<form action="{{ URL::to('/tutorEdit/check') }}" method ="post" enctype="multipart/form-data">
+									<div class="col-md-12">
 										<br>
-										<p><img id="blah" src="images/imageProfile/{{$img->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:200px"></p>
-									<input type="file"  onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
-									<label for="file-1">
-										<i class="zmdi zmdi-camera"></i>
-										<span>Choose Picture</span>
-									</label>
-								</div>
-								@endforeach
-									
-								
-									
-									<br>
-									<p class="col-md-6" align="left"><label><font size="3">First name*</font></label> 
-									<input name="Fname" type="text" class="form-control"  value="{{$tu->Fname}}" required></p>
-									
-									<p class="col-md-6" align="left"><label ><font size="3">Last name*</font></label> 
-									<input name="Lname" type="text" class="form-control"  value="{{$tu->Lname}}" required></p>
-								
-									<p class="col-md-6" align="left"><label for="">Gender *</label>
-									<i class="zmdi zmdi-caret-down"></i>
-									<select name="gender" class="form-control"  value="{{$tu->sex}}" required>
-									<option value="Female" class="option">Female</option>
-									<option value="Male" class="option">Male</option>
-									<option value="Lgbt" class="option">Lgbt</option>
-								</select></p>
-
-									<p class="col-md-6" align="left">
-									<label for="">Birthday *</label>
-	                    	<input type="date" name="DOB" class="form-control" required  value="{{$tu->DOB}}" >
-									</p>
-
-									<p class="col-md-6" align="left"><label ><font size="3">Address*</font></label> 
-									<input name="addr" type="text" class="form-control"  value="{{$tu->address}}" required></p>
-
-									<p class="col-md-6" align="left"><label >Email*</label>
-	                    	<input type="email" name="email" class="form-control" value="{{$tu->email}}" required></p>
-
-									<p class="col-md-6" align="left"><label >Phone *</label>
-	                    		<input type="tel" name="phone" class="form-control" value="{{$tu->phone}}" required></p>
-
-									<p class="col-md-6" align="left"><label>Education*</label>
-												<input type="text" name="education" class="form-control" value="{{$tu->education}}" required ></p>
-												
-									<p class="col-md-6" align="left"><label>Partner*</label>
-												<input type="text" name="partner" class="form-control" value="{{$tu->partner}}" required></p>
-												
-									<p class="col-md-6" align="left"><label>Work experient*</label>
-												<input type="comment" name="work"  class="form-control" placeholder="{{$tu->work_experient}}" value="{{$tu->work_experient}}" style="height: 70px"></input>
-
-									<p class="col-md-6" align="left"><label>About me*</label>
-												<input type="comment" name="about"  class="form-control" placeholder="{{$tu->about_me}}" value="{{$tu->about_me}}" style="height: 70px"></input>
-
-
-									<!-- <p class="col-md-12" align="left" style="font-size:20px"><b>For Changing Password</b></p><br> -->
-									<!-- <p class="col-md-6" align="left"><label>Old Password*</label>
-									<input id="password-field" type="password" class="form-control" name="pass" > -->
-									
-
-									<!-- <p class="col-md-6" align="left"><label>New Password*</label>
-									<input id="password-field" type="password" class="form-control" name="passNew" >
-									<span toggle="#password-field"  class="fa fa-fw fa-eye field-icon toggle-password"></span> -->
-								</div>
-								<br>
-								
-										<div id="outer" >
-											<input type="submit" class="inner button " value="Save" >
-											<button href="/SE_Project/public/Profile" class="inner button btn">Cancle</button>
-										</div>
+										{{csrf_field()}}
+										@foreach($image as $img)
+											<div class="avartar-picker col-md-6" align="center" style="background-image: none ;">
+												<br>
+												<p><img id="blah" src="images/imageProfile/{{$img->img_path}}" onerror="this.src='images/user.png'" style="width:100%;max-width:200px"></p>
+												<input type="file"  onchange="readURL(this);" name="image" id="file-1" class="inputfile" accept="image/jpg,image/jpeg,image/png,application/pdf" data-multiple-caption="{count} files selected" multiple />
+												<label for="file-1">
+													<i class="zmdi zmdi-camera"></i>
+													<span>Choose Picture</span>
+												</label>
+											</div>
+										@endforeach
+							
+										<br>
+										<p class="col-md-6" align="left"><label><font size="3">First name*</font></label> 
+										<input name="Fname" type="text" class="form-control"  value="{{$tu->Fname}}" required></p>
 										
+										<p class="col-md-6" align="left"><label ><font size="3">Last name*</font></label> 
+										<input name="Lname" type="text" class="form-control"  value="{{$tu->Lname}}" required></p>
+									
+										<p class="col-md-6" align="left"><label for="">Gender *</label>
+										<i class="zmdi zmdi-caret-down"></i>
+										<select name="gender" class="form-control"  value="{{$tu->sex}}" required>
+											<option value="Female" class="option">Female</option>
+											<option value="Male" class="option">Male</option>
+											<option value="Lgbt" class="option">Lgbt</option>
+										</select></p>
 
+										<p class="col-md-6" align="left"><label for="">Birthday *</label>
+										<input type="date" name="DOB" class="form-control" required  value="{{$tu->DOB}}" ></p>
+
+										<p class="col-md-6" align="left"><label ><font size="3">Address*</font></label> 
+										<input name="addr" type="text" class="form-control"  value="{{$tu->address}}" required></p>
+
+										<p class="col-md-6" align="left"><label >Email*</label>
+										<input type="email" name="email" class="form-control" value="{{$tu->email}}" required></p>
+
+										<p class="col-md-6" align="left"><label >Phone *</label>
+										<input type="tel" name="phone" class="form-control" value="{{$tu->phone}}" required></p>
+
+										<p class="col-md-6" align="left"><label>Education*</label>
+										<input type="text" name="education" class="form-control" value="{{$tu->education}}" required ></p>
+													
+										<p class="col-md-6" align="left"><label>Partner*</label>
+										<input type="text" name="partner" class="form-control" value="{{$tu->partner}}" required></p>
+													
+										<p class="col-md-6" align="left"><label>Work experient*</label>
+										<input type="comment" name="work"  class="form-control" placeholder="{{$tu->work_experient}}" value="{{$tu->work_experient}}" style="height: 70px"></input>
+
+										<p class="col-md-6" align="left"><label>About me*</label>
+										<input type="comment" name="about"  class="form-control" placeholder="{{$tu->about_me}}" value="{{$tu->about_me}}" style="height: 70px"></input>
+										
+										<p class="col-md-12" align="left"></p>
+										<input style="width:40%;margin-left:300px;" type="submit" class="button col-md-6" align="center" value="Save">
+									</div>
+									
+								</form>
+								<button style="width:39%;margin-left:315px;" class="button btn" onclick="window.location.href = '{{url('/Profile')}}';">Cancle</button>	
 							</div>
 						</div>
 				</div>

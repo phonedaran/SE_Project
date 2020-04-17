@@ -28,8 +28,13 @@ class CourseController extends Controller
             ->where('rating', null)
             ->update(['rating' => 0]);
 
+        $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+        FROM courses
+        LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+        GROUP BY courses.idcourse');
+    
         return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,
-        'idCards' => $idCards]);
+        'idCards' => $idCards,'students'=>$students]);
     }
 
     function filter(){
@@ -100,8 +105,22 @@ class CourseController extends Controller
         if($avgReview==null){
             $avgReview=0;
         }
+        $students = DB::table('courses')
+        ->join('enroll', 'courses.idcourse', '=', 'enroll.idcourse')
+        ->where('courses.idcourse', '=',$idcourse)
+        ->select('enroll.idstudent')
+        ->get();
+        $enrolled=0;
+        if ( Auth:: user()->status == 'student'){
+            $id = Auth::id();
+            foreach ($students as $student){
+                if ($student->idstudent == $id){
+                    $enrolled=1;
+                }
+            } 
+        }
         return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor,
-        'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+        'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime,'students'=>$students,'enrolled'=>$enrolled]);
     }
 
     public function enrolled(request $request){
