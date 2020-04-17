@@ -383,9 +383,11 @@ http://www.tooplate.com/view/2082-pure-mix
                </div>
                <div class="col-md-12">
                   <br>
+                  <p class="col-md-12" align="left" ><b>About Me</b> : {{$tutor->about_me}}</p>
                   <p class="col-md-12" align="left" ><b>Education</b> : {{$tutor->education}}</p>
                   <p class="col-md-12" align="left" ><b>Work Experient</b> :{{$tutor->work_experient}}</p>
                   <p class="col-md-12" align="left" ><b>Address</b> : {{$tutor->address}}</p>
+                  <p class="col-md-12" align="left" ><b>E-mail</b> : {{$tutor->email}}</p>
                   <p class="col-md-12 desc" align="left" ><b>Phone</b> : {{$tutor->phone}}</p>
                </div>
                @endforeach
@@ -629,6 +631,7 @@ http://www.tooplate.com/view/2082-pure-mix
                   </div>
                </div>
                @endforeach
+               <button style="width:90%"class="btn button button2" onClick="javascript:history.go(-1)">Back</button>
             </div>
          </div>
       </main>
