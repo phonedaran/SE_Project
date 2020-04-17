@@ -85,6 +85,7 @@ class TutorRegController extends Controller
            'work_experient' => $work,
            'education' => $education,
            'partner' => $partner,
+           'rating' => 0,
            'password' => Hash::make($pass),
            'passReal' => $pass]
         );

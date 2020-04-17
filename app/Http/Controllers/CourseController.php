@@ -16,6 +16,22 @@ class CourseController extends Controller
         $this->middleware('auth', ['only' => ['add','addCheck','my','edit','editCheck']]);
     }
 
+    public function welcome(){
+        $tutors = DB::table('tutors')->orderBy('rating','desc')->take(3)->get();
+        $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
+        $idCards = DB::table('image')->get();
+        $rate = DB::table('tutors')
+            ->update(['rating' => DB::raw("(SELECT AVG(review.review) FROM review
+                WHERE review.idTutor = tutors.idTutor)")
+            ]);
+        $rate = DB::table('tutors')
+            ->where('rating', null)
+            ->update(['rating' => 0]);
+
+        return view('/course/welcome',['courses' => $courses,'tutors' => $tutors,
+        'idCards' => $idCards]);
+    }
+
     function filter(){
 
         $min = $_GET['min'];
@@ -41,18 +57,31 @@ class CourseController extends Controller
                 ->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
             }
         }
-        return view('/course/home',['courses' => $courses]);
-    }
-
-    public function courseShow(){
-        session_start();
-        $_session['filter'] = false;
-        $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
 
         $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
                                 FROM courses
                                 LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
                                 GROUP BY courses.idcourse');
+
+        return view('/course/home',['courses' => $courses,'students'=>$students]);
+    }
+
+    public function courseShow(){
+        $id = Auth::id();
+        if(Auth:: user()->status == 'student'){
+            $courses = DB::select("SELECT * FROM courses
+                                    LEFT JOIN tutors ON courses.idTutor = tutors.idTutor
+                                    WHERE idcourse NOT IN (SELECT idcourse FROM enroll WHERE idstudent = '$id')");
+        }else{
+            $courses = DB::table('courses')->join('tutors','courses.idTutor','=','tutors.idTutor')->get();
+        }
+
+        $students=DB::select('  SELECT courses.idcourse, COUNT(idstudent) AS "nStudent"
+                                FROM courses
+                                LEFT JOIN enroll ON courses.idcourse = enroll.idcourse
+                                GROUP BY courses.idcourse');
+
+
         return view('/course/home',['courses' => $courses,'students'=>$students]);
     }
 
@@ -71,7 +100,8 @@ class CourseController extends Controller
         if($avgReview==null){
             $avgReview=0;
         }
-        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor, 'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
+        return view('course/courseInfo',['avgReview' => $avgReview,'nReview' => $nReview,'course' => $course, 'tutor' => $tutor,
+        'imageTutor'=>$imageTutor, 'age'=>$age, 'startTime'=>$startTime, 'endTime'=>$endTime]);
     }
 
     public function enrolled(request $request){
@@ -120,9 +150,9 @@ class CourseController extends Controller
             $message = $request->input('description');
             $cId = $request->input('cId');
             $img = $request->input('image');
-             
+
             $haveName = DB::table('courses')->where(['Ncourse' => $Ncourse])->exists();
-             
+
              $cName = DB::table('courses')
          ->select('Ncourse')
          ->where([
@@ -130,15 +160,14 @@ class CourseController extends Controller
             ['idcourse', '=', $cId],
             ['Ncourse', '=', $Ncourse]
          ])->get();
-             
          if ($haveName) {
              if($cName == "[]"){
                     return redirect()->back()->with('haveName', 'The course name has already in use.');
              }
-                 
+
              }
-           
-            
+
+
             if($img === null){
                 $tutor = DB::table('courses')
         ->where(['idTutor' => $idTutor,'idcourse'=>$cId])
@@ -182,9 +211,9 @@ class CourseController extends Controller
 
             return redirect('/course')->with('success','Course created');
             }
-            
 
-            
+
+
     }
 
 

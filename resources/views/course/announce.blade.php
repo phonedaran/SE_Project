@@ -280,10 +280,10 @@ text: 'Success!!'
 
 <!-- Header section
 ================================================== -->
-   <section id="header2">
-    <h1 class="wow fadeIn" align="center" data-wow-delay="1.4s">Announce</h1><br>
+   <section id="header2" style="background-color: #f9f9f9;">
       <div class="container">
          <div class ="row">
+            <h1 class="wow fadeIn" align="center" data-wow-delay="1s">Announce</h1><br>
             <div class="pull-left" style="width:700px;">
                 <div class ="card col-md-12 ">
                     <div id="contact" >
@@ -311,13 +311,13 @@ text: 'Success!!'
                                 <input name="phone" type="text" class="form-control" maxlength="10" placeholder="เบอร์ติดต่อ" required>
 
                                 <!-- <div class="contact-submit"> -->
-                                <div class="col-md-3 col-sm-4">
+                                
+                                <div class="col-md-6 col-sm-4">
                                     <input type="submit" class="form-control submit" value="Submit" >
                                 </div>
 
-                                <div class="col-md-3 col-sm-4">
-                                    <br>
-                                    <a href="{{url('/')}}" class="btn">Cancle</a>
+                                <div class="col-md-6 col-sm-4">
+                                    <button href="{{url('/')}}" class="button btn2">Cancle</button>
                                 </div>
                         </form>
                     </div>
@@ -331,18 +331,22 @@ text: 'Success!!'
                     <div class="force-overflow">
                     <br>
                         <div class="blog-thumb">
-                        <h2 style="color:black;" align="center"><b>All Announces ({{sizeof($Anns)}})</b></h2>
+                        <h2 style="color:black;" align="center"><b>All of your Announces ({{sizeof($Anns)}})</b></h2>
                         <hr color="black" width = "90%">
                         @if(sizeof($Anns)>0)
                             @foreach($Anns as $Ann)
-                            <p class="col-md-10" style="word-wrap: break-word;" align="left"><b>Announce</b> : {{$Ann->announce}}</p>
-                            <p class="col-md-2" align="right" onClick="fncAction({{$Ann->idAnnounce}})"><a href="#" class="btn" ><i class="fa fa-trash"></i></a></p>
-                            <p class="col-md-10" align="left"><b>sex</b> : {{$Ann->sex}}</p>
-                            <p class="col-md-10" align="left"><b>Level</b> : {{$Ann->level}}</p>
-                            <p class="col-md-10" align="left"><b>Location</b> : {{$Ann->location}}</p>
-                            <p class="col-md-10" align="left"><b>Contact</b> : {{$Ann->contact}}</p>
-                            <p class="col-md-10" align="left"><b>Announce at</b> : {{$Ann->date}}</p>
-                            <hr color="black" width = "90%">                                                                             
+                            <div class="col-md-12">
+                            <p class="col-md-10" style="word-wrap: break-word;" align="left"><b>{{$Ann->announce}}</b></p>
+                            <p class="col-md-2" align="right" style="top:-7px;" onClick="fncAction({{$Ann->idAnnounce}})"><a href="#" class="btn" ><i class="fa fa-trash fa-lg"></i></a></p>
+                            </div>
+                            <div class="col-md-12">
+                            <p class="col-md-12" style="top:-7px;" align="left">sex : {{$Ann->sex}}</p>
+                            <p class="col-md-12" align="left">Level : {{$Ann->level}}</p>
+                            <p class="col-md-12" align="left">Location : {{$Ann->location}}</p>
+                            <p class="col-md-12" align="left">Contact : {{$Ann->contact}}</p>
+                            <p class="col-md-12" align="right">{{$Ann->date}}</p>
+                            <hr color="black" width = "90%">      
+                            </div>                                                                    
                             @endforeach
                         @else
                             <br><br>
@@ -352,14 +356,10 @@ text: 'Success!!'
                     </div>
                     </div>
                 </div>
-            
-
             </div>
-        </div>
-         
-    </div>
-      
-    </section>
+         </div>
+      </div>
+   </section>
 
 
 <!-- Footer section

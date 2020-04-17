@@ -13,7 +13,7 @@ class StudentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except'=> ['showAnnounce']]);
     }
 
     public function index()
@@ -100,9 +100,15 @@ class StudentController extends Controller
 
     public function reviewFrom(){
         $id = Auth::id();
-        $list = DB::table('enroll')->join('tutors','enroll.idTutor','=','tutors.idTutor')
-        ->join('courses','enroll.idcourse','=','courses.idcourse')
-        ->where(['idStudent' => $id])->distinct('enroll.idcourse')->get();
+        // $list = DB::table('enroll')->join('tutors','enroll.idTutor','=','tutors.idTutor')
+        // ->join('courses','enroll.idcourse','=','courses.idcourse')
+        // ->where(['idStudent' => $id])->distinct('enroll.idcourse')->get();
+
+        $list = DB::select("SELECT * FROM enroll
+                LEFT JOIN tutors ON enroll.idTutor = tutors.idTutor
+                LEFT JOIN courses ON enroll.idcourse = courses.idcourse
+                WHERE enroll.idstudent = '$id'
+                AND courses.end_date < CURRENT_DATE()");
 
         return view('student.review', ['list' => $list]);
     }
@@ -167,4 +173,9 @@ class StudentController extends Controller
         return redirect()->back()->with('success','success');
     }
 
+    public function showAnnounce(){
+        // $ann = DB::table('announces')->get();
+        $ann = announce::paginate(25);
+        return view('/course/showannounce',['ann' => $ann]);
+    }
 }
