@@ -13,7 +13,7 @@ class TutorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth' , ['except' => ['showProfile']]);
     }
 
     public function index()
@@ -121,12 +121,7 @@ class TutorController extends Controller
     }
 
     public function showProfile(request $request){
-        if(Auth:: user()->status == 'tutor'){
-            $idTutor = Auth::id();
-        }
-       else{
         $idTutor = $request->input('idTutor');
-       }
         $tutor = DB::table('tutors') -> where(['idTutor'=>$idTutor]) -> get();
         $course = DB::table('courses')-> join('tutors','courses.idTutor','=','tutors.idTutor')
         -> where(['courses.idTutor' => $idTutor])->get();

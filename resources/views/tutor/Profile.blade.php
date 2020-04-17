@@ -472,11 +472,11 @@ http://www.tooplate.com/view/2082-pure-mix
 
                 <?php
                 //cal % star
-                $P1 = $star1 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
-                $P2 = $star2 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
-                $P3 = $star3 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
-                $P4 = $star4 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
-                $P5 = $star5 / ($star1 + $star2 + $star3 + $star4 + $star5) * 100;
+                  $P1 = @($star1/($star1+$star2+$star3+$star4+$star5)*100);
+                  $P2 = @($star2/($star1+$star2+$star3+$star4+$star5)*100);
+                  $P3 = @($star3/($star1+$star2+$star3+$star4+$star5)*100);
+                  $P4 = @($star4/($star1+$star2+$star3+$star4+$star5)*100);
+                  $P5 = @($star5/($star1+$star2+$star3+$star4+$star5)*100);
                 ?>
                 <div class="col-sm-12" align="center">
                    <h4>Rating breakdown</h4>
