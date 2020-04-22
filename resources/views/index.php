@@ -41,6 +41,7 @@ http://www.tooplate.com/view/2082-pure-mix
    -webkit-line-clamp: 3; /* number of lines to show */
    -webkit-box-orient: vertical;
         }
+
 .swiper_wrap{padding:0px 5px;height:100%;width: 100%;position: relative;display: block;text-align: left;}
 .swiper-button-next{
 margin-top: 0px;
@@ -83,6 +84,7 @@ transform: translateY(-50%);
     border-style: double;
     border-color: #a9e4fc;
     color:#111112 ;
+
 }
 .yel:hover{
 	border-width: 5px;
@@ -196,7 +198,7 @@ text: 'Success!!'
                         <li><a href="{{url('/studentEdit')}}">edit profile</a></li>
                               <!-- tutor -->
                               @elseif ( Auth:: user()->status == 'tutor')
-								<li><a href="{{url('/Profile')}}">Profile</a></li>
+								<li><a href="{{url('/Profile')}}">Tutor Profile</a></li>
                                 <li><a href="{{url('/course')}}">Tutor course</a></li>
                                  <!-- admin -->
                                  @else
@@ -236,6 +238,7 @@ text: 'Success!!'
       </div>
    </nav>
 </div>
+
 
 
 
@@ -361,20 +364,16 @@ text: 'Success!!'
             <div class="swiper-slide ">
                         <div class="wow fadeInUp col-md-11 col-sm-10 " data-wow-delay="0.8s" style="padding-top: 25px">
                            <div class="blog-thumb">
-                              <a onclick="fncAction0({{$c->idcourse}})" class="click"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
-                              <h1 onclick="fncAction0({{$c->idcourse}})" class="text click">{{$c->Ncourse}}</h1>
-                              
-                              <p class="col-md-7" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
-                              @foreach ( $students as $student)
-                                 @if ($student->idcourse == $c->idcourse)
-                                    <p class="col-md-5" align="left"><i class="fa fa-users"></i> : {{$student->nStudent}}/{{$c->max_student}}</p>
-                                 @endif
-                              @endforeach
-                              <p class="col-md-12" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}} ~ {{$c->end_date}}</p>
-                              <p class="col-md-12" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}} {{$c->start_time}} - {{$c->end_time}}</p>
-                              <p onclick="fncAction1({{$c->idTutor}})" class="col-md-12 click" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
-                              <p class="col-md-7" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
-                              <p class="col-md-5" align="left"><i class="fa fa-dollar"></i> : {{$c->price}} bath</p>
+                              <a href="#"><img src="images/{{$c->img}}" onerror="this.src='images/blog-img3.jpg'" class="img-responsive" alt="Blog"></a>
+                              <h1 class="text">{{$c->Ncourse}}</h1>
+
+                              <p class="col-md-12" align="left"><i class="fa fa-pencil"></i> : {{$c->subject}} </p>
+                              <p class="col-md-6" align="left"><i class="fa fa-users"></i> : 0/{{$c->max_student}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-calendar "></i> : {{$c->start_date}}</p>
+                              <p class="col-md-6" align="left"><i class="fa fa-clock-o"></i> : {{$c->day}}</p>
+                              <p class="col-md-12" align="left"><i class="fa fa-user"></i> : {{$c->Fname}} {{$c->Lname}}</p>
+                              <p class="col-md-12" align="left"><i class="fa fa-map-marker"></i> : {{$c->location}}</p>
+                              <p class="col-md-12" align="left">ราคา {{$c->price}} บาท</p>
                               <button onclick="fncAction0({{$c->idcourse}})" class="col-md-12 btn btn-default">MORE INFO</button>
                            </div>
                         </div>
@@ -528,6 +527,7 @@ text: 'Success!!'
    function fncAction1(idTutor){
 		window.location.assign("/SE_Project/public/Profile?idTutor="+idTutor);
 	} //ไปหน้า profile tutor
+
 </script>
 
    <!-- Footer section
@@ -624,3 +624,4 @@ var swiper = new Swiper('.swiper-container', {
 </body>
 
 </html>
+
